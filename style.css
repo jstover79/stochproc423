@@ -80,8 +80,8 @@ pre code {
   border-radius: 5px;
   margin-bottom: 1em;
   margin-top: 1em;
-  margin-left: 2em;
-  margin-right: 2em;
+  /*margin-left: 2em;
+  margin-right: 2em;*/
 }
 .defbox {
   /*border-style: solid;*/
@@ -96,8 +96,8 @@ pre code {
   border-radius: 0px;
   margin-bottom: 1em;
   margin-top: 1em;
-  margin-left: 2em;
-  margin-right: 2em;
+  /*margin-left: 2em;
+  margin-right: 2em;*/
 }
 .exbox {
   border-style: dotted;
@@ -108,11 +108,11 @@ pre code {
   padding-left: 12px;
   /*background-color: #F0FFF5;*/
   background-color: #FAFFFA;
-  border-radius: 5px;
+  border-radius: 6px;
   margin-bottom: 1em;
   margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
+  /*margin-left: 1em;
+  margin-right: 1em;*/
 }
 
 /* <!-- .MathJax { -->
