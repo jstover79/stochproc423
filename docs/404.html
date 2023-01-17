@@ -52,6 +52,14 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script type="text/javascript">
+  function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className=(item.className=='hiddendiv')?'unhiddendiv':'hiddendiv';
+    }
+  }
+</script> 
 
 
 
@@ -74,7 +82,7 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stochastic Processes</a></li>
 <li class="chapter" data-level="2" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>2</b> Probability review</a></li>
-<li class="chapter" data-level="3" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>3</b> Random walk</a></li>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random walks</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>

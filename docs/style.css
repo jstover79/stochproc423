@@ -12,3 +12,213 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+
+
+/* style page from math 413 notes */
+
+
+.tocify-header {
+    text-indent: initial;
+}
+.tocify-subheader > .tocify-item {
+  text-indent: initial;
+  font-style: inherit;
+  padding-left: 2em;
+}
+/*.tocify-subsubheader > .tocify-item {
+  text-indent: initial;
+  padding-left: 4em;
+} */
+.inner {
+  margin-left: 24px;
+  margin-top: -2px;
+  /*<!-- background-color: orange; -->*/
+}
+.inner2 {
+  margin-left: 48px;
+  margin-top: -23px;
+}
+
+.hiddendiv { 
+  visibility: hidden;
+  display: none; 
+}
+.unhiddendiv { 
+  visibility: unhidden;
+  display: block;
+} 
+.reveal {
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  border-style: solid;
+  border-width: 1px;
+  /*<!-- background-color: orange; -->*/
+}
+.proofbox {
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  border-radius: 0px;
+  background-color: #FEFFFF;
+  margin-bottom: 1em;
+}
+.thmbox {
+  border-style: solid;
+  border-width: 1px;
+  /*border-color: #290000;*/
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  background-color: #FFF0F5;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.defbox {
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  background-color: #E0F0FF;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.exbox {
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  background-color: #F0FFF5;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+/* <!-- .MathJax { -->
+<!-- font-size: 12px !important; -->
+<!-- } --> */
+
+body{ /* Normal  */
+      font-size: 16px;
+      font-family: "Times New Roman", Times, serif;
+      /*<!-- padding: -20px 20px 40px 20px; -->*/
+  }
+td {  /* Table  */
+  font-size: 12px;
+}
+h1.title {
+  font-size: 24px;
+  /* margin-left: -24px; */
+  /* <!-- color: DarkRed; --> */
+}
+h1 { /* Header 1 */
+  font-size: 21px;
+  /* margin-left: -24px; */
+  /* <!-- color: DarkBlue; -->*/
+}
+h2 { /* Header 2 */
+    font-size: 18px;
+  /* margin-left: -24px; */
+  /*  <!-- font-family: "Times New Roman", Times, serif; -->
+    <!-- font-weight: bold; -->
+    <!-- display: inline; -->
+    <!-- white-space: nowrap; -->
+  <!-- color: DarkBlue; -->*/
+}
+h3 { /* Header 3 */
+  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+  display: inline; 
+  /*color: DarkBlue;*/
+}
+code.r{ /* Code block */
+    font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 12px;
+}
+a:link, a:visited {
+  color: CadetBlue;
+  /* <!--  background-color: #f44336; -->
+  <!-- padding: 15px 25px; -->
+  <!-- text-align: center; -->
+  <!-- text-decoration: none; -->
+  <!-- display: inline-block; --> */
+}
+
+/*<!-- a:hover, a:active { -->
+<!--   background-color: red; -->
+<!-- } -->*/
+
+.axiom {
+  list-style: none;
+}
+.axiom li {
+  position: relative;
+  counter-increment: axiom-counter;
+  display: block;
+  padding-left: 3.25em;
+}
+.axiom li::before {
+  content: "(A"counter(axiom-counter, decimal) ") ";
+  text-align: right;
+  display: inline-block;
+  width: 3.5em;
+  margin-left: -4.25em; 
+  margin-right: 0.5em;
+}
+
+.paren2-alpha {
+  list-style: none;
+}
+.paren2-alpha li {
+  position: relative;
+  counter-increment: paren2-alpha-counter;
+  display: block;
+  padding-left: 3.25em;
+}
+.paren2-alpha li::before {
+  content: "("counter(paren2-alpha-counter, lower-alpha) ") ";
+  text-align: right;
+  display: inline-block;
+  width: 3.5em;
+  margin-left: -4.25em; 
+  margin-right: 0.5em;
+}
+
+.cases-upper-roman {
+  list-style: none;
+}
+.cases-upper-roman li {
+  position: relative;
+  counter-increment: cases-upper-roman-counter;
+  display: block;
+  padding-left: 3.75em;
+}
+.cases-upper-roman li::before {
+  content: "Case "counter(cases-upper-roman-counter, upper-roman)". ";
+  text-align: right;
+  text-decoration: underline;
+  display: inline-block;
+  width: 4em;
+  margin-left: -4.75em;
+  margin-right: 0.5em;
+}

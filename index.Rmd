@@ -3,6 +3,10 @@ title: "Math 423 Stochastic Processes Course Notes"
 author: "Stover"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    includes:
+      in_header: hidejs.js
 ---
 
 # Stochastic Processes 
@@ -22,3 +26,23 @@ If the index set is a continuous interval such as $T=[0,1]$ or $T=[0,\infty)$, t
 There are two intuitive ways to think about a stochastic process. We can think of it as $X_t$ where it is implied that we have several random variables, one variable for each value of $t$. Alternatively, we can think of the entire random sequence or function as a single object and write $X=(X_t)_{t\in T}$. This $X$ is not a random variable, it is a stochastic process. Each $X_t$ is a real-valued random variable, but $X$ is vector-valued, sequence-valued, or function-valued. In order to know the ``value'' of $X$, we have to know the value of each $X_t$ for every possible $t$-value. 
 
 We can think of $X$ as a random sequence of numbers, $X=(X_0,X_1,X_2,\ldots)$ where each $X_n$ is a real-valued random variable.
+
+<div class="defbox">
+**Definition** A *stochastic process* $X$ is a collection of random variables indexed by a set $X=(X_t)_{t\in T}$. For each $t\in T$, $X_t$ is a real-valued random variable, that is each $X_t$ takes values in $\mathbb R$. The sample path space for $X$ is $\mathbb R^T$, that is, if we know the precise value of $X_t$ for all $t\in T$, then $X$ is a function from $T$ to $\mathbb R$.
+</div>
+
+
+<div class="exbox">
+**Example 1** 
+Write stochastic process notation for the closing price of a stock each day for one week of five trading days. What is the index set? What is the sample path space? Give a possible sample path realization.
+
+<a href="javascript:unhide('ex1');">Show/hide solution.</a>
+
+<div id="ex1" class="hiddendiv">
+<!-- <div class="proofbox"> -->
+*Solution.* 
+Let the index set $T=\{1,2,\ldots,5\}$ represent days one to two hundred. For each day $t$, the random variable $X_t$ is the closing price of the stock on that day. We can write $X=(X_t)_{t=1,2,\ldots,5}$ or $X=(X_1,X_2,X_3,X_4,X_{5})$. The sample path space is $[0,\infty)^{5}$ since each full realization of the stochastic process is a sequence of five dollar amounts. Each dollar amount should be nonnegative since a stock doesn't ever have a negative price. An example sample path realization might be $(105.27,103.52,97.21,95.13,96.83)$.
+[$\blacksquare$]{style="float:right"}
+</div>
+</div>
+

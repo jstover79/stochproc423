@@ -3,3 +3,14 @@ the-pool-of-tears
 a-caucus-race-and-a-long-tale
 probability-review
 random-walk
+large-s-1.7---ordered-ordered-field-and-a-real-number-system
+field-axioms
+properties-of-identities-and-inverses
+order-axioms
+rational-numbers-are-an-ordered-field
+completeness
+existence-of-sqrt-2
+density-of-mathbb-q-in-mathbb-r
+types-of-real-numbers
+real-numbers
+random-walks
