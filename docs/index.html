@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="the-pool-of-tears.html"/>
+<link rel="next" href="probability-review.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -69,12 +69,12 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">423 Stoch Proc</a></li>
+<li><a href="./">Stochastic Processes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stochastic Processes</a></li>
-<li class="chapter" data-level="2" data-path="the-pool-of-tears.html"><a href="the-pool-of-tears.html"><i class="fa fa-check"></i><b>2</b> The pool of tears</a></li>
-<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="chapter" data-level="2" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>2</b> Probability review</a></li>
+<li class="chapter" data-level="3" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>3</b> Random walk</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -101,9 +101,14 @@
 </div>
 <div id="stochastic-processes" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Stochastic Processes<a href="index.html#stochastic-processes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>A stochastic process is <span class="math inline">\(X=(X_n)_{n\in\mathbb N_0}\)</span>.</p>
-<p>Edit number two…</p>
-<p>Let <span class="math inline">\(Y\)</span> be another rv…</p>
+<p>You have seen <strong>random variables</strong> in previous probability or statistics courses. A random variable <span class="math inline">\(X\)</span> takes on real number values, but we cannot predict what precise value it will take perfectly… it is <em>random</em>. One can think of performing a random experiment such as rolling a die and letting <span class="math inline">\(X\)</span> be the number of dots on the upper face or observing some physical process like drilling an oil well with <span class="math inline">\(X\)</span> being the amount of oil produced on the first day or growing a plant and letting <span class="math inline">\(X\)</span> be the height of the plant after one month of growth. In all of the examples <span class="math inline">\(X\)</span> just takes on a single numerical value.</p>
+<p>A <strong>stochastic process</strong> is like a generalization of a random variable, but it doesn’t have to be a single numerical value and instead can be vector-valued or function-valued.</p>
+<p>Generally, a stochastic process consists of an index set <span class="math inline">\(T\)</span> which can usually be thought of as <em>time</em>. For each point in the index set <span class="math inline">\(t\in T\)</span> we have a random variable <span class="math inline">\(X_t\)</span>. We write this as <span class="math inline">\((X_t)_{t\in T}\)</span> or <span class="math inline">\(\{X_t\}_{t\in T}\)</span>. We can think of <span class="math inline">\(X_t\)</span> as a random function of time. You have seen functions of time like <span class="math inline">\(x(t)\)</span> where you plug in a <span class="math inline">\(t\)</span>-value and it outputs an exact <span class="math inline">\(x(t)\)</span>-value according to some formula, but for a stochastic process <span class="math inline">\(X_t\)</span>, even when the <span class="math inline">\(t\)</span>-value is specified, we cannot know the precise value for <span class="math inline">\(X_t\)</span> since it is still random.</p>
+<p>The index set is usually a subset of the set of natural numbers <span class="math inline">\(\mathbb N=\{1,2,\ldots\}\)</span> or those including zero <span class="math inline">\(\mathbb N_0=\{0,1,2,\ldots\}\)</span> or a subset of the real numbers <span class="math inline">\(\mathbb R\)</span>. For example, we can have <span class="math inline">\(T=\{1,2\}\)</span>, <span class="math inline">\(T=\mathbb N_0\)</span>, <span class="math inline">\(T=[0,\infty)\subset\mathbb R\)</span>, or <span class="math inline">\(T=[0,1]\)</span>. If the index set is discrete, we call it a <strong>discrete-time stochastic process</strong> and if the index set is continuous (a subset of <span class="math inline">\(\mathbb R\)</span>), we call it a <strong>continuous-time stochastic process</strong>.</p>
+<p>If <span class="math inline">\(T=\{1,2\}\)</span>, then our stochastic process is <span class="math inline">\((X_1,X_2)\)</span> and is a random point in <span class="math inline">\(\mathbb R^2\)</span>. If <span class="math inline">\(T=\mathbb N_0\)</span>, then our stochastic process is <span class="math inline">\((X_0, X_1,X_2,\ldots)\)</span> and is a random point in <span class="math inline">\(\mathbb R^\infty\)</span> (in other words, a infinite sequence of random numbers).</p>
+<p>If the index set is a continuous interval such as <span class="math inline">\(T=[0,1]\)</span> or <span class="math inline">\(T=[0,\infty)\)</span>, then we can think of <span class="math inline">\(X_t\)</span> as a random function of <span class="math inline">\(t\)</span>.</p>
+<p>There are two intuitive ways to think about a stochastic process. We can think of it as <span class="math inline">\(X_t\)</span> where it is implied that we have several random variables, one variable for each value of <span class="math inline">\(t\)</span>. Alternatively, we can think of the entire random sequence or function as a single object and write <span class="math inline">\(X=(X_t)_{t\in T}\)</span>. This <span class="math inline">\(X\)</span> is not a random variable, it is a stochastic process. Each <span class="math inline">\(X_t\)</span> is a real-valued random variable, but <span class="math inline">\(X\)</span> is vector-valued, sequence-valued, or function-valued. In order to know the ``value’’ of <span class="math inline">\(X\)</span>, we have to know the value of each <span class="math inline">\(X_t\)</span> for every possible <span class="math inline">\(t\)</span>-value.</p>
+<p>We can think of <span class="math inline">\(X\)</span> as a random sequence of numbers, <span class="math inline">\(X=(X_0,X_1,X_2,\ldots)\)</span> where each <span class="math inline">\(X_n\)</span> is a real-valued random variable.</p>
 
 </div>
             </section>
@@ -112,7 +117,7 @@
         </div>
       </div>
 
-<a href="the-pool-of-tears.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="probability-review.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
