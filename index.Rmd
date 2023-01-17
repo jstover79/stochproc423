@@ -8,3 +8,5 @@ site: bookdown::bookdown_site
 # Stochastic Processes
 
 A stochastic process is $X=(X_n)_{n\in\mathbb N_0}$.
+
+Edit number two...
