@@ -84,32 +84,35 @@ pre code {
   margin-right: 2em;
 }
 .defbox {
-  border-style: solid;
-  border-width: 1px;
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
+  border: 1px solid;
   padding-top: 4px;
   padding-right: 12px;
   padding-bottom: 4px;
   padding-left: 12px;
-  background-color: #E0F0FF;
-  border-radius: 5px;
+  background-color: #FAFFFF;
+  /*background-color: #E0F0FF;*/
+  border-radius: 0px;
   margin-bottom: 1em;
   margin-top: 1em;
   margin-left: 2em;
   margin-right: 2em;
 }
 .exbox {
-  border-style: solid;
-  border-width: 1px;
+  border-style: dotted;
+  border-width: 0.5px;
   padding-top: 4px;
   padding-right: 12px;
   padding-bottom: 4px;
   padding-left: 12px;
-  background-color: #F0FFF5;
+  /*background-color: #F0FFF5;*/
+  background-color: #FAFFFA;
   border-radius: 5px;
   margin-bottom: 1em;
   margin-top: 1em;
-  margin-left: 4em;
-  margin-right: 4em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 /* <!-- .MathJax { -->
