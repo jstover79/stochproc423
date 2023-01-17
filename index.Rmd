@@ -28,12 +28,29 @@ There are two intuitive ways to think about a stochastic process. We can think o
 We can think of $X$ as a random sequence of numbers, $X=(X_0,X_1,X_2,\ldots)$ where each $X_n$ is a real-valued random variable.
 
 <div class="defbox">
-**Definition** A *stochastic process* $X$ is a collection of random variables indexed by a set $X=(X_t)_{t\in T}$. For each $t\in T$, $X_t$ is a real-valued random variable, that is each $X_t$ takes values in $\mathbb R$. The sample path space for $X$ is $\mathbb R^T$, that is, if we know the precise value of $X_t$ for all $t\in T$, then $X$ is a function from $T$ to $\mathbb R$.
+**Definition.** A *stochastic process* $X$ is a collection of random variables indexed by a set $X=(X_t)_{t\in T}$. For each $t\in T$, $X_t$ is a $S$-valued random variable, that is each $X_t$ takes values in $S$. The set $S$ is called the *state space*.
 </div>
 
+<div class="defbox">
+**Definition.** For stochastic process $X=(X_t)_{t\in T}$ with state space $S$ and index set $T$, the *sample path space* is $\Omega=S^T$, that is, if we know the precise value of $X_t$ for all $t\in T$, then $X$ is a function from $T$ to $S$.
+</div>
+
+Here are some examples of how a stochastic process might model a physical process.
 
 <div class="exbox">
-**Example 1** 
+**Example. ** 
+Consider the following examples. 
+
+(1) A plant is growing in a pot and we want to model its total biomass over time for 1 year. Let $X_t$ be the total biomass at time $t$. We consider $X_t$ for each $t$ to be $[0,\infty)$-valued since biomass is nonnegative and we won't impose any particular upper limit on biomass. We let $[0,365]$ be the (time) index and will measure time in days. The state space is thus $[0,\infty)$ and the sample path space is $\Omega=[0,\infty)^{[0,365]}$. Each physical realization of a plant growing from germination to death will give us a particular smaple path realization which will be a function from $[0,365]$ to $[0,\infty)$. This is a continuous-time stochastic process.
+
+(2) The number of insurance claims per month for a twelve month year. We let $X_n$ be teh number of insurance claims in month $n$ with index set $\{1,2,\ldots,12\}$. The state space is $\mathbb N_0$ as we could have zero claims in a month or potentially any positive number of claims without any specific upper limit. The sample path space is $\Omega=\mathbb N_0^{12}$. A particular sample path realization will be a twelve-tuple (duodecuple) of nonnegative integers, e.g. $x=(10,4,0,1,0,8,12,25,37,22,13,9)\in\Omega$. Note that it is important that we consider the ordering of the index set, i.e. that $X_1=10, X_2=4$, etc.
+<!--[$\square$]{style="float:right"}-->
+</div>
+
+Try to construct the following example using the technical stochastic process notation.
+
+<div class="exbox">
+**Practice. ** 
 Write stochastic process notation for the closing price of a stock each day for one week of five trading days. What is the index set? What is the sample path space? Give a possible sample path realization.
 
 <a href="javascript:unhide('ex1');">Show/hide solution.</a>
@@ -42,7 +59,7 @@ Write stochastic process notation for the closing price of a stock each day for 
 <!-- <div class="proofbox"> -->
 *Solution.* 
 Let the index set $T=\{1,2,\ldots,5\}$ represent days one to two hundred. For each day $t$, the random variable $X_t$ is the closing price of the stock on that day. We can write $X=(X_t)_{t=1,2,\ldots,5}$ or $X=(X_1,X_2,X_3,X_4,X_{5})$. The sample path space is $[0,\infty)^{5}$ since each full realization of the stochastic process is a sequence of five dollar amounts. Each dollar amount should be nonnegative since a stock doesn't ever have a negative price. An example sample path realization might be $(105.27,103.52,97.21,95.13,96.83)$.
-[$\blacksquare$]{style="float:right"}
+<!--[$\square$]{style="float:right"}-->
 </div>
 </div>
 
