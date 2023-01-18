@@ -70,8 +70,7 @@ Let the index set $T=\{1,2,\ldots,5\}$ represent days one to two hundred. For ea
 </div>
 
 <div class="defbox">
-**Summary of terminology and notation.** 
-
+**Summary of terminology and notation.**<br><br>
 $\mathbb N=\{1,2,\ldots\}$ is the set of natural numbers. <br>
 $\mathbb N_0=\{0,1,2,\ldots\}$ is the set of natural numbers including zero. <br>
 $\mathbb R=(-\infty,\infty)$ is the set of real numbers. <br>
@@ -81,7 +80,8 @@ $t\in T$ means $t$ is an element of the set $T$, e.g. $3\in [-1,5]$ or $\pi\in\m
 *index set* $T$ gives the times we observe $X_t$ at. <br>
 *discrete-time* and *continuous-time*. <br>
 *discrete-space* and *continuous-space*. <br>
-*sample path space* $\Omega=S^T=$ all functions  from $T$ to $S$. <br>
+*sample path space* $\Omega=S^T=$ all functions from $T$ to $S$. <br>
 *sample path* or *path realization* $x(t)\in\Omega$ with $x:T\to S$. 
 </div>
 
+Next we'll do some review of probability theory.
