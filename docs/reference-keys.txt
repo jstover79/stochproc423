@@ -14,3 +14,9 @@ density-of-mathbb-q-in-mathbb-r
 types-of-real-numbers
 real-numbers
 random-walks
+stochastic-processes-1
+intro
+random-variables-and-distributions
+probability-basics
+bernoulli-binomial-geometric
+uniform-exponential-normal

@@ -1,0 +1,32 @@
+#  Probability review
+
+**under construction**
+
+## Probability basics
+
+## Random variables and distributions
+
+::: defbox
+**Definition.** A **random variable** $X$ is a variable where you must perform a random experiment to determine its value. The **sample space** $S$ is the set of numerical values that the random variable can take. An **event** is a subset of the sample space. A random variable can be either *discrete* (if it takes values in a discrete set such as $\mathbb N$) or *continuous* (if it can take on any value in some intveral).
+:::
+
+::: exbox
+**Examples.**
+
+(1) Let $X$ be the number of dots on the upper face of a dice roll.
+
+(2) Let $X$ be the mass of a randomly selected person form a specific population.
+
+(3) Let $X$ be the number of cars that pass by a given intersection druing a particular day.
+
+(4) Let $X$ be the number of radioactive decays in one hour of some particular material.
+:::
+
+::: defbox
+**Definition.** A **probability function** allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable $X$. A discrete random variable has a **probability mass function** (pmf) $f_X(x)=P(X=x)$, and a continuous random variable has a **probability density function** (pdf) $f_X(x)$ which we must integrate to get probabilities $P(a<X<b)=\int_a^b f_X(x)dx$. The **cumulative distribution function** (cdf) gives cumulative probabilities $F_X(x)=P(X\leq x)$.
+:::
+
+### Bernoulli, binomial, geometric
+
+### Uniform, exponential, normal
+

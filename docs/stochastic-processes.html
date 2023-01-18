@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Stochastic Processes | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 2 Stochastic Processes | Math 423 Stochastic Processes Course Notes" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Stochastic Processes | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Stochastic Processes | Math 423 Stochastic Processes Course Notes" />
+  
+  
+  
+
+<meta name="author" content="Joseph Stover" />
+
+
+<meta name="date" content="2023-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="probability-review.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script type="text/javascript">
+  function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className=(item.className=='hiddendiv')?'unhiddendiv':'hiddendiv';
+    }
+  }
+</script> 
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stochastic Processes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
+<li class="chapter" data-level="2" data-path="stochastic-processes.html"><a href="stochastic-processes.html"><i class="fa fa-check"></i><b>2</b> Stochastic Processes</a></li>
+<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a></li>
+<li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Math 423 Stochastic Processes Course Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stochastic-processes" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Stochastic Processes<a href="stochastic-processes.html#stochastic-processes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- You have seen **random variables** in previous probability or statistics -->
+<!-- courses. A random variable $X$ takes on real number values, but we -->
+<!-- cannot predict what precise value it will take perfectly... it is -->
+<!-- *random*. One can think of performing a random experiment such as -->
+<!-- rolling a die and letting $X$ be the number of dots on the upper face or -->
+<!-- observing some physical process like drilling an oil well with $X$ being -->
+<!-- the amount of oil produced on the first day or growing a plant and -->
+<!-- letting $X$ be the height of the plant after one month of growth. In all -->
+<!-- of the examples $X$ just takes on a single numerical value. A -->
+<!-- **stochastic process** tracks these processes over time. Let $X_n$ be -->
+<!-- the outcome of the $n^{th}$ die roll, the height of the plant after -->
+<!-- month $n$, or the amount of oil produced during day $n$. In this way a -->
+<!-- stochastic process can initially be thought of as a sequence of random -->
+<!-- variables. -->
+<!--A **stochastic process** is like a generalization of a random variable, but it doesn't have to be a single numerical value and instead can be vector-valued or function-valued. -->
+<p>Generally, a stochastic process consists of an <strong>index set</strong> <span class="math inline">\(T\)</span> which
+can usually be thought of as <em>time</em>. At each time <span class="math inline">\(t\in T\)</span> we have a
+(real-valued) random variable <span class="math inline">\(X_t\)</span>. We write this as <span class="math inline">\((X_t)_{t\in T}\)</span>
+or <span class="math inline">\(\{X_t\}_{t\in T}\)</span>. We can think of <span class="math inline">\(X_t\)</span> as a random function of
+time. You have seen functions of time like <span class="math inline">\(x(t)\)</span> where you plug in a
+<span class="math inline">\(t\)</span>-value and it outputs an exact <span class="math inline">\(x(t)\)</span>-value according to some
+formula, but for a stochastic process <span class="math inline">\(X_t\)</span>, even when the <span class="math inline">\(t\)</span>-value is
+specified, we cannot know the precise value for <span class="math inline">\(X_t\)</span> since it is still
+random.</p>
+<p>The index set is usually a subset of the set of natural numbers
+<span class="math inline">\(\mathbb N=\{1,2,\ldots\}\)</span> or those including zero
+<span class="math inline">\(\mathbb N_0=\{0,1,2,\ldots\}\)</span> or a subset of the real numbers
+<span class="math inline">\(\mathbb R\)</span>. For example, we can have <span class="math inline">\(T=\{1,2\}\)</span>, <span class="math inline">\(T=\mathbb N_0\)</span>,
+<span class="math inline">\(T=[0,\infty)\subset\mathbb R\)</span>, or <span class="math inline">\(T=[0,1]\)</span>. If the index set is
+discrete, we call it a <strong>discrete-time stochastic process</strong> and if the
+index set is continuous (an interval subset of <span class="math inline">\(\mathbb R\)</span>), we call it
+a <strong>continuous-time stochastic process</strong>. Normally, we use <span class="math inline">\(X_n\)</span> for
+discrete time and <span class="math inline">\(X_t\)</span> for continuous time.</p>
+<p>If <span class="math inline">\(T=\{1,2\}\)</span>, then our stochastic process is <span class="math inline">\((X_1,X_2)\)</span> and is a
+random point in the plane <span class="math inline">\(\mathbb R^2\)</span>. If <span class="math inline">\(T=\mathbb N_0\)</span>, then our
+stochastic process is <span class="math inline">\((X_0, X_1,X_2,\ldots)\)</span> and is a random point in
+<span class="math inline">\(\mathbb R^\infty\)</span> (in other words, a infinite sequence of random
+numbers).</p>
+<p>If the index set is a continuous interval such as <span class="math inline">\(T=[0,1]\)</span> or
+<span class="math inline">\(T=[0,\infty)\)</span>, then we can think of <span class="math inline">\(X_t\)</span> as a random function of <span class="math inline">\(t\)</span>.</p>
+<p>The <strong>state space</strong> <span class="math inline">\(S\)</span> is the set where each random variable <span class="math inline">\(X_t\)</span>
+takes its values in. Normally, the state space is a subset of the real
+numbers. Often, we are counting things and the state space will be
+<span class="math inline">\(\mathbb N\)</span> or <span class="math inline">\(\mathbb N_0\)</span>, e.g., counting the number of insurance
+claims that arrive each day or counting the number of radioactive decays
+every hour. We call such a stochastic process <em>discrete-space</em>. In other
+cases, we are measuring something like length or amount of money, and
+the state space is <span class="math inline">\([0,\infty)\)</span> or some other real line interval. Such
+stochastic processes are called <em>continuous-space</em>.</p>
+<p>There are two intuitive ways to think about a stochastic process. We can
+think of it as <span class="math inline">\(X_t\)</span> where it is implied that we have several random
+variables, one variable for each value of <span class="math inline">\(t\)</span>. Alternatively, we can
+think of the entire random sequence or function as a single object and
+write <span class="math inline">\(X=(X_t)_{t\in T}\)</span>. This <span class="math inline">\(X\)</span> is not a random variable, it is a
+stochastic process. Each <span class="math inline">\(X_t\)</span> is a real-valued random variable, but <span class="math inline">\(X\)</span>
+is vector-valued, sequence-valued, or function-valued. In order to know
+the “value” of <span class="math inline">\(X\)</span>, we have to know the value of each <span class="math inline">\(X_t\)</span> for every
+possible <span class="math inline">\(t\)</span>-value.</p>
+<p>We can think of <span class="math inline">\(X\)</span> as a random sequence of numbers,
+<span class="math inline">\(X=(X_0,X_1,X_2,\ldots)\)</span> where each <span class="math inline">\(X_n\)</span> is a real-valued random
+variable.</p>
+<div class="defbox">
+<p><strong>Definition.</strong> A <em>stochastic process</em> <span class="math inline">\(X\)</span> with <em>state space</em> <span class="math inline">\(S\)</span> and
+index set <span class="math inline">\(T\)</span> is a collection of random variables <span class="math inline">\(X=(X_t)_{t\in T}\)</span>.
+For each <span class="math inline">\(t\in T\)</span>, <span class="math inline">\(X_t\)</span> is a <span class="math inline">\(S\)</span>-valued random variable, that is each
+<span class="math inline">\(X_t\)</span> takes values in <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="defbox">
+<p><strong>Definition.</strong> For stochastic process <span class="math inline">\(X=(X_t)_{t\in T}\)</span> with state
+space <span class="math inline">\(S\)</span> and (time) index set <span class="math inline">\(T\)</span>, a <em>sample path</em> is a particular full
+realization of the stochastic process. That is, we know the precise
+value of <span class="math inline">\(X_t\)</span> for every <span class="math inline">\(t\)</span>. Sample paths are specific determined
+realizations, and we can say <span class="math inline">\(x(t)\)</span> is a specific sample path, that is,
+it is just a (fixed) function of <span class="math inline">\(t\)</span>.</p>
+</div>
+<div class="defbox">
+<p><strong>Definition.</strong> For stochastic process <span class="math inline">\(X=(X_t)_{t\in T}\)</span> with state
+space <span class="math inline">\(S\)</span> and (time) index set <span class="math inline">\(T\)</span>, the <em>sample path space</em> is
+<span class="math inline">\(\Omega=S^T\)</span>, that is, if we know the precise value of <span class="math inline">\(X_t\)</span> for all
+<span class="math inline">\(t\in T\)</span>, then <span class="math inline">\(X\)</span> is a function from <span class="math inline">\(T\)</span> to <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> Consider the stochastic process <span class="math inline">\(X_n\)</span> for <span class="math inline">\(n\in\mathbb N\)</span>
+and <span class="math inline">\(X_n\sim\textsf{Bernoulli}(p)\)</span> for each <span class="math inline">\(n\)</span>. The state space is
+<span class="math inline">\(S=\{0,1\}\)</span> since each <span class="math inline">\(X_n\)</span> is a Bernoulli random variable, and the
+time index set is <span class="math inline">\(\mathbb N\)</span>. The sample path space is
+<span class="math inline">\(\Omega=\{0,1\}^{\mathbb N}\)</span> which can also be written as
+<span class="math inline">\(\{0,1\}^\infty\)</span> or <span class="math inline">\(\{0,1\}\times\{0,1\}\times\cdots\)</span>. In this case
+<span class="math inline">\(\Omega\)</span> is just the set of all infinitely long sequences of 0’s and
+1’s, which we call <em>binary sequences</em>. A particular sample path
+realization is a particuler fixed sequence of zeros and ones, e.g.
+<span class="math inline">\((0,1,1,0,1,0,0,0,1,0,1,1,0,0,\ldots)\)</span>.</p>
+<p>A “typical” sample path should contain roughly an equal number of 1’s
+and 0’s over most of it. For example, the first 1000 states will be
+fairly close to equal parts 0 and 1 to high probability. We can
+precisely calculate the probability there are, say, less than 450 or
+more than 550 ones in this case using the binomial distribution. Let
+<span class="math inline">\(Y\sim\textsf{Binom}(n=1000,p)\)</span> be the number of ones. Then
+<span class="math inline">\(P(Y&lt;450\text{ or }Y&gt;550)=1-P(450\leq Y\leq 550)=1-\sum_{j=450}^{550}{1000\choose j}p^j(1-p)^{1000-j}\)</span>.
+If we let <span class="math inline">\(p=\frac12\)</span>, then this is
+<span class="math inline">\(1-\sum_{j=450}^{550}{1000\choose j}\frac1{2^{1000}}\)</span>. In <span class="math inline">\(\textsf{R}\)</span>, we can
+compute this as <code>1-sum(dbinom(450:550,1000,0.5))</code>. Since the number of
+trials is large, we can use the normal approximation
+<code>1-pnorm(550,500,sqrt(250))+pnorm(450,500,sqrt(250))</code> to see it is about
+0.14% probability. <!--[$\square$]{style="float:right"}--></p>
+</div>
+<p>Here are some examples of how a stochastic process might model a
+physical process.</p>
+<div class="exbox">
+<p><strong>Example.</strong> Consider the following examples.</p>
+<ol style="list-style-type: decimal">
+<li><p>A plant is growing in a pot and we want to model its total biomass
+over time for 1 year. Let <span class="math inline">\(X_t\)</span> be the total biomass at time <span class="math inline">\(t\)</span>. We
+consider <span class="math inline">\(X_t\)</span> for each <span class="math inline">\(t\)</span> to be <span class="math inline">\([0,\infty)\)</span>-valued since biomass
+is nonnegative and we won’t impose any particular upper limit on
+biomass. We let <span class="math inline">\([0,365]\)</span> be the (time) index set and will measure
+time in days. The state space is thus <span class="math inline">\([0,\infty)\)</span> and the sample
+path space is <span class="math inline">\(\Omega=[0,\infty)^{[0,365]}\)</span>. Each physical
+realization of a plant growing from germination to death will give
+us a particular sample path realization which will be a function
+from <span class="math inline">\([0,365]\)</span> to <span class="math inline">\([0,\infty)\)</span>. This is a continuous-time stochastic
+process.</p></li>
+<li><p>The number of insurance claims per month for a twelve month year. We
+let <span class="math inline">\(X_n\)</span> be the number of insurance claims in month <span class="math inline">\(n\)</span> with index
+set <span class="math inline">\(\{1,2,\ldots,12\}\)</span>. The state space is <span class="math inline">\(\mathbb N_0\)</span> as we
+could have zero claims in a month or potentially any positive number
+of claims without any specific upper limit. The sample path space is
+<span class="math inline">\(\Omega=\mathbb N_0^{12}\)</span>. A particular sample path realization will
+be a twelve-tuple (duodecuple) of nonnegative integers, e.g.
+<span class="math inline">\(x=(10,4,0,1,0,8,12,25,37,22,13,9)\in\Omega\)</span>. Note that it is
+important that we consider the ordering of the index set, i.e. that
+<span class="math inline">\(X_1=10, X_2=4\)</span>, etc. <!--[$\square$]{style="float:right"}--></p></li>
+</ol>
+</div>
+<p>Try to construct the following example using the technical stochastic
+process notation.</p>
+<div class="exbox">
+<p><strong>Practice.</strong> Write stochastic process notation for the closing price of
+a stock each day for one week of five trading days. What is the index
+set? What is the sample path space? Give a possible sample path
+realization.</p>
+<p><a href="javascript:unhide('ex1');">Show/hide solution.</a></p>
+<div id="ex1" class="hiddendiv">
+<!-- <div class="proofbox"> -->
+<p><em>Solution.</em> Let the index set <span class="math inline">\(\{1,2,\ldots,5\}\)</span> represent days one to
+five. For each day <span class="math inline">\(n\)</span>, the random variable <span class="math inline">\(X_t\)</span> is the closing price
+of the stock on that day. We can write <span class="math inline">\(X=(X_n)_{n=1,2,\ldots,5}\)</span> or
+<span class="math inline">\(X=(X_1,X_2,X_3,X_4,X_{5})\)</span>. The sample path space is <span class="math inline">\([0,\infty)^{5}\)</span>
+since each full realization of the stochastic process is a sequence of
+five dollar amounts. Each dollar amount should be nonnegative since a
+stock doesn’t ever have a negative price. An example sample path
+realization might be <span class="math inline">\((105.27,103.52,97.21,95.13,96.83)\)</span> representing a
+possible realization of the closing prices on the five days.
+<!--[$\square$]{style="float:right"}--></p>
+</div>
+</div>
+<div class="defbox">
+<p><strong>Summary of terminology and notation.</strong><br><br>
+<span class="math inline">\(\mathbb N=\{1,2,\ldots\}\)</span> is the set of natural numbers. <br>
+<span class="math inline">\(\mathbb N_0=\{0,1,2,\ldots\}\)</span> is the set of natural numbers including
+zero. <br> <span class="math inline">\(\mathbb R=(-\infty,\infty)\)</span> is the set of real numbers. <br>
+<span class="math inline">\(t\in T\)</span> means <span class="math inline">\(t\)</span> is an element of the set <span class="math inline">\(T\)</span>, e.g. <span class="math inline">\(3\in [-1,5]\)</span> or
+<span class="math inline">\(\pi\in\mathbb R\)</span>.<br> <em>stochastic process</em> <span class="math inline">\(X=(X_t)_{t\in T}\)</span>, for each
+<span class="math inline">\(t\)</span>, <span class="math inline">\(X_t\)</span> is a random variable. <br> <em>state space</em> <span class="math inline">\(S\)</span> is where
+observations of <span class="math inline">\(X_t\)</span> will take values in, e.g. <span class="math inline">\(S=[0,\infty)\)</span> or
+<span class="math inline">\(S=\mathbb N_0\)</span>.<br> <em>index set</em> <span class="math inline">\(T\)</span> gives the times we observe <span class="math inline">\(X_t\)</span>
+at. <br> <em>discrete-time</em> if <span class="math inline">\(T\)</span> is discrete, and <em>continuous-time</em> if
+<span class="math inline">\(T\)</span> is a continuous interval. <br> <em>discrete-space</em> if <span class="math inline">\(S\)</span> is discrete,
+and <em>continuous-space</em> if <span class="math inline">\(S\)</span> is continuous. <br> <em>sample path space</em>
+<span class="math inline">\(\Omega=S^T=\)</span> all functions from <span class="math inline">\(T\)</span> to <span class="math inline">\(S\)</span>. <br> <em>sample path</em> or <em>path
+realization</em> <span class="math inline">\(x(t)\in\Omega\)</span> with <span class="math inline">\(x:T\to S\)</span>.</p>
+</div>
+<p>Next we’ll do some review of probability theory.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability-review.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jstover79/stochproc423/edit/master/02-stoch-proc-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jstover79/stochproc423/blob/master/02-stoch-proc-intro.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

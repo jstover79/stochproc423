@@ -1,5 +1,0 @@
-#  Probability review
-
-**under construction**
-
-random variables and distributions

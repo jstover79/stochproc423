@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Math 423 Stochastic Processes Course Notes</title>
-  <meta name="description" content="Page not found | Math 423 Stochastic Processes Course Notes" />
+  <title>Chapter 4 Random variables and distributions | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 4 Random variables and distributions | Math 423 Stochastic Processes Course Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:title" content="Chapter 4 Random variables and distributions | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Math 423 Stochastic Processes Course Notes" />
+  <meta name="twitter:title" content="Chapter 4 Random variables and distributions | Math 423 Stochastic Processes Course Notes" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="probability-review.html"/>
+<link rel="next" href="random-walks.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -82,16 +82,9 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
 <li class="chapter" data-level="2" data-path="stochastic-processes.html"><a href="stochastic-processes.html"><i class="fa fa-check"></i><b>2</b> Stochastic Processes</a></li>
-<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="probability-review.html"><a href="probability-review.html#probability-basics"><i class="fa fa-check"></i><b>3.1</b> Probability basics</a></li>
-<li class="chapter" data-level="3.2" data-path="probability-review.html"><a href="probability-review.html#random-variables-and-distributions"><i class="fa fa-check"></i><b>3.2</b> Random variables and distributions</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="probability-review.html"><a href="probability-review.html#bernoulli-binomial-geometric"><i class="fa fa-check"></i><b>3.2.1</b> Bernoulli, binomial, geometric</a></li>
-<li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.2</b> Uniform, exponential, normal</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a></li>
+<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a></li>
+<li class="chapter" data-level="4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html"><i class="fa fa-check"></i><b>4</b> Random variables and distributions</a></li>
+<li class="chapter" data-level="5" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>5</b> Random walks</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -111,19 +104,32 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="random-variables-and-distributions" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Random variables and distributions<a href="random-variables-and-distributions.html#random-variables-and-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="defbox">
+<p><strong>Definition.</strong> A <strong>random variable</strong> <span class="math inline">\(X\)</span> is a variable where you must perform a random experiment to determine its value. The <strong>sample space</strong> <span class="math inline">\(S\)</span> is the set of numerical values that the random variable can take. An <strong>event</strong> is a subset of the sample space. A random variable can be either <em>discrete</em> (if it takes values in a discrete set such as <span class="math inline">\(\mathbb N\)</span>) or <em>continuous</em> (if it can take on any value in some intveral).</p>
+</div>
+<div class="exbox">
+<p><strong>Examples.</strong>
+(1) Let <span class="math inline">\(X\)</span> be the number of dots on the upper face of a dice roll.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(X\)</span> be the mass of a randomly selected person form a specific population.</p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be the number of cars that pass by a given intersection druing a particular day.</p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be the number of radioactive decays in one hour of some particular material.</p></li>
+</ol>
+</div>
+<div class="defbox">
+<p><strong>Definition.</strong> A <strong>probability function</strong> allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable <span class="math inline">\(X\)</span>. A discrete random variable has a <strong>probability mass function</strong> <span class="math inline">\(f_X(x)=P(X=x)\)</span>, and a continuous random variable has a <strong>probability density function</strong> <span class="math inline">\(f_X(x)\)</span> which we must integrate to get probabilities <span class="math inline">\(P(a&lt;X&lt;b)=\int_a^b f_X(x)dx\)</span>.</p>
+</div>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="probability-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-walks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -154,7 +160,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jstover79/stochproc423/edit/master/%s",
+"link": "https://github.com/jstover79/stochproc423/edit/master/03-prob-review.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -162,7 +168,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jstover79/stochproc423/blob/master/%s",
+"link": "https://github.com/jstover79/stochproc423/blob/master/03-prob-review.Rmd",
 "text": null
 },
 "download": null,

@@ -1,0 +1,197 @@
+# Stochastic Processes
+
+<!-- You have seen **random variables** in previous probability or statistics -->
+<!-- courses. A random variable $X$ takes on real number values, but we -->
+<!-- cannot predict what precise value it will take perfectly... it is -->
+<!-- *random*. One can think of performing a random experiment such as -->
+<!-- rolling a die and letting $X$ be the number of dots on the upper face or -->
+<!-- observing some physical process like drilling an oil well with $X$ being -->
+<!-- the amount of oil produced on the first day or growing a plant and -->
+<!-- letting $X$ be the height of the plant after one month of growth. In all -->
+<!-- of the examples $X$ just takes on a single numerical value. A -->
+<!-- **stochastic process** tracks these processes over time. Let $X_n$ be -->
+<!-- the outcome of the $n^{th}$ die roll, the height of the plant after -->
+<!-- month $n$, or the amount of oil produced during day $n$. In this way a -->
+<!-- stochastic process can initially be thought of as a sequence of random -->
+<!-- variables. -->
+
+<!--A **stochastic process** is like a generalization of a random variable, but it doesn't have to be a single numerical value and instead can be vector-valued or function-valued. -->
+
+Generally, a stochastic process consists of an **index set** $T$ which
+can usually be thought of as *time*. At each time $t\in T$ we have a
+(real-valued) random variable $X_t$. We write this as $(X_t)_{t\in T}$
+or $\{X_t\}_{t\in T}$. We can think of $X_t$ as a random function of
+time. You have seen functions of time like $x(t)$ where you plug in a
+$t$-value and it outputs an exact $x(t)$-value according to some
+formula, but for a stochastic process $X_t$, even when the $t$-value is
+specified, we cannot know the precise value for $X_t$ since it is still
+random.
+
+The index set is usually a subset of the set of natural numbers
+$\mathbb N=\{1,2,\ldots\}$ or those including zero
+$\mathbb N_0=\{0,1,2,\ldots\}$ or a subset of the real numbers
+$\mathbb R$. For example, we can have $T=\{1,2\}$, $T=\mathbb N_0$,
+$T=[0,\infty)\subset\mathbb R$, or $T=[0,1]$. If the index set is
+discrete, we call it a **discrete-time stochastic process** and if the
+index set is continuous (an interval subset of $\mathbb R$), we call it
+a **continuous-time stochastic process**. Normally, we use $X_n$ for
+discrete time and $X_t$ for continuous time.
+
+If $T=\{1,2\}$, then our stochastic process is $(X_1,X_2)$ and is a
+random point in the plane $\mathbb R^2$. If $T=\mathbb N_0$, then our
+stochastic process is $(X_0, X_1,X_2,\ldots)$ and is a random point in
+$\mathbb R^\infty$ (in other words, a infinite sequence of random
+numbers).
+
+If the index set is a continuous interval such as $T=[0,1]$ or
+$T=[0,\infty)$, then we can think of $X_t$ as a random function of $t$.
+
+The **state space** $S$ is the set where each random variable $X_t$
+takes its values in. Normally, the state space is a subset of the real
+numbers. Often, we are counting things and the state space will be
+$\mathbb N$ or $\mathbb N_0$, e.g., counting the number of insurance
+claims that arrive each day or counting the number of radioactive decays
+every hour. We call such a stochastic process *discrete-space*. In other
+cases, we are measuring something like length or amount of money, and
+the state space is $[0,\infty)$ or some other real line interval. Such
+stochastic processes are called *continuous-space*.
+
+There are two intuitive ways to think about a stochastic process. We can
+think of it as $X_t$ where it is implied that we have several random
+variables, one variable for each value of $t$. Alternatively, we can
+think of the entire random sequence or function as a single object and
+write $X=(X_t)_{t\in T}$. This $X$ is not a random variable, it is a
+stochastic process. Each $X_t$ is a real-valued random variable, but $X$
+is vector-valued, sequence-valued, or function-valued. In order to know
+the "value" of $X$, we have to know the value of each $X_t$ for every
+possible $t$-value.
+
+We can think of $X$ as a random sequence of numbers,
+$X=(X_0,X_1,X_2,\ldots)$ where each $X_n$ is a real-valued random
+variable.
+
+::: defbox
+**Definition.** A *stochastic process* $X$ with *state space* $S$ and
+index set $T$ is a collection of random variables $X=(X_t)_{t\in T}$.
+For each $t\in T$, $X_t$ is a $S$-valued random variable, that is each
+$X_t$ takes values in $S$.
+:::
+
+::: defbox
+**Definition.** For stochastic process $X=(X_t)_{t\in T}$ with state
+space $S$ and (time) index set $T$, a *sample path* is a particular full
+realization of the stochastic process. That is, we know the precise
+value of $X_t$ for every $t$. Sample paths are specific determined
+realizations, and we can say $x(t)$ is a specific sample path, that is,
+it is just a (fixed) function of $t$.
+:::
+
+::: defbox
+**Definition.** For stochastic process $X=(X_t)_{t\in T}$ with state
+space $S$ and (time) index set $T$, the *sample path space* is
+$\Omega=S^T$, that is, if we know the precise value of $X_t$ for all
+$t\in T$, then $X$ is a function from $T$ to $S$.
+:::
+
+::: exbox
+**Example.** Consider the stochastic process $X_n$ for $n\in\mathbb N$
+and $X_n\sim\textsf{Bernoulli}(p)$ for each $n$. The state space is
+$S=\{0,1\}$ since each $X_n$ is a Bernoulli random variable, and the
+time index set is $\mathbb N$. The sample path space is
+$\Omega=\{0,1\}^{\mathbb N}$ which can also be written as
+$\{0,1\}^\infty$ or $\{0,1\}\times\{0,1\}\times\cdots$. In this case
+$\Omega$ is just the set of all infinitely long sequences of 0's and
+1's, which we call *binary sequences*. A particular sample path
+realization is a particuler fixed sequence of zeros and ones, e.g.
+$(0,1,1,0,1,0,0,0,1,0,1,1,0,0,\ldots)$.
+
+A "typical" sample path should contain roughly an equal number of 1's
+and 0's over most of it. For example, the first 1000 states will be
+fairly close to equal parts 0 and 1 to high probability. We can
+precisely calculate the probability there are, say, less than 450 or
+more than 550 ones in this case using the binomial distribution. Let
+$Y\sim\textsf{Binom}(n=1000,p)$ be the number of ones. Then
+$P(Y<450\text{ or }Y>550)=1-P(450\leq Y\leq 550)=1-\sum_{j=450}^{550}{1000\choose j}p^j(1-p)^{1000-j}$.
+If we let $p=\frac12$, then this is
+$1-\sum_{j=450}^{550}{1000\choose j}\frac1{2^{1000}}$. In $\textsf{R}$, we can
+compute this as `1-sum(dbinom(450:550,1000,0.5))`. Since the number of
+trials is large, we can use the normal approximation
+`1-pnorm(550,500,sqrt(250))+pnorm(450,500,sqrt(250))` to see it is about
+0.14% probability. <!--[$\square$]{style="float:right"}-->
+:::
+
+Here are some examples of how a stochastic process might model a
+physical process.
+
+::: exbox
+**Example.** Consider the following examples.
+
+(1) A plant is growing in a pot and we want to model its total biomass
+    over time for 1 year. Let $X_t$ be the total biomass at time $t$. We
+    consider $X_t$ for each $t$ to be $[0,\infty)$-valued since biomass
+    is nonnegative and we won't impose any particular upper limit on
+    biomass. We let $[0,365]$ be the (time) index set and will measure
+    time in days. The state space is thus $[0,\infty)$ and the sample
+    path space is $\Omega=[0,\infty)^{[0,365]}$. Each physical
+    realization of a plant growing from germination to death will give
+    us a particular sample path realization which will be a function
+    from $[0,365]$ to $[0,\infty)$. This is a continuous-time stochastic
+    process.
+
+(2) The number of insurance claims per month for a twelve month year. We
+    let $X_n$ be the number of insurance claims in month $n$ with index
+    set $\{1,2,\ldots,12\}$. The state space is $\mathbb N_0$ as we
+    could have zero claims in a month or potentially any positive number
+    of claims without any specific upper limit. The sample path space is
+    $\Omega=\mathbb N_0^{12}$. A particular sample path realization will
+    be a twelve-tuple (duodecuple) of nonnegative integers, e.g.
+    $x=(10,4,0,1,0,8,12,25,37,22,13,9)\in\Omega$. Note that it is
+    important that we consider the ordering of the index set, i.e. that
+    $X_1=10, X_2=4$, etc. <!--[$\square$]{style="float:right"}-->
+:::
+
+Try to construct the following example using the technical stochastic
+process notation.
+
+::: exbox
+**Practice.** Write stochastic process notation for the closing price of
+a stock each day for one week of five trading days. What is the index
+set? What is the sample path space? Give a possible sample path
+realization.
+
+<a href="javascript:unhide('ex1');">Show/hide solution.</a>
+
+::: {#ex1 .hiddendiv}
+<!-- <div class="proofbox"> -->
+
+*Solution.* Let the index set $\{1,2,\ldots,5\}$ represent days one to
+five. For each day $n$, the random variable $X_t$ is the closing price
+of the stock on that day. We can write $X=(X_n)_{n=1,2,\ldots,5}$ or
+$X=(X_1,X_2,X_3,X_4,X_{5})$. The sample path space is $[0,\infty)^{5}$
+since each full realization of the stochastic process is a sequence of
+five dollar amounts. Each dollar amount should be nonnegative since a
+stock doesn't ever have a negative price. An example sample path
+realization might be $(105.27,103.52,97.21,95.13,96.83)$ representing a
+possible realization of the closing prices on the five days.
+<!--[$\square$]{style="float:right"}-->
+:::
+:::
+
+::: defbox
+**Summary of terminology and notation.**<br><br>
+$\mathbb N=\{1,2,\ldots\}$ is the set of natural numbers. <br>
+$\mathbb N_0=\{0,1,2,\ldots\}$ is the set of natural numbers including
+zero. <br> $\mathbb R=(-\infty,\infty)$ is the set of real numbers. <br>
+$t\in T$ means $t$ is an element of the set $T$, e.g. $3\in [-1,5]$ or
+$\pi\in\mathbb R$.<br> *stochastic process* $X=(X_t)_{t\in T}$, for each
+$t$, $X_t$ is a random variable. <br> *state space* $S$ is where
+observations of $X_t$ will take values in, e.g. $S=[0,\infty)$ or
+$S=\mathbb N_0$.<br> *index set* $T$ gives the times we observe $X_t$
+at. <br> *discrete-time* if $T$ is discrete, and *continuous-time* if
+$T$ is a continuous interval. <br> *discrete-space* if $S$ is discrete,
+and *continuous-space* if $S$ is continuous. <br> *sample path space*
+$\Omega=S^T=$ all functions from $T$ to $S$. <br> *sample path* or *path
+realization* $x(t)\in\Omega$ with $x:T\to S$.
+:::
+
+Next we'll do some review of probability theory.
