@@ -17,6 +17,13 @@ pre code {
 
 /* style page from math 413 notes */
 
+details > summary {
+    list-style-type: '▸';
+}
+
+details[open] > summary {
+    list-style-type: '▾';
+}
 
 .tocify-header {
     text-indent: initial;

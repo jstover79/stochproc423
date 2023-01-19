@@ -1,3 +1,27 @@
 # Random walks
 
 **under construction**
+
+## RW1
+
+
+
+
+## RW2
+
+::: exbox
+**Example.**
+here is an example problem...
+<details>
+<summary>
+show/hide solution
+</summary>
+Here is the solution, we use the following theorem:
+
+::: thmbox
+**Theorem.** Here is a hidden theorem...
+:::
+
+and that solves it!
+</details>
+:::
