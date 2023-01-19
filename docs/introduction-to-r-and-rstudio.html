@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction to R and RStudio | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 1 Introduction to R and RStudio | Math 423 Stochastic Processes Course Notes" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction to R and RStudio | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction to R and RStudio | Math 423 Stochastic Processes Course Notes" />
+  
+  
+  
+
+<meta name="author" content="Joseph Stover" />
+
+
+<meta name="date" content="2023-01-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="stochastic-processes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script type="text/javascript">
+  function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className=(item.className=='hiddendiv')?'unhiddendiv':'hiddendiv';
+    }
+  }
+</script> 
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stochastic Processes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#getting-access-to-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Getting access to R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#simulation-of-random-variables"><i class="fa fa-check"></i><b>1.2</b> Simulation of random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="stochastic-processes.html"><a href="stochastic-processes.html"><i class="fa fa-check"></i><b>2</b> Stochastic Processes</a></li>
+<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-review.html"><a href="probability-review.html#probability-basics"><i class="fa fa-check"></i><b>3.1</b> Probability basics</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-review.html"><a href="probability-review.html#random-variables-and-distributions"><i class="fa fa-check"></i><b>3.2</b> Random variables and distributions</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="probability-review.html"><a href="probability-review.html#bernoulli-binomial-geometric"><i class="fa fa-check"></i><b>3.2.1</b> Bernoulli, binomial, geometric</a></li>
+<li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.2</b> Uniform, exponential, normal</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Math 423 Stochastic Processes Course Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-r-and-rstudio" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to R and RStudio<a href="introduction-to-r-and-rstudio.html#introduction-to-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R is a statistical software package and a computer programming language.
+It is widely used in both industry (e.g. by data scientists) and academic research.
+RStudio is a graphical interface for R.
+Here I will give a brief introduction to R and RStudio.</p>
+<div id="getting-access-to-r-and-rstudio" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Getting access to R and RStudio<a href="introduction-to-r-and-rstudio.html#getting-access-to-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two main ways to use R:</p>
+<ol style="list-style-type: decimal">
+<li><p>install R and RStudio locally on your computer, or</p></li>
+<li><p>use Posit cloud. (Posit is the company that makes RStudio)</p></li>
+</ol>
+<p><strong>Posit Cloud:</strong></p>
+<p>I strongly suggest getting an account on Posit Cloud (this is the company that makes RStudio).
+Then you have access to a fully-capable and up-to-date version of R and RStudio form any web browser on any device.
+Go to: <a href="https://posit.cloud/" class="uri">https://posit.cloud/</a>, and sign up.
+Their free account simply has computation time limitations which should be no problem for most casual users.</p>
+<p>Alternatively, you can download and install R and RStudio Desktop locally on your computer.
+I recommend doing this, especially if you are more serious about learning R or running programs that require more computation time.</p>
+<p><strong>Downloading and installing R statistical software:</strong></p>
+<p>I recommend two things:</p>
+<ol style="list-style-type: decimal">
+<li><p>Install R. This is the actual statistical software.</p></li>
+<li><p>Install RStudio Desktop. This is a nice user interface for R.</p></li>
+</ol>
+<p>*Note that the actual software version numbers change frequently, and they are, as of writing, R 4.2.2 and RStudio Desktop 2022.12.0+353.</p>
+<p><strong>Getting R:</strong></p>
+<p>First, download the appropriate version (Windows, Mac, etc.) of R from here: <a href="https://ftp.osuosl.org/pub/cran/" class="uri">https://ftp.osuosl.org/pub/cran/</a></p>
+<p>For Windows:</p>
+<ul>
+<li><p>Click on “Download R for Windows”,</p></li>
+<li><p>then click on “install R for the first time”,</p></li>
+<li><p>then click on “Download R-4.2.2 for Windows”.</p></li>
+<li><p>Then install the software.</p></li>
+</ul>
+<p>For Mac OS:</p>
+<ul>
+<li><p>Click on “Download R for macOS”,</p></li>
+<li><p>then click on either “R-4.2.2-arm64.pkg” or “R-4.2.2.pkg” (depending on macOS version and processor type).</p></li>
+<li><p>Then install the software.</p></li>
+</ul>
+<p>I am more proficient at Windows than Mac, but if you have trouble installing it, come see me and I should be able to help you get it figured out.
+There are also Linux/Unix options—I am familiar with Ubuntu and so should be able to help on those platforms as well.</p>
+<p><strong>Getting RStudio Desktop:</strong></p>
+<p>After you have R installed, I recommend installing RStudio Desktop in order to have access to a more friendly user interface.
+I will always be using RStudio when I show demonstrations in class.
+Simply go here: <a href="https://posit.co/download/rstudio-desktop/#download" class="uri">https://posit.co/download/rstudio-desktop/#download</a> and choose your desired version.
+The webpage should automatically detect your operating system and provide you with a link to the correct version of RStudio.
+You can scroll down the page and see links to various versions though.
+For Windows, the first link should work: “Windows 10/11 RSTUDIO-2022.12.0-353.EXE”.
+For MacOS the second link should work: “macOS 11+ RSTUDIO-2022.12.0-353.DMG”.
+Install the software.
+Done!
+There is also a link for older versions of RStudio in case you have an older version of Windows, MacOS, or Linux, etc.</p>
+<p><strong>Brief test of R &amp; RStudio:</strong></p>
+<p>Launch RStudio Desktop or open a Posit Cloud Workspace/Project. Locate the “Console” subwindow. This is where we will type our commands. Type <code>x &lt;- 3</code> in the console next to the “&gt;” (which is a command prompt that you will always type command next to). Then press the enter or return key on your keyboard. This saves the value of 3 for the variable x. Then type <code>x+5</code> and hit enter. You should see the output <code>[1] 8</code>. This indicates the result of the computation. The “[1]” indicates that the output is a single number. Later on we will learn many interesting commands that are useful.
+Now you know how to open RStudio and use it as a calculator!</p>
+<p><strong>Using R online through other sources:</strong></p>
+<p>Another option for using R statistical software is to use one of the many places online where you can use it through a web browser.
+There are many such websites.</p>
+<p>Here is one website where you can conveniently evaluate R code online from a web browser in any device: <a href="https://rdrr.io/snippets/" class="uri">https://rdrr.io/snippets/</a></p>
+<p>Another option for having quick access to R (and this is useful for a smartphone) is SageCell at: <a href="https://sagecell.sagemath.org/" class="uri">https://sagecell.sagemath.org/</a>.
+This website can be used to evaluate commands from a variety of programming languages (including MATLAB and Python).
+Just select R from the language tab at the lower right of the textbox.
+If you are familiar with MATLAB, choose the option “Octave”.
+Octave is basically an open source version of MATLAB and you can run MATLAB code using the Octave language option on SageCell.</p>
+</div>
+<div id="simulation-of-random-variables" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Simulation of random variables<a href="introduction-to-r-and-rstudio.html#simulation-of-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>test text</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stochastic-processes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jstover79/stochproc423/edit/master/01-r-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jstover79/stochproc423/blob/master/01-r-intro.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

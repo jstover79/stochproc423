@@ -1,0 +1,450 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Math 423 Stochastic Processes Course Notes},
+  pdfauthor={Joseph Stover},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Math 423 Stochastic Processes Course Notes}
+\author{Joseph Stover}
+\date{2023-01-19}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\section*{Introduction}\label{introduction}}
+\addcontentsline{toc}{section}{Introduction}
+
+Stochastic processes is the mathematical theory of random phenomena. Our working definition of a random phenomenon or process, is one that we cannot predict accurately. Physical processes are often not predictable for a variety of reasons. Typically, we quantify a physical process somehow, e.g.~by taking measurement at specific times. If each measurement is unpredicatable (random), then our sequence of measurements is a stochastic process!
+
+You have seen \textbf{random variables} in previous probability or statistics courses. A random variable \(X\) takes on real number values, but we cannot predict what precise value it will take perfectly\ldots{} it is \emph{random}. One can think of performing a random experiment such as rolling a die and letting \(X\) be the number of dots on the upper face or observing some physical process like drilling an oil well with \(X\) being the amount of oil produced on the first day or growing a plant and letting \(X\) be the height of the plant after one month of growth. In all of the examples \(X\) just takes on a single numerical value. A \textbf{stochastic process} tracks these processes over time. Let \(X_n\) be the outcome of the \(n^{th}\) die roll, the height of the plant after month \(n\), or the amount of oil produced during day \(n\). In this way a stochastic process can initially be thought of as a sequence of random variables.
+
+Here are some examples of how a stochastic process might model a physical process.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Modeling the daily closing price of a stock for one year.
+\item
+  Modeling the number of insurance claims in each month over a year.
+\item
+  The number of new infections each day for a particular disease.
+\item
+  Tracking radioactive decays over time.
+\item
+  The location of an animal as it moves through its habitat, e.g.~the distance from a bird to its nest as a funciton of time.
+\end{enumerate}
+
+Each of these physical phenomena are highly unpredictable, and so we generally treat them as ``random.''
+
+\hypertarget{introduction-to-r-and-rstudio}{%
+\section{Introduction to R and RStudio}\label{introduction-to-r-and-rstudio}}
+
+R is a statistical software package and a computer programming language.
+It is widely used in both industry (e.g.~by data scientists) and academic research.
+RStudio is a graphical interface for R.
+Here I will give a brief introduction to R and RStudio.
+
+\hypertarget{getting-access-to-r-and-rstudio}{%
+\subsection{Getting access to R and RStudio}\label{getting-access-to-r-and-rstudio}}
+
+There are two main ways to use R:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  install R and RStudio locally on your computer, or
+\item
+  use Posit cloud. (Posit is the company that makes RStudio)
+\end{enumerate}
+
+\textbf{Posit Cloud:}
+
+I strongly suggest getting an account on Posit Cloud (this is the company that makes RStudio).
+Then you have access to a fully-capable and up-to-date version of R and RStudio form any web browser on any device.
+Go to: \url{https://posit.cloud/}, and sign up.
+Their free account simply has computation time limitations which should be no problem for most casual users.
+
+Alternatively, you can download and install R and RStudio Desktop locally on your computer.
+I recommend doing this, especially if you are more serious about learning R or running programs that require more computation time.
+
+\textbf{Downloading and installing R statistical software:}
+
+I recommend two things:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Install R. This is the actual statistical software.
+\item
+  Install RStudio Desktop. This is a nice user interface for R.
+\end{enumerate}
+
+*Note that the actual software version numbers change frequently, and they are, as of writing, R 4.2.2 and RStudio Desktop 2022.12.0+353.
+
+\textbf{Getting R:}
+
+First, download the appropriate version (Windows, Mac, etc.) of R from here: \url{https://ftp.osuosl.org/pub/cran/}
+
+For Windows:
+
+\begin{itemize}
+\item
+  Click on ``Download R for Windows'',
+\item
+  then click on ``install R for the first time'',
+\item
+  then click on ``Download R-4.2.2 for Windows''.
+\item
+  Then install the software.
+\end{itemize}
+
+For Mac OS:
+
+\begin{itemize}
+\item
+  Click on ``Download R for macOS'',
+\item
+  then click on either ``R-4.2.2-arm64.pkg'' or ``R-4.2.2.pkg'' (depending on macOS version and processor type).
+\item
+  Then install the software.
+\end{itemize}
+
+I am more proficient at Windows than Mac, but if you have trouble installing it, come see me and I should be able to help you get it figured out.
+There are also Linux/Unix options---I am familiar with Ubuntu and so should be able to help on those platforms as well.
+
+\textbf{Getting RStudio Desktop:}
+
+After you have R installed, I recommend installing RStudio Desktop in order to have access to a more friendly user interface.
+I will always be using RStudio when I show demonstrations in class.
+Simply go here: \url{https://posit.co/download/rstudio-desktop/\#download} and choose your desired version.
+The webpage should automatically detect your operating system and provide you with a link to the correct version of RStudio.
+You can scroll down the page and see links to various versions though.
+For Windows, the first link should work: ``Windows 10/11 RSTUDIO-2022.12.0-353.EXE''.
+For MacOS the second link should work: ``macOS 11+ RSTUDIO-2022.12.0-353.DMG''.
+Install the software.
+Done!
+There is also a link for older versions of RStudio in case you have an older version of Windows, MacOS, or Linux, etc.
+
+\textbf{Brief test of R \& RStudio:}
+
+Launch RStudio Desktop or open a Posit Cloud Workspace/Project. Locate the ``Console'' subwindow. This is where we will type our commands. Type \texttt{x\ \textless{}-\ 3} in the console next to the ``\textgreater{}'' (which is a command prompt that you will always type command next to). Then press the enter or return key on your keyboard. This saves the value of 3 for the variable x. Then type \texttt{x+5} and hit enter. You should see the output \texttt{{[}1{]}\ 8}. This indicates the result of the computation. The ``{[}1{]}'' indicates that the output is a single number. Later on we will learn many interesting commands that are useful.
+Now you know how to open RStudio and use it as a calculator!
+
+\textbf{Using R online through other sources:}
+
+Another option for using R statistical software is to use one of the many places online where you can use it through a web browser.
+There are many such websites.
+
+Here is one website where you can conveniently evaluate R code online from a web browser in any device: \url{https://rdrr.io/snippets/}
+
+Another option for having quick access to R (and this is useful for a smartphone) is SageCell at: \url{https://sagecell.sagemath.org/}.
+This website can be used to evaluate commands from a variety of programming languages (including MATLAB and Python).
+Just select R from the language tab at the lower right of the textbox.
+If you are familiar with MATLAB, choose the option ``Octave''.
+Octave is basically an open source version of MATLAB and you can run MATLAB code using the Octave language option on SageCell.
+
+\hypertarget{simulation-of-random-variables}{%
+\subsection{Simulation of random variables}\label{simulation-of-random-variables}}
+
+test text
+
+\hypertarget{stochastic-processes}{%
+\section{Stochastic Processes}\label{stochastic-processes}}
+
+Generally, a stochastic process consists of an \textbf{index set} \(T\) which
+can usually be thought of as \emph{time}. At each time \(t\in T\) we have a
+(real-valued) random variable \(X_t\). We write this as \((X_t)_{t\in T}\)
+or \(\{X_t\}_{t\in T}\). We can think of \(X_t\) as a random function of
+time. You have seen functions of time like \(x(t)\) where you plug in a
+\(t\)-value and it outputs an exact \(x(t)\)-value according to some
+formula, but for a stochastic process \(X_t\), even when the \(t\)-value is
+specified, we cannot know the precise value for \(X_t\) since it is still
+random.
+
+The index set is usually a subset of the set of natural numbers
+\(\mathbb N=\{1,2,\ldots\}\) or those including zero
+\(\mathbb N_0=\{0,1,2,\ldots\}\) or a subset of the real numbers
+\(\mathbb R\). For example, we can have \(T=\{1,2\}\), \(T=\mathbb N_0\),
+\(T=[0,\infty)\subset\mathbb R\), or \(T=[0,1]\). If the index set is
+discrete, we call it a \textbf{discrete-time stochastic process} and if the
+index set is continuous (an interval subset of \(\mathbb R\)), we call it
+a \textbf{continuous-time stochastic process}. Normally, we use \(X_n\) for
+discrete time and \(X_t\) for continuous time.
+
+If \(T=\{1,2\}\), then our stochastic process is \((X_1,X_2)\) and is a
+random point in the plane \(\mathbb R^2\). If \(T=\mathbb N_0\), then our
+stochastic process is \((X_0, X_1,X_2,\ldots)\) and is a random point in
+\(\mathbb R^\infty\) (in other words, a infinite sequence of random
+numbers).
+
+If the index set is a continuous interval such as \(T=[0,1]\) or
+\(T=[0,\infty)\), then we can think of \(X_t\) as a random function of \(t\).
+
+The \textbf{state space} \(S\) is the set where each random variable \(X_t\)
+takes its values in. Normally, the state space is a subset of the real
+numbers. Often, we are counting things and the state space will be
+\(\mathbb N\) or \(\mathbb N_0\), e.g., counting the number of insurance
+claims that arrive each day or counting the number of radioactive decays
+every hour. We call such a stochastic process \emph{discrete-space}. In other
+cases, we are measuring something like length or amount of money, and
+the state space is \([0,\infty)\) or some other real line interval. Such
+stochastic processes are called \emph{continuous-space}.
+
+There are two intuitive ways to think about a stochastic process. We can
+think of it as \(X_t\) where it is implied that we have several random
+variables, one variable for each value of \(t\). Alternatively, we can
+think of the entire random sequence or function as a single object and
+write \(X=(X_t)_{t\in T}\). This \(X\) is not a random variable, it is a
+stochastic process. Each \(X_t\) is a real-valued random variable, but \(X\)
+is vector-valued, sequence-valued, or function-valued. In order to know
+the ``value'' of \(X\), we have to know the value of each \(X_t\) for every
+possible \(t\)-value.
+
+We can think of \(X\) as a random sequence of numbers,
+\(X=(X_0,X_1,X_2,\ldots)\) where each \(X_n\) is a real-valued random
+variable.
+
+\textbf{Definition.} A \emph{stochastic process} \(X\) with \emph{state space} \(S\) and
+index set \(T\) is a collection of random variables \(X=(X_t)_{t\in T}\).
+For each \(t\in T\), \(X_t\) is a \(S\)-valued random variable, that is each
+\(X_t\) takes values in \(S\).
+
+\textbf{Definition.} For stochastic process \(X=(X_t)_{t\in T}\) with state
+space \(S\) and (time) index set \(T\), a \emph{sample path} is a particular full
+realization of the stochastic process. That is, we know the precise
+value of \(X_t\) for every \(t\). Sample paths are specific determined
+realizations, and we can say \(x(t)\) is a specific sample path, that is,
+it is just a (fixed) function of \(t\).
+
+\textbf{Definition.} For stochastic process \(X=(X_t)_{t\in T}\) with state
+space \(S\) and (time) index set \(T\), the \emph{sample path space} is
+\(\Omega=S^T\), that is, if we know the precise value of \(X_t\) for all
+\(t\in T\), then \(X\) is a function from \(T\) to \(S\).
+
+\textbf{Example.} Consider the stochastic process \(X_n\) for \(n\in\mathbb N\)
+and \(X_n\sim\textsf{Bernoulli}(p)\) for each \(n\). The state space is
+\(S=\{0,1\}\) since each \(X_n\) is a Bernoulli random variable, and the
+time index set is \(\mathbb N\). The sample path space is
+\(\Omega=\{0,1\}^{\mathbb N}\) which can also be written as
+\(\{0,1\}^\infty\) or \(\{0,1\}\times\{0,1\}\times\cdots\). In this case
+\(\Omega\) is just the set of all infinitely long sequences of 0's and
+1's, which we call \emph{binary sequences}. A particular sample path
+realization is a particuler fixed sequence of zeros and ones, e.g.
+\((0,1,1,0,1,0,0,0,1,0,1,1,0,0,\ldots)\).
+
+A ``typical'' sample path should contain roughly an equal number of 1's
+and 0's over most of it. For example, the first 1000 states will be
+fairly close to equal parts 0 and 1 to high probability. We can
+precisely calculate the probability there are, say, less than 450 or
+more than 550 ones in this case using the binomial distribution. Let
+\(Y\sim\textsf{Binom}(n=1000,p)\) be the number of ones. Then
+\(P(Y<450\text{ or }Y>550)=1-P(450\leq Y\leq 550)=1-\sum_{j=450}^{550}{1000\choose j}p^j(1-p)^{1000-j}\).
+If we let \(p=\frac12\), then this is
+\(1-\sum_{j=450}^{550}{1000\choose j}\frac1{2^{1000}}\). In \(\textsf{R}\), we can
+compute this as \texttt{1-sum(dbinom(450:550,1000,0.5))}. Since the number of
+trials is large, we can use the normal approximation
+\texttt{1-pnorm(550,500,sqrt(250))+pnorm(450,500,sqrt(250))} to see it is about
+0.14\% probability.
+
+Here are some examples of how a stochastic process might model a
+physical process.
+
+\textbf{Example.} Consider the following examples.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  A plant is growing in a pot and we want to model its total biomass
+  over time for 1 year. Let \(X_t\) be the total biomass at time \(t\). We
+  consider \(X_t\) for each \(t\) to be \([0,\infty)\)-valued since biomass
+  is nonnegative and we won't impose any particular upper limit on
+  biomass. We let \([0,365]\) be the (time) index set and will measure
+  time in days. The state space is thus \([0,\infty)\) and the sample
+  path space is \(\Omega=[0,\infty)^{[0,365]}\). Each physical
+  realization of a plant growing from germination to death will give
+  us a particular sample path realization which will be a function
+  from \([0,365]\) to \([0,\infty)\). This is a continuous-time stochastic
+  process.
+\item
+  The number of insurance claims per month for a twelve month year. We
+  let \(X_n\) be the number of insurance claims in month \(n\) with index
+  set \(\{1,2,\ldots,12\}\). The state space is \(\mathbb N_0\) as we
+  could have zero claims in a month or potentially any positive number
+  of claims without any specific upper limit. The sample path space is
+  \(\Omega=\mathbb N_0^{12}\). A particular sample path realization will
+  be a twelve-tuple (duodecuple) of nonnegative integers, e.g.
+  \(x=(10,4,0,1,0,8,12,25,37,22,13,9)\in\Omega\). Note that it is
+  important that we consider the ordering of the index set, i.e.~that
+  \(X_1=10, X_2=4\), etc.
+\end{enumerate}
+
+Try to construct the following example using the technical stochastic
+process notation.
+
+\textbf{Practice.} Write stochastic process notation for the closing price of
+a stock each day for one week of five trading days. What is the index
+set? What is the sample path space? Give a possible sample path
+realization.
+
+Show/hide solution.
+
+\hypertarget{ex1}{}
+\emph{Solution.} Let the index set \(\{1,2,\ldots,5\}\) represent days one to
+five. For each day \(n\), the random variable \(X_t\) is the closing price
+of the stock on that day. We can write \(X=(X_n)_{n=1,2,\ldots,5}\) or
+\(X=(X_1,X_2,X_3,X_4,X_{5})\). The sample path space is \([0,\infty)^{5}\)
+since each full realization of the stochastic process is a sequence of
+five dollar amounts. Each dollar amount should be nonnegative since a
+stock doesn't ever have a negative price. An example sample path
+realization might be \((105.27,103.52,97.21,95.13,96.83)\) representing a
+possible realization of the closing prices on the five days.
+
+\textbf{Summary of terminology and notation.}
+\(\mathbb N=\{1,2,\ldots\}\) is the set of natural numbers.
+\(\mathbb N_0=\{0,1,2,\ldots\}\) is the set of natural numbers including
+zero. \(\mathbb R=(-\infty,\infty)\) is the set of real numbers.
+\(t\in T\) means \(t\) is an element of the set \(T\), e.g.~\(3\in [-1,5]\) or
+\(\pi\in\mathbb R\). \emph{stochastic process} \(X=(X_t)_{t\in T}\), for each
+\(t\), \(X_t\) is a random variable. \emph{state space} \(S\) is where
+observations of \(X_t\) will take values in, e.g.~\(S=[0,\infty)\) or
+\(S=\mathbb N_0\). \emph{index set} \(T\) gives the times we observe \(X_t\)
+at. \emph{discrete-time} if \(T\) is discrete, and \emph{continuous-time} if
+\(T\) is a continuous interval. \emph{discrete-space} if \(S\) is discrete,
+and \emph{continuous-space} if \(S\) is continuous. \emph{sample path space}
+\(\Omega=S^T=\) all functions from \(T\) to \(S\). \emph{sample path} or \emph{path
+realization} \(x(t)\in\Omega\) with \(x:T\to S\).
+
+Next we'll do some review of probability theory.
+
+\hypertarget{probability-review}{%
+\section{Probability review}\label{probability-review}}
+
+\textbf{under construction}
+
+\hypertarget{probability-basics}{%
+\subsection{Probability basics}\label{probability-basics}}
+
+\hypertarget{random-variables-and-distributions}{%
+\subsection{Random variables and distributions}\label{random-variables-and-distributions}}
+
+\textbf{Definition.} A \textbf{random variable} \(X\) is a variable where you must perform a random experiment to determine its value. The \textbf{sample space} \(S\) is the set of numerical values that the random variable can take. An \textbf{event} is a subset of the sample space. A random variable can be either \emph{discrete} (if it takes values in a discrete set such as \(\mathbb N\)) or \emph{continuous} (if it can take on any value in some intveral).
+
+\textbf{Examples.}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Let \(X\) be the number of dots on the upper face of a dice roll.
+\item
+  Let \(X\) be the mass of a randomly selected person form a specific population.
+\item
+  Let \(X\) be the number of cars that pass by a given intersection druing a particular day.
+\item
+  Let \(X\) be the number of radioactive decays in one hour of some particular material.
+\end{enumerate}
+
+\textbf{Definition.} A \textbf{probability function} allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable \(X\). A discrete random variable has a \textbf{probability mass function} (pmf) \(f_X(x)=P(X=x)\), and a continuous random variable has a \textbf{probability density function} (pdf) \(f_X(x)\) which we must integrate to get probabilities \(P(a<X<b)=\int_a^b f_X(x)dx\). The \textbf{cumulative distribution function} (cdf) gives cumulative probabilities \(F_X(x)=P(X\leq x)\).
+
+\hypertarget{bernoulli-binomial-geometric}{%
+\subsubsection{Bernoulli, binomial, geometric}\label{bernoulli-binomial-geometric}}
+
+\hypertarget{uniform-exponential-normal}{%
+\subsubsection{Uniform, exponential, normal}\label{uniform-exponential-normal}}
+
+\hypertarget{random-walks}{%
+\section{Random walks}\label{random-walks}}
+
+\textbf{under construction}
+
+\hypertarget{rw1}{%
+\subsection{RW1}\label{rw1}}
+
+\hypertarget{rw2}{%
+\subsection{RW2}\label{rw2}}
+
+\textbf{Example.}
+here is an example problem\ldots{}
+
+show/hide solution
+
+Here is the solution, we use the following theorem:
+
+\textbf{Theorem.} Here is a hidden theorem\ldots{}
+
+and that solves it!
+
+\end{document}

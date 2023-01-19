@@ -9,7 +9,7 @@ output:
       in_header: hidejs.js
 ---
 
-# Intro
+# Introduction {-}
 
 Stochastic processes is the mathematical theory of random phenomena. Our working definition of a random phenomenon or process, is one that we cannot predict accurately. Physical processes are often not predictable for a variety of reasons. Typically, we quantify a physical process somehow, e.g. by taking measurement at specific times. If each measurement is unpredicatable (random), then our sequence of measurements is a stochastic process!
 

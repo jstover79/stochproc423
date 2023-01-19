@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="stochastic-processes.html"/>
+<link rel="next" href="introduction-to-r-and-rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -80,12 +80,26 @@
 <li><a href="./">Stochastic Processes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#getting-access-to-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Getting access to R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#simulation-of-random-variables"><i class="fa fa-check"></i><b>1.2</b> Simulation of random variables</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="stochastic-processes.html"><a href="stochastic-processes.html"><i class="fa fa-check"></i><b>2</b> Stochastic Processes</a></li>
-<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a></li>
+<li class="chapter" data-level="3" data-path="probability-review.html"><a href="probability-review.html"><i class="fa fa-check"></i><b>3</b> Probability review</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-review.html"><a href="probability-review.html#probability-basics"><i class="fa fa-check"></i><b>3.1</b> Probability basics</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-review.html"><a href="probability-review.html#random-variables-and-distributions"><i class="fa fa-check"></i><b>3.2</b> Random variables and distributions</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="probability-review.html"><a href="probability-review.html#bernoulli-binomial-geometric"><i class="fa fa-check"></i><b>3.2.1</b> Bernoulli, binomial, geometric</a></li>
+<li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.2</b> Uniform, exponential, normal</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -106,10 +120,10 @@
 <div id="header">
 <h1 class="title">Math 423 Stochastic Processes Course Notes</h1>
 <p class="author"><em>Joseph Stover</em></p>
-<p class="date"><em>2023-01-18</em></p>
+<p class="date"><em>2023-01-19</em></p>
 </div>
-<div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Intro<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level1 unnumbered hasAnchor">
+<h1>Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Stochastic processes is the mathematical theory of random phenomena. Our working definition of a random phenomenon or process, is one that we cannot predict accurately. Physical processes are often not predictable for a variety of reasons. Typically, we quantify a physical process somehow, e.g. by taking measurement at specific times. If each measurement is unpredicatable (random), then our sequence of measurements is a stochastic process!</p>
 <p>You have seen <strong>random variables</strong> in previous probability or statistics courses. A random variable <span class="math inline">\(X\)</span> takes on real number values, but we cannot predict what precise value it will take perfectly… it is <em>random</em>. One can think of performing a random experiment such as rolling a die and letting <span class="math inline">\(X\)</span> be the number of dots on the upper face or observing some physical process like drilling an oil well with <span class="math inline">\(X\)</span> being the amount of oil produced on the first day or growing a plant and letting <span class="math inline">\(X\)</span> be the height of the plant after one month of growth. In all of the examples <span class="math inline">\(X\)</span> just takes on a single numerical value. A <strong>stochastic process</strong> tracks these processes over time. Let <span class="math inline">\(X_n\)</span> be the outcome of the <span class="math inline">\(n^{th}\)</span> die roll, the height of the plant after month <span class="math inline">\(n\)</span>, or the amount of oil produced during day <span class="math inline">\(n\)</span>. In this way a stochastic process can initially be thought of as a sequence of random variables.</p>
 <p>Here are some examples of how a stochastic process might model a physical process.</p>
@@ -129,7 +143,7 @@
         </div>
       </div>
 
-<a href="stochastic-processes.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-r-and-rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
