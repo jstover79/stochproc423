@@ -1,7 +1,8 @@
 introduction-to-r-and-rstudio
 getting-access-to-r-and-rstudio
-simulation-of-random-variables
+installing-and-using-packages-in-r
 calculating-probabilities
+simulation-of-random-variables
 basics-of-programming-r-scripts
 importing-datasets
 stochastic-processes

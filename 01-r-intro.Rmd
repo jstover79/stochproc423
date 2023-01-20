@@ -106,11 +106,21 @@ Just select R from the language tab at the lower right of the textbox.
 If you are familiar with MATLAB, choose the option "Octave".
 Octave is basically an open source version of MATLAB and you can run MATLAB code using the Octave language option on SageCell.
 
-## Simulation of random variables
+## Installing and using packages in R
+
+It is common for software developers to develop libraries or packages which contain functions and methods. The purpose is the same as a mathematical function. Rather than you rewriting the equation each time, you can program the function and simply call that computer function with a single letter rather than a complicated formula. As an example, R has some base functionality for matrix computations, but in order to raise matrices to exponents, you need to `expm` package.
+
+Generally to install a package named "packagename" we execute the command `install.packages("packagename")`. Once a package is installed, in order to use the methods and functions it includes, they must be loaded into R's active workspace and can be done by executing the command `library(packagename)`. 
+
+In order to run the stock simulation code we need to install the packages `quantmod` and `RQuantLib`. To do this, execute the commands: `install.packages("quantmod")` and `install.packages("RQuantLib")`. You'll see some output indicating what R is doing, downloading some files, unpacking them, and installing them. Sometimes it may even be compiling some code in the background. Usually it takes a few seconds to minutes to install a new package.
+
+Once a package is installed, in order to use the methods and functions it includes, execute the command `library(packagename)`, e.g. `library(quantmod)`. Notice that installing a package require quotation marks around the package name, but calling it into R's workspace does not.
+
+## Calculating probabilities
 
 *under construction*
 
-## Calculating probabilities
+## Simulation of random variables
 
 *under construction*
 
