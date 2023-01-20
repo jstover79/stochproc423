@@ -18,7 +18,7 @@
 <!--A **stochastic process** is like a generalization of a random variable, but it doesn't have to be a single numerical value and instead can be vector-valued or function-valued. -->
 
 Generally, a stochastic process consists of an **index set** $T$ which
-can usually be thought of as *time*. At each time $t\in T$ we have a
+can usually be thought of as *time*, and at each time $t\in T$ we have a
 (real-valued) random variable $X_t$. We write this as $(X_t)_{t\in T}$
 or $\{X_t\}_{t\in T}$. We can think of $X_t$ as a random function of
 time. You have seen functions of time like $x(t)$ where you plug in a
