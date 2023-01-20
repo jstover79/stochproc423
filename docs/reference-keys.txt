@@ -1,6 +1,9 @@
 introduction-to-r-and-rstudio
 getting-access-to-r-and-rstudio
 simulation-of-random-variables
+calculating-probabilities
+basics-of-programming-r-scripts
+importing-datasets
 stochastic-processes
 probability-review
 probability-basics

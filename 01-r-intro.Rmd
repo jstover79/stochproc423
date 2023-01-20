@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: sentence
----
-
 # Introduction to R and RStudio
 
 R is a statistical software package and a computer programming language.
@@ -17,7 +11,8 @@ There are two main ways to use R:
 
 (1) install R and RStudio locally on your computer, or
 
-(2) use Posit cloud. (Posit is the company that makes RStudio)
+(2) use Posit cloud.
+    (Posit is the company that makes RStudio)
 
 **Posit Cloud:**
 
@@ -33,15 +28,16 @@ I recommend doing this, especially if you are more serious about learning R or r
 
 I recommend two things:
 
-(1) Install R. This is the actual statistical software. 
-     
-(2) Install RStudio Desktop. This is a nice user interface for R.
+(1) Install R. This is the actual statistical software.
+
+(2) Install RStudio Desktop.
+    This is a nice user interface for R.
 
 \*Note that the actual software version numbers change frequently, and they are, as of writing, R 4.2.2 and RStudio Desktop 2022.12.0+353.
 
 **Getting R:**
 
-First, download the appropriate version (Windows, Mac, etc.) of R from here: <https://ftp.osuosl.org/pub/cran/>
+First, download the appropriate version (Windows, Mac, etc.) of R from here: <https://cloud.r-project.org/>
 
 For Windows:
 
@@ -79,8 +75,23 @@ There is also a link for older versions of RStudio in case you have an older ver
 
 **Brief test of R & RStudio:**
 
-Launch RStudio Desktop or open a Posit Cloud Workspace/Project. Locate the "Console" subwindow. This is where we will type our commands. Type `x <- 3` in the console next to the "\>" (which is a command prompt that you will always type command next to). Then press the enter or return key on your keyboard. This saves the value of 3 for the variable x. Then type `x+5` and hit enter. You should see the output `[1] 8`. This indicates the result of the computation. The "[1]" indicates that the output is a single number. Later on we will learn many interesting commands that are useful.
+Launch RStudio Desktop or open a Posit Cloud Workspace/Project.
+Locate the "Console" subwindow.
+This is where we will type our commands.
+Type `x <- 3` in the console next to the "\>" (which is a command prompt that you will always type command next to).
+Then press the enter or return key on your keyboard.
+This saves the value of 3 for the variable x.
+Then type `x+5` and hit enter.
+You should see the output `[1] 8`.
+This indicates the result of the computation.
+The "[1]" indicates that the output is a single number.
+Later on we will learn many interesting commands that are useful.
 Now you know how to open RStudio and use it as a calculator!
+
+The RStudio user interface is shown below. The most important parts are highlighted and labeled wtih brief descriptions.
+
+![The RStudio user interface.](images/RStudio_guide.png)
+
 
 **Using R online through other sources:**
 
@@ -97,4 +108,16 @@ Octave is basically an open source version of MATLAB and you can run MATLAB code
 
 ## Simulation of random variables
 
-test text
+*under construction*
+
+## Calculating probabilities
+
+*under construction*
+
+## Basics of programming, R scripts
+
+*under construction*
+
+## Importing datasets
+
+*under construction*
