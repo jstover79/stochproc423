@@ -1,8 +1,43 @@
 # Random walks
 
-**under construction**
+The random walk will be one of our first official stochastic process models. It models a particle on a line jumping one unit left or right with equal probability. Variations of this can be used for modeling many physical phenomena, including:
 
-<!-- ## RW1 -->
+1. a viral particle floating in the air (a 3D random walk), 
+
+2. an animal moving in its habitat (2D for most land animals, but 1D can work for a restricted habitat), or
+
+3. a stock price (1D).
+
+## The simple symmetric random walk (SSRW)
+
+We let $X_n$ be the state of the process at time step $n$ and fix $X_0=0$ (the particle starts at the origin). The particle moves left or right with equal probability, which is given as
+$$P(X_{n+1}=j-1\mid X_n=j)=\frac12,$$
+$$P(X_{n+1}=j+1\mid X_n=j)=\frac12.$$
+We consider the choice at each time step to go up or down as being independent of every other time step. This model is of a special class of stochastic processes called Markov chains,b ut we'll discuss those in more detail later.
+
+We can construct this model mathematically in more detail be letting the $n^{th}$ step be random variable $Y_n$ which takes values $\pm1$ with equal probability and all being independent. We say that the $Y_n$ are **i.i.d. (independent and identically distributed)** with $P(Y_n=1)=P(Y_n=-1)=\frac12$ for all $n$. Independence here means that if we want to calculate probabilities for multiple $Y_n$ simultaneously, we can calculate them individually and multiply:
+$$P(Y_j=a,Y_k=b)=P(Y_j=a)P(Y_k=b)$$
+for any $i,j\in\mathbb N$ (with $i\neq j$) and any $a,b\in\{-1,1\}$. Then we can write
+$$X_n=\sum_{j=1}^n Y_j.$$
+
+::: exbox
+**Example.** Calculate $P(X_3=3)$. This is only possible if $Y_1=Y_2=Y_3=1$ and so we calculate
+$$P(Y_1=1,Y_2=1,Y_3=1)=P(Y_1=1)P(Y_2=1)P(Y_3=1)=\frac12\cdot\frac12\cdot\frac12=\frac18.$$
+:::
+
+
+::: exbox
+**Example.** Calculate $P(X_2=0)$. This is only possible if $Y_1=1,Y_2=-1$ or $Y_1=-1,Y_2=1$ and so we calculate each probability and add the result.
+$$P(X_2=0)=P(Y_1=1,Y_2=-1)+P(Y_1=-1,Y_2=1)=\frac14+\frac14=\frac12.$$
+:::
+
+The state space of the SSRW is thus the set of integers $\mathbb Z$ and the time index set is $\mathbb N_0$. The sample path space will be all infinitely long sequences of integers where consecutive integers only differ by $\pm1$. We could say that the sample path space is all infinite sequences of integers, but most of those will have probability zero since any sequence which jumps outside of $\pm1$ would be considered as not possible.
+
+So we have our sequence of random variables $(X_0,X_1,X_2,\ldots)$. Of course, $X_0$ is deterministically set to one, but we can still consider it a random variable with full probability mass on one. Now $X_1$ is equally likely to be $\pm1$. If $X_1=1$, then $X_2$ is equally likely to be $0,2$, and if $X_1=-1$, then $X_2$ is equally likely to be $0,-2$.
+
+
+<!-- We illustrate part of the sample path space below. -->
+
 
 
 

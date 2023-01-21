@@ -12,3 +12,4 @@ random-variables-and-distributions
 bernoulli-binomial-geometric
 uniform-exponential-normal
 random-walks
+the-simple-symmetric-random-walk-ssrw

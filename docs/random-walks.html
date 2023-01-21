@@ -100,7 +100,10 @@
 <li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.2</b> Uniform, exponential, normal</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a></li>
+<li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk-ssrw"><i class="fa fa-check"></i><b>4.1</b> The simple symmetric random walk (SSRW)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -123,8 +126,33 @@
             <section class="normal" id="section-">
 <div id="random-walks" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Random walks<a href="random-walks.html#random-walks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>under construction</strong></p>
-<!-- ## RW1 -->
+<p>The random walk will be one of our first official stochastic process models. It models a particle on a line jumping one unit left or right with equal probability. Variations of this can be used for modeling many physical phenomena, including:</p>
+<ol style="list-style-type: decimal">
+<li><p>a viral particle floating in the air (a 3D random walk),</p></li>
+<li><p>an animal moving in its habitat (2D for most land animals, but 1D can work for a restricted habitat), or</p></li>
+<li><p>a stock price (1D).</p></li>
+</ol>
+<div id="the-simple-symmetric-random-walk-ssrw" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> The simple symmetric random walk (SSRW)<a href="random-walks.html#the-simple-symmetric-random-walk-ssrw" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We let <span class="math inline">\(X_n\)</span> be the state of the process at time step <span class="math inline">\(n\)</span> and fix <span class="math inline">\(X_0=0\)</span> (the particle starts at the origin). The particle moves left or right with equal probability, which is given as
+<span class="math display">\[P(X_{n+1}=j-1\mid X_n=j)=\frac12,\]</span>
+<span class="math display">\[P(X_{n+1}=j+1\mid X_n=j)=\frac12.\]</span>
+We consider the choice at each time step to go up or down as being independent of every other time step. This model is of a special class of stochastic processes called Markov chains,b ut we’ll discuss those in more detail later.</p>
+<p>We can construct this model mathematically in more detail be letting the <span class="math inline">\(n^{th}\)</span> step be random variable <span class="math inline">\(Y_n\)</span> which takes values <span class="math inline">\(\pm1\)</span> with equal probability and all being independent. We say that the <span class="math inline">\(Y_n\)</span> are <strong>i.i.d. (independent and identically distributed)</strong> with <span class="math inline">\(P(Y_n=1)=P(Y_n=-1)=\frac12\)</span> for all <span class="math inline">\(n\)</span>. Independence here means that if we want to calculate probabilities for multiple <span class="math inline">\(Y_n\)</span> simultaneously, we can calculate them individually and multiply:
+<span class="math display">\[P(Y_j=a,Y_k=b)=P(Y_j=a)P(Y_k=b)\]</span>
+for any <span class="math inline">\(i,j\in\mathbb N\)</span> (with <span class="math inline">\(i\neq j\)</span>) and any <span class="math inline">\(a,b\in\{-1,1\}\)</span>. Then we can write
+<span class="math display">\[X_n=\sum_{j=1}^n Y_j.\]</span></p>
+<div class="exbox">
+<p><strong>Example.</strong> Calculate <span class="math inline">\(P(X_3=3)\)</span>. This is only possible if <span class="math inline">\(Y_1=Y_2=Y_3=1\)</span> and so we calculate
+<span class="math display">\[P(Y_1=1,Y_2=1,Y_3=1)=P(Y_1=1)P(Y_2=1)P(Y_3=1)=\frac12\cdot\frac12\cdot\frac12=\frac18.\]</span></p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> Calculate <span class="math inline">\(P(X_2=0)\)</span>. This is only possible if <span class="math inline">\(Y_1=1,Y_2=-1\)</span> or <span class="math inline">\(Y_1=-1,Y_2=1\)</span> and so we calculate each probability and add the result.
+<span class="math display">\[P(X_2=0)=P(Y_1=1,Y_2=-1)+P(Y_1=-1,Y_2=1)=\frac14+\frac14=\frac12.\]</span></p>
+</div>
+<p>The state space of the SSRW is thus the set of integers <span class="math inline">\(\mathbb Z\)</span> and the time index set is <span class="math inline">\(\mathbb N_0\)</span>. The sample path space will be all infinitely long sequences of integers where consecutive integers only differ by <span class="math inline">\(\pm1\)</span>. We could say that the sample path space is all infinite sequences of integers, but most of those will have probability zero since any sequence which jumps outside of <span class="math inline">\(\pm1\)</span> would be considered as not possible.</p>
+<p>So we have our sequence of random variables <span class="math inline">\((X_0,X_1,X_2,\ldots)\)</span>. Of course, <span class="math inline">\(X_0\)</span> is deterministically set to one, but we can still consider it a random variable with full probability mass on one. Now <span class="math inline">\(X_1\)</span> is equally likely to be <span class="math inline">\(\pm1\)</span>. If <span class="math inline">\(X_1=1\)</span>, then <span class="math inline">\(X_2\)</span> is equally likely to be <span class="math inline">\(0,2\)</span>, and if <span class="math inline">\(X_1=-1\)</span>, then <span class="math inline">\(X_2\)</span> is equally likely to be <span class="math inline">\(0,-2\)</span>.</p>
+<!-- We illustrate part of the sample path space below. -->
 <!-- ## RW2 -->
 <!-- ::: exbox -->
 <!-- **Example.** -->
@@ -141,6 +169,7 @@
 <!-- </details> -->
 <!-- ::: -->
 
+</div>
 </div>
             </section>
 
