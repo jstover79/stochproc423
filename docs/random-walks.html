@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-01-20" />
+<meta name="date" content="2023-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -102,7 +102,10 @@
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk-ssrw"><i class="fa fa-check"></i><b>4.1</b> The simple symmetric random walk (SSRW)</a></li>
+<li class="chapter" data-level="4.1" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk-ssrw"><i class="fa fa-check"></i><b>4.1</b> The simple symmetric random walk (SSRW)</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="random-walks.html"><a href="random-walks.html#distribution-of-x_n"><i class="fa fa-check"></i><b>4.1.1</b> Distribution of <span class="math inline">\(X_n\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -153,6 +156,25 @@ for any <span class="math inline">\(i,j\in\mathbb N\)</span> (with <span class="
 <p>The state space of the SSRW is thus the set of integers <span class="math inline">\(\mathbb Z\)</span> and the time index set is <span class="math inline">\(\mathbb N_0\)</span>. The sample path space will be all infinitely long sequences of integers where consecutive integers only differ by <span class="math inline">\(\pm1\)</span>. We could say that the sample path space is all infinite sequences of integers, but most of those will have probability zero since any sequence which jumps outside of <span class="math inline">\(\pm1\)</span> would be considered as not possible.</p>
 <p>So we have our sequence of random variables <span class="math inline">\((X_0,X_1,X_2,\ldots)\)</span>. Of course, <span class="math inline">\(X_0\)</span> is deterministically set to one, but we can still consider it a random variable with full probability mass on one. Now <span class="math inline">\(X_1\)</span> is equally likely to be <span class="math inline">\(\pm1\)</span>. If <span class="math inline">\(X_1=1\)</span>, then <span class="math inline">\(X_2\)</span> is equally likely to be <span class="math inline">\(0,2\)</span>, and if <span class="math inline">\(X_1=-1\)</span>, then <span class="math inline">\(X_2\)</span> is equally likely to be <span class="math inline">\(0,-2\)</span>.</p>
 <!-- We illustrate part of the sample path space below. -->
+<div id="distribution-of-x_n" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Distribution of <span class="math inline">\(X_n\)</span><a href="random-walks.html#distribution-of-x_n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since <span class="math inline">\(X_n\)</span> is a random sum of a bunch of plus and minus ones, we can realte it to a sum of Bernoulli random variables. If we think of flipping a fair coint <span class="math inline">\(n\)</span> times and let <span class="math inline">\(H\)</span> be the number of heads and <span class="math inline">\(T\)</span> be the number of tails, then we must have <span class="math inline">\(H+T=n\)</span>. If the <span class="math inline">\(j^{th}\)</span> coint flip is heads, we set <span class="math inline">\(Y_j=1\)</span> and if it is tails, we set <span class="math inline">\(Y_j=-1\)</span>. In this way, we can reason that <span class="math display">\[X_n=(\# \text{ heads})-(\# \text{ tails})=H-T=H-(n-H)=2H-n.\]</span>
+Since we know that <span class="math inline">\(H\sim\mathsf{binom}(n,\frac12)\)</span> (<span class="math inline">\(H\)</span> is governed by the binomial distribution with <span class="math inline">\(n\)</span> trials and <span class="math inline">\(p=\frac12\)</span> probability of success), we can use this to calculate probabilities for <span class="math inline">\(X_n\)</span>:
+<span class="math display">\[P(X_n=j)=P(2H-n=j)=P(H=\frac{n+j}{2})={n\choose \frac{n+j}{2}}\frac1{2^n}.\]</span>
+Now we refresh the normal approximation to the binomial.</p>
+<div class="defbox">
+<p><strong>Normal approximation to binomial.</strong>
+Let <span class="math inline">\(X\sim\mathsf{binom}(n,p)\)</span>, then for <span class="math inline">\(n\)</span> large (usually <span class="math inline">\(n\geq 30\)</span> with <span class="math inline">\(np\geq5\)</span> and <span class="math inline">\(n(1-p)\geq5\)</span> is acceptable, but it might still be a rough approximation). Then we can say that
+<span class="math display">\[X\overset{\small approx}{\sim} \mathsf{N}(\mu=np,\sigma^2=np(1-p)).\]</span></p>
+</div>
+<p>The binomial is a discrete distribution, but the normal is a continuous distribution. Any time we use a continuous distribution to approximate a discrete distribution, it might be useful to use a <strong>continuity correction</strong>.</p>
+<div class="defbox">
+<p><strong>Continuity correction.</strong>
+If discrete random variable <span class="math inline">\(X\)</span> has values <span class="math inline">\(x_1,x_2,\ldots\)</span> and we wish to approximate <span class="math inline">\(P(X=x_j)\)</span> by continuous random variable <span class="math inline">\(Y\)</span>, then we can integrate the probability density function of <span class="math inline">\(Y\)</span> from halfway to the next <span class="math inline">\(x\)</span>-values on the left and right:
+<span class="math display">\[P(X=x_j)\approx P(x_j-(x_j-x_{j-1})/2 &lt; Y \leq x_j+(x_j-x_{j-1})/2).\]</span>
+For the normal approximation to the binomial random variable <span class="math inline">\(X\sim binom(n,p)\)</span>, this translates to using <span class="math inline">\(Y\sim N(np,np(1-p))\)</span> and
+<span class="math display">\[P(X=k)\approx P\left(k-\frac12 &lt; Y \leq k+\frac12\right).\]</span></p>
+</div>
 <!-- ## RW2 -->
 <!-- ::: exbox -->
 <!-- **Example.** -->
@@ -169,6 +191,7 @@ for any <span class="math inline">\(i,j\in\mathbb N\)</span> (with <span class="
 <!-- </details> -->
 <!-- ::: -->
 
+</div>
 </div>
 </div>
             </section>

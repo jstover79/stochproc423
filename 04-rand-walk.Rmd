@@ -40,7 +40,28 @@ So we have our sequence of random variables $(X_0,X_1,X_2,\ldots)$. Of course, $
 
 
 
+### Distribution of $X_n$
 
+Since $X_n$ is a random sum of a bunch of plus and minus ones, we can realte it to a sum of Bernoulli random variables. If we think of flipping a fair coint $n$ times and let $H$ be the number of heads and $T$ be the number of tails, then we must have $H+T=n$. If the $j^{th}$ coint flip is heads, we set $Y_j=1$ and if it is tails, we set $Y_j=-1$. In this way, we can reason that $$X_n=(\# \text{ heads})-(\# \text{ tails})=H-T=H-(n-H)=2H-n.$$
+Since we know that $H\sim\mathsf{binom}(n,\frac12)$ ($H$ is governed by the binomial distribution with $n$ trials and $p=\frac12$ probability of success), we can use this to calculate probabilities for $X_n$:
+$$P(X_n=j)=P(2H-n=j)=P(H=\frac{n+j}{2})={n\choose \frac{n+j}{2}}\frac1{2^n}.$$
+Now we refresh the normal approximation to the binomial.
+
+::: defbox
+**Normal approximation to binomial.** 
+Let $X\sim\mathsf{binom}(n,p)$, then for $n$ large (usually $n\geq 30$ with $np\geq5$ and $n(1-p)\geq5$ is acceptable, but it might still be a rough approximation). Then we can say that 
+$$X\overset{\small approx}{\sim} \mathsf{N}(\mu=np,\sigma^2=np(1-p)).$$
+:::
+
+The binomial is a discrete distribution, but the normal is a continuous distribution. Any time we use a continuous distribution to approximate a discrete distribution, it might be useful to use a **continuity correction**.
+
+::: defbox
+**Continuity correction.** 
+If discrete random variable $X$ has values $x_1,x_2,\ldots$ and we wish to approximate $P(X=x_j)$ by continuous random variable $Y$, then we can integrate the probability density function of $Y$ from halfway to the next $x$-values on the left and right:
+$$P(X=x_j)\approx P(x_j-(x_j-x_{j-1})/2 < Y \leq x_j+(x_j-x_{j-1})/2).$$
+For the normal approximation to the binomial random variable $X\sim binom(n,p)$, this translates to using $Y\sim N(np,np(1-p))$ and 
+$$P(X=k)\approx P\left(k-\frac12 < Y \leq k+\frac12\right).$$
+:::
 
 <!-- ## RW2 -->
 
