@@ -44,7 +44,12 @@ So we have our sequence of random variables $(X_0,X_1,X_2,\ldots)$. Of course, $
 
 Since $X_n$ is a random sum of a bunch of plus and minus ones, we can realte it to a sum of Bernoulli random variables. If we think of flipping a fair coint $n$ times and let $H$ be the number of heads and $T$ be the number of tails, then we must have $H+T=n$. If the $j^{th}$ coint flip is heads, we set $Y_j=1$ and if it is tails, we set $Y_j=-1$. In this way, we can reason that $$X_n=(\# \text{ heads})-(\# \text{ tails})=H-T=H-(n-H)=2H-n.$$
 Since we know that $H\sim\mathsf{binom}(n,\frac12)$ ($H$ is governed by the binomial distribution with $n$ trials and $p=\frac12$ probability of success), we can use this to calculate probabilities for $X_n$:
-$$P(X_n=j)=P(2H-n=j)=P(H=\frac{n+j}{2})={n\choose \frac{n+j}{2}}\frac1{2^n}.$$
+
+::: thmbox
+**Distribution of $X_n$ for SSRW.** 
+$$P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)={n\choose \frac{n+j}{2}}\frac1{2^n}.$$
+:::
+
 Now we refresh the normal approximation to the binomial.
 
 ::: defbox
@@ -55,13 +60,49 @@ $$X\overset{\small approx}{\sim} \mathsf{N}(\mu=np,\sigma^2=np(1-p)).$$
 
 The binomial is a discrete distribution, but the normal is a continuous distribution. Any time we use a continuous distribution to approximate a discrete distribution, it might be useful to use a **continuity correction**.
 
-::: defbox
+<!-- ::: defbox -->
 **Continuity correction.** 
 If discrete random variable $X$ has values $x_1,x_2,\ldots$ and we wish to approximate $P(X=x_j)$ by continuous random variable $Y$, then we can integrate the probability density function of $Y$ from halfway to the next $x$-values on the left and right:
 $$P(X=x_j)\approx P(x_j-(x_j-x_{j-1})/2 < Y \leq x_j+(x_j-x_{j-1})/2).$$
 For the normal approximation to the binomial random variable $X\sim binom(n,p)$, this translates to using $Y\sim N(np,np(1-p))$ and 
 $$P(X=k)\approx P\left(k-\frac12 < Y \leq k+\frac12\right).$$
+<!-- ::: -->
+
+<!-- ::: thmbox -->
+**Normal approximation to distribution of $X_n$ for SSRW.** 
+We have that 
+$$P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)$$
+and that $H$ is binomial distributed with parameters $n,p$ and hence is approximately normally distributed with mean $\mu=np$ and variance $\sigma^2=np(1-p)$. Now we can then write
+$$P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)\approx P\left(\frac{n+j}{2}-\frac12<Y\leq \frac{n+j}{2}+\frac12\right)$$
+where $Y\sim\mathsf N(\mu=np,\sigma^2=np(1-p))$.
+
+In R we can calculate normal cumulative probabilities using `pnorm()`, so the above probability for $P(X_n=j)$ is given by the R code (with the continuity correction)
+<!-- $$P(X_n=j)=\texttt{pnorm((n+j)/2+1/2,n*p,sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,n*p,sqrt(n*p*(1-p)))}}$$ -->
+<!-- $$P(X_n=j)=$$ -->
+```{r eval=FALSE, echo=TRUE}
+pnorm((n+j)/2+1/2,mean=n*p,sd=sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,mean=n*p,sd=sqrt(n*p*(1-p)))
+```
+<!-- ::: -->
+
+::: exbox
+**Example.** Let's calculate $P(X_7=-3)$. We have $n=7$, $p=0.5$, and $j=-3$. The exact calculation using the distribution we derived from the bionomial is:
+$$P(X_7=-3)={7\choose\frac{7-3}{2}}\frac1{2^7}={7\choose2}\frac1{2^7}=\frac{7\cdot 3}{2^7}\approx0.1640625.$$
+And using the normal approximation (with continuity correction) we get:
+$P(X_7=-3)\approx$`pnorm(2.5,7/2,sqrt(7)/2)-pnorm(1.5,7/2,sqrt(7)/2)`$\approx0.1595609$ which is a reasonable approximation.
 :::
+
+We can make the R code a bit simpler though.
+
+<!-- ::: thmbox -->
+If $X\sim N(\mu\sigma^2)$ then $aX+b\sim N(a\mu+b,a^2\sigma^2)$. This means that $aX+b$ is a normal random variable as well with $E(aX+b)=a\mu+b$ and $Var(aX+b=a^2\sigma^2)$. Since we are approximating $H$, the number of up steps, as a normal random variable, then $2H-n$ is also approximately normally distributed. 
+$$X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p)).$$
+And for the SSRW this means
+$$X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).$$
+Now to apply the continuity correction is a bit trickier though, because $X_n$ only takes on values $-n,-n+2,\ldots,n-2,n$. Instead of adding and subtracting $\frac12$, we must add and subtract $1$ and $P(X_n=j)$ is approximated by
+```{r eval=FALSE, echo=TRUE}
+pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))
+```
+<!-- ::: -->
 
 <!-- ## RW2 -->
 

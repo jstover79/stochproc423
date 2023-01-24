@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-01-23" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -62,6 +62,70 @@
 </script> 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -159,22 +223,52 @@ for any <span class="math inline">\(i,j\in\mathbb N\)</span> (with <span class="
 <div id="distribution-of-x_n" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Distribution of <span class="math inline">\(X_n\)</span><a href="random-walks.html#distribution-of-x_n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since <span class="math inline">\(X_n\)</span> is a random sum of a bunch of plus and minus ones, we can realte it to a sum of Bernoulli random variables. If we think of flipping a fair coint <span class="math inline">\(n\)</span> times and let <span class="math inline">\(H\)</span> be the number of heads and <span class="math inline">\(T\)</span> be the number of tails, then we must have <span class="math inline">\(H+T=n\)</span>. If the <span class="math inline">\(j^{th}\)</span> coint flip is heads, we set <span class="math inline">\(Y_j=1\)</span> and if it is tails, we set <span class="math inline">\(Y_j=-1\)</span>. In this way, we can reason that <span class="math display">\[X_n=(\# \text{ heads})-(\# \text{ tails})=H-T=H-(n-H)=2H-n.\]</span>
-Since we know that <span class="math inline">\(H\sim\mathsf{binom}(n,\frac12)\)</span> (<span class="math inline">\(H\)</span> is governed by the binomial distribution with <span class="math inline">\(n\)</span> trials and <span class="math inline">\(p=\frac12\)</span> probability of success), we can use this to calculate probabilities for <span class="math inline">\(X_n\)</span>:
-<span class="math display">\[P(X_n=j)=P(2H-n=j)=P(H=\frac{n+j}{2})={n\choose \frac{n+j}{2}}\frac1{2^n}.\]</span>
-Now we refresh the normal approximation to the binomial.</p>
+Since we know that <span class="math inline">\(H\sim\mathsf{binom}(n,\frac12)\)</span> (<span class="math inline">\(H\)</span> is governed by the binomial distribution with <span class="math inline">\(n\)</span> trials and <span class="math inline">\(p=\frac12\)</span> probability of success), we can use this to calculate probabilities for <span class="math inline">\(X_n\)</span>:</p>
+<div class="thmbox">
+<p><strong>Distribution of <span class="math inline">\(X_n\)</span> for SSRW.</strong>
+<span class="math display">\[P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)={n\choose \frac{n+j}{2}}\frac1{2^n}.\]</span></p>
+</div>
+<p>Now we refresh the normal approximation to the binomial.</p>
 <div class="defbox">
 <p><strong>Normal approximation to binomial.</strong>
 Let <span class="math inline">\(X\sim\mathsf{binom}(n,p)\)</span>, then for <span class="math inline">\(n\)</span> large (usually <span class="math inline">\(n\geq 30\)</span> with <span class="math inline">\(np\geq5\)</span> and <span class="math inline">\(n(1-p)\geq5\)</span> is acceptable, but it might still be a rough approximation). Then we can say that
 <span class="math display">\[X\overset{\small approx}{\sim} \mathsf{N}(\mu=np,\sigma^2=np(1-p)).\]</span></p>
 </div>
 <p>The binomial is a discrete distribution, but the normal is a continuous distribution. Any time we use a continuous distribution to approximate a discrete distribution, it might be useful to use a <strong>continuity correction</strong>.</p>
-<div class="defbox">
+<!-- ::: defbox -->
 <p><strong>Continuity correction.</strong>
 If discrete random variable <span class="math inline">\(X\)</span> has values <span class="math inline">\(x_1,x_2,\ldots\)</span> and we wish to approximate <span class="math inline">\(P(X=x_j)\)</span> by continuous random variable <span class="math inline">\(Y\)</span>, then we can integrate the probability density function of <span class="math inline">\(Y\)</span> from halfway to the next <span class="math inline">\(x\)</span>-values on the left and right:
 <span class="math display">\[P(X=x_j)\approx P(x_j-(x_j-x_{j-1})/2 &lt; Y \leq x_j+(x_j-x_{j-1})/2).\]</span>
 For the normal approximation to the binomial random variable <span class="math inline">\(X\sim binom(n,p)\)</span>, this translates to using <span class="math inline">\(Y\sim N(np,np(1-p))\)</span> and
-<span class="math display">\[P(X=k)\approx P\left(k-\frac12 &lt; Y \leq k+\frac12\right).\]</span></p>
+<span class="math display">\[P(X=k)\approx P\left(k-\frac12 &lt; Y \leq k+\frac12\right).\]</span>
+<!-- ::: --></p>
+<!-- ::: thmbox -->
+<p><strong>Normal approximation to distribution of <span class="math inline">\(X_n\)</span> for SSRW.</strong>
+We have that
+<span class="math display">\[P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)\]</span>
+and that <span class="math inline">\(H\)</span> is binomial distributed with parameters <span class="math inline">\(n,p\)</span> and hence is approximately normally distributed with mean <span class="math inline">\(\mu=np\)</span> and variance <span class="math inline">\(\sigma^2=np(1-p)\)</span>. Now we can then write
+<span class="math display">\[P(X_n=j)=P(2H-n=j)=P\left(H=\frac{n+j}{2}\right)\approx P\left(\frac{n+j}{2}-\frac12&lt;Y\leq \frac{n+j}{2}+\frac12\right)\]</span>
+where <span class="math inline">\(Y\sim\mathsf N(\mu=np,\sigma^2=np(1-p))\)</span>.</p>
+<p>In R we can calculate normal cumulative probabilities using <code>pnorm()</code>, so the above probability for <span class="math inline">\(P(X_n=j)\)</span> is given by the R code (with the continuity correction)
+<!-- $$P(X_n=j)=\texttt{pnorm((n+j)/2+1/2,n*p,sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,n*p,sqrt(n*p*(1-p)))}}$$ -->
+<!-- $$P(X_n=j)=$$ --></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="random-walks.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>((n<span class="sc">+</span>j)<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">mean=</span>n<span class="sc">*</span>p,<span class="at">sd=</span><span class="fu">sqrt</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)))<span class="sc">-</span><span class="fu">pnorm</span>((n<span class="sc">+</span>j)<span class="sc">/</span><span class="dv">2-1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">mean=</span>n<span class="sc">*</span>p,<span class="at">sd=</span><span class="fu">sqrt</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)))</span></code></pre></div>
+<!-- ::: -->
+<div class="exbox">
+<p><strong>Example.</strong> Let’s calculate <span class="math inline">\(P(X_7=-3)\)</span>. We have <span class="math inline">\(n=7\)</span>, <span class="math inline">\(p=0.5\)</span>, and <span class="math inline">\(j=-3\)</span>. The exact calculation using the distribution we derived from the bionomial is:
+<span class="math display">\[P(X_7=-3)={7\choose\frac{7-3}{2}}\frac1{2^7}={7\choose2}\frac1{2^7}=\frac{7\cdot 3}{2^7}\approx0.1640625.\]</span>
+And using the normal approximation (with continuity correction) we get:
+<span class="math inline">\(P(X_7=-3)\approx\)</span><code>pnorm(2.5,7/2,sqrt(7)/2)-pnorm(1.5,7/2,sqrt(7)/2)</code><span class="math inline">\(\approx0.1595609\)</span> which is a reasonable approximation.</p>
 </div>
+<p>We can make the R code a bit simpler though.</p>
+<!-- ::: thmbox -->
+<p>If <span class="math inline">\(X\sim N(\mu\sigma^2)\)</span> then <span class="math inline">\(aX+b\sim N(a\mu+b,a^2\sigma^2)\)</span>. This means that <span class="math inline">\(aX+b\)</span> is a normal random variable as well with <span class="math inline">\(E(aX+b)=a\mu+b\)</span> and <span class="math inline">\(Var(aX+b=a^2\sigma^2)\)</span>. Since we are approximating <span class="math inline">\(H\)</span>, the number of up steps, as a normal random variable, then <span class="math inline">\(2H-n\)</span> is also approximately normally distributed.
+<span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p)).\]</span>
+And for the SSRW this means
+<span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).\]</span>
+Now to apply the continuity correction is a bit trickier though, because <span class="math inline">\(X_n\)</span> only takes on values <span class="math inline">\(-n,-n+2,\ldots,n-2,n\)</span>. Instead of adding and subtracting <span class="math inline">\(\frac12\)</span>, we must add and subtract <span class="math inline">\(1\)</span> and <span class="math inline">\(P(X_n=j)\)</span> is approximated by</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="random-walks.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(j<span class="sc">+</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fu">sqrt</span>(n))<span class="sc">-</span><span class="fu">pnorm</span>(j<span class="dv">-1</span>,<span class="dv">0</span>,<span class="fu">sqrt</span>(n))</span></code></pre></div>
+<!-- ::: -->
 <!-- ## RW2 -->
 <!-- ::: exbox -->
 <!-- **Example.** -->
