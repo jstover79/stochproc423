@@ -79,7 +79,7 @@ where $Y\sim\mathsf N(\mu=np,\sigma^2=np(1-p))$.
 In R we can calculate normal cumulative probabilities using `pnorm()`, so the above probability for $P(X_n=j)$ is given by the R code (with the continuity correction)
 <!-- $$P(X_n=j)=\texttt{pnorm((n+j)/2+1/2,n*p,sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,n*p,sqrt(n*p*(1-p)))}}$$ -->
 <!-- $$P(X_n=j)=$$ -->
-```{r eval=FALSE, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE}
 pnorm((n+j)/2+1/2,mean=n*p,sd=sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,mean=n*p,sd=sqrt(n*p*(1-p)))
 ```
 <!-- ::: -->
@@ -98,10 +98,8 @@ If $X\sim N(\mu\sigma^2)$ then $aX+b\sim N(a\mu+b,a^2\sigma^2)$. This means that
 $$X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p)).$$
 And for the SSRW this means
 $$X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).$$
-Now to apply the continuity correction is a bit trickier though, because $X_n$ only takes on values $-n,-n+2,\ldots,n-2,n$. Instead of adding and subtracting $\frac12$, we must add and subtract $1$ and $P(X_n=j)$ is approximated by
-```{r eval=FALSE, echo=TRUE}
-pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))
-```
+Now to apply the continuity correction is a bit trickier though, because $X_n$ only takes on values $-n,-n+2,\ldots,n-2,n$. Instead of adding and subtracting $\frac12$, we must add and subtract $1$ and $P(X_n=j)$ is approximated by `pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))`.
+
 <!-- ::: -->
 
 <!-- ## RW2 -->
@@ -122,3 +120,12 @@ pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))
 <!-- and that solves it! -->
 <!-- </details> -->
 <!-- ::: -->
+
+
+::: defbox
+**Summary**
+
+For $X_n$ the simple 1D random walk with $p$ probability of an up step:<br>
+$P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}$<br>
+$P(X_n=j)\approx$`pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))`
+:::

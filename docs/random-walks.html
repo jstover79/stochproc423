@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Random walks | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -267,8 +267,7 @@ And using the normal approximation (with continuity correction) we get:
 <span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p)).\]</span>
 And for the SSRW this means
 <span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).\]</span>
-Now to apply the continuity correction is a bit trickier though, because <span class="math inline">\(X_n\)</span> only takes on values <span class="math inline">\(-n,-n+2,\ldots,n-2,n\)</span>. Instead of adding and subtracting <span class="math inline">\(\frac12\)</span>, we must add and subtract <span class="math inline">\(1\)</span> and <span class="math inline">\(P(X_n=j)\)</span> is approximated by</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="random-walks.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(j<span class="sc">+</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fu">sqrt</span>(n))<span class="sc">-</span><span class="fu">pnorm</span>(j<span class="dv">-1</span>,<span class="dv">0</span>,<span class="fu">sqrt</span>(n))</span></code></pre></div>
+Now to apply the continuity correction is a bit trickier though, because <span class="math inline">\(X_n\)</span> only takes on values <span class="math inline">\(-n,-n+2,\ldots,n-2,n\)</span>. Instead of adding and subtracting <span class="math inline">\(\frac12\)</span>, we must add and subtract <span class="math inline">\(1\)</span> and <span class="math inline">\(P(X_n=j)\)</span> is approximated by <code>pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))</code>.</p>
 <!-- ::: -->
 <!-- ## RW2 -->
 <!-- ::: exbox -->
@@ -285,6 +284,12 @@ Now to apply the continuity correction is a bit trickier though, because <span c
 <!-- and that solves it! -->
 <!-- </details> -->
 <!-- ::: -->
+<div class="defbox">
+<p><strong>Summary</strong></p>
+<p>For <span class="math inline">\(X_n\)</span> the simple 1D random walk with <span class="math inline">\(p\)</span> probability of an up step:<br>
+<span class="math inline">\(P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}\)</span><br>
+<span class="math inline">\(P(X_n=j)\approx\)</span><code>pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))</code></p>
+</div>
 
 </div>
 </div>
