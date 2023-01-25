@@ -9,6 +9,7 @@ stochastic-processes
 probability-review
 probability-basics
 random-variables-and-distributions
+independence-of-random-variables
 bernoulli-binomial-geometric
 uniform-exponential-normal
 random-walks

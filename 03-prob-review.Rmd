@@ -26,6 +26,46 @@
 **Definition.** A **probability function** allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable $X$. A discrete random variable has a **probability mass function** (pmf) $f_X(x)=P(X=x)$, and a continuous random variable has a **probability density function** (pdf) $f_X(x)$ which we must integrate to get probabilities $P(a<X<b)=\int_a^b f_X(x)dx$. The **cumulative distribution function** (cdf) gives cumulative probabilities $F_X(x)=P(X\leq x)$.
 :::
 
+### Independence of random variables
+
+When working with introductory probability the idea of *independent events* was covered. Events $A$ and $B$ are independent if and only if $P(A\cap B)=P(A)P(B)$. Independence for random variables works similarly.
+
+::: defbox
+**Definition.** Random variables $X$ and $Y$ are **independent** if and only if every $X$-event is independent of every $Y$-event. That is for every subset of possible $X$-values $A$ and every subset of possible $Y$-values $B$ we have 
+$$P(\{X\in A\}\cap \{Y\in B\})=P(X\in A)P(Y\in B).$$
+
+For discrete random variables $X$ and $Y$, they are independent if and only if $P(X=x,Y=y)=P(X=x)P(Y=y)$ for all $x$ and $y$. That is the joint pmf must be exactly the product of the marginal pmfs. 
+
+For continuous random variables $X$ and $Y$, they are independent if and only if their joint pdf is exactly the product of the marginal pdfs: $f_{X,Y}(x,y)=f_X(x)f_Y(y)$.
+
+Note that for independent random variables, independence requires that the allowable values for one variable must not be affected by the other variable, e.g. the set of possible $X$-values must not depend on $Y$ in any way.
+:::
+
+::: exbox
+**Example.** Let $X$ be the outcome of a fair 6-sided die and $Y$ be the outcome of a fair coin flip ($0=~$tails,$1=~$heads). Then we naturally think of them as independent, and they are in the technical sense of the term. It makes physical sense that the coin flip shouldn't impact the die roll at all unless we are to use some contrived mechanism to force them to interact, e.g. if a machine were to control the force of the coin flip and die roll is some specific way so that the coin tended to be heads when the die tended to be even.
+
+Here the marginal pmfs are $f_X(x)=\frac16$ for $x=1,2,3,4,5,6$ (and zero otherwise), and the pmf for $Y$ is $f_Y(y)=\frac12$ for $y=0,1$. Their joint pmf is $f_{X,Y}(x,y)=\frac1{12}$ for $(x,y)=(1,0),\ldots,(6,0),(1,1),\ldots,(6,1)$.
+:::
+
+::: exbox
+**Example.** Let $X$ and $Y$ have joint probabilities given by the table below.
+
+|   |     |     X     |
+|---|-----|-----|-----|
+|   |     | 10  | 20  |
+| Y | 5   | 0.5 | 0.2 |
+|   | 500 | 0.1 | 0.2 |
+
+You can actually look at the table and see that $X$ and $Y$ are not independent by seeing the $Y$-values of 5 and 500 have equal probability mass under the $X=20$ column but unequal probability mass under the $X=10$ column. It isn't always that simple though. Here is a joint pmf for an independent $X,Y$ pair, and it isn't obvious they are independent.
+
+|   |     |      | X   |       |
+|---|-----|------|------|-------|
+|   |     | 10   | 20   | 30    |
+| Y | 5   | 0.36 | 0.18 | 0.06  |
+|   | 500 | 0.24 | 0.12 | 0.04  |
+
+:::
+
 ### Bernoulli, binomial, geometric
 
 ### Uniform, exponential, normal

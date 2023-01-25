@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-01-24" />
+<meta name="date" content="2023-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="probability-review.html"><a href="probability-review.html#probability-basics"><i class="fa fa-check"></i><b>3.1</b> Probability basics</a></li>
 <li class="chapter" data-level="3.2" data-path="probability-review.html"><a href="probability-review.html#random-variables-and-distributions"><i class="fa fa-check"></i><b>3.2</b> Random variables and distributions</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="probability-review.html"><a href="probability-review.html#bernoulli-binomial-geometric"><i class="fa fa-check"></i><b>3.2.1</b> Bernoulli, binomial, geometric</a></li>
-<li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.2</b> Uniform, exponential, normal</a></li>
+<li class="chapter" data-level="3.2.1" data-path="probability-review.html"><a href="probability-review.html#independence-of-random-variables"><i class="fa fa-check"></i><b>3.2.1</b> Independence of random variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="probability-review.html"><a href="probability-review.html#bernoulli-binomial-geometric"><i class="fa fa-check"></i><b>3.2.2</b> Bernoulli, binomial, geometric</a></li>
+<li class="chapter" data-level="3.2.3" data-path="probability-review.html"><a href="probability-review.html#uniform-exponential-normal"><i class="fa fa-check"></i><b>3.2.3</b> Uniform, exponential, normal</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>4</b> Random walks</a>
@@ -214,11 +215,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="defbox">
 <p><strong>Definition.</strong> A <strong>probability function</strong> allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable <span class="math inline">\(X\)</span>. A discrete random variable has a <strong>probability mass function</strong> (pmf) <span class="math inline">\(f_X(x)=P(X=x)\)</span>, and a continuous random variable has a <strong>probability density function</strong> (pdf) <span class="math inline">\(f_X(x)\)</span> which we must integrate to get probabilities <span class="math inline">\(P(a&lt;X&lt;b)=\int_a^b f_X(x)dx\)</span>. The <strong>cumulative distribution function</strong> (cdf) gives cumulative probabilities <span class="math inline">\(F_X(x)=P(X\leq x)\)</span>.</p>
 </div>
-<div id="bernoulli-binomial-geometric" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Bernoulli, binomial, geometric<a href="probability-review.html#bernoulli-binomial-geometric" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="independence-of-random-variables" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Independence of random variables<a href="probability-review.html#independence-of-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working with introductory probability the idea of <em>independent events</em> was covered. Events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if <span class="math inline">\(P(A\cap B)=P(A)P(B)\)</span>. Independence for random variables works similarly.</p>
+<div class="defbox">
+<p><strong>Definition.</strong> Random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are <strong>independent</strong> if and only if every <span class="math inline">\(X\)</span>-event is independent of every <span class="math inline">\(Y\)</span>-event. That is for every subset of possible <span class="math inline">\(X\)</span>-values <span class="math inline">\(A\)</span> and every subset of possible <span class="math inline">\(Y\)</span>-values <span class="math inline">\(B\)</span> we have
+<span class="math display">\[P(\{X\in A\}\cap \{Y\in B\})=P(X\in A)P(Y\in B).\]</span></p>
+<p>For discrete random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, they are independent if and only if <span class="math inline">\(P(X=x,Y=y)=P(X=x)P(Y=y)\)</span> for all <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. That is the joint pmf must be exactly the product of the marginal pmfs.</p>
+<p>For continuous random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, they are independent if and only if their joint pdf is exactly the product of the marginal pdfs: <span class="math inline">\(f_{X,Y}(x,y)=f_X(x)f_Y(y)\)</span>.</p>
+<p>Note that for independent random variables, independence requires that the allowable values for one variable must not be affected by the other variable, e.g. the set of possible <span class="math inline">\(X\)</span>-values must not depend on <span class="math inline">\(Y\)</span> in any way.</p>
 </div>
-<div id="uniform-exponential-normal" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Uniform, exponential, normal<a href="probability-review.html#uniform-exponential-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="exbox">
+<p><strong>Example.</strong> Let <span class="math inline">\(X\)</span> be the outcome of a fair 6-sided die and <span class="math inline">\(Y\)</span> be the outcome of a fair coin flip (<span class="math inline">\(0=~\)</span>tails,<span class="math inline">\(1=~\)</span>heads). Then we naturally think of them as independent, and they are in the technical sense of the term. It makes physical sense that the coin flip shouldn’t impact the die roll at all unless we are to use some contrived mechanism to force them to interact, e.g. if a machine were to control the force of the coin flip and die roll is some specific way so that the coin tended to be heads when the die tended to be even.</p>
+<p>Here the marginal pmfs are <span class="math inline">\(f_X(x)=\frac16\)</span> for <span class="math inline">\(x=1,2,3,4,5,6\)</span> (and zero otherwise), and the pmf for <span class="math inline">\(Y\)</span> is <span class="math inline">\(f_Y(y)=\frac12\)</span> for <span class="math inline">\(y=0,1\)</span>. Their joint pmf is <span class="math inline">\(f_{X,Y}(x,y)=\frac1{12}\)</span> for <span class="math inline">\((x,y)=(1,0),\ldots,(6,0),(1,1),\ldots,(6,1)\)</span>.</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint probabilities given by the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th>X</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>10</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>5</td>
+<td>0.5</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>500</td>
+<td>0.1</td>
+<td>0.2</td>
+</tr>
+</tbody>
+</table>
+<p>You can actually look at the table and see that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are not independent by seeing the <span class="math inline">\(Y\)</span>-values of 5 and 500 have equal probability mass under the <span class="math inline">\(X=20\)</span> column but unequal probability mass under the <span class="math inline">\(X=10\)</span> column. It isn’t always that simple though. Here is a joint pmf for an independent <span class="math inline">\(X,Y\)</span> pair, and it isn’t obvious they are independent.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th>X</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>10</td>
+<td>20</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>5</td>
+<td>0.36</td>
+<td>0.18</td>
+<td>0.06</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>500</td>
+<td>0.24</td>
+<td>0.12</td>
+<td>0.04</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="bernoulli-binomial-geometric" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Bernoulli, binomial, geometric<a href="probability-review.html#bernoulli-binomial-geometric" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="uniform-exponential-normal" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Uniform, exponential, normal<a href="probability-review.html#uniform-exponential-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
