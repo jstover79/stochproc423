@@ -116,13 +116,25 @@ In order to run the stock simulation code we need to install the packages `quant
 
 Once a package is installed, in order to use the methods and functions it includes, execute the command `library(packagename)`, e.g. `library(quantmod)`. Notice that installing a package require quotation marks around the package name, but calling it into R's workspace does not.
 
-## Calculating probabilities
+<!-- ## Calculating probabilities -->
 
-*under construction*
+<!-- *under construction* -->
 
-## Simulation of random variables
+<!-- ## Simulation of random variables -->
 
-*under construction*
+<!-- *under construction* -->
+
+## Random variables
+
+R has built in methods for many different random variables. Generally for each random variable there are four methods: `dname()` (pmf or pdf), `pname()` (cdf), `qname()` (quantiles), and `rname()` (random simulation) where you replace "name" by the name of a particular distribution.
+
+Here are the R names for some common distributions:
+
+| Binomial | binom |
+|Exponential | exp|
+|Normal|norm|
+|Poisson|pois|
+
 
 ## Basics of programming, R scripts
 

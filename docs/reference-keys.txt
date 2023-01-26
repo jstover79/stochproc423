@@ -15,3 +15,4 @@ uniform-exponential-normal
 random-walks
 the-simple-symmetric-random-walk-ssrw
 distribution-of-x_n
+random-variables
