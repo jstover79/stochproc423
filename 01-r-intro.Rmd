@@ -143,3 +143,13 @@ Here are the R names for some common distributions:
 ## Importing datasets
 
 *under construction*
+
+
+## Summary 
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+*under construction*
+
+:::

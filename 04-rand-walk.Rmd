@@ -40,7 +40,7 @@ So we have our sequence of random variables $(X_0,X_1,X_2,\ldots)$. Of course, $
 
 
 
-### Distribution of $X_n$
+## Distribution of $X_n$
 
 Since $X_n$ is a random sum of a bunch of plus and minus ones, we can realte it to a sum of Bernoulli random variables. If we think of flipping a fair coint $n$ times and let $H$ be the number of heads and $T$ be the number of tails, then we must have $H+T=n$. If the $j^{th}$ coint flip is heads, we set $Y_j=1$ and if it is tails, we set $Y_j=-1$. In this way, we can reason that $$X_n=(\# \text{ heads})-(\# \text{ tails})=H-T=H-(n-H)=2H-n.$$
 Since we know that $H\sim\mathsf{binom}(n,\frac12)$ ($H$ is governed by the binomial distribution with $n$ trials and $p=\frac12$ probability of success), we can use this to calculate probabilities for $X_n$:
@@ -102,6 +102,15 @@ Now to apply the continuity correction is a bit trickier though, because $X_n$ o
 
 <!-- ::: -->
 
+
+## Reflection principle
+
+Now we'll look at a property of the sample path space which will help us understand a few more properties for the random walk. Consider some state $m$ which we are interested in the RW hitting at some time step $n=0,1,2,\ldots,k$. Clearly we must consider $m$ between $-k$ and $k$ since the RW can only go that far in $k$ time steps.
+
+## Maximum state
+
+## Hit time for state $1$
+
 <!-- ## RW2 -->
 
 <!-- ::: exbox -->
@@ -122,10 +131,22 @@ Now to apply the continuity correction is a bit trickier though, because $X_n$ o
 <!-- ::: -->
 
 
-::: defbox
-**Summary**
 
-For $X_n$ the simple 1D random walk with $p$ probability of an up step:<br>
+## Summary 
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+For $X_n$ the simple 1D random walk with $p$ probability of an up step:
+
 $P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}$<br>
-$P(X_n=j)\approx$`pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))`
+&nbsp;&nbsp;&nbsp; For SSRW: $P(X_n=j)={n\choose (n+j)/2}\frac1{2^n}$
+
+$P(X_n=j)\approx$`pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))`<br>
+&nbsp;&nbsp;&nbsp; For SSRW: $P(X_n=j)\approx$`pnorm(j+1,0,sqrt(n)-pnorm(j-1,0,sqrt(n))`<br>
+
+$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}$, $T_1=~$first time SSRW ($p=\frac12$) to hit state $1$
+
+$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k$, $T_1=~$first time SARW (any $p\in[0,1]$) to hit state $1$
+
 :::

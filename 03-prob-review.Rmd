@@ -26,7 +26,7 @@
 **Definition.** A **probability function** allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable $X$. A discrete random variable has a **probability mass function** (pmf) $f_X(x)=P(X=x)$, and a continuous random variable has a **probability density function** (pdf) $f_X(x)$ which we must integrate to get probabilities $P(a<X<b)=\int_a^b f_X(x)dx$. The **cumulative distribution function** (cdf) gives cumulative probabilities $F_X(x)=P(X\leq x)$.
 :::
 
-### Independence of random variables
+## Independence of random variables
 
 When working with introductory probability the idea of *independent events* was covered. Events $A$ and $B$ are independent if and only if $P(A\cap B)=P(A)P(B)$. Independence for random variables works similarly.
 
@@ -66,7 +66,81 @@ You can actually look at the table and see that $X$ and $Y$ are not independent 
 
 :::
 
-### Bernoulli, binomial, geometric
+## Discrete: Bernoulli, binomial, geometric, Poisson
 
-### Uniform, exponential, normal
+## Continuous: Uniform, exponential, normal
 
+## Summary 
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+Discrete RVs:<br>
+&nbsp; pmf $f_X(x)=P(X=x)$ <br>
+&nbsp; cdf $F_X(x)=P(X\leq x)=\sum_{j\leq x} f_X(j)$ <br>
+&nbsp; $E(X)=\sum_{x} x P(X=x)=\sum_{x} x f_X(x)$ 
+
+Continuous RVs:<br>
+&nbsp; pdf $f_X(x)$, $P(a<X<b)=\int_a^b f_X(x)dx$ <br>
+&nbsp; cdf $F_X(x)=P(X\leq x)=\int_{-\infty}^x f_X(t)dt$, $f_X(x)=\frac{d}{dx}F_X(x)$<br>
+&nbsp; $E(X)=\int_{-\infty}^\infty x f_X(x) dx$ 
+
+Variance: $\textrm{Var}(X)=E[(X-E(X))^2]=E(X^2)-E(X)^2$
+
+Expected value of function of RV: $E(h(X))=\sum_x h(x) f_X(x)$ (discrete)<br> 
+&nbsp; $E(h(X))=\int_{-\infty}^\infty h(x) f_X(x) dx$ (continuous)
+
+Jointly distributed RVs: <br>
+&nbsp; $f_{X,Y}(x,y)=P(X=x,Y=y)=P(\{X=x\}\cap\{Y=y\})$
+
+Independence of RVs: <br>
+&nbsp; $X,Y$ independent if and only if $f_{X,Y}(x,y)=f_X(x) f_Y(y)$, <br>
+&nbsp; i.e. $P(X=x,Y=y)=P(X=x)P(Y=y)$, for all $x,y$
+
+**Discrete RVs**
+
+*Bernoulli:* models a process with only two outcomes<br>
+&nbsp; $X\sim\mathsf{Bernoulli}(p)$<br>
+&nbsp; $f_X(x)=\begin{cases}p &\text{ for } x=1\\ 1-p &\text{ for } x=0\end{cases}$<br>
+&nbsp; $E(X)=p$, $Var(X)=p(1-p)$<br>
+&nbsp; R: $P(X=x)=~$`dbinom(x,size=1,prob=p)`<br>
+
+*Binomial:* models number of successes in $n$ independent trials with $p$ the probability of success for each trial<br>
+&nbsp; $X\sim\mathsf{Binom}(n,p)$<br>
+&nbsp; $f_X(x)={n\choose x}p^x (1-p)^{n-x}$, $x=0,1,\ldots,n$<br>
+&nbsp; $E(X)=np$, $Var(X)=np(1-p)$<br>
+&nbsp; R: $P(X=x)=~$`dbinom(x,size=n,prob=p)`<br>
+
+*Geometric:* models number of trials up to and including first success<br>
+&nbsp; $X\sim\mathsf{Geom}(p)$<br>
+&nbsp; $f_X(x)=p(1-p)^{x-1}$, $x\in\{1,2,\ldots\}=\mathbb N$<br>
+&nbsp; $E(X)=\frac1p$, $Var(X)=\frac{1-p}{p^2}$<br>
+&nbsp; R: $P(X=x)=~$`dgeom(x-1,prob=p)` (note that R only counts the failures)<br>
+
+*Poisson:* models number of events over a continuous extent<br>
+&nbsp; $X\sim\mathsf{Pois}(\lambda)$<br>
+&nbsp; $f_X(x)=\frac{e^{-\lambda}\lambda^x}{x!}$, $x\in\{0,1,\ldots\}=\mathbb N_0$<br>
+&nbsp; $E(X)=\lambda$, $Var(X)=\lambda$<br>
+&nbsp; R: $P(X=x)=~$`dpois(x,lambda=λ)`<br>
+
+**Continuous RVs**
+
+*Uniform:* models a continuous quantity that takes any value in an interval with equal likelihood<br>
+&nbsp; $X\sim\mathsf{Unif}(a,b)$<br>
+&nbsp; $f_X(x)=\frac1{b-a}$, $x\in(a,b)$<br>
+&nbsp; $E(X)=\frac12(a+b)$, $Var(X)=\frac1{12}(b^2-a^2)$<br>
+&nbsp; R: $P(X\leq x)=~$`punif(x,min=a,max=b)`<br>
+
+*Normal:* models quantity that is symmetrically distributed and random variation from many small additive contributions<br>
+&nbsp; $X\sim\mathsf{N}(\mu,\sigma^2)$<br>
+&nbsp; $f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$, $x\in\mathbb R$<br>
+&nbsp; $E(X)=\mu$, $Var(X)=\sigma^2$<br>
+&nbsp; R: $P(X\leq x)=~$`pnorm(x,mean=μ,sd=σ)`<br>
+
+*Exponential:* models wait times between events occurring at random times<br>
+&nbsp; $X\sim\mathsf{Exp}(\lambda)$<br>
+&nbsp; $f_X(x)=\lambda e^{-\lambda x}$, $x>0$<br>
+&nbsp; $E(X)=\frac1\lambda$, $Var(X)=\frac1{\lambda^2}$<br>
+&nbsp; R: $P(X\leq x)=~$`pexp(x,rate=λ)`<br>
+
+:::

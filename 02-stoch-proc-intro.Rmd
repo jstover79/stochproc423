@@ -177,7 +177,12 @@ possible realization of the closing prices on the five days.
 :::
 :::
 
+
+## Summary 
+
 ::: defbox
+**Summary of notation, formulas, and terminology**
+
 **Summary of terminology and notation.**<br><br>
 $\mathbb N=\{1,2,\ldots\}$ is the set of natural numbers. <br>
 $\mathbb N_0=\{0,1,2,\ldots\}$ is the set of natural numbers including
