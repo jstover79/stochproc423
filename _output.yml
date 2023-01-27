@@ -3,6 +3,7 @@ bookdown::gitbook:
   # split_by: section
   config:
     toc:
+      collapse: section
       before: |
         <li><a href="./">Stochastic Processes</a></li>
       after: |

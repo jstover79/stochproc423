@@ -132,7 +132,7 @@ Now we'll look at a property of the sample path space which will help us underst
 
 
 
-## Summary 
+## Summary {-}
 
 ::: defbox
 **Summary of notation, formulas, and terminology**

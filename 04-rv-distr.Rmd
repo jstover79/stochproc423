@@ -1,0 +1,345 @@
+# Random variables and distributions
+
+::: defbox
+**Definition.** A **random variable** $X$ is a variable where you must perform a random experiment to determine its value. The **sample space** $S$ is the set of numerical values that the random variable can take. An **event** is a subset of the sample space. A random variable can be either *discrete* (if it takes values in a discrete set such as $\mathbb N$) or *continuous* (if it can take on any value in some intveral).
+:::
+
+::: exbox
+**Examples.**
+
+(1) Let $X$ be the number of dots on the upper face of a dice roll.
+
+(2) Let $X$ be the mass of a randomly selected person form a specific population.
+
+(3) Let $X$ be the number of cars that pass by a given intersection druing a particular day.
+
+(4) Let $X$ be the number of radioactive decays in one hour of some particular material.
+:::
+
+::: defbox
+**Definition.** A **probability function** allows us to calculate the probabilities of observing specific numerical values or ranges of values for random variable $X$. A discrete random variable has a **probability mass function** (pmf) $f_X(x)=P(X=x)$, and a continuous random variable has a **probability density function** (pdf) $f_X(x)$ which we must integrate to get probabilities $P(a<X<b)=\int_a^b f_X(x)dx$. The **cumulative distribution function** (cdf) gives cumulative probabilities $F_X(x)=P(X\leq x)$.
+:::
+
+## Expectation and variance
+
+The **expected value** of a random variable is also called its mean or average value, and denoted $E(X)$.
+
+::: defbox
+**Expected value.**
+
+Discrete: <br>
+&nbsp; $E(X)=\sum_x x f_X(x)$<br>
+&nbsp; $E[g(X)]=\sum_x g(x) f_X(x)$
+
+Continuous: <br>
+&nbsp; $E(X)=\int_{-\infty}^\infty x f_X(x)~dx$<br>
+&nbsp; $E[g(X)]=\int_{-\infty}^\infty g(x) f_X(x)~dx$
+:::
+
+::: defbox
+**Variance.**
+
+$\mathsf{Var}(X)=E[(X-E(X))^2]=E(X^2)-E(X)^2$
+:::
+
+::: exbox
+
+Let $X$ have pmf given below.
+$$
+f_X(x)=\begin{cases}
+0.5 &\text{ if } x=0\\
+0.3 &\text{ if } x=1\\
+0.2 &\text{ if } x=2\\
+\end{cases}
+$$
+Then $E(X)=0.5\cdot 0+0.3\cdot 1+0.2\cdot 2=0.7$. If we repeatedly and independently performed the random experiment that led us to observe random variable $X$, then we would observe a sequence of $0$'s, $1$'s, and $2$'s, and the average observed $X$-value should be close to $0.7$. The law of large numbers says that if we observe more and more $X$-values, the average will actually get closer and closer to $0.7.$
+
+The variance is $Var(X)=E(X^2)-E(X)^2$ so we need to calculate the expected value of the function $X^2$ which is $E(X^2)=0.5\cdot0^2+0.3\cdot1^2+0.2\cdot2^2=1.1$. Thus $Var(X)=1.1-0.7^2=1.1-0.49=0.61.$
+
+:::
+
+## Joint distributions
+
+Sometimes a random experiment yields more than one measurement. As an example, we might drill a water well and record several things such as the depth, width, flow rate, and density of the material drilled through. There could be dependencies such as a deeper well having a higher flow rate. Or maybe flow rate is completely independent of depth of the well. We can think of "flow rate" as one random variable, $X$, and "depth" as another random variable, $Y$. We could ask for the probabilities for $X$ or $Y$ alone, e.g. $P(X=1.3)$ or $P(Y>1000)$ (these are called **marginal probabilities**), or we could ask for their **joint probabilities**, e.g. $P(X=1.3 \text{ and } Y>1000)$.
+
+
+## Independence of random variables
+
+When working with introductory probability the idea of *independent events* was covered. Events $A$ and $B$ are independent if and only if $P(A\cap B)=P(A)P(B)$. Independence for random variables works similarly.
+
+::: defbox
+**Definition.** Random variables $X$ and $Y$ are **independent** if and only if every $X$-event is independent of every $Y$-event. That is for every subset of possible $X$-values $A$ and every subset of possible $Y$-values $B$ we have 
+$$P(\{X\in A\}\cap \{Y\in B\})=P(X\in A)P(Y\in B).$$
+
+For discrete random variables $X$ and $Y$, they are independent if and only if $P(X=x,Y=y)=P(X=x)P(Y=y)$ for all $x$ and $y$. That is the joint pmf must be exactly the product of the marginal pmfs. 
+
+For continuous random variables $X$ and $Y$, they are independent if and only if their joint pdf is exactly the product of the marginal pdfs: $f_{X,Y}(x,y)=f_X(x)f_Y(y)$.
+
+Note that for independent random variables, independence requires that the allowable values for one variable must not be affected by the other variable, e.g. the set of possible $X$-values must not depend on $Y$ in any way.
+:::
+
+::: exbox
+**Example.** Let $X$ be the outcome of a fair 6-sided die and $Y$ be the outcome of a fair coin flip ($0=~$tails,$1=~$heads). Then we naturally think of them as independent, and they are in the technical sense of the term. It makes physical sense that the coin flip shouldn't impact the die roll at all unless we are to use some contrived mechanism to force them to interact, e.g. if a machine were to control the force of the coin flip and die roll is some specific way so that the coin tended to be heads when the die tended to be even.
+
+Here the marginal pmfs are $f_X(x)=\frac16$ for $x=1,2,3,4,5,6$ (and zero otherwise), and the pmf for $Y$ is $f_Y(y)=\frac12$ for $y=0,1$. Their joint pmf is $f_{X,Y}(x,y)=\frac1{12}$ for $(x,y)=(1,0),\ldots,(6,0),(1,1),\ldots,(6,1)$.
+:::
+
+::: exbox
+**Example.** Let $X$ and $Y$ have joint probabilities given by the table below.
+
+|   |     |     X     |
+|---|-----|-----|-----|
+|   |     | 10  | 20  |
+| Y | 5   | 0.5 | 0.2 |
+|   | 500 | 0.1 | 0.2 |
+
+You can actually look at the table and see that $X$ and $Y$ are not independent by seeing the $Y$-values of 5 and 500 have equal probability mass under the $X=20$ column but unequal probability mass under the $X=10$ column. It isn't always that simple though. Here is a joint pmf for an independent $X,Y$ pair, and it isn't obvious they are independent.
+
+|   |     |      | X   |       |
+|---|-----|------|------|-------|
+|   |     | 10   | 20   | 30    |
+| Y | 5   | 0.36 | 0.18 | 0.06  |
+|   | 500 | 0.24 | 0.12 | 0.04  |
+
+:::
+
+## Discrete: Bernoulli, binomial, geometric, Poisson
+
+### Bernoulli
+
+Situation/explanation: We perform a single random experiment that has only two outcomes: success and failure. Success and failure can mean almost anything. Success can mean a no vote on a particular election item, or it can mean we find a defective item, or it can mean a die roll has a particular value.
+
+$X=0$ for failure, $X=1$ for success, $p=$ probability of success.
+
+$$X\sim \text{Bernoulli($p$)}$$
+$$X=0,1$$
+$$f_X(x)=
+\begin{cases}
+1-p &\text{ if } x=0\\
+p &\text{ if } x=1
+\end{cases}$$
+
+$$E(X)=p$$
+$$\text{Var}(X)=p(1-p)$$
+
+In R: 
+$$f(x) = P(X=x) = \texttt{dbinom($x$,size=$1$,prob=$p$)}.$$
+$$F(x) = P(X\leq x) =\texttt{pbinom($x$,size=$1$,prob=$p$)}.$$
+
+### Binomial
+
+Situation/explanation: We perform a fixed number of Bernoulli trials. Count the total number of successes.
+
+$X=$ number of successes out of $n$ Bernoulli trials with $p=$ probability of success.
+
+$$X\sim \text{Bin($n$,$p$)}$$
+$$X=0,1,2,3,\ldots,n$$
+$$f_X(x)={n\choose x}p^x(1-p)^{n-x}$$
+
+$$E(X)=np$$
+$$\text{Var}(X)=np(1-p)$$
+
+In R: 
+$$f(x) = P(X=x) = \texttt{dbinom($x$,size=$n$,prob=$p$)}. \quad \text{ (pmf)}$$
+$$F(x) = P(X\leq x) =\texttt{pbinom($x$,size=$n$,prob=$p$)}.  \quad \text{ (cdf)}$$
+$$\tilde{x}_q=F^{-1}(q) =\texttt{qbinom($q$,size=$n$,prob=$p$)}.  \quad \text{ ($q$100$^{th}$ percentile, inverse cdf)}$$
+
+
+### Geometric
+
+Situation/explanation: We perform Bernoulli trials until we get our first success. Count the total number of trials (a bunch of failures, and one success).
+
+$X=$ total number of trials required to get a single success with $p=$ probability of success. (the count includes the success also)
+
+Note that there is no fixed total number of trials here. Note: there is a single success, the last trial, the first $x-1$ trials are all failures.
+$$X\sim \text{Geom($p$)}$$
+$$X=0,1,2,3,\ldots$$
+$$f(x)=p(1-p)^{x-1}$$
+$$F(x)=1-(1-p)^{x}$$
+$$E(X)=\frac1p$$
+$$\text{Var}(X)=\frac{(1-p)}{p^2}$$
+<!-- %$$\text{median } \tilde\mu=\left\lceil\frac{\ln(0.5)}{\ln(1-p)}\right\rceil \quad \text{ note that the $\lceil\cdot\rceil$ notation means to round up to next integer}$$ -->
+
+
+(Note that in R, the definition of $X$ varies from this. In R, $X$ is the number of failures. So when calculating in R for the Geometric random variable, we must either subtract 1 from the $x$ values in R for the pmf and cdf, but add 1 to the output from an R quantile.)
+
+In R: 
+$$f(x) = P(X=x) = \texttt{dgeom($x$-1,prob=$p$)}.\quad \text{ (pmf)}$$
+$$F(x) = P(X\leq x) =\texttt{pgeom($x$-1,prob=$p$)}.\quad \text{ (cdf)}$$
+$$\tilde{x}_q=F^{-1}(q) =\texttt{qgeom($q$,prob=$p$)+1}.  \quad \text{ ($q$100$^{th}$ percentile, inverse cdf)}$$
+\begin{center}
+	Simulate $N$ independent draws from a \text{Geom}$(p)$ distribution: \texttt{rgeom($N$,prob=$p$)+!}.
+\end{center}
+
+### Poisson
+
+Situation/explanation: (1) Events arrive over time. Count the number of events in a given time interval. (2) Events are distributed over a spatial region randomly. Count the number of events in a given region.
+
+$X=$ number of events that occur at rate $\lambda$. The rate can be thought of as "the number of events per unit time" or more generally, "number of events per unit." Often it is the number of events per unit length or per unit time.
+
+$$X\sim \text{Pois($\lambda$)}$$
+$$X=0,1,2,\ldots$$
+$$f_X(x)=\frac{e^{-\lambda}\lambda^x}{x!}$$
+$$E(X)=\lambda$$
+$$Var(X)=\lambda$$ 
+<!-- % \ thus \ $\sigma=\sqrt{\lambda}$ -->
+
+In R: 
+$$f(x) = P(X=x) = \texttt{dpois($x$,lambda=$\lambda$)}. \quad \text{ (pmf)}$$
+$$F(x) = P(X\leq x) =\texttt{ppois($x$,lambda=$\lambda$)}.  \quad \text{ (cdf)}$$
+
+
+$$\tilde{x}_q=F^{-1}(q) =\texttt{qpois($q$,lambda=$\lambda$)}.  \quad \text{ ($q$100$^{th}$ percentile, inverse cdf)}$$
+\begin{center}
+	Simulate $N_{sim}$ independent draws from a \text{Pois}$(\lambda)$ distribution: \texttt{rpois($N_{sim}$,lambda=$\lambda$)}.
+\end{center}
+
+
+## Continuous: Uniform, exponential, normal
+
+
+### Uniform
+
+The \textit{uniform} random variable is the continuous analog of ``equally likely''.
+
+$$X\sim \text{Unif($a,b$)}$$
+$$a \leq X \leq b$$
+$$f_X(x)=\frac{1}{b-a} \quad \text{ for } x\in[a,b]$$
+$$ F(x)=\frac{x-a}{b-a}$$
+$$E(X)=\frac{a+b}{2}$$
+$$\text{Var}(X)=\frac{1}{12}(b-a)^2$$
+
+In R: 
+$$f(x) = \texttt{dunif($x$,min=$a$,max=$a$)}. \quad \text{ (pdf, not probability mass)}$$
+$$F(x) = P(X\leq x) =\texttt{punif($x$,min=$a$,max=$a$)}.  \quad \text{ (cdf)}$$
+
+### Exponential
+
+Suppose events happen at random times (or at random locations along a physical length). The length of time between events can be modeled by an \textit{exponential random variable}.
+
+$X=$ wait time until an event.\\
+Rate parameter $\lambda$ is the number of events per unit time. It can be number of events per unit length as well; it just depends on the context. This is very closely related to the Poisson, as we'll discuss later.
+
+We can refer to $X$ as the ``inter-arrival time,'' ``wait time,'' or ``inter-event time.''
+
+$$X\sim \text{Exp($\lambda$)}$$
+$$0 \leq X$$
+$$f_X(x)=\lambda e^{-\lambda x} \quad \text{ for } x\geq 0$$
+$$ F(x)=1-e^{-\lambda x}$$
+$$E(X)=\frac{1}{\lambda}$$
+$$\text{Var}(X)=\frac{1}{\lambda^2}$$
+
+In R: 
+$$f(x) = \texttt{dexp($x$,rate=$\lambda$)}. \quad \text{ (pdf, not probability mass)}$$
+$$F(x) = P(X\leq x) =\texttt{pexp($x$,rate=$\lambda$)}.  \quad \text{ (cdf)}$$
+
+
+$$\tilde{x}_q=F^{-1}(q) =\texttt{qexp($q$,rate=$\lambda$)}.  \quad \text{ ($q$100$^{th}$ percentile, inverse cdf)}$$
+\begin{center}
+	Simulate $N_{sim}$ independent draws from a \text{Exp}$(\lambda)$ distribution: \texttt{rexp($N_{sim}$,rate=$\lambda$)}.
+\end{center}
+
+### Normal
+
+The normal distribution is one of the most important. Its probability density function is often called the "bell curve" or "Gaussian."
+
+$$X\sim \text{N($\mu$,$\sigma^2$)}$$
+$$-\infty < X < \infty$$
+$$f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad \text{ for } x\in\mathbb R$$
+$$ F(x)=\text{Unfortunately, can't be written down in a closed fomula}$$
+$$E(X)=\mu$$
+$$\text{Var}(X)=\sigma^2$$
+
+In R: 
+$$f(x) = \texttt{dnorm($x$,mean=$\mu$,sd=$\sigma$)}. \quad \text{ (pdf, not probability mass)}$$
+$$F(x) = P(X\leq x) =\texttt{pnorm($x$,mean=$\mu$,sd=$\sigma$)}.  \quad \text{ (cdf)}$$
+
+
+$$\tilde{x}_q=F^{-1}(q) =\texttt{qnorm($q$,mean=$\mu$,sd=$\sigma$)}.  \quad \text{ ($q$100$^{th}$ percentile, inverse cdf)}$$
+\begin{center}
+	Simulate $N_{sim}$ independent draws from a \text{N}$(\mu, \sigma^2)$ distribution: \texttt{rnorm($N_{sim}$,mean=$\mu$,sd=$\sigma$)}.
+\end{center}
+
+#### The 68-95-99.7 rule
+For any normally distributed random variable, we have that there is approximately a 68\% chance of being within 1 standard deviation of the mean, a 95\% chance of being within 2 standard deviations of the mean, and a 99.7\% chance of being within 3 standard deviations of the mean, i.e. that
+$$\begin{aligned}
+P(\mu-\sigma < X < \mu+\sigma) &\approx 68\%\\
+P(\mu-2\sigma < X < \mu+2\sigma) &\approx 95\%\\
+P(\mu-3\sigma < X < \mu+3\sigma) &\approx 99.7\%
+\end{aligned}$$
+
+
+## Summary {-}
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+Discrete RVs:<br>
+&nbsp; pmf $f_X(x)=P(X=x)$ <br>
+&nbsp; cdf $F_X(x)=P(X\leq x)=\sum_{j\leq x} f_X(j)$ <br>
+&nbsp; $E(X)=\sum_{x} x P(X=x)=\sum_{x} x f_X(x)$ 
+
+Continuous RVs:<br>
+&nbsp; pdf $f_X(x)$, $P(a<X<b)=\int_a^b f_X(x)dx$ <br>
+&nbsp; cdf $F_X(x)=P(X\leq x)=\int_{-\infty}^x f_X(t)dt$, $f_X(x)=\frac{d}{dx}F_X(x)$<br>
+&nbsp; $E(X)=\int_{-\infty}^\infty x f_X(x) dx$ 
+
+Variance: $\textrm{Var}(X)=E[(X-E(X))^2]=E(X^2)-E(X)^2$
+
+Expected value of function of RV: $E(h(X))=\sum_x h(x) f_X(x)$ (discrete)<br> 
+&nbsp; $E(h(X))=\int_{-\infty}^\infty h(x) f_X(x) dx$ (continuous)
+
+Jointly distributed RVs: <br>
+&nbsp; $f_{X,Y}(x,y)=P(X=x,Y=y)=P(\{X=x\}\cap\{Y=y\})$
+
+Independence of RVs: <br>
+&nbsp; $X,Y$ independent if and only if $f_{X,Y}(x,y)=f_X(x) f_Y(y)$, <br>
+&nbsp; i.e. $P(X=x,Y=y)=P(X=x)P(Y=y)$, for all $x,y$
+
+**Discrete RVs**
+
+*Bernoulli:* models a process with only two outcomes<br>
+&nbsp; $X\sim\mathsf{Bernoulli}(p)$<br>
+&nbsp; $f_X(x)=\begin{cases}p &\text{ for } x=1\\ 1-p &\text{ for } x=0\end{cases}$<br>
+&nbsp; $E(X)=p$, $Var(X)=p(1-p)$<br>
+&nbsp; R: $P(X=x)=~$`dbinom(x,size=1,prob=p)`<br>
+
+*Binomial:* models number of successes in $n$ independent trials with $p$ the probability of success for each trial<br>
+&nbsp; $X\sim\mathsf{Binom}(n,p)$<br>
+&nbsp; $f_X(x)={n\choose x}p^x (1-p)^{n-x}$, $x=0,1,\ldots,n$<br>
+&nbsp; $E(X)=np$, $Var(X)=np(1-p)$<br>
+&nbsp; R: $P(X=x)=~$`dbinom(x,size=n,prob=p)`<br>
+
+*Geometric:* models number of trials up to and including first success<br>
+&nbsp; $X\sim\mathsf{Geom}(p)$<br>
+&nbsp; $f_X(x)=p(1-p)^{x-1}$, $x\in\{1,2,\ldots\}=\mathbb N$<br>
+&nbsp; $E(X)=\frac1p$, $Var(X)=\frac{1-p}{p^2}$<br>
+&nbsp; R: $P(X=x)=~$`dgeom(x-1,prob=p)` (note that R only counts the failures)<br>
+
+*Poisson:* models number of events over a continuous extent<br>
+&nbsp; $X\sim\mathsf{Pois}(\lambda)$<br>
+&nbsp; $f_X(x)=\frac{e^{-\lambda}\lambda^x}{x!}$, $x\in\{0,1,\ldots\}=\mathbb N_0$<br>
+&nbsp; $E(X)=\lambda$, $Var(X)=\lambda$<br>
+&nbsp; R: $P(X=x)=~$`dpois(x,lambda=λ)`<br>
+
+**Continuous RVs**
+
+*Uniform:* models a continuous quantity that takes any value in an interval with equal likelihood<br>
+&nbsp; $X\sim\mathsf{Unif}(a,b)$<br>
+&nbsp; $f_X(x)=\frac1{b-a}$, $x\in(a,b)$<br>
+&nbsp; $E(X)=\frac12(a+b)$, $Var(X)=\frac1{12}(b^2-a^2)$<br>
+&nbsp; R: $P(X\leq x)=~$`punif(x,min=a,max=b)`<br>
+
+*Normal:* models quantity that is symmetrically distributed and random variation from many small additive contributions<br>
+&nbsp; $X\sim\mathsf{N}(\mu,\sigma^2)$<br>
+&nbsp; $f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$, $x\in\mathbb R$<br>
+&nbsp; $E(X)=\mu$, $Var(X)=\sigma^2$<br>
+&nbsp; R: $P(X\leq x)=~$`pnorm(x,mean=μ,sd=σ)`<br>
+
+*Exponential:* models wait times between events occurring at random times<br>
+&nbsp; $X\sim\mathsf{Exp}(\lambda)$<br>
+&nbsp; $f_X(x)=\lambda e^{-\lambda x}$, $x>0$<br>
+&nbsp; $E(X)=\frac1\lambda$, $Var(X)=\frac1{\lambda^2}$<br>
+&nbsp; R: $P(X\leq x)=~$`pexp(x,rate=λ)`<br>
+
+:::
