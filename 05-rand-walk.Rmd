@@ -107,6 +107,8 @@ Now to apply the continuity correction is a bit trickier though, because $X_n$ o
 
 Now we'll look at a property of the sample path space which will help us understand a few more properties for the random walk. Consider some state $m$ which we are interested in the RW hitting at some time step $n=0,1,2,\ldots,k$. Clearly we must consider $m$ between $-k$ and $k$ since the RW can only go that far in $k$ time steps.
 
+We can count paths in the following way, by sketching out a graphical representation of the sample path space.
+
 ## Maximum state
 
 ## Hit time for state $1$
