@@ -4,7 +4,6 @@ installing-and-using-packages-in-r
 random-variables
 basics-of-programming-r-scripts
 importing-datasets
-intro-stochastic-processes
 counting-sets-and-probability-basics
 ticket-in-a-box-model-of-probability
 sampling-from-a-box-of-tickets
@@ -49,6 +48,7 @@ uniform
 exponential
 normal
 the-68-95-99.7-rule
+intro-stochastic-processes
 random-walks
 the-simple-symmetric-random-walk-ssrw
 distribution-of-x_n

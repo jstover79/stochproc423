@@ -62,6 +62,29 @@ The variance is $Var(X)=E(X^2)-E(X)^2$ so we need to calculate the expected valu
 
 Sometimes a random experiment yields more than one measurement. As an example, we might drill a water well and record several things such as the depth, width, flow rate, and density of the material drilled through. There could be dependencies such as a deeper well having a higher flow rate. Or maybe flow rate is completely independent of depth of the well. We can think of "flow rate" as one random variable, $X$, and "depth" as another random variable, $Y$. We could ask for the probabilities for $X$ or $Y$ alone, e.g. $P(X=1.3)$ or $P(Y>1000)$ (these are called **marginal probabilities**), or we could ask for their **joint probabilities**, e.g. $P(X=1.3 \text{ and } Y>1000)$.
 
+Normally we can list joint probabilities for two random variables, $X$ and $Y$, in a tabular format. We can list the $X$-values along the first row $(x_1,x_2,...)$, the $Y$-values along the first column $(y_1,y_2,...)$, and in the box for the $i^{th}$ column and $j^{th}$ row, we write the joint probability $P(X=x_i,Y=y_j)$. See the example below.
+
+|   |     |     X     |
+|---|-----|-----|-----|
+|   |     | 10  | 20  |
+| Y | 5   | 0.5 | 0.2 |
+|   | 500 | 0.1 | 0.2 |
+
+Here we have $P(X=10,Y=500)=0.1$ for example. If we wish to calculate a marginal probability, then we must sum over the appropriate row or column, e.g. $P(X=10)=P(X=10,Y=5)+P(X=10,Y=500)=0.5+0.1=0.6.$ We can calculate the marginal pmf for $X$ by summing each column and the marginal pmf for $Y$ by summing each row.
+
+In general the marginal probabilities are given by:
+$$f_X(x)=P(X=x)=\sum_y P(X=x,Y=y)=\sum_y f_{X,Y}(x,y)$$
+$$f_Y(y)=P(Y=y)=\sum_x P(X=x,Y=y)=\sum_x f_{X,Y}(x,y).$$
+The above is using an example of **partitioning** the entire (joint) sample space. If we are interested in the even $\{X=x\}$ but we only know joint probabilities $\{X=x,Y=y_j\}$ for $j=1,2,...,m$ (assume there are $m$ total $y$-values. Then we have a partition $\{Y=y_1\},\ldots,\{Y=y_m\}$, and we can intersect $\{X=x\}$ with each of these to create a list of pairwise mutually exclusive events: $\{X=x\}\cap\{Y=y_1\},\ldots,\{X=x\}\cap\{Y=y_m\}$. Now we calculate
+$$
+\begin{aligned}
+P(X=x)&=P(\{X=x\}\cap\{Y=y_1\})+\cdots P(\{X=x\}\cap\{Y=y_m\})\\
+&=P(X=x,Y=y_1)+\cdots P(X=x,Y=y_m)\\
+&=\sum_{j=1}^m P(X=x,Y=y_j).
+\end{aligned}
+$$
+
+
 
 ## Independence of random variables
 

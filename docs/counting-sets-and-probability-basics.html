@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes</title>
-  <meta name="description" content="Chapter 3 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <title>Chapter 2 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 2 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:title" content="Chapter 2 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
+  <meta name="twitter:title" content="Chapter 2 Counting, sets, and probability basics | Math 423 Stochastic Processes Course Notes" />
   
   
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-01-27" />
+<meta name="date" content="2023-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro-stochastic-processes.html"/>
+<link rel="prev" href="introduction-to-r-and-rstudio.html"/>
 <link rel="next" href="random-variables-and-distributions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -154,67 +154,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#importing-datasets"><i class="fa fa-check"></i><b>1.5</b> Importing datasets</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro-stochastic-processes.html"><a href="intro-stochastic-processes.html"><i class="fa fa-check"></i><b>2</b> Intro Stochastic Processes</a>
+<li class="chapter" data-level="2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html"><i class="fa fa-check"></i><b>2</b> Counting, sets, and probability basics</a>
 <ul>
-<li class="chapter" data-level="" data-path="intro-stochastic-processes.html"><a href="intro-stochastic-processes.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="2.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#ticket-in-a-box-model-of-probability"><i class="fa fa-check"></i><b>2.1</b> Ticket-in-a-box model of probability</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sampling-from-a-box-of-tickets"><i class="fa fa-check"></i><b>2.1.1</b> Sampling from a box of tickets</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html"><i class="fa fa-check"></i><b>3</b> Counting, sets, and probability basics</a>
+<li class="chapter" data-level="2.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#relative-area-model-of-probability"><i class="fa fa-check"></i><b>2.2</b> Relative area model of probability</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#ticket-in-a-box-model-of-probability"><i class="fa fa-check"></i><b>3.1</b> Ticket-in-a-box model of probability</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sampling-from-a-box-of-tickets"><i class="fa fa-check"></i><b>3.1.1</b> Sampling from a box of tickets</a></li>
+<li class="chapter" data-level="2.2.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#one-dimension"><i class="fa fa-check"></i><b>2.2.1</b> One dimension</a></li>
+<li class="chapter" data-level="2.2.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#two-or-more-dimensions"><i class="fa fa-check"></i><b>2.2.2</b> Two or more dimensions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#relative-area-model-of-probability"><i class="fa fa-check"></i><b>3.2</b> Relative area model of probability</a>
+<li class="chapter" data-level="2.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sample-spaces-and-events"><i class="fa fa-check"></i><b>2.3</b> Sample Spaces and Events</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#one-dimension"><i class="fa fa-check"></i><b>3.2.1</b> One dimension</a></li>
-<li class="chapter" data-level="3.2.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#two-or-more-dimensions"><i class="fa fa-check"></i><b>3.2.2</b> Two or more dimensions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sample-space"><i class="fa fa-check"></i><b>2.3.1</b> Sample space</a></li>
+<li class="chapter" data-level="2.3.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#events"><i class="fa fa-check"></i><b>2.3.2</b> Events</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sample-spaces-and-events"><i class="fa fa-check"></i><b>3.3</b> Sample Spaces and Events</a>
+<li class="chapter" data-level="2.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#set-operations"><i class="fa fa-check"></i><b>2.4</b> Set Operations</a></li>
+<li class="chapter" data-level="2.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#venn-diagrams"><i class="fa fa-check"></i><b>2.5</b> Venn Diagrams</a></li>
+<li class="chapter" data-level="2.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#counting-permutations-and-combinations"><i class="fa fa-check"></i><b>2.6</b> Counting, permutations, and combinations</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#sample-space"><i class="fa fa-check"></i><b>3.3.1</b> Sample space</a></li>
-<li class="chapter" data-level="3.3.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#events"><i class="fa fa-check"></i><b>3.3.2</b> Events</a></li>
+<li class="chapter" data-level="2.6.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#multiplication-rule"><i class="fa fa-check"></i><b>2.6.1</b> Multiplication rule</a></li>
+<li class="chapter" data-level="2.6.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#nk"><i class="fa fa-check"></i><b>2.6.2</b> <span class="math inline">\(n^k\)</span></a></li>
+<li class="chapter" data-level="2.6.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#factorials"><i class="fa fa-check"></i><b>2.6.3</b> Factorials</a></li>
+<li class="chapter" data-level="2.6.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#permutation"><i class="fa fa-check"></i><b>2.6.4</b> Permutation</a></li>
+<li class="chapter" data-level="2.6.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#combination"><i class="fa fa-check"></i><b>2.6.5</b> Combination</a></li>
+<li class="chapter" data-level="2.6.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#summary-of-counting"><i class="fa fa-check"></i><b>2.6.6</b> Summary of counting</a></li>
+<li class="chapter" data-level="2.6.7" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#special-case-with-replacement-order-doesnt-matter-the-multiset"><i class="fa fa-check"></i><b>2.6.7</b> Special case: with replacement, order doesn’t matter: the multiset</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#set-operations"><i class="fa fa-check"></i><b>3.4</b> Set Operations</a></li>
-<li class="chapter" data-level="3.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#venn-diagrams"><i class="fa fa-check"></i><b>3.5</b> Venn Diagrams</a></li>
-<li class="chapter" data-level="3.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#counting-permutations-and-combinations"><i class="fa fa-check"></i><b>3.6</b> Counting, permutations, and combinations</a>
+<li class="chapter" data-level="2.7" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#probability"><i class="fa fa-check"></i><b>2.7</b> Probability</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#multiplication-rule"><i class="fa fa-check"></i><b>3.6.1</b> Multiplication rule</a></li>
-<li class="chapter" data-level="3.6.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#nk"><i class="fa fa-check"></i><b>3.6.2</b> <span class="math inline">\(n^k\)</span></a></li>
-<li class="chapter" data-level="3.6.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#factorials"><i class="fa fa-check"></i><b>3.6.3</b> Factorials</a></li>
-<li class="chapter" data-level="3.6.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#permutation"><i class="fa fa-check"></i><b>3.6.4</b> Permutation</a></li>
-<li class="chapter" data-level="3.6.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#combination"><i class="fa fa-check"></i><b>3.6.5</b> Combination</a></li>
-<li class="chapter" data-level="3.6.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#summary-of-counting"><i class="fa fa-check"></i><b>3.6.6</b> Summary of counting</a></li>
-<li class="chapter" data-level="3.6.7" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#special-case-with-replacement-order-doesnt-matter-the-multiset"><i class="fa fa-check"></i><b>3.6.7</b> Special case: with replacement, order doesn’t matter: the multiset</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#probability"><i class="fa fa-check"></i><b>3.7</b> Probability</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#equally-likely-outcomes"><i class="fa fa-check"></i><b>3.7.1</b> Equally likely outcomes</a></li>
-<li class="chapter" data-level="3.7.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#general-probability-theory"><i class="fa fa-check"></i><b>3.7.2</b> General probability theory</a></li>
-<li class="chapter" data-level="3.7.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#independence"><i class="fa fa-check"></i><b>3.7.3</b> Independence</a></li>
-<li class="chapter" data-level="3.7.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#conditional-probability"><i class="fa fa-check"></i><b>3.7.4</b> Conditional probability</a></li>
-<li class="chapter" data-level="3.7.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#partitions"><i class="fa fa-check"></i><b>3.7.5</b> Partitions</a></li>
-<li class="chapter" data-level="3.7.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#bayes-theorem"><i class="fa fa-check"></i><b>3.7.6</b> Baye’s Theorem</a></li>
+<li class="chapter" data-level="2.7.1" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#equally-likely-outcomes"><i class="fa fa-check"></i><b>2.7.1</b> Equally likely outcomes</a></li>
+<li class="chapter" data-level="2.7.2" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#general-probability-theory"><i class="fa fa-check"></i><b>2.7.2</b> General probability theory</a></li>
+<li class="chapter" data-level="2.7.3" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#independence"><i class="fa fa-check"></i><b>2.7.3</b> Independence</a></li>
+<li class="chapter" data-level="2.7.4" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#conditional-probability"><i class="fa fa-check"></i><b>2.7.4</b> Conditional probability</a></li>
+<li class="chapter" data-level="2.7.5" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#partitions"><i class="fa fa-check"></i><b>2.7.5</b> Partitions</a></li>
+<li class="chapter" data-level="2.7.6" data-path="counting-sets-and-probability-basics.html"><a href="counting-sets-and-probability-basics.html#bayes-theorem"><i class="fa fa-check"></i><b>2.7.6</b> Baye’s Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html"><i class="fa fa-check"></i><b>4</b> Random variables and distributions</a>
+<li class="chapter" data-level="3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html"><i class="fa fa-check"></i><b>3</b> Random variables and distributions</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.1</b> Expectation and variance</a></li>
-<li class="chapter" data-level="4.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#joint-distributions"><i class="fa fa-check"></i><b>4.2</b> Joint distributions</a></li>
-<li class="chapter" data-level="4.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#independence-of-random-variables"><i class="fa fa-check"></i><b>4.3</b> Independence of random variables</a></li>
-<li class="chapter" data-level="4.4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#discrete-bernoulli-binomial-geometric-poisson"><i class="fa fa-check"></i><b>4.4</b> Discrete: Bernoulli, binomial, geometric, Poisson</a>
+<li class="chapter" data-level="3.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>3.1</b> Expectation and variance</a></li>
+<li class="chapter" data-level="3.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#joint-distributions"><i class="fa fa-check"></i><b>3.2</b> Joint distributions</a></li>
+<li class="chapter" data-level="3.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#independence-of-random-variables"><i class="fa fa-check"></i><b>3.3</b> Independence of random variables</a></li>
+<li class="chapter" data-level="3.4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#discrete-bernoulli-binomial-geometric-poisson"><i class="fa fa-check"></i><b>3.4</b> Discrete: Bernoulli, binomial, geometric, Poisson</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#bernoulli"><i class="fa fa-check"></i><b>4.4.1</b> Bernoulli</a></li>
-<li class="chapter" data-level="4.4.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#binomial"><i class="fa fa-check"></i><b>4.4.2</b> Binomial</a></li>
-<li class="chapter" data-level="4.4.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#geometric"><i class="fa fa-check"></i><b>4.4.3</b> Geometric</a></li>
-<li class="chapter" data-level="4.4.4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#poisson"><i class="fa fa-check"></i><b>4.4.4</b> Poisson</a></li>
+<li class="chapter" data-level="3.4.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#bernoulli"><i class="fa fa-check"></i><b>3.4.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="3.4.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#binomial"><i class="fa fa-check"></i><b>3.4.2</b> Binomial</a></li>
+<li class="chapter" data-level="3.4.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#geometric"><i class="fa fa-check"></i><b>3.4.3</b> Geometric</a></li>
+<li class="chapter" data-level="3.4.4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#poisson"><i class="fa fa-check"></i><b>3.4.4</b> Poisson</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#continuous-uniform-exponential-normal"><i class="fa fa-check"></i><b>4.5</b> Continuous: Uniform, exponential, normal</a>
+<li class="chapter" data-level="3.5" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#continuous-uniform-exponential-normal"><i class="fa fa-check"></i><b>3.5</b> Continuous: Uniform, exponential, normal</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#uniform"><i class="fa fa-check"></i><b>4.5.1</b> Uniform</a></li>
-<li class="chapter" data-level="4.5.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#exponential"><i class="fa fa-check"></i><b>4.5.2</b> Exponential</a></li>
-<li class="chapter" data-level="4.5.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#normal"><i class="fa fa-check"></i><b>4.5.3</b> Normal</a></li>
+<li class="chapter" data-level="3.5.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#uniform"><i class="fa fa-check"></i><b>3.5.1</b> Uniform</a></li>
+<li class="chapter" data-level="3.5.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#exponential"><i class="fa fa-check"></i><b>3.5.2</b> Exponential</a></li>
+<li class="chapter" data-level="3.5.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#normal"><i class="fa fa-check"></i><b>3.5.3</b> Normal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="intro-stochastic-processes.html"><a href="intro-stochastic-processes.html"><i class="fa fa-check"></i><b>4</b> Intro Stochastic Processes</a>
+<ul>
+<li class="chapter" data-level="" data-path="intro-stochastic-processes.html"><a href="intro-stochastic-processes.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>5</b> Random walks</a>
 <ul>
@@ -245,18 +245,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="counting-sets-and-probability-basics" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Counting, sets, and probability basics<a href="counting-sets-and-probability-basics.html#counting-sets-and-probability-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="counting-sets-and-probability-basics" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Counting, sets, and probability basics<a href="counting-sets-and-probability-basics.html#counting-sets-and-probability-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Now we review basic introductory probability theory. An experiment with observable outcomes that has some level of unpredictability to them is often called random. You may have an intuitive understanding of what “random” means and what it means for something to have a probability, chance, or likelihood of happening. We want to mathematically formalize the concept of probability.</p>
 <p>An experiment here could be as simple as selecting one or more individuals from a fixed population. It could be a process such as an industrial machine producing some item. We will investigate the probability of different individuals being selected in the former example and the probability of the produced item having certain properties in the latter example.</p>
-<div id="ticket-in-a-box-model-of-probability" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Ticket-in-a-box model of probability<a href="counting-sets-and-probability-basics.html#ticket-in-a-box-model-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ticket-in-a-box-model-of-probability" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Ticket-in-a-box model of probability<a href="counting-sets-and-probability-basics.html#ticket-in-a-box-model-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here is a what I hope will be an intuitive model of probability and random experiments. Assume we have a box full of tickets. We are to shake the box up and draw one or more tickets out. It should be intuitively clear that we have little (if any) control over what ticket we draw out (assuming we aren’t looking and sorting through the tickets until we find the one we want).</p>
 <p>Now, let the tickets be labeled with letters, numbers, colors, names, or any label you can imagine. The tickets could contain the names of all students in a class, 1 per student, or they could have the sides of a die written on them. We could even account for an experiment that is biased towards a certain outcome by having more tickets with one label and less of another label. For example, if we want to simulate a coin that has a 75% chance of
 flipping heads and a 25% chance for tails, then we could put in 75 “H” tickets and 25 “T” tickets. Now if you were to draw a ticket, replace it, shake the box up and draw again, you should intuitively feel that out of 10 draws, we expect to get 7 or 8 H’s and the rest T’s. The result is unpredictable, but if you drew a very large number of tickets (replacing each as we go), then if you drew only H’s, you would probably agree that you might get suspicious, say, that the T tickets were stuck to the walls or missing.</p>
 <p>Keep this model of probability in mind as we go through this course. We will come back to this idea several times.</p>
-<div id="sampling-from-a-box-of-tickets" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Sampling from a box of tickets<a href="counting-sets-and-probability-basics.html#sampling-from-a-box-of-tickets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sampling-from-a-box-of-tickets" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Sampling from a box of tickets<a href="counting-sets-and-probability-basics.html#sampling-from-a-box-of-tickets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we have a box of tickets with <span class="math inline">\(k\)</span> different ticket labels, and <span class="math inline">\(n_i\)</span> of tickets with label <span class="math inline">\(L_i\)</span>, then our box looks like this:
 <span class="math display">\[\{L_1,L_1,\ldots,L_1, L_2, L_2,\ldots, L_2, \ldots, L_k, L_k\ldots, L_k\}.\]</span>
 We wish to shuffle these up randomly and draw out <span class="math inline">\(n\)</span> total tickets.</p>
@@ -272,32 +272,32 @@ We wish to shuffle these up randomly and draw out <span class="math inline">\(n\
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="counting-sets-and-probability-basics.html#cb2-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;blue&quot;</span>,<span class="dv">3</span>),<span class="fu">rep</span>(<span class="st">&quot;red&quot;</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="st">&quot;green&quot;</span>,<span class="dv">1</span>))</span>
 <span id="cb2-2"><a href="counting-sets-and-probability-basics.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S,<span class="at">size=</span><span class="fu">length</span>(S),<span class="at">replace=</span>F)</span></code></pre></div>
-<pre><code>## [1] &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;blue&quot;</code></pre>
+<pre><code>## [1] &quot;blue&quot;  &quot;red&quot;   &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;</code></pre>
 </div>
 </div>
-<div id="relative-area-model-of-probability" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Relative area model of probability<a href="counting-sets-and-probability-basics.html#relative-area-model-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="relative-area-model-of-probability" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Relative area model of probability<a href="counting-sets-and-probability-basics.html#relative-area-model-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First consider tossing a tossing a dart at a dartboard. Consider a dartboard that is a disc with a small circle in the center of the dartboard (the bulls-eye). Having a dart land in the bulls-eye is normally a higher point value than another other location on the board. Why is this? We can intuitively reason that the bulls-eye is small, therefor the dart can land in the bulls-eye in fewer ways than the rest of the board which has many more places for he dart to land. This is actually a continuous version of the ticket-in-a-box model.</p>
-<div id="one-dimension" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> One dimension<a href="counting-sets-and-probability-basics.html#one-dimension" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="one-dimension" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> One dimension<a href="counting-sets-and-probability-basics.html#one-dimension" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider that we have <span class="math inline">\(n\)</span> tickets that indicate sub-intervals of the interval <span class="math inline">\([0,1]\)</span> so that ticket <span class="math inline">\(1\)</span> indicates the interval <span class="math inline">\([0,\frac1n]\)</span>, ticket <span class="math inline">\(2\)</span> indicates the interval <span class="math inline">\((\frac1n,\frac2n]\)</span>, …, and ticket <span class="math inline">\(n\)</span> indicates interval <span class="math inline">\((\frac{n-1}{n},1]\)</span>. So we can put the tickets in a box, shake it up and draw one out to randomly select a sub-interval of <span class="math inline">\([0,1]\)</span>.</p>
 <p><span class="math display">\[\text{Tickets: } \quad ~\quad \fbox{$1: \left[0,\frac1n\right]$}, ~\fbox{$2: \left(\frac1n,\frac2n\right]$}, ...,~\fbox{$n: \left(\frac{n-1}{n},1\right]$}\]</span></p>
 <p>Now imagine increasing the number of tickets, <span class="math inline">\(n\)</span>. We can imagine laying the tickets in a line that is one unit long and just sequentially cutting the tickets into smaller and smaller pieces while preserving the total length of the interval. For a very large number of tickets, the sub-intervals will be very short. Randomly choosing a sub-interval from <span class="math inline">\([\frac12,\frac34]\)</span>, for example, will depend on how many sub-intervals it is divided into, i.e. the number of tickets that that region was cut into. The number of tickets that any interval is cut into is proportional to the length of that interval.</p>
 <p>In the limit as <span class="math inline">\(n\rightarrow\infty\)</span>, the tickets will effectively indicate every point on the interval <span class="math inline">\([0,1]\)</span>. And we can imagine tossing a dart onto a line, and assuming that every location is <em>equally likely</em>, the probability of any sub-interval is equivalent to its length (relative to the length of the entire landing strip).</p>
 <p>We can think of this as a way to model selecting a number at random from the interval <span class="math inline">\([0,1]\)</span>. If we require any number of decimals of precision, e.g. 8 decimal places, then we can put <span class="math inline">\(10^8\)</span> tickets in the box to indicate all numbers at that precision level.</p>
 </div>
-<div id="two-or-more-dimensions" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Two or more dimensions<a href="counting-sets-and-probability-basics.html#two-or-more-dimensions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="two-or-more-dimensions" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Two or more dimensions<a href="counting-sets-and-probability-basics.html#two-or-more-dimensions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can generalize the same ideas to two dimensions. Take any region and cut it up into equal area tickets. The probability of selecting a ticket from sub-region <span class="math inline">\(A\)</span> will be the number of tickets that <span class="math inline">\(A\)</span> is cut into. This is equal to the area of <span class="math inline">\(A\)</span> relative to the area of the entire region.</p>
 <p>Back to the dartboard example. The probability of the dart landing in the bulls-eye is the area of the bulls-eye divided by the area of the entire dartboard.</p>
 <p>This is an intuitive way to extend the idea of <em>equally likely</em> from a finite number of tickets to a continuous interval or a continuous area. We can even extend this idea to selecting randomly from a three dimensional volume. For example, if a molecule is randomly moving around in space, with the assumption that every location is equally likely, the probability of finding the molecule in any region is equal to the volume of that region divided by the entire volume of the whole space. It is important here that we start with a finite region of all possible locations.</p>
 <p>Now: what if we don’t want all locations to be equally likely? This requires us to develop the mathematical theory of probability. That is what follows.</p>
 </div>
 </div>
-<div id="sample-spaces-and-events" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Sample Spaces and Events<a href="counting-sets-and-probability-basics.html#sample-spaces-and-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="sample-space" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Sample space<a href="counting-sets-and-probability-basics.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sample-spaces-and-events" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Sample Spaces and Events<a href="counting-sets-and-probability-basics.html#sample-spaces-and-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-space" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Sample space<a href="counting-sets-and-probability-basics.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The set of all possible outcomes of a random process or experiment is called the <strong>sample space</strong> and is denoted by <span class="math inline">\(S\)</span>.</p>
 <p><em>Examples</em>:</p>
 <ul>
@@ -466,8 +466,8 @@ We wish to shuffle these up randomly and draw out <span class="math inline">\(n\
 ## 104         y         u
 ## 105         z         u</code></pre>
 </div>
-<div id="events" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Events<a href="counting-sets-and-probability-basics.html#events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="events" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Events<a href="counting-sets-and-probability-basics.html#events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An <strong>event</strong> is a set of outcomes. Events are usually denoted by capital letters, e.g. <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, etc. They can be described in words or with the outcomes listed as a set in “{}” curly brackets.</p>
 <p>Examples:</p>
 <ul>
@@ -477,8 +477,8 @@ We wish to shuffle these up randomly and draw out <span class="math inline">\(n\
 </ul>
 </div>
 </div>
-<div id="set-operations" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Set Operations<a href="counting-sets-and-probability-basics.html#set-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="set-operations" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Set Operations<a href="counting-sets-and-probability-basics.html#set-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here is a review of the primary operations we will use with sets.</p>
 <ul>
 <li>Union: all outcomes that are in the events, <span class="math inline">\(A\cup B\)</span></li>
@@ -528,8 +528,8 @@ It may be difficult to imagine what an infinite list of events looks like or how
 <span class="math inline">\(\begin{aligned} |A\cup B\cup C| =&amp;|A|+|B|+|C|\\ &amp;-|A\cap B|-|A\cap C|-|B\cap C|\\ &amp;+|A\cap B\cap C| \end{aligned}\)</span></p>
 <p>Note that <span class="math inline">\(|A|\)</span> denotes the size of set <span class="math inline">\(A\)</span>, which is the number of outcomes in the set. In R, we can accomplish this for a simple list/vector with <code>length(A)</code>, e.g. <code>A=c(2,4,6); length(A)</code>. If <span class="math inline">\(A\)</span> is not merely a set, list, or vector but has a table-like structure, then instead of <code>length(A)</code>, we might want to use <code>nrow(A)</code> to get the number of rows or <code>ncol(A)</code> to get the number of columns.</p>
 </div>
-<div id="venn-diagrams" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Venn Diagrams<a href="counting-sets-and-probability-basics.html#venn-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="venn-diagrams" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Venn Diagrams<a href="counting-sets-and-probability-basics.html#venn-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Graphing the Venn diagrams in R will require package call “VennDiagram”. To install that package, issue the command:
 <code>install.packages("VennDiagram")</code>
 After the package is installed, we’ll have to load it into R using <code>require(VennDiagram)</code> or <code>library(VennDiagram)</code>. You will likely see some output on the screen in red colored text showing you what functions or packages have been loaded and possibly giving some warning messages. You can mostly ignore this text unless it explicitly gives an error saying the package is not found or was not loaded. Usually, it will be clear if that is the case.</p>
@@ -557,11 +557,11 @@ After the package is installed, we’ll have to load it into R using <code>requi
 <!-- Consider a Venn diagram where everything is drawn proportionally so that the area for the region corresponding to event A relative the the area of the entire Venn diagram is exactly the probability of A. We are to toss a dart at the diagram. Assume it actually lands on the diagram and that it is equally likely to land at any point in the diagram. Then the probability it lands in the region indicating event A  is exactly P(A) since this is just the relative ratio of areas of the A region to the entire diagram. This is an intuitive explanation of probability that is similar to the "ticket in a box" idea. -->
 <!-- Now to understand P(A\mid B)=\frac{P(A\cap B)}{P(B)} we just have to modify this intuition. Now we are tossing darts at the diagram, but assuming they land in the region indicating event B (again everything is drawn with areas in proportion to the actual probabilities). Then the probability it lands in the part of B that is also part of A (the intersection) is exactly the ratio of areas of A\cap B and B. This ratio of areas is identical to the ratio of probabilities in the definition of conditional probability. -->
 </div>
-<div id="counting-permutations-and-combinations" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Counting, permutations, and combinations<a href="counting-sets-and-probability-basics.html#counting-permutations-and-combinations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="counting-permutations-and-combinations" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Counting, permutations, and combinations<a href="counting-sets-and-probability-basics.html#counting-permutations-and-combinations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to calculate probabilities, we will often need to be able to count the number of outcomes in the sample space and in particular events.</p>
-<div id="multiplication-rule" class="section level3 hasAnchor" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Multiplication rule<a href="counting-sets-and-probability-basics.html#multiplication-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="multiplication-rule" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Multiplication rule<a href="counting-sets-and-probability-basics.html#multiplication-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we perform an experiment where the outcome has two different parts (e.g. a coin flip and a die roll) then the total number of possibilities is the product of the number of possibilities for each part: <span class="math inline">\(n=n_1\cdot n_2\)</span>. If there are many parts, e.g. roll several dice with different numbers of sides, then we multiply the number of possibilities for each:
 <span class="math display">\[n=n_1\cdot n_2\cdot \cdots n_k.\]</span>
 Example: If we roll a 6-sided die, flip a coin, roll a 20-sided die, and roll two 4-sided dice, then the total number of outcomes is <span class="math inline">\(n=6\cdot 2 \cdot 20 \cdot4\cdot4\)</span>.</p>
@@ -581,8 +581,8 @@ Example: If we roll a 6-sided die, flip a coin, roll a 20-sided die, and roll tw
 \]</span></p>
 <p>It is important here that we have the token attributes are evenly distributed so-to-speak, i.e. if each color had a different list of labels such as 3 numerical labels for green tokens and 5 numerical labels for red tokens, then this technique would not work exactly as stated. Each specific attribute must have the same number of repetitions of the other attributes.</p>
 </div>
-<div id="nk" class="section level3 hasAnchor" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> <span class="math inline">\(n^k\)</span><a href="counting-sets-and-probability-basics.html#nk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="nk" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> <span class="math inline">\(n^k\)</span><a href="counting-sets-and-probability-basics.html#nk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assume we have <span class="math inline">\(n\)</span> distinct objects to choose from. These <span class="math inline">\(n\)</span> objects could be the numbers 1 to 10, 5 types of drinks, or 20 students in a class. We will select <span class="math inline">\(k\)</span> of these objects in a variety of different ways.</p>
 <p>If we select the <span class="math inline">\(k\)</span> objects one at a time, replacing each as we go, then the total number of possibilities is <span class="math inline">\(n^k\)</span>. Here we are allowing for the same object selected multiple times (repetition), and we are concerned with the order of the selection. This is an application of the multiplication rule.</p>
 <p>Now let us assume we have <span class="math inline">\(n\)</span> objects to arrange in order. We’ll make <span class="math inline">\(k\)</span> spaces which we will fill with the objects.
@@ -604,8 +604,8 @@ For each space, we have all <span class="math inline">\(n\)</span> objects to ch
 \overset{n}{\underset{\text{obj. $k$}}{\underbrace{\qquad\quad}}}
 \]</span></p>
 </div>
-<div id="factorials" class="section level3 hasAnchor" number="3.6.3">
-<h3><span class="header-section-number">3.6.3</span> Factorials<a href="counting-sets-and-probability-basics.html#factorials" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="factorials" class="section level3 hasAnchor" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Factorials<a href="counting-sets-and-probability-basics.html#factorials" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now let us assume we have <span class="math inline">\(n\)</span> objects to arrange in order. The difference is that now, each time we select an object to fill a space, we will not replace it, thus will reduce our total number of options for the next space. This will result in an ordered arrangement of <span class="math inline">\(n\)</span> objects. This is often called a <em>permutation</em> of <span class="math inline">\(n\)</span> distinguishable objects. They are called distinguishable since swapping any two results in a distinct ordering or permutation.</p>
 <p>Again we’ll make <span class="math inline">\(n\)</span> spaces which we will fill with the objects.</p>
 <p><span class="math display">\[
@@ -639,8 +639,8 @@ Note that by definition, <span class="math inline">\(0!=1\)</span>. A factorial 
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="counting-sets-and-probability-basics.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 3628800</code></pre>
 </div>
-<div id="permutation" class="section level3 hasAnchor" number="3.6.4">
-<h3><span class="header-section-number">3.6.4</span> Permutation<a href="counting-sets-and-probability-basics.html#permutation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="permutation" class="section level3 hasAnchor" number="2.6.4">
+<h3><span class="header-section-number">2.6.4</span> Permutation<a href="counting-sets-and-probability-basics.html#permutation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we are still starting with <span class="math inline">\(n\)</span> total objects to choose from. If we select <span class="math inline">\(k\)</span> objects one at a time, but do not replace them as we go and we are concerned with the order we draw them in, then a <strong>permutation</strong> results, and there are <span class="math inline">\(\frac{n!}{(n-k)!}\)</span> possibilities. This is denoted differently in different texts as <span class="math inline">\(_nP_k\)</span>, <span class="math inline">\(P_{n,k}\)</span>, or <span class="math inline">\(P_{k,n}\)</span> for <span class="math inline">\(k\le n\)</span>. I recommend always writing it out as factorials. Here it is important that <span class="math inline">\(0\le k\le n\)</span>.</p>
 <p>The best way to evaluate a permutation in R is with factorials</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="counting-sets-and-probability-basics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># permute 3 out of 10</span></span>
@@ -657,8 +657,8 @@ Note that by definition, <span class="math inline">\(0!=1\)</span>. A factorial 
 \]</span>
 The result is identical to multiplying from <span class="math inline">\(n\)</span> all the way down to 1 but then dividing by <span class="math inline">\((n-k)!\)</span> as is done in the factorial formula for a permutation.</p>
 </div>
-<div id="combination" class="section level3 hasAnchor" number="3.6.5">
-<h3><span class="header-section-number">3.6.5</span> Combination<a href="counting-sets-and-probability-basics.html#combination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="combination" class="section level3 hasAnchor" number="2.6.5">
+<h3><span class="header-section-number">2.6.5</span> Combination<a href="counting-sets-and-probability-basics.html#combination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we select <span class="math inline">\(k\)</span> objects out of <span class="math inline">\(n\)</span> choices (again with <span class="math inline">\(0\le k\le n\)</span>) either one at a time without replacement and do not care about the order they are drawn in, or if we just drew all <span class="math inline">\(k\)</span> at once, then a <strong>combination</strong> results. The total number of possibilities is <span class="math inline">\({n\choose k} = \frac{n!}{k!(n-k)!}\)</span> for <span class="math inline">\(k\le n\)</span>. Again, this is variously denoted as <span class="math inline">\(_nC_k\)</span>, <span class="math inline">\(C_{n,k}\)</span>, or <span class="math inline">\(C_{k,n}\)</span>. I recommend the parentheses notation or just writing
 it out as factorials.</p>
 <p>The best way to evaluate a combination in R is with factorials</p>
@@ -670,8 +670,8 @@ it out as factorials.</p>
 <span id="cb37-2"><a href="counting-sets-and-probability-basics.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 120</code></pre>
 </div>
-<div id="summary-of-counting" class="section level3 hasAnchor" number="3.6.6">
-<h3><span class="header-section-number">3.6.6</span> Summary of counting<a href="counting-sets-and-probability-basics.html#summary-of-counting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="summary-of-counting" class="section level3 hasAnchor" number="2.6.6">
+<h3><span class="header-section-number">2.6.6</span> Summary of counting<a href="counting-sets-and-probability-basics.html#summary-of-counting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Examples</em>:</p>
 <ul>
 <li>Suppose we have a combination lock with a turn dial that has numbers 1 to 36 on it. A combination consists of three numbers in sequence.Assume that we can have all three numbers the same as you still have to make a complete 360 degree rotation between numbers. Then the total number of allowable combinations is <span class="math inline">\(36^3\)</span>.</li>
@@ -734,8 +734,8 @@ it out as factorials.</p>
 </table>
 <!-- </div> -->
 </div>
-<div id="special-case-with-replacement-order-doesnt-matter-the-multiset" class="section level3 hasAnchor" number="3.6.7">
-<h3><span class="header-section-number">3.6.7</span> Special case: with replacement, order doesn’t matter: the multiset<a href="counting-sets-and-probability-basics.html#special-case-with-replacement-order-doesnt-matter-the-multiset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="special-case-with-replacement-order-doesnt-matter-the-multiset" class="section level3 hasAnchor" number="2.6.7">
+<h3><span class="header-section-number">2.6.7</span> Special case: with replacement, order doesn’t matter: the multiset<a href="counting-sets-and-probability-basics.html#special-case-with-replacement-order-doesnt-matter-the-multiset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Choosing with replacement, but order does not matter is the most complicated case. Consider throwing <span class="math inline">\(k\)</span> balls into <span class="math inline">\(n\)</span> boxes. If we have the boxes labeled and want to know how many balls are in each box, e.g. 5 in the first box, none in the second box, 2 is the third box, etc., then the number of outcomes is given by <span class="math inline">\({n-1+k\choose k}\)</span>. In this case <span class="math inline">\(k\)</span> and <span class="math inline">\(n\)</span> can be any numbers and <span class="math inline">\(k\le n\)</span> is not required.</p>
 <p>Here is an example of tossing 10 balls into 7 boxes. We will pretend the boxes are all adjacent so that among the 7 boxes, there are actually only 8 dividers or walls since adjacent boxes share a wall. We need to arrange the inner 6 dividers between the boxes and the 10 balls. We only need the inner 6 dividers between the boxes because the locations of the outermost left and right walls do not need to be determined.</p>
 <p><span class="math display">\[
@@ -810,18 +810,18 @@ In order to determine all possible outcomes here, we just need to figure out how
 <p>So that box one has 1 ball, box two has 3 balls, and box three has 0 balls.</p>
 </div>
 </div>
-<div id="probability" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Probability<a href="counting-sets-and-probability-basics.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="equally-likely-outcomes" class="section level3 hasAnchor" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> Equally likely outcomes<a href="counting-sets-and-probability-basics.html#equally-likely-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="probability" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Probability<a href="counting-sets-and-probability-basics.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="equally-likely-outcomes" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Equally likely outcomes<a href="counting-sets-and-probability-basics.html#equally-likely-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Many sample spaces contain a finite number of outcomes that are equally likely. This means that the probability of an event is defined as the number of outcomes in that event divided by the total number of outcomes in the sample space.
 <span class="math display">\[P(A)=\frac{|A|}{|S|}\]</span></p>
 <p><em>Examples</em>:</p>
 <p>Flipping 3 fair coins: <span class="math inline">\(|S|=2^3=8\)</span>. Let event <span class="math inline">\(A=\)</span>{at least 2 heads}. So we can list all outcomes in <span class="math inline">\(A=\{HHH,HHT,HTH,THH\}\)</span> thus <span class="math inline">\(|A|=4\)</span> so that <span class="math inline">\(P(A)=\frac48=50\%\)</span>.</p>
 <p>Rolling a fair 6-sided die: <span class="math inline">\(|S|=6\)</span>. Let <span class="math inline">\(A=\)</span>{odd}<span class="math inline">\(=\{1,3,5\}\)</span> and <span class="math inline">\(B=\)</span>{greater than 5}<span class="math inline">\(=\{6\}\)</span>. Then <span class="math inline">\(|A|=3\)</span> and <span class="math inline">\(|B|=1\)</span> so that <span class="math inline">\(P(A)=3/6\)</span> and <span class="math inline">\(P(B)=1/6\)</span>.</p>
 </div>
-<div id="general-probability-theory" class="section level3 hasAnchor" number="3.7.2">
-<h3><span class="header-section-number">3.7.2</span> General probability theory<a href="counting-sets-and-probability-basics.html#general-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="general-probability-theory" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> General probability theory<a href="counting-sets-and-probability-basics.html#general-probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Axioms of probability:</p>
 <ul>
 <li><span class="math inline">\(0\leq P(A)\)</span> for any event <span class="math inline">\(A\)</span>.</li>
@@ -854,8 +854,8 @@ In order to determine all possible outcomes here, we just need to figure out how
 <span id="cb39-5"><a href="counting-sets-and-probability-basics.html#cb39-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.25</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
-<div id="independence" class="section level3 hasAnchor" number="3.7.3">
-<h3><span class="header-section-number">3.7.3</span> Independence<a href="counting-sets-and-probability-basics.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="independence" class="section level3 hasAnchor" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Independence<a href="counting-sets-and-probability-basics.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are called independent if
 <span class="math display">\[P(A\cap B)=P(A)\cdot P(B).\]</span></p>
 <p>This is not to be confused with being disjoint (mutually exclusive), which means that <span class="math inline">\(P(A\cap B)=0\)</span>. Independence is a completely new unrelated concept.</p>
@@ -868,8 +868,8 @@ In order to determine all possible outcomes here, we just need to figure out how
 <p>So for equally likely events, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if</p>
 <p><span class="math display">\[P(A)=\frac{|A|}{|S|}=\frac{|A\cap B|}{|B|}.\]</span></p>
 </div>
-<div id="conditional-probability" class="section level3 hasAnchor" number="3.7.4">
-<h3><span class="header-section-number">3.7.4</span> Conditional probability<a href="counting-sets-and-probability-basics.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="conditional-probability" class="section level3 hasAnchor" number="2.7.4">
+<h3><span class="header-section-number">2.7.4</span> Conditional probability<a href="counting-sets-and-probability-basics.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When conducting a random experiment, sometimes we may have some information about the outcome but not know it completely. Imagine rolling a die behind a barrier so you cannot see the result, but another person can. Under normal circumstances, <span class="math inline">\(P(2)=\frac16\)</span>. If the person who can see the result tells you it is an even number (assume they are truthful), then 2 is one out of only three possibilities now. So, in this sense <span class="math inline">\(P(\{2 \text{ given that we know it is even}\})=\frac13\)</span>. This is a conditional probability. We are conditioning our calculation of the probability on some given information.</p>
 <p>The conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is given by:</p>
 <p><span class="math display">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)}.\]</span></p>
@@ -879,8 +879,8 @@ In order to determine all possible outcomes here, we just need to figure out how
 <p><span class="math display">\[
 P(A\mid B)=\frac{P(A\cap B)}{P(B)}=\frac{\frac16}{\frac36}=\frac13
 \]</span></p>
-<div id="conditional-probability-and-independence" class="section level4 hasAnchor" number="3.7.4.1">
-<h4><span class="header-section-number">3.7.4.1</span> Conditional probability and independence<a href="counting-sets-and-probability-basics.html#conditional-probability-and-independence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="conditional-probability-and-independence" class="section level4 hasAnchor" number="2.7.4.1">
+<h4><span class="header-section-number">2.7.4.1</span> Conditional probability and independence<a href="counting-sets-and-probability-basics.html#conditional-probability-and-independence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Note that if events are independent, then conditioning on one or the other does not change probabilities of either occurring:</p>
 <p><span class="math display">\[A,B \text{ are independent if and only if } \\
 P(A\mid B)=P(A) \text{ and } P(B\mid A)=P(B) \]</span></p>
@@ -888,8 +888,8 @@ P(A\mid B)=P(A) \text{ and } P(B\mid A)=P(B) \]</span></p>
 <p><span class="math display">\[P(A\cap B)=P(A\mid B)\cdot P(B)=P(B\mid A)\cdot P(A).\]</span></p>
 <p>This is a very useful thing to understand. It will be used when we discuss Baye’s theorem.</p>
 </div>
-<div id="set-operations-and-probability-axioms-with-conditional-probability" class="section level4 hasAnchor" number="3.7.4.2">
-<h4><span class="header-section-number">3.7.4.2</span> Set operations and probability axioms with conditional probability<a href="counting-sets-and-probability-basics.html#set-operations-and-probability-axioms-with-conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="set-operations-and-probability-axioms-with-conditional-probability" class="section level4 hasAnchor" number="2.7.4.2">
+<h4><span class="header-section-number">2.7.4.2</span> Set operations and probability axioms with conditional probability<a href="counting-sets-and-probability-basics.html#set-operations-and-probability-axioms-with-conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Conditional probability behaves just like regular probability. All the set operations, rules, and axioms of probability apply to conditional probability as well.</p>
 <ul>
 <li><span class="math inline">\(P(\emptyset\mid B)=0\)</span></li>
@@ -911,8 +911,8 @@ In both of the examples above, <span class="math inline">\(A\)</span> and <span 
 <span class="math inline">\(P(A\mid B)=\frac{|A\cap B|}{|B|}=\frac{2}{4}=\frac12=P(A)\)</span>.</p>
 </div>
 </div>
-<div id="partitions" class="section level3 hasAnchor" number="3.7.5">
-<h3><span class="header-section-number">3.7.5</span> Partitions<a href="counting-sets-and-probability-basics.html#partitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="partitions" class="section level3 hasAnchor" number="2.7.5">
+<h3><span class="header-section-number">2.7.5</span> Partitions<a href="counting-sets-and-probability-basics.html#partitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we will divide up the sample space into a number of disjoint sets (mutually exclusive events). The collection of sets that the sample space is broken up into is called a <em>partition</em>. It is important that this partition of sets collectively covers the entire sample space (that is the nature of a partition). The simplest partition is <span class="math inline">\(S=A\cup A^c\)</span>.</p>
 <p>A <strong>partition</strong> of a sample space is a collection of events <span class="math inline">\(A_1,A_2,A_3,\ldots,A_n\)</span> such that <span class="math inline">\(A_i\cap A_j=\emptyset\)</span> for any <span class="math inline">\(i,j\)</span> and <span class="math inline">\(S=\bigcup_{i=1}^n A_i=A_1 \cup A_2 \cup A_3 \cup \cdots \cup A_n\)</span>.</p>
 <p><em>Example</em>: rolling a 6-sided die. Let <span class="math inline">\(A=\{2,4,6\}, B=\{1,3\}, C=\{5\}\)</span>. Then <span class="math inline">\(A,B,C\)</span> form a partition of the sample space <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>.</p>
@@ -925,8 +925,8 @@ In both of the examples above, <span class="math inline">\(A\)</span> and <span 
 <!-- ### Partitions, conditional probability, and tree diagrams -->
 <!-- The relationship between partitions and conditional probability can be illustrated nicely with a tree diagram. -->
 </div>
-<div id="bayes-theorem" class="section level3 hasAnchor" number="3.7.6">
-<h3><span class="header-section-number">3.7.6</span> Baye’s Theorem<a href="counting-sets-and-probability-basics.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="bayes-theorem" class="section level3 hasAnchor" number="2.7.6">
+<h3><span class="header-section-number">2.7.6</span> Baye’s Theorem<a href="counting-sets-and-probability-basics.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Baye’s theorem uses the ideas of partitioning the sample space and conditional probability. Suppose we have an industrial production line machine. A certain number of items produced will be defective and the rest will be non-defective. Additionally sometimes a quality control inspection will not catch that a particular item is defective, or a non-defective item will be incorrectly identified as defective.</p>
 <p>Assume that:</p>
 <ul>
@@ -978,8 +978,8 @@ P(A_k\mid B)&amp;=\frac{P(B\cap A_k)}{P(B)}\\
 <p><span class="math display">\[
 P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B\mid A)P(A)+P(B\mid A^c)P(A^c)}.
 \]</span></p>
-<div id="alternative-bayes-example" class="section level4 hasAnchor" number="3.7.6.1">
-<h4><span class="header-section-number">3.7.6.1</span> Alternative Baye’s example<a href="counting-sets-and-probability-basics.html#alternative-bayes-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="alternative-bayes-example" class="section level4 hasAnchor" number="2.7.6.1">
+<h4><span class="header-section-number">2.7.6.1</span> Alternative Baye’s example<a href="counting-sets-and-probability-basics.html#alternative-bayes-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If instead of being given the information in terms of whole number ratios as above, sometimes Baye’s theorem problems are given with fraction, decimal, or percentage probabilities.</p>
 <p>Here is a similar problem with information given as percentages:</p>
 <ul>
@@ -997,8 +997,8 @@ P(D\mid F)&amp;=\frac{P(F\mid D) P(D)}{P(F\mid D)P(D)+P(F\mid D^c)P(D^c)}\\
 \end{aligned}
 \]</span></p>
 </div>
-<div id="a-trick-for-solving-bayes-problems" class="section level4 hasAnchor" number="3.7.6.2">
-<h4><span class="header-section-number">3.7.6.2</span> A trick for solving Baye’s problems<a href="counting-sets-and-probability-basics.html#a-trick-for-solving-bayes-problems" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="a-trick-for-solving-bayes-problems" class="section level4 hasAnchor" number="2.7.6.2">
+<h4><span class="header-section-number">2.7.6.2</span> A trick for solving Baye’s problems<a href="counting-sets-and-probability-basics.html#a-trick-for-solving-bayes-problems" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>It is common for students to find it more difficult to work out Baye’s theorem problems when given probabilities instead of whole numbers. Here is a trick: turn all the probabilities into ratios of whole numbers!</p>
 <p>First take the probability with the most significant figures (which is just decimal places for probabilities written as a decimal). Double this result and raise ten to that as a power. This will be our total sample size.</p>
 <p>All probabilities in our example have two decimal places, thus multiplying by <span class="math inline">\(10^{2+2}=\)</span> 10,000 will give us whole numbers.</p>
@@ -1021,7 +1021,7 @@ P(D\mid F)&amp;=\frac{P(F\mid D) P(D)}{P(F\mid D)P(D)+P(F\mid D^c)P(D^c)}\\
           </div>
         </div>
       </div>
-<a href="intro-stochastic-processes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="random-variables-and-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -1053,7 +1053,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jstover79/stochproc423/edit/master/03-prob-review-321.Rmd",
+"link": "https://github.com/jstover79/stochproc423/edit/master/02-prob-review-321.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -1061,7 +1061,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jstover79/stochproc423/blob/master/03-prob-review-321.Rmd",
+"link": "https://github.com/jstover79/stochproc423/blob/master/02-prob-review-321.Rmd",
 "text": null
 },
 "download": null,
