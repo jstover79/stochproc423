@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="random-walks.html"><a href="random-walks.html#reflection-principle"><i class="fa fa-check"></i><b>5.3</b> Reflection principle</a></li>
 <li class="chapter" data-level="5.4" data-path="random-walks.html"><a href="random-walks.html#maximum-state"><i class="fa fa-check"></i><b>5.4</b> Maximum state</a></li>
 <li class="chapter" data-level="5.5" data-path="random-walks.html"><a href="random-walks.html#hit-time-for-state-1"><i class="fa fa-check"></i><b>5.5</b> Hit time for state <span class="math inline">\(1\)</span></a></li>
+<li class="chapter" data-level="5.6" data-path="random-walks.html"><a href="random-walks.html#return-time-to-state-0"><i class="fa fa-check"></i><b>5.6</b> Return time to state <span class="math inline">\(0\)</span></a></li>
 <li class="chapter" data-level="" data-path="random-walks.html"><a href="random-walks.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -357,7 +358,7 @@ And for the SSRW this means
 <span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).\]</span>
 Now to apply the continuity correction is a bit trickier though, because <span class="math inline">\(X_n\)</span> only takes on values <span class="math inline">\(-n,-n+2,\ldots,n-2,n\)</span>. Instead of adding and subtracting <span class="math inline">\(\frac12\)</span>, we must add and subtract <span class="math inline">\(1\)</span> and <span class="math inline">\(P(X_n=j)\)</span> is approximated by <code>pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))</code>.</p>
 <!-- ::: -->
-<p><strong>Partitioning</strong> Note that when we calculate something like <span class="math inline">\(P(X_2=0)\)</span>, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
+<p><strong>Partitioning.</strong> Note that when we calculate something like <span class="math inline">\(P(X_2=0)\)</span>, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
 <span class="math display">\[\begin{aligned}
 P(X_2=0)&amp;=P(X_1=1,X_2=0)+P(X_1=-1,X_2=0)\\
 &amp;=P(X_1=1)P(X_2=0\mid X_1=1)+P(X_1=-1)P(X_2=0\mid X_1=-1)\\
@@ -386,9 +387,56 @@ In general, we can calculate probabilities about the future state of the process
 </div>
 <div id="maximum-state" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Maximum state<a href="random-walks.html#maximum-state" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(M_n=\max\{X_0,X_1,\ldots,X_n\}\)</span> be the maximum level hit by the process up to time step <span class="math inline">\(n\)</span>.</p>
+<p><span class="math display">\[P(M_n=k)=P(X_n=k)+P(X_{n}=k+1)\]</span></p>
+<p>We derive this using the reflection principle and the fact that <span class="math inline">\(P(M_n=k)=P(M_n\geq k)-P(M_n\geq k+1)\)</span>.</p>
+<p><span class="math display">\[P(M_n\geq k)=P(M_n\geq k,X_n&gt;k)+P(M_n\geq k,X_n=k)+P(M_n\geq k,X_n&lt;k)\]</span>
+We can calculate the middle term using know methods:
+<span class="math display">\[P(M_n\geq k,X_n=k)=P(X_n=k).\]</span></p>
+<p>Using the reflection principle, we know that the events <span class="math inline">\(\{M_n\geq k,X_n&gt;k\}\)</span> and <span class="math inline">\(\{M_n\geq k,X_n&gt;k\}\)</span> have the same number of paths. For the SSRW, each of these paths is equally likely, so we get that <span class="math inline">\(P(M_n\geq k,X_n&gt;k)=P(M_n\geq k,X_n&lt;k)\)</span> and hence only need to calculate <span class="math inline">\(P(M_n\geq k,X_n&gt;k)\)</span>. But <span class="math inline">\(P(M_n\geq k,X_n&gt;k)=P(X_n&gt;k)\)</span> which we can calculate from known formulas:
+<span class="math display">\[P(M_n\geq k,X_n&gt;k)=P(X_n&gt;k)=\sum_{j=k+1}^n P(X_n=j).\]</span></p>
+<p>Putting all this together we get (for the SSRW with <span class="math inline">\(p=0.5\)</span>):
+<span class="math display">\[\begin{aligned}
+P(M_n\geq k)&amp;=P(M_n\geq k,X_n&gt;k)+P(M_n\geq k,X_n=k)+P(M_n\geq k,X_n&lt;k)\\
+&amp;=2P(M_n\geq k,X_n&gt;k)+P(M_n\geq k,X_n=k)\\
+&amp;=2P(X_n&gt;k)+P(X_n=k).\\
+\end{aligned}\]</span>
+And finally we see that
+<span class="math display">\[\begin{aligned}
+P(M_n= k)&amp;=P(M_n\geq k-P(M_n\geq k+1)\\
+&amp;=(2P(M_n\geq k,X_n&gt;k)+P(M_n\geq k,X_n=k)\\
+&amp;=(2P(X_n&gt;k)+P(X_n=k))-(2P(X_n&gt;k+1)+P(X_n=k+1))\\
+&amp;=2P(X_n&gt;k+1)+2P(X_n=k+1)+P(X_n=k)-2P(X_n&gt;k+1)-P(X_n=k+1)\\
+&amp;=P(X_n=k+1)+P(X_n=k).\\
+\end{aligned}\]</span></p>
 </div>
 <div id="hit-time-for-state-1" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Hit time for state <span class="math inline">\(1\)</span><a href="random-walks.html#hit-time-for-state-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We wish to know how long it takes for the SARW to hit level <span class="math inline">\(1\)</span>. Let <span class="math inline">\(T_1=\min\{n&gt;0 : X_n=1\}\)</span> which we call the <em>hitting time</em> for state <span class="math inline">\(1\)</span>.</p>
+<p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span></p>
+<p><strong>Hitting time for other states.</strong>
+If we are interested in how long it takes for the process to hit state <span class="math inline">\(2\)</span>, then we wait for it to hit state <span class="math inline">\(1\)</span>. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let <span class="math inline">\(T_2\)</span> be the hitting time for state <span class="math inline">\(2.\)</span> What this reasoning shows is that <span class="math inline">\(T_2=\tau_1+\tau_2\)</span> where <span class="math inline">\(\tau_1\)</span> and <span class="math inline">\(\tau_2\)</span> have the same distribution as <span class="math inline">\(T_1\)</span> and are independent.</p>
+<p>In general, letting <span class="math inline">\(T_k\)</span> be the hitting time for state <span class="math inline">\(k\)</span>, we have
+<span class="math display">\[T_k=\sum_{j=1}^k \tau_j\]</span>
+where <span class="math inline">\(\tau_j\)</span> are i.i.d. and distributed identically to <span class="math inline">\(T_1\)</span>.</p>
+<div class="exbox">
+<p><strong>Example.</strong>
+For example <span class="math inline">\(T_2=\tau_1+\tau_2\)</span>. If we wish to calculate <span class="math inline">\(P(T_2=4)\)</span> then we need to consider all possibilities for <span class="math inline">\(\tau_1,\tau_2\)</span> that sum to give us 4 total time steps, and we use independence of the <span class="math inline">\(\tau_j\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+P(T_2=4)&amp;=P(\tau_1+\tau_2=4)\\
+&amp;=P(\tau_1=1,\tau_2=3)+P(\tau_1=3,\tau_2=1)\\
+&amp;=P(\tau_1=1)P(\tau_2=3)+P(\tau_1=3)P(\tau_2=1)\\
+&amp;=P(T_1=1)P(T_1=3)+P(T_1=3)P(T_2=1)\\
+&amp;=2P(T_1=1)P(T_1=3)\\
+&amp;=2 \frac1{0+1}{2\cdot 0\choose 0}p^{0+1}(1-p)^0 \frac1{1+1}{2\cdot 1\choose 1}p^{1+1}(1-p)^1 \\
+&amp;=2 p^3 (1-p) \\
+\end{aligned}\]</span></p>
+</div>
+</div>
+<div id="return-time-to-state-0" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Return time to state <span class="math inline">\(0\)</span><a href="random-walks.html#return-time-to-state-0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have that <span class="math inline">\(X_0=0\)</span> initially. We want to know how long it takes for the random walk to return to state zero. Let <span class="math inline">\(T_0=\min\{n&gt;0 : X_n=0\}\)</span> which we call the <em>return time to zero</em>. We can calculate <span class="math inline">\(P(T_0=2k)\)</span> for <span class="math inline">\(k=1,2,\ldots\)</span> by sketching a graph and counting paths. For example, <span class="math inline">\(P(T_0=2)=\frac12\)</span> since this means the first two time steps are up then down or vice versa. Similarly, we can calculate <span class="math inline">\(P(T_0=4)=\frac18\)</span>. The general formula is
+<span class="math display">\[P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.\]</span></p>
 <!-- ## RW2 -->
 <!-- ::: exbox -->
 <!-- **Example.** -->
@@ -416,6 +464,7 @@ In general, we can calculate probabilities about the future state of the process
     For SSRW: <span class="math inline">\(P(X_n=j)\approx\)</span><code>pnorm(j+1,0,sqrt(n)-pnorm(j-1,0,sqrt(n))</code><br></p>
 <p><span class="math inline">\(P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}\)</span>, <span class="math inline">\(T_1=~\)</span>first time SSRW (<span class="math inline">\(p=\frac12\)</span>) to hit state <span class="math inline">\(1\)</span></p>
 <p><span class="math inline">\(P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k\)</span>, <span class="math inline">\(T_1=~\)</span>first time SARW (any <span class="math inline">\(p\in[0,1]\)</span>) to hit state <span class="math inline">\(1\)</span></p>
+<p><span class="math inline">\(P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k\)</span>, <span class="math inline">\(T_0=~\)</span>first time SARW returns to state <span class="math inline">\(0\)</span></p>
 </div>
 
 </div>

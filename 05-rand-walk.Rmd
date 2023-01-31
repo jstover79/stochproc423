@@ -147,7 +147,7 @@ Now to apply the continuity correction is a bit trickier though, because $X_n$ o
 <!-- ::: -->
 
 
-**Partitioning** Note that when we calculate something like $P(X_2=0)$, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
+**Partitioning.** Note that when we calculate something like $P(X_2=0)$, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
 $$\begin{aligned}
 P(X_2=0)&=P(X_1=1,X_2=0)+P(X_1=-1,X_2=0)\\
 &=P(X_1=1)P(X_2=0\mid X_1=1)+P(X_1=-1)P(X_2=0\mid X_1=-1)\\
@@ -197,7 +197,70 @@ $$\#\{X_j=m \text{ for some } j\leq n, X_n>m\}=\#\{X_j=m \text{ for some } j\leq
 
 ## Maximum state
 
+Let $M_n=\max\{X_0,X_1,\ldots,X_n\}$ be the maximum level hit by the process up to time step $n$.
+
+$$P(M_n=k)=P(X_n=k)+P(X_{n}=k+1)$$
+
+We derive this using the reflection principle and the fact that $P(M_n=k)=P(M_n\geq k)-P(M_n\geq k+1)$.
+
+$$P(M_n\geq k)=P(M_n\geq k,X_n>k)+P(M_n\geq k,X_n=k)+P(M_n\geq k,X_n<k)$$
+We can calculate the middle term using know methods: 
+$$P(M_n\geq k,X_n=k)=P(X_n=k).$$
+
+Using the reflection principle, we know that the events $\{M_n\geq k,X_n>k\}$ and $\{M_n\geq k,X_n>k\}$ have the same number of paths. For the SSRW, each of these paths is equally likely, so we get that $P(M_n\geq k,X_n>k)=P(M_n\geq k,X_n<k)$ and hence only need to calculate $P(M_n\geq k,X_n>k)$. But $P(M_n\geq k,X_n>k)=P(X_n>k)$ which we can calculate from known formulas: 
+$$P(M_n\geq k,X_n>k)=P(X_n>k)=\sum_{j=k+1}^n P(X_n=j).$$
+
+Putting all this together we get (for the SSRW with $p=0.5$):
+$$\begin{aligned}
+P(M_n\geq k)&=P(M_n\geq k,X_n>k)+P(M_n\geq k,X_n=k)+P(M_n\geq k,X_n<k)\\
+&=2P(M_n\geq k,X_n>k)+P(M_n\geq k,X_n=k)\\
+&=2P(X_n>k)+P(X_n=k).\\
+\end{aligned}$$
+And finally we see that
+$$\begin{aligned}
+P(M_n= k)&=P(M_n\geq k-P(M_n\geq k+1)\\
+&=(2P(M_n\geq k,X_n>k)+P(M_n\geq k,X_n=k)\\
+&=(2P(X_n>k)+P(X_n=k))-(2P(X_n>k+1)+P(X_n=k+1))\\
+&=2P(X_n>k+1)+2P(X_n=k+1)+P(X_n=k)-2P(X_n>k+1)-P(X_n=k+1)\\
+&=P(X_n=k+1)+P(X_n=k).\\
+\end{aligned}$$
+
+
 ## Hit time for state $1$
+
+We wish to know how long it takes for the SARW to hit level $1$. Let $T_1=\min\{n>0 : X_n=1\}$ which we call the *hitting time* for state $1$.
+
+$$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.$$
+
+**Hitting time for other states.**
+If we are interested in how long it takes for the process to hit state $2$, then we wait for it to hit state $1$. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let $T_2$ be the hitting time for state $2.$ What this reasoning shows is that $T_2=\tau_1+\tau_2$ where $\tau_1$ and $\tau_2$ have the same distribution as $T_1$ and are independent.
+
+In general, letting $T_k$ be the hitting time for state $k$, we have
+$$T_k=\sum_{j=1}^k \tau_j$$
+where $\tau_j$ are i.i.d. and distributed identically to $T_1$.
+
+::: exbox
+**Example.**
+For example $T_2=\tau_1+\tau_2$. If we wish to calculate $P(T_2=4)$ then we need to consider all possibilities for $\tau_1,\tau_2$ that sum to give us 4 total time steps, and we use independence of the $\tau_j$.
+
+$$\begin{aligned}
+P(T_2=4)&=P(\tau_1+\tau_2=4)\\
+&=P(\tau_1=1,\tau_2=3)+P(\tau_1=3,\tau_2=1)\\
+&=P(\tau_1=1)P(\tau_2=3)+P(\tau_1=3)P(\tau_2=1)\\
+&=P(T_1=1)P(T_1=3)+P(T_1=3)P(T_2=1)\\
+&=2P(T_1=1)P(T_1=3)\\
+&=2 \frac1{0+1}{2\cdot 0\choose 0}p^{0+1}(1-p)^0 \frac1{1+1}{2\cdot 1\choose 1}p^{1+1}(1-p)^1 \\
+&=2 p^3 (1-p) \\
+\end{aligned}$$
+:::
+
+
+## Return time to state $0$
+
+We have that $X_0=0$ initially. We want to know how long it takes for the random walk to return to state zero. Let $T_0=\min\{n>0 : X_n=0\}$ which we call the *return time to zero*. We can calculate $P(T_0=2k)$ for $k=1,2,\ldots$ by sketching a graph and counting paths. For example, $P(T_0=2)=\frac12$ since this means the first two time steps are up then down or vice versa. Similarly, we can calculate $P(T_0=4)=\frac18$. The general formula is
+$$P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.$$
+
+
 
 <!-- ## RW2 -->
 
@@ -236,5 +299,7 @@ $P(X_n=j)\approx$`pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*
 $P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}$, $T_1=~$first time SSRW ($p=\frac12$) to hit state $1$
 
 $P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k$, $T_1=~$first time SARW (any $p\in[0,1]$) to hit state $1$
+
+$P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k$, $T_0=~$first time SARW returns to state $0$
 
 :::
