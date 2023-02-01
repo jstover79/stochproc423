@@ -111,7 +111,7 @@ fairly close to equal parts 0 and 1 to high probability. We can
 precisely calculate the probability there are, say, less than 450 or
 more than 550 ones in this case using the binomial distribution. Let
 $Y\sim\textsf{Binom}(n=1000,p)$ be the number of ones. Then
-$P(Y<450\text{ or }Y>550)=1-P(450\leq Y\leq 550)=1-\sum_{j=450}^{550}{1000\choose j}p^j(1-p)^{1000-j}$.
+$P(Y<450\text{ or }Y>550)=1-P(450\leq Y\leq 550)=1-\sum_{j=450}^{550}{1000\choose j}p^j(1-p)^{1000-j}.$
 If we let $p=\frac12$, then this is
 $1-\sum_{j=450}^{550}{1000\choose j}\frac1{2^{1000}}$. In $\textsf{R}$, we can
 compute this as `1-sum(dbinom(450:550,1000,0.5))`. Since the number of

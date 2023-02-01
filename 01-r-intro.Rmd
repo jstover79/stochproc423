@@ -130,10 +130,12 @@ R has built in methods for many different random variables. Generally for each r
 
 Here are the R names for some common distributions:
 
-| Binomial    |    binom |
-|Exponential  |    exp   |
-|Normal       |    norm  |
-|Poisson      |     pois |
+| Distribution | R name prefix |
+|--------------|:-------------:|
+| Binomial     |     binom     |
+| Exponential  |      exp      |
+| Normal       |      norm     |
+| Poisson      |      pois     |
 
 
 ## Basics of programming, R scripts

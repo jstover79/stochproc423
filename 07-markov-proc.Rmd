@@ -1,0 +1,27 @@
+# Markov Chains
+
+Markov chains are one of the most important classes of stochastic process. A **discrete-time Markov chain** (DTMC) consists of specifying a state space and a transition matrix. For us, our state space will generally be $S=\{0,1,\ldots,k\}$ and our time index set will be $\mathbb N_0$. The **transition matrix** gives us the transition probabilities between each pair of states and is given as
+$$T=
+\left(\begin{matrix}
+T_{00} & T_{01} & \cdots & T_{0k}\\
+T_{10} & T_{11} & \cdots & T_{1k}\\
+\vdots & \vdots & \ddots & \vdots\\
+T_{k0} & T_{k1} & \cdots & T_{kk}\\
+\end{matrix}\right)$$
+where 
+$$T_{ij}=P(X_n=j\mid X_{n-1}=i).$$
+
+
+
+
+
+## Summary {-}
+
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+Markov property (memorylessness):
+$$P(X_n=k \mid X_{n-1}=\ell,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=k \mid X_{n-1}=\ell)$$
+
+:::

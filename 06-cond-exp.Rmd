@@ -1,0 +1,22 @@
+# Conditional expectation
+
+Now we discuss the concept of conditional expectation.
+
+
+## Summary {-}
+
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+$E[X\mid Y]$ is a random variable whose value is known once we know the value of $Y$.
+
+$E[X\mid Y=y]$ is a real number, it is $X$ averaged according to the restriction that $Y=y$.
+
+$f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}$ is the conditional probability function for $X$ given $Y$ (conditioned on $Y$) where $f_{X,Y}(x,y)$ is the joint pf, and $f_Y(y)$ is the marginal pf for $Y$. This works for both pmf and pdf.
+
+$E[X\mid Y=y]=\sum_x x P(X=x\mid Y=y)=\sum_x x f_{X|Y=y}(x|y)$ (discrete case)
+
+$E[X\mid Y=y]=\int_{-\infty}^\infty x f_{X|Y=y}(x|y)$ (continuous case)
+
+:::

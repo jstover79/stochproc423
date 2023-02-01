@@ -1,7 +1,7 @@
 # Random variables and distributions
 
 ::: defbox
-**Definition.** A **random variable** $X$ is a variable where you must perform a random experiment to determine its value. The **sample space** $S$ is the set of numerical values that the random variable can take. An **event** is a subset of the sample space. A random variable can be either *discrete* (if it takes values in a discrete set such as $\mathbb N$) or *continuous* (if it can take on any value in some intveral).
+**Definition.** A **random variable** $X$ is a variable where you must perform a random experiment to determine its value. The **sample space** $S$ is the set of numerical values that the random variable can take. An **event** is a subset of the sample space. A random variable can be either *discrete* (if it takes values in a discrete set such as $\mathbb N$) or *continuous* (if it can take on any value in some interval).
 :::
 
 ::: exbox
@@ -11,7 +11,7 @@
 
 (2) Let $X$ be the mass of a randomly selected person form a specific population.
 
-(3) Let $X$ be the number of cars that pass by a given intersection druing a particular day.
+(3) Let $X$ be the number of cars that pass by a given intersection during a particular day.
 
 (4) Let $X$ be the number of radioactive decays in one hour of some particular material.
 :::
