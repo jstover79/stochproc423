@@ -55,4 +55,5 @@ distribution-of-x_n
 reflection-principle
 maximum-state
 hit-time-for-state-1
+hitting-time-for-other-states
 return-time-to-state-0

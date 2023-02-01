@@ -222,7 +222,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="random-walks.html"><a href="random-walks.html#distribution-of-x_n"><i class="fa fa-check"></i><b>5.2</b> Distribution of <span class="math inline">\(X_n\)</span></a></li>
 <li class="chapter" data-level="5.3" data-path="random-walks.html"><a href="random-walks.html#reflection-principle"><i class="fa fa-check"></i><b>5.3</b> Reflection principle</a></li>
 <li class="chapter" data-level="5.4" data-path="random-walks.html"><a href="random-walks.html#maximum-state"><i class="fa fa-check"></i><b>5.4</b> Maximum state</a></li>
-<li class="chapter" data-level="5.5" data-path="random-walks.html"><a href="random-walks.html#hit-time-for-state-1"><i class="fa fa-check"></i><b>5.5</b> Hit time for state <span class="math inline">\(1\)</span></a></li>
+<li class="chapter" data-level="5.5" data-path="random-walks.html"><a href="random-walks.html#hit-time-for-state-1"><i class="fa fa-check"></i><b>5.5</b> Hit time for state <span class="math inline">\(1\)</span></a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="random-walks.html"><a href="random-walks.html#hitting-time-for-other-states"><i class="fa fa-check"></i><b>5.5.1</b> Hitting time for other states</a></li>
+</ul></li>
 <li class="chapter" data-level="5.6" data-path="random-walks.html"><a href="random-walks.html#return-time-to-state-0"><i class="fa fa-check"></i><b>5.6</b> Return time to state <span class="math inline">\(0\)</span></a></li>
 <li class="chapter" data-level="" data-path="random-walks.html"><a href="random-walks.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
@@ -297,14 +300,12 @@ Let <span class="math inline">\(X=(X_n)_{n\in\mathbb N_0}\)</span> be a stochast
 <div id="ex1" class="hiddendiv">
 <ol style="list-style-type: decimal">
 <li><p>We covered this example in the text above.</p></li>
-<li><p>This is a shifted random walk. The <span class="math inline">\(W_n\)</span> sample path is identical to the <span class="math inline">\(X_n\)</span> sample path but starting from <span class="math inline">\(X_3\)</span> and being shifted back to starting from the origin. In other words, we can imagine a completely simulated sample path for <span class="math inline">\(X_n\)</span>, and we just ignore the first three time steps and take the remaining part of the sample path and shift it back to starting at the origin, preserving its exact shape.</p></li>
+<li><p>This is a shifted random walk. The <span class="math inline">\(W_n\)</span> sample path is identical to the <span class="math inline">\(X_n\)</span> sample path but starting from <span class="math inline">\(X_3\)</span> and being shifted back to starting from the origin. In other words, we can imagine a completely simulated sample path for <span class="math inline">\(X_n\)</span>, and we just ignore the first three time steps and take the remaining part of the sample path and shift it back to starting at the origin, preserving its exact shape.<br><br>
+We calculate <span class="math inline">\(W_0=X_{3+0}-X_3=0\)</span> and <span class="math inline">\(W_j-W_{j-1}=(X_{3+j}-X_3)-(X_{3+j-1}-X_3)=X_{3+j}-X_{3+j-1}=Y_{3+j}\)</span> and know that <span class="math inline">\(Y_4,Y_5,\ldots\)</span> are i.i.d. with the desired probabilities.</p></li>
+<li><p>The <span class="math inline">\(n^{th}\)</span> step for <span class="math inline">\(W_n\)</span> is the <span class="math inline">\(2n^{th}\)</span> step for <span class="math inline">\(X_n\)</span>. In other words, <span class="math inline">\(W_n\)</span> only considers the even steps. If <span class="math inline">\(X_n=\sum_{j=1}^n Y_j\)</span>, then <span class="math inline">\(W_n=\sum_{j=1}^n Y_{2j}\)</span>.<br><br>
+We see that <span class="math inline">\(W_0=0\)</span> is given and calculate
+<span class="math inline">\(W_k-W_{k-1}=\sum_{j=1}^k (X_{2j}-X_{2j-1})-\sum_{j=1}^{k-1} (X_{2j}-X_{2j-1})=X_{2k}-X_{2k-1}=Y_{2k}\)</span>. We know that <span class="math inline">\(Y_2,Y_4,\ldots\)</span> are i.i.d. with equal probability on <span class="math inline">\(\pm1\)</span>.</p></li>
 </ol>
-<p>We calculate <span class="math inline">\(W_0=X_{3+0}-X_3=0\)</span> and <span class="math inline">\(W_j-W_{j-1}=(X_{3+j}-X_3)-(X_{3+j-1}-X_3)=X_{3+j}-X_{3+j-1}=Y_{3+j}\)</span> and know that <span class="math inline">\(Y_4,Y_5,\ldots\)</span> are i.i.d. with teh desired probabilities.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>The <span class="math inline">\(n^{th}\)</span> step for <span class="math inline">\(W_n\)</span> is the <span class="math inline">\(2n^{th}\)</span> step for <span class="math inline">\(X_n\)</span>. In other words, <span class="math inline">\(W_n\)</span> only considers the even steps. If <span class="math inline">\(X_n=\sum_{j=1}^n Y_j\)</span>, then <span class="math inline">\(W_n=\sum_{j=1}^n Y_{2j}\)</span>.</li>
-</ol>
-<p>We see that <span class="math inline">\(W_0=0\)</span> is given and calculate
-<span class="math inline">\(W_k-W_{k-1}=\sum_{j=1}^k (X_{2j}-X_{2j-1})-\sum_{j=1}^{k-1} (X_{2j}-X_{2j-1})=X_{2k}-X_{2k-1}=Y_{2k}\)</span>. We know that <span class="math inline">\(Y_2,Y_4,\ldots\)</span> are i.i.d. with equal probability on <span class="math inline">\(\pm1\)</span>.</p>
 </div>
 </div>
 </div>
@@ -409,13 +410,18 @@ P(M_n= k)&amp;=P(M_n\geq k-P(M_n\geq k+1)\\
 &amp;=2P(X_n&gt;k+1)+2P(X_n=k+1)+P(X_n=k)-2P(X_n&gt;k+1)-P(X_n=k+1)\\
 &amp;=P(X_n=k+1)+P(X_n=k).\\
 \end{aligned}\]</span></p>
+<p><strong>Maximum over infinite sample paths for <span class="math inline">\(p&lt;1/2\)</span>.</strong>
+If <span class="math inline">\(p&lt;\frac12\)</span> then the random walk will eventually hit some nonnegative maximum level and then go towards <span class="math inline">\(-\infty\)</span> without ever exceeding its historical maximum level. Let <span class="math inline">\(M_\infty=\max\{X_0,X_1,\ldots\}\)</span> be the maximum state reached over the entire sample path with infinitely-many time steps. Then we have
+<span class="math display">\[P(M_\infty=k)=\frac{1-2p}{1-p}\left(\frac{p}{1-p}\right)^k \ \text{ for } \ k=0,1,\ldots.\]</span>
+Hence <span class="math inline">\(M_\infty\)</span> is a geometric random variable where we can think of a success as wander off to <span class="math inline">\(-\infty\)</span> and never exceeding its previous maximum. The probability the walk (starting at <span class="math inline">\(X_0=0\)</span>) never goes above zero is <span class="math inline">\(\frac{1-2p}{1-p}\)</span>. The probability it hits level 1 eventually is <span class="math inline">\(\frac p{1-p}\)</span>. From that point, it is probability <span class="math inline">\(\frac{1-2p}{1-p}\)</span> that it never exceeds level 1. Working inductively, we can reason that <span class="math inline">\(\left(\frac p{1-p}\right)^k\)</span> is the probability it eventually hits level <span class="math inline">\(k\)</span> and then multiplying by <span class="math inline">\(\frac{1-2p}{1-p}\)</span> that the walk never again exceeds its current level.</p>
 </div>
 <div id="hit-time-for-state-1" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Hit time for state <span class="math inline">\(1\)</span><a href="random-walks.html#hit-time-for-state-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We wish to know how long it takes for the SARW to hit level <span class="math inline">\(1\)</span>. Let <span class="math inline">\(T_1=\min\{n&gt;0 : X_n=1\}\)</span> which we call the <em>hitting time</em> for state <span class="math inline">\(1\)</span>.</p>
 <p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span></p>
-<p><strong>Hitting time for other states.</strong>
-If we are interested in how long it takes for the process to hit state <span class="math inline">\(2\)</span>, then we wait for it to hit state <span class="math inline">\(1\)</span>. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let <span class="math inline">\(T_2\)</span> be the hitting time for state <span class="math inline">\(2.\)</span> What this reasoning shows is that <span class="math inline">\(T_2=\tau_1+\tau_2\)</span> where <span class="math inline">\(\tau_1\)</span> and <span class="math inline">\(\tau_2\)</span> have the same distribution as <span class="math inline">\(T_1\)</span> and are independent.</p>
+<div id="hitting-time-for-other-states" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Hitting time for other states<a href="random-walks.html#hitting-time-for-other-states" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we are interested in how long it takes for the process to hit state <span class="math inline">\(2\)</span>, then we wait for it to hit state <span class="math inline">\(1\)</span>. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let <span class="math inline">\(T_2\)</span> be the hitting time for state <span class="math inline">\(2.\)</span> What this reasoning shows is that <span class="math inline">\(T_2=\tau_1+\tau_2\)</span> where <span class="math inline">\(\tau_1\)</span> and <span class="math inline">\(\tau_2\)</span> have the same distribution as <span class="math inline">\(T_1\)</span> and are independent.</p>
 <p>In general, letting <span class="math inline">\(T_k\)</span> be the hitting time for state <span class="math inline">\(k\)</span>, we have
 <span class="math display">\[T_k=\sum_{j=1}^k \tau_j\]</span>
 where <span class="math inline">\(\tau_j\)</span> are i.i.d. and distributed identically to <span class="math inline">\(T_1\)</span>.</p>
@@ -431,6 +437,54 @@ P(T_2=4)&amp;=P(\tau_1+\tau_2=4)\\
 &amp;=2 \frac1{0+1}{2\cdot 0\choose 0}p^{0+1}(1-p)^0 \frac1{1+1}{2\cdot 1\choose 1}p^{1+1}(1-p)^1 \\
 &amp;=2 p^3 (1-p) \\
 \end{aligned}\]</span></p>
+</div>
+<div class="thmbox">
+<p><strong>Hitting time theorem.</strong>
+Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span class="math inline">\(p\)</span> the probability of stepping up. Let <span class="math inline">\(T_k\)</span> be the hitting time for level <span class="math inline">\(k\geq0\)</span>. We have
+<span class="math display">\[P(T_k=m)=\frac km P(X_m=k)\]</span>
+<!-- <a href="javascript:unhide('pfht');">Show/hide solution.</a> --></p>
+<!-- ::: {#pfht .hiddendiv} -->
+<!-- **Proof.**  -->
+<!-- Here is the proof for the SSRW. -->
+<!-- $$\begin{aligned} -->
+<!-- a_{k,m}=P(T_k=m)&=P(T_k=m\mid X_1=-1)P(X_1=-1)+P(T_k=m\mid X_1=1)P(X_1=1)\\ -->
+<!-- &=\frac12[P(T_k=m\mid X_1=-1)+P(T_k=m\mid X_1=1)]\\ -->
+<!-- &=\frac12[a_{k+1,m-1}+a_{k-1,m-1}].\\ -->
+<!-- \end{aligned}$$ -->
+<!-- Now, we have $a_{0,0}=1$ since the process starts in state 0 (hence hits it at time zero with probability one) and $a_{0,m}=a_{k,0}=0$ for all nonzero $m,k$ since it cannot hit zero for the first time at any time step $m>0$, and it cannot hit any state $k>0$ in zero time steps. So we can proceed inductively: -->
+<!-- $$a_{1,1}=\frac12[a_{2,0}+a_{0,0}]=\frac12a_{0,0}=\frac12=P(X_1=1).$$ -->
+<!-- $$a_{2,1}=\frac12[a_{3,0}+a_{1,0}]=0.$$ -->
+<!-- And for any $k\geq2$ we have -->
+<!-- $$a_{k,1}=\frac12[a_{k+1,0}+a_{k-1,0}]=0.$$ -->
+<!-- $$P(T_1=2)=a_{1,2}=\frac12[a_{2,1}+a_{0,1}]=\frac12(0+0)=0=\frac12P(X_2=1).$$ -->
+<!-- Now assume it works for $(k,m)$ and show it works for $(k+1,m)$, $(k,m+1)$, and $(k+1,m+1)$. We assume $P(T_k=m)=\frac km P(X_m=k)$. Now -->
+<!-- $$\begin{aligned} -->
+<!-- P(T_{k}=m)&=P(T_{k}=m\mid X_1=1)P(X_1=1)+P(T_{k}=m\mid X_1=-1)P(X_1=-1)\\ -->
+<!-- &=\frac12[P(T_{k}=m\mid X_1=1)+P(T_{k}=m\mid X_1=-1)]\\ -->
+<!-- &=\frac12[P(T_{k-1}=m-1)+P(T_{k+1}=m-1)] -->
+<!-- \end{aligned}$$ -->
+<!-- Hence -->
+<!-- $$\begin{aligned} -->
+<!-- P(T_{k+1}=m-1)&=2 P(T_{k}=m)-P(T_{k-1}=m-1)\\ -->
+<!-- &=2\frac km P(X_m=k)-\frac {k-1}{m-1} P(X_{m-1}={k-1})\\ -->
+<!-- &=2\frac km {m\choose(m+k)/2}\frac1{2^m}-\frac {k-1}{m-1} {m-1\choose(m+k-2)/2}\frac1{2^{m-1}}\\ -->
+<!-- &=\frac km \frac{m (m-1)!}{[(m+k)/2]![(m-k)/2]!}\frac1{2^{m-1}} -->
+<!-- -\frac {k-1}{m-1} \frac{ (m-1)!}{[(m+k-2)/2]![(m-k+2)/2]!}\frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{(m-1)!}{[(m+k)/2]![(m-k)/2]!} -->
+<!-- -\frac {k-1}{m-1} \frac{ (m-1)!}{[(m+k)/2-1]![(m-k)/2+1][(m-k)/2]!}\right) \frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{1}{[(m+k)/2]}  -->
+<!-- -\frac {k-1}{m-1} \frac{1}{[(m-k)/2+1]}\right) \frac{(m-1)!}{[(m+k)/2-1]![(m-k)/2]!}\frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{1}{[(m+k)/2]}  -->
+<!-- -\frac {k-1}{m-1} \frac{1}{[(m-k)/2+1]}\right) P(X_{m-1}=k)\\ -->
+<!-- &= -->
+<!-- \end{aligned}$$ -->
+<!-- ::: -->
+</div>
+<div class="exbox">
+<p><strong>Example.</strong>
+Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span class="math inline">\(p\)</span> the probability of stepping up. Let <span class="math inline">\(T_k\)</span> be the hitting time for level <span class="math inline">\(k\geq0\)</span>. We have
+<span class="math display">\[P(T_3=5)=\frac 35 P(X_5=3)=\frac35 {5\choose4}p^4(1-p)=3p^4(1-p).\]</span></p>
+</div>
 </div>
 </div>
 <div id="return-time-to-state-0" class="section level2 hasAnchor" number="5.6">

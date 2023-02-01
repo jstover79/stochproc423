@@ -70,13 +70,11 @@ Let $X_n$ be the SSRW. Let $W_n$ be a stochastic process, and show that the foll
 ::: {#ex1 .hiddendiv}
 1. We covered this example in the text above.
 
-2. This is a shifted random walk. The $W_n$ sample path is identical to the $X_n$ sample path but starting from $X_3$ and being shifted back to starting from the origin. In other words, we can imagine a completely simulated sample path for $X_n$, and we just ignore the first three time steps and take the remaining part of the sample path and shift it back to starting at the origin, preserving its exact shape.
+2. This is a shifted random walk. The $W_n$ sample path is identical to the $X_n$ sample path but starting from $X_3$ and being shifted back to starting from the origin. In other words, we can imagine a completely simulated sample path for $X_n$, and we just ignore the first three time steps and take the remaining part of the sample path and shift it back to starting at the origin, preserving its exact shape.<br><br>
+We calculate $W_0=X_{3+0}-X_3=0$ and $W_j-W_{j-1}=(X_{3+j}-X_3)-(X_{3+j-1}-X_3)=X_{3+j}-X_{3+j-1}=Y_{3+j}$ and know that $Y_4,Y_5,\ldots$ are i.i.d. with the desired probabilities.
 
-We calculate $W_0=X_{3+0}-X_3=0$ and $W_j-W_{j-1}=(X_{3+j}-X_3)-(X_{3+j-1}-X_3)=X_{3+j}-X_{3+j-1}=Y_{3+j}$ and know that $Y_4,Y_5,\ldots$ are i.i.d. with teh desired probabilities.
 
-
-3. The $n^{th}$ step for $W_n$ is the $2n^{th}$ step for $X_n$. In other words, $W_n$ only considers the even steps. If $X_n=\sum_{j=1}^n Y_j$, then $W_n=\sum_{j=1}^n Y_{2j}$.
-
+3. The $n^{th}$ step for $W_n$ is the $2n^{th}$ step for $X_n$. In other words, $W_n$ only considers the even steps. If $X_n=\sum_{j=1}^n Y_j$, then $W_n=\sum_{j=1}^n Y_{2j}$.<br><br>
 We see that $W_0=0$ is given and calculate 
 $W_k-W_{k-1}=\sum_{j=1}^k (X_{2j}-X_{2j-1})-\sum_{j=1}^{k-1} (X_{2j}-X_{2j-1})=X_{2k}-X_{2k-1}=Y_{2k}$. We know that $Y_2,Y_4,\ldots$ are i.i.d. with equal probability on $\pm1$.
 :::
@@ -225,6 +223,10 @@ P(M_n= k)&=P(M_n\geq k-P(M_n\geq k+1)\\
 &=P(X_n=k+1)+P(X_n=k).\\
 \end{aligned}$$
 
+**Maximum over infinite sample paths for $p<1/2$.** 
+If $p<\frac12$ then the random walk will eventually hit some nonnegative maximum level and then go towards $-\infty$ without ever exceeding its historical maximum level. Let $M_\infty=\max\{X_0,X_1,\ldots\}$ be the maximum state reached over the entire sample path with infinitely-many time steps. Then we have
+$$P(M_\infty=k)=\frac{1-2p}{1-p}\left(\frac{p}{1-p}\right)^k \ \text{ for } \ k=0,1,\ldots.$$
+Hence $M_\infty$ is a geometric random variable where we can think of a success as wander off to $-\infty$ and never exceeding its previous maximum. The probability the walk (starting at $X_0=0$) never goes above zero is $\frac{1-2p}{1-p}$. The probability it hits level 1 eventually is $\frac p{1-p}$. From that point, it is probability $\frac{1-2p}{1-p}$ that it never exceeds level 1. Working inductively, we can reason that $\left(\frac p{1-p}\right)^k$ is the probability it eventually hits level $k$ and then multiplying by $\frac{1-2p}{1-p}$ that the walk never again exceeds its current level.
 
 ## Hit time for state $1$
 
@@ -232,7 +234,7 @@ We wish to know how long it takes for the SARW to hit level $1$. Let $T_1=\min\{
 
 $$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.$$
 
-**Hitting time for other states.**
+### Hitting time for other states
 If we are interested in how long it takes for the process to hit state $2$, then we wait for it to hit state $1$. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let $T_2$ be the hitting time for state $2.$ What this reasoning shows is that $T_2=\tau_1+\tau_2$ where $\tau_1$ and $\tau_2$ have the same distribution as $T_1$ and are independent.
 
 In general, letting $T_k$ be the hitting time for state $k$, we have
@@ -254,6 +256,58 @@ P(T_2=4)&=P(\tau_1+\tau_2=4)\\
 \end{aligned}$$
 :::
 
+::: thmbox
+**Hitting time theorem.**
+Let $X_n$ be a simple random walk with $p$ the probability of stepping up. Let $T_k$ be the hitting time for level $k\geq0$. We have
+$$P(T_k=m)=\frac km P(X_m=k)$$
+<!-- <a href="javascript:unhide('pfht');">Show/hide solution.</a> -->
+
+<!-- ::: {#pfht .hiddendiv} -->
+<!-- **Proof.**  -->
+<!-- Here is the proof for the SSRW. -->
+<!-- $$\begin{aligned} -->
+<!-- a_{k,m}=P(T_k=m)&=P(T_k=m\mid X_1=-1)P(X_1=-1)+P(T_k=m\mid X_1=1)P(X_1=1)\\ -->
+<!-- &=\frac12[P(T_k=m\mid X_1=-1)+P(T_k=m\mid X_1=1)]\\ -->
+<!-- &=\frac12[a_{k+1,m-1}+a_{k-1,m-1}].\\ -->
+<!-- \end{aligned}$$ -->
+<!-- Now, we have $a_{0,0}=1$ since the process starts in state 0 (hence hits it at time zero with probability one) and $a_{0,m}=a_{k,0}=0$ for all nonzero $m,k$ since it cannot hit zero for the first time at any time step $m>0$, and it cannot hit any state $k>0$ in zero time steps. So we can proceed inductively: -->
+<!-- $$a_{1,1}=\frac12[a_{2,0}+a_{0,0}]=\frac12a_{0,0}=\frac12=P(X_1=1).$$ -->
+<!-- $$a_{2,1}=\frac12[a_{3,0}+a_{1,0}]=0.$$ -->
+<!-- And for any $k\geq2$ we have -->
+<!-- $$a_{k,1}=\frac12[a_{k+1,0}+a_{k-1,0}]=0.$$ -->
+<!-- $$P(T_1=2)=a_{1,2}=\frac12[a_{2,1}+a_{0,1}]=\frac12(0+0)=0=\frac12P(X_2=1).$$ -->
+
+<!-- Now assume it works for $(k,m)$ and show it works for $(k+1,m)$, $(k,m+1)$, and $(k+1,m+1)$. We assume $P(T_k=m)=\frac km P(X_m=k)$. Now -->
+
+<!-- $$\begin{aligned} -->
+<!-- P(T_{k}=m)&=P(T_{k}=m\mid X_1=1)P(X_1=1)+P(T_{k}=m\mid X_1=-1)P(X_1=-1)\\ -->
+<!-- &=\frac12[P(T_{k}=m\mid X_1=1)+P(T_{k}=m\mid X_1=-1)]\\ -->
+<!-- &=\frac12[P(T_{k-1}=m-1)+P(T_{k+1}=m-1)] -->
+<!-- \end{aligned}$$ -->
+<!-- Hence -->
+<!-- $$\begin{aligned} -->
+<!-- P(T_{k+1}=m-1)&=2 P(T_{k}=m)-P(T_{k-1}=m-1)\\ -->
+<!-- &=2\frac km P(X_m=k)-\frac {k-1}{m-1} P(X_{m-1}={k-1})\\ -->
+<!-- &=2\frac km {m\choose(m+k)/2}\frac1{2^m}-\frac {k-1}{m-1} {m-1\choose(m+k-2)/2}\frac1{2^{m-1}}\\ -->
+<!-- &=\frac km \frac{m (m-1)!}{[(m+k)/2]![(m-k)/2]!}\frac1{2^{m-1}} -->
+<!-- -\frac {k-1}{m-1} \frac{ (m-1)!}{[(m+k-2)/2]![(m-k+2)/2]!}\frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{(m-1)!}{[(m+k)/2]![(m-k)/2]!} -->
+<!-- -\frac {k-1}{m-1} \frac{ (m-1)!}{[(m+k)/2-1]![(m-k)/2+1][(m-k)/2]!}\right) \frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{1}{[(m+k)/2]}  -->
+<!-- -\frac {k-1}{m-1} \frac{1}{[(m-k)/2+1]}\right) \frac{(m-1)!}{[(m+k)/2-1]![(m-k)/2]!}\frac1{2^{m-1}}\\ -->
+<!-- &=\left(k \frac{1}{[(m+k)/2]}  -->
+<!-- -\frac {k-1}{m-1} \frac{1}{[(m-k)/2+1]}\right) P(X_{m-1}=k)\\ -->
+<!-- &= -->
+<!-- \end{aligned}$$ -->
+<!-- ::: -->
+
+:::
+
+::: exbox
+**Example.**
+Let $X_n$ be a simple random walk with $p$ the probability of stepping up. Let $T_k$ be the hitting time for level $k\geq0$. We have
+$$P(T_3=5)=\frac 35 P(X_5=3)=\frac35 {5\choose4}p^4(1-p)=3p^4(1-p).$$
+:::
 
 ## Return time to state $0$
 
