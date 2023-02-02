@@ -1,6 +1,89 @@
 # Conditional expectation
 
-Now we discuss the concept of conditional expectation.
+Now we discuss the concept of conditional expectation. Conditioning can be thought of as reducing the number of possibilities for a random experiment.
+
+## Conditional distirbutions
+
+The conditional distribution of $X$ given $Y=y$ is given as $$f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}$$
+where $f_{X,Y}$ is the joint distribution of $X$ and $Y$ and $f_Y$ is the marginal distribution of $Y$. If both are discrete random variables, then these are all probability mass functions (and we sum to get probabilities), and if they are both continuous random variables, then all are probability density functions (and we integrate to get probabilities).
+
+For the discrete case, which is what we will mostly be working with, we get
+$$f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}=\frac{P(X=x,Y=y)}{P(Y=y)}=P(X=x\mid Y=y).$$
+So the conditional pmf is just another way to write conditional probabilities. We can calculate conditional pmfs from the tabular format of the joint distribution simply by dividing a row or column by its total sum. Consider the example below.
+
+|   |     |      | X   |       |
+|---|-----|------|------|-------|
+|   |     |  0   |  1   |  2    |
+| Y | 1   | 0.36 | 0.18 | 0.06  |
+|   | 2   | 0.14 | 0.20 | 0.06  |
+
+We can write the conditional pmf for $X$ given $Y=1$ by taking the row $(0.36,0.18,0.06)$ and dividing it by its sum $0.36+0.18+0.06=0.60=P(Y=1)$ to get $(0.36/0.6,0.18/0.6,0.06/0.6)=(0.6,0.3,0.1)$, and this is exactly the conditional pmf for $X$ given $Y=1$.
+
+$$f_{X|Y=5}=\begin{cases}
+0.6 & \text{ if } x=0\\
+0.3 & \text{ if } x=1\\
+0.1 & \text{ if } x=2\\
+\end{cases}$$
+
+## Conditional expectation
+
+Conditional expectation can be thought of in the following way. Imagine that we perform an experiment repeatedly where each outcome gives us two measurements, i.e. two random variables $X$ and $Y$ which could depend on each other in any arbitrary way. In other words a single outcome of the experiment gives us a pair $(X,Y)$. We could simply average the $X$-values to approximate its mean $E(X)$, or we could average only those $X$ values which came paired with a particular $Y$ value or a predetermined range of $Y$-values. This would be calculating a conditional expected value for $X$.
+
+If we average all $X$-values that are paired with precisely $Y=y$, then this gives us an estimate of $E(X\mid Y=y)$ the **conditional expectation of $X$ given $Y=y$**. We can compute this from our distributions just as we did before for expected value, but we use the conditional pmf:
+$$E(X\mid Y=y)=\sum_x x f_{X|Y=y}(x|y).$$
+
+It is advised to first think of $y$ as a fixed constant in the above equation. But one can also consider it as a variable $y$ (a standard algebra/calculus variable, not a random variable) which ranges over the set of possible values for random variable $Y$. In other words $E(X\mid Y=y)$ can be though of as a *function of $y$* in the typical algebra/calculus sense, i.e. $E(X\mid Y=y)=h(y)$ with plugging in a specific $y$-value will output the fixed numerical conditional expectation of $X$.
+
+In the continuous case, we integrate instead of sum:
+$$E(X\mid Y=y)=\int_{-\infty}^\infty x f_{X|Y=y}(x|y) ~dx.$$
+In this case, we are working with probability densities though, so the conditional pdf is not the same thing as conditional probability.
+
+## (Random) conditional expectation
+
+We can also write $E(X\mid Y)$ without specifying a particular value for $Y$ and leaving it as a random variable. If we were to decide that we are interested in a particular $Y$-values, e.g. $y$, then we can plug that in to get $E(X\mid Y=y)$ which we can calculate as already discussed and can think of as a function $E(X\mid Y=y)=h(y)$. 
+
+We can skip the step of plugging in a particular $y$ though and can just write $E(X\mid Y)=h(Y)$ which is a function of random variable $Y$. Since a function of a random variable is also a random variable, we have that $E(X\mid Y)$ is a random variable. This means that we can calculate probabilities such as $P[E(X\mid Y)=a]$ or $P\left[E(X\mid Y)\leq b\right]$. In fact, these probabilities are really qustions about the random variable $Y$:
+$$P[E(X\mid Y)=a]=P\left[ Y \text{ gives a value } y \text{ that results in} E(X\mid Y=y)=a\right]$$
+Consider the example below.
+
+|   |     |      | X   |       |
+|---|-----|------|------|-------|
+|   |     |  0   |  1   |  2    |
+| Y | 1   | 0.36 | 0.18 | 0.06  |
+|   | 2   | 0.14 | 0.20 | 0.06  |
+
+We can calculate the conditional pmfs $f_{X|Y=1}(x|1)$ and $f_{X|Y=2}(x|2)$, and from these we can calculate $E(X\mid Y=1)$ and $E(X\mid Y=2)$.
+
+$$\begin{aligned}
+E(X\mid Y=1)&=0\cdot f_{X|Y=1}(0|1)+1\cdot f_{X|Y=1}(1|1)+2\cdot f_{X|Y=1}(2|1)\\
+&=0\cdot \frac{0.36}{0.6}+1\cdot \frac{0.18}{0.6}+2\cdot \frac{0.06}{0.6}=0.3+0.2=0.5
+\end{aligned}$$
+Similarly, we get $E(X\mid Y=2)=0.2/0.2+2\cdot 0.06/0.2=1.6$.
+
+Hence we get the function
+$$
+E(X\mid Y=y)=h(y)=
+\begin{cases}
+0.5 &\text{ if } y=1\\
+1.6 &\text{ if } y=2.
+\end{cases}
+$$
+As a random variable, we get
+$$
+P[E(X\mid Y)=a]=
+\begin{cases}
+P(Y=1) &\text{ if } a=0.5\\
+P(Y=2) &\text{ if } a=1.6.
+\end{cases}
+$$
+So we can write down the pmf for $E(X\mid Y)=h(Y)$ as
+$$
+f_{h(Y)}(a)=f_{E(X\mid Y)}(a)=
+\begin{cases}
+0.6 &\text{ if } a=0.5\\
+0.4 &\text{ if } a=1.6.
+\end{cases}
+$$
 
 
 ## Summary {-}

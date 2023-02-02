@@ -14,7 +14,7 @@ We let $X_n$ be the state of the process at time step $n$ and fix $X_0=0$ (the p
 $$P(X_{n+1}=j-1\mid X_n=j)=\frac12,$$
 $$P(X_{n+1}=j+1\mid X_n=j)=\frac12.$$
 
-More generally, we can let $P(X_{n+1}=j+1\mid X_n=j)=p$ and $P(X_{n+1}=j-1\mid X_n=j)=1-p$, and if $p\neq\frac12$, then we call it a simple asymmetric random walk (SARW).
+More generally, we can let $P(X_{n+1}=j+1\mid X_n=j)=p$ and $P(X_{n+1}=j-1\mid X_n=j)=1-p$, and if $p\neq\frac12$, then we call it a **simple asymmetric random walk (SARW)**. We call this stochastic process "simple" because successive steps are independent and identically distributed and "symmetric" or "asymmetric" depending on whether the up and down probabilities are equivalent or not.
 
 We will refer to the state of the process as the "level" or "location" at times, and rather than left or right, we will usually say "up" and "down" since we normally graph time horizontally and location on $\mathbb Z$ vertically.
 
@@ -263,7 +263,13 @@ Hence $M_\infty$ is a geometric random variable where we can think of a success 
 
 We wish to know how long it takes for the SARW to hit level $1$. Let $T_1=\min\{n>0 : X_n=1\}$ which we call the *hitting time* for state $1$.
 
+::: thmbox
+**Hitting time for state $1$.** 
+
 $$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.$$
+:::
+
+By symmetry, we can understand the distribution for $T_{-1}$, the hitting time for state $-1$ as well. For the SSRW, $P(T_{-1}=k)=P(T_1=k)$ since there is no difference in the probabilities of going up or down. In fact $-X_n$ (the reflected SSRW) has the same distribution as $X_n$, and $T_{-1}$ for $X_n$ is exactly the same thing as $T_1$ for $-X_n$. Since the latter is also a SSRW, then $T_1$ is exactly distributed according to the above given formula. If the walk was asymmetric with $p\neq\frac12$, then $T_{-1}$ is distributed according to $T_1$ for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. $P(T_{-1}=k)$ for the SARW with $p$ probability of up step is identical to $P(T_{1}=k)$ for the SARW with $1-p$ probability of up step.
 
 ### Hitting time for other states
 If we are interested in how long it takes for the process to hit state $2$, then we wait for it to hit state $1$. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let $T_2$ be the hitting time for state $2.$ What this reasoning shows is that $T_2=\tau_1+\tau_2$ where $\tau_1$ and $\tau_2$ have the same distribution as $T_1$ and are independent.
@@ -286,6 +292,8 @@ P(T_2=4)&=P(\tau_1+\tau_2=4)\\
 &=2 p^3 (1-p) \\
 \end{aligned}$$
 :::
+
+The hitting time theorem is given below and allows us to calculate hitting time probabilities for any state for the SARW with any $p$-value.
 
 ::: thmbox
 **Hitting time theorem.**
@@ -334,6 +342,8 @@ $$P(T_k=m)=\frac km P(X_m=k)$$
 
 :::
 
+Here is an example usage of the hitting time theorem.
+
 ::: exbox
 **Example.**
 Let $X_n$ be a simple random walk with $p$ the probability of stepping up. Let $T_k$ be the hitting time for level $k\geq0$. We have
@@ -342,10 +352,43 @@ $$P(T_3=5)=\frac 35 P(X_5=3)=\frac35 {5\choose4}p^4(1-p)=3p^4(1-p).$$
 
 ## Return time to state $0$
 
-We have that $X_0=0$ initially. We want to know how long it takes for the random walk to return to state zero. Let $T_0=\min\{n>0 : X_n=0\}$ which we call the *return time to zero*. We can calculate $P(T_0=2k)$ for $k=1,2,\ldots$ by sketching a graph and counting paths. For example, $P(T_0=2)=\frac12$ since this means the first two time steps are up then down or vice versa. Similarly, we can calculate $P(T_0=4)=\frac18$. The general formula is
+We have that $X_0=0$ initially. We want to know how long it takes for the random walk to return to state zero. Let $T_0=\min\{n>0 : X_n=0\}$ which we call the *return time to zero*. We can calculate $P(T_0=2k)$ for $k=1,2,\ldots$ by sketching a graph and counting paths. For example, $P(T_0=2)=\frac12$ since this means the first two time steps are up then down or vice versa. Similarly, we can calculate $P(T_0=4)=\frac18$. The general formula is given below.
+
+::: thmbox
+**Return time to state $0$.** 
+
 $$P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.$$
+:::
 
+This is also the return time to the initial state more generally, if we initialized the walk with $X_0\neq0$.
 
+Here is a derivation of the formula using conditioning on the initial state. Conditioning in this way is a very important technique which can often simplify computations.
+$$
+\begin{aligned}
+P(T_0=2k)&=P(T_0=2k\mid X_1=1)P(X_1=1)+P(T_0=2k\mid X_1=-1)P(X_1=-1)\\
+&=P(T_0=2k\mid X_1=1)p+P(T_0=2k\mid X_1=-1)(1-p)\\
+&=P(T_{-1}=2k-1)p+P(T_1=2k-1)(1-p)\\
+\end{aligned}
+$$
+This works because conditioning on $X_1=1$, in order to return back to state $0$, we must wait for how long it takes the walk to first go down one level, and (by shift invariance) this probability is identical to starting at zero and waiting to hit state $-1$.
+
+Now we already know how to calculate probabilities for $T_1$ and $T_{-1}$ (which is identical to $T_1$ for a reflected walk with $p$ and $1-p$ swapped).
+$$P(T_1=2k-1)=\frac1{k}{2k-2\choose k-1}p^{k}(1-p)^{k-1}$$
+$$P(T_{-1}=2k-1)=\frac1{k}{2k-2\choose k-1}p^{k-1}(1-p)^{k}$$
+$$
+\begin{aligned}
+P(T_0=2k)&=\frac2{k}{2k-2\choose k-1} p^k(1-p)^k\\
+\end{aligned}
+$$
+Now we just need to show the coefficient simplifies to $\frac1{2k-1}{2k\choose k}.$
+
+$$\begin{aligned}
+\frac2{k}{2k-2\choose k-1}&=\frac2k \frac{(2k-2)!}{(k-1)!(k-1)!}\\
+&=\frac2{\color{blue}{k}} \frac{\color{red}{(2k-2)!}}{\color{blue}{(k-1)!}\color{green}{(k-1)!}} \cdot \frac{\color{red}{2k(2k-1)}}{2\color{green}{k}(2k-1)}\\
+&=\frac{\color{red}{(2k)!}}{\color{blue}{k!}\color{green}{k!}} \cdot \frac{1}{(2k-1)}\\
+&={2k \choose k} \cdot \frac{1}{(2k-1)}
+\end{aligned}$$
+This finishes the calculation.
 
 <!-- ## RW2 -->
 
@@ -373,18 +416,33 @@ $$P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.$$
 ::: defbox
 **Summary of notation, formulas, and terminology**
 
-For $X_n$ the simple 1D random walk with $p$ probability of an up step:
+For $X_n$ the simple 1D random walk with $p$ probability of an up step (and $1-p$ down step):
 
+**Distribution of $X_n$**:<br>
 $P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}$<br>
 &nbsp;&nbsp;&nbsp; For SSRW: $P(X_n=j)={n\choose (n+j)/2}\frac1{2^n}$
 
 $P(X_n=j)\approx$`pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))`<br>
 &nbsp;&nbsp;&nbsp; For SSRW: $P(X_n=j)\approx$`pnorm(j+1,0,sqrt(n)-pnorm(j-1,0,sqrt(n))`<br>
 
+**Shift invariance \& memorylessness**:<br>
+$P(X_{n+m}=k\mid X_m=j)=P(X_{n}=k-j)$<br>
+$P(X_{n}=k\mid X_{n-1}=j,X_{n-2}=a_{n-2},\ldots,X_{2}=a_{2},X_{1}=a_{1})=P(X_{n}=k\mid X_{n-1}=j)$
+
+**Maximum of SSRW**:<br>
+$P(M_n=k)=P(X_n=k)+P(X_n=k+1)$, $M_n=$ max level reached in first $n$ time steps
+
+**Maximum of SARW w/ $p<1/2$**:<br>
+$P(M_\infty=k)=\left( \frac p{1-p}\right)^k\left( \frac {1-2p}{1-p}\right)$, $M_\infty=$ max level reached over the entire walk covering (for infinitely many time steps)
+
+**Hitting times**:<br>
 $P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}$, $T_1=~$first time SSRW ($p=\frac12$) to hit state $1$
 
 $P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k$, $T_1=~$first time SARW (any $p\in[0,1]$) to hit state $1$
 
+$P(T_k=m)=\frac mk P(X_m=k)$, $T_k=~$first time SARW hits state $k$
+
+**Return time to initial state**:<br>
 $P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k$, $T_0=~$first time SARW returns to state $0$
 
 :::

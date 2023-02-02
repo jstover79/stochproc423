@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Random walks | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 5 Random walks | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Random walks | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-02-01" />
+<meta name="date" content="2023-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,6 +238,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="conditional-expectation.html"><a href="conditional-expectation.html"><i class="fa fa-check"></i><b>6</b> Conditional expectation</a>
 <ul>
+<li class="chapter" data-level="6.1" data-path="conditional-expectation.html"><a href="conditional-expectation.html#conditional-distirbutions"><i class="fa fa-check"></i><b>6.1</b> Conditional distirbutions</a></li>
+<li class="chapter" data-level="6.2" data-path="conditional-expectation.html"><a href="conditional-expectation.html#conditional-expectation-1"><i class="fa fa-check"></i><b>6.2</b> Conditional expectation</a></li>
+<li class="chapter" data-level="6.3" data-path="conditional-expectation.html"><a href="conditional-expectation.html#random-conditional-expectation"><i class="fa fa-check"></i><b>6.3</b> (Random) conditional expectation</a></li>
 <li class="chapter" data-level="" data-path="conditional-expectation.html"><a href="conditional-expectation.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>7</b> Markov Chains</a>
@@ -277,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We let <span class="math inline">\(X_n\)</span> be the state of the process at time step <span class="math inline">\(n\)</span> and fix <span class="math inline">\(X_0=0\)</span> (the particle starts at the origin). The particle moves left or right with equal probability, which is given as
 <span class="math display">\[P(X_{n+1}=j-1\mid X_n=j)=\frac12,\]</span>
 <span class="math display">\[P(X_{n+1}=j+1\mid X_n=j)=\frac12.\]</span></p>
-<p>More generally, we can let <span class="math inline">\(P(X_{n+1}=j+1\mid X_n=j)=p\)</span> and <span class="math inline">\(P(X_{n+1}=j-1\mid X_n=j)=1-p\)</span>, and if <span class="math inline">\(p\neq\frac12\)</span>, then we call it a simple asymmetric random walk (SARW).</p>
+<p>More generally, we can let <span class="math inline">\(P(X_{n+1}=j+1\mid X_n=j)=p\)</span> and <span class="math inline">\(P(X_{n+1}=j-1\mid X_n=j)=1-p\)</span>, and if <span class="math inline">\(p\neq\frac12\)</span>, then we call it a <strong>simple asymmetric random walk (SARW)</strong>. We call this stochastic process “simple” because successive steps are independent and identically distributed and “symmetric” or “asymmetric” depending on whether the up and down probabilities are equivalent or not.</p>
 <p>We will refer to the state of the process as the “level” or “location” at times, and rather than left or right, we will usually say “up” and “down” since we normally graph time horizontally and location on <span class="math inline">\(\mathbb Z\)</span> vertically.</p>
 <p>We consider the choice at each time step to go up or down as being independent of every other time step. This model is of a special class of stochastic processes called Markov chains, but we’ll discuss those in more detail later.</p>
 <p>We can construct this model mathematically in more detail be letting the <span class="math inline">\(n^{th}\)</span> step be random variable <span class="math inline">\(Y_n\)</span> which takes values <span class="math inline">\(\pm1\)</span> with equal probability and all being independent. We say that the <span class="math inline">\(Y_n\)</span> are <strong>i.i.d. (independent and identically distributed)</strong> with <span class="math inline">\(P(Y_n=1)=P(Y_n=-1)=\frac12\)</span> for all <span class="math inline">\(n\)</span>. Independence here means that if we want to calculate probabilities for multiple <span class="math inline">\(Y_n\)</span> simultaneously, we can calculate them individually and multiply:
@@ -457,7 +460,11 @@ Hence <span class="math inline">\(M_\infty\)</span> is a geometric random variab
 <div id="hit-time-for-state-1" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Hit time for state <span class="math inline">\(1\)</span><a href="random-walks.html#hit-time-for-state-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We wish to know how long it takes for the SARW to hit level <span class="math inline">\(1\)</span>. Let <span class="math inline">\(T_1=\min\{n&gt;0 : X_n=1\}\)</span> which we call the <em>hitting time</em> for state <span class="math inline">\(1\)</span>.</p>
+<div class="thmbox">
+<p><strong>Hitting time for state <span class="math inline">\(1\)</span>.</strong></p>
 <p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span></p>
+</div>
+<p>By symmetry, we can understand the distribution for <span class="math inline">\(T_{-1}\)</span>, the hitting time for state <span class="math inline">\(-1\)</span> as well. For the SSRW, <span class="math inline">\(P(T_{-1}=k)=P(T_1=k)\)</span> since there is no difference in the probabilities of going up or down. In fact <span class="math inline">\(-X_n\)</span> (the reflected SSRW) has the same distribution as <span class="math inline">\(X_n\)</span>, and <span class="math inline">\(T_{-1}\)</span> for <span class="math inline">\(X_n\)</span> is exactly the same thing as <span class="math inline">\(T_1\)</span> for <span class="math inline">\(-X_n\)</span>. Since the latter is also a SSRW, then <span class="math inline">\(T_1\)</span> is exactly distributed according to the above given formula. If the walk was asymmetric with <span class="math inline">\(p\neq\frac12\)</span>, then <span class="math inline">\(T_{-1}\)</span> is distributed according to <span class="math inline">\(T_1\)</span> for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. <span class="math inline">\(P(T_{-1}=k)\)</span> for the SARW with <span class="math inline">\(p\)</span> probability of up step is identical to <span class="math inline">\(P(T_{1}=k)\)</span> for the SARW with <span class="math inline">\(1-p\)</span> probability of up step.</p>
 <div id="hitting-time-for-other-states" class="section level3 hasAnchor" number="5.6.1">
 <h3><span class="header-section-number">5.6.1</span> Hitting time for other states<a href="random-walks.html#hitting-time-for-other-states" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we are interested in how long it takes for the process to hit state <span class="math inline">\(2\)</span>, then we wait for it to hit state <span class="math inline">\(1\)</span>. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let <span class="math inline">\(T_2\)</span> be the hitting time for state <span class="math inline">\(2.\)</span> What this reasoning shows is that <span class="math inline">\(T_2=\tau_1+\tau_2\)</span> where <span class="math inline">\(\tau_1\)</span> and <span class="math inline">\(\tau_2\)</span> have the same distribution as <span class="math inline">\(T_1\)</span> and are independent.</p>
@@ -477,6 +484,7 @@ P(T_2=4)&amp;=P(\tau_1+\tau_2=4)\\
 &amp;=2 p^3 (1-p) \\
 \end{aligned}\]</span></p>
 </div>
+<p>The hitting time theorem is given below and allows us to calculate hitting time probabilities for any state for the SARW with any <span class="math inline">\(p\)</span>-value.</p>
 <div class="thmbox">
 <p><strong>Hitting time theorem.</strong>
 Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span class="math inline">\(p\)</span> the probability of stepping up. Let <span class="math inline">\(T_k\)</span> be the hitting time for level <span class="math inline">\(k\geq0\)</span>. We have
@@ -519,6 +527,7 @@ Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span 
 <!-- \end{aligned}$$ -->
 <!-- ::: -->
 </div>
+<p>Here is an example usage of the hitting time theorem.</p>
 <div class="exbox">
 <p><strong>Example.</strong>
 Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span class="math inline">\(p\)</span> the probability of stepping up. Let <span class="math inline">\(T_k\)</span> be the hitting time for level <span class="math inline">\(k\geq0\)</span>. We have
@@ -528,8 +537,37 @@ Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span 
 </div>
 <div id="return-time-to-state-0" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Return time to state <span class="math inline">\(0\)</span><a href="random-walks.html#return-time-to-state-0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We have that <span class="math inline">\(X_0=0\)</span> initially. We want to know how long it takes for the random walk to return to state zero. Let <span class="math inline">\(T_0=\min\{n&gt;0 : X_n=0\}\)</span> which we call the <em>return time to zero</em>. We can calculate <span class="math inline">\(P(T_0=2k)\)</span> for <span class="math inline">\(k=1,2,\ldots\)</span> by sketching a graph and counting paths. For example, <span class="math inline">\(P(T_0=2)=\frac12\)</span> since this means the first two time steps are up then down or vice versa. Similarly, we can calculate <span class="math inline">\(P(T_0=4)=\frac18\)</span>. The general formula is
-<span class="math display">\[P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.\]</span></p>
+<p>We have that <span class="math inline">\(X_0=0\)</span> initially. We want to know how long it takes for the random walk to return to state zero. Let <span class="math inline">\(T_0=\min\{n&gt;0 : X_n=0\}\)</span> which we call the <em>return time to zero</em>. We can calculate <span class="math inline">\(P(T_0=2k)\)</span> for <span class="math inline">\(k=1,2,\ldots\)</span> by sketching a graph and counting paths. For example, <span class="math inline">\(P(T_0=2)=\frac12\)</span> since this means the first two time steps are up then down or vice versa. Similarly, we can calculate <span class="math inline">\(P(T_0=4)=\frac18\)</span>. The general formula is given below.</p>
+<div class="thmbox">
+<p><strong>Return time to state <span class="math inline">\(0\)</span>.</strong></p>
+<p><span class="math display">\[P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k, \ k=1,2,\ldots.\]</span></p>
+</div>
+<p>This is also the return time to the initial state more generally, if we initialized the walk with <span class="math inline">\(X_0\neq0\)</span>.</p>
+<p>Here is a derivation of the formula using conditioning on the initial state. Conditioning in this way is a very important technique which can often simplify computations.
+<span class="math display">\[
+\begin{aligned}
+P(T_0=2k)&amp;=P(T_0=2k\mid X_1=1)P(X_1=1)+P(T_0=2k\mid X_1=-1)P(X_1=-1)\\
+&amp;=P(T_0=2k\mid X_1=1)p+P(T_0=2k\mid X_1=-1)(1-p)\\
+&amp;=P(T_{-1}=2k-1)p+P(T_1=2k-1)(1-p)\\
+\end{aligned}
+\]</span>
+This works because conditioning on <span class="math inline">\(X_1=1\)</span>, in order to return back to state <span class="math inline">\(0\)</span>, we must wait for how long it takes the walk to first go down one level, and (by shift invariance) this probability is identical to starting at zero and waiting to hit state <span class="math inline">\(-1\)</span>.</p>
+<p>Now we already know how to calculate probabilities for <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_{-1}\)</span> (which is identical to <span class="math inline">\(T_1\)</span> for a reflected walk with <span class="math inline">\(p\)</span> and <span class="math inline">\(1-p\)</span> swapped).
+<span class="math display">\[P(T_1=2k-1)=\frac1{k}{2k-2\choose k-1}p^{k}(1-p)^{k-1}\]</span>
+<span class="math display">\[P(T_{-1}=2k-1)=\frac1{k}{2k-2\choose k-1}p^{k-1}(1-p)^{k}\]</span>
+<span class="math display">\[
+\begin{aligned}
+P(T_0=2k)&amp;=\frac2{k}{2k-2\choose k-1} p^k(1-p)^k\\
+\end{aligned}
+\]</span>
+Now we just need to show the coefficient simplifies to <span class="math inline">\(\frac1{2k-1}{2k\choose k}.\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+\frac2{k}{2k-2\choose k-1}&amp;=\frac2k \frac{(2k-2)!}{(k-1)!(k-1)!}\\
+&amp;=\frac2{\color{blue}{k}} \frac{\color{red}{(2k-2)!}}{\color{blue}{(k-1)!}\color{green}{(k-1)!}} \cdot \frac{\color{red}{2k(2k-1)}}{2\color{green}{k}(2k-1)}\\
+&amp;=\frac{\color{red}{(2k)!}}{\color{blue}{k!}\color{green}{k!}} \cdot \frac{1}{(2k-1)}\\
+&amp;={2k \choose k} \cdot \frac{1}{(2k-1)}
+\end{aligned}\]</span>
+This finishes the calculation.</p>
 <!-- ## RW2 -->
 <!-- ::: exbox -->
 <!-- **Example.** -->
@@ -550,14 +588,25 @@ Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span 
 <h2>Summary<a href="random-walks.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="defbox">
 <p><strong>Summary of notation, formulas, and terminology</strong></p>
-<p>For <span class="math inline">\(X_n\)</span> the simple 1D random walk with <span class="math inline">\(p\)</span> probability of an up step:</p>
-<p><span class="math inline">\(P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}\)</span><br>
+<p>For <span class="math inline">\(X_n\)</span> the simple 1D random walk with <span class="math inline">\(p\)</span> probability of an up step (and <span class="math inline">\(1-p\)</span> down step):</p>
+<p><strong>Distribution of <span class="math inline">\(X_n\)</span></strong>:<br>
+<span class="math inline">\(P(X_n=j)={n\choose (n+j)/2}p^{(n+j)/2}(1-p)^{(n-j)/2}\)</span><br>
     For SSRW: <span class="math inline">\(P(X_n=j)={n\choose (n+j)/2}\frac1{2^n}\)</span></p>
 <p><span class="math inline">\(P(X_n=j)\approx\)</span><code>pnorm(j+1,2*n*p-n,sqrt(4*n*p*(1-p)))-pnorm(j-1,2*n*p-n,sqrt(4*n*p*(1-p)))</code><br>
     For SSRW: <span class="math inline">\(P(X_n=j)\approx\)</span><code>pnorm(j+1,0,sqrt(n)-pnorm(j-1,0,sqrt(n))</code><br></p>
-<p><span class="math inline">\(P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}\)</span>, <span class="math inline">\(T_1=~\)</span>first time SSRW (<span class="math inline">\(p=\frac12\)</span>) to hit state <span class="math inline">\(1\)</span></p>
+<p><strong>Shift invariance &amp; memorylessness</strong>:<br>
+<span class="math inline">\(P(X_{n+m}=k\mid X_m=j)=P(X_{n}=k-j)\)</span><br>
+<span class="math inline">\(P(X_{n}=k\mid X_{n-1}=j,X_{n-2}=a_{n-2},\ldots,X_{2}=a_{2},X_{1}=a_{1})=P(X_{n}=k\mid X_{n-1}=j)\)</span></p>
+<p><strong>Maximum of SSRW</strong>:<br>
+<span class="math inline">\(P(M_n=k)=P(X_n=k)+P(X_n=k+1)\)</span>, <span class="math inline">\(M_n=\)</span> max level reached in first <span class="math inline">\(n\)</span> time steps</p>
+<p><strong>Maximum of SARW w/ <span class="math inline">\(p&lt;1/2\)</span></strong>:<br>
+<span class="math inline">\(P(M_\infty=k)=\left( \frac p{1-p}\right)^k\left( \frac {1-2p}{1-p}\right)\)</span>, <span class="math inline">\(M_\infty=\)</span> max level reached over the entire walk covering (for infinitely many time steps)</p>
+<p><strong>Hitting times</strong>:<br>
+<span class="math inline">\(P(T_1=2k+1)=\frac1{k+1}{2k\choose k}\frac1{2^{2k+1}}\)</span>, <span class="math inline">\(T_1=~\)</span>first time SSRW (<span class="math inline">\(p=\frac12\)</span>) to hit state <span class="math inline">\(1\)</span></p>
 <p><span class="math inline">\(P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k\)</span>, <span class="math inline">\(T_1=~\)</span>first time SARW (any <span class="math inline">\(p\in[0,1]\)</span>) to hit state <span class="math inline">\(1\)</span></p>
-<p><span class="math inline">\(P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k\)</span>, <span class="math inline">\(T_0=~\)</span>first time SARW returns to state <span class="math inline">\(0\)</span></p>
+<p><span class="math inline">\(P(T_k=m)=\frac mk P(X_m=k)\)</span>, <span class="math inline">\(T_k=~\)</span>first time SARW hits state <span class="math inline">\(k\)</span></p>
+<p><strong>Return time to initial state</strong>:<br>
+<span class="math inline">\(P(T_0=2k)=\frac1{2k-1}{2k\choose k}p^{k}(1-p)^k\)</span>, <span class="math inline">\(T_0=~\)</span>first time SARW returns to state <span class="math inline">\(0\)</span></p>
 </div>
 
 </div>

@@ -61,4 +61,7 @@ hit-time-for-state-1
 hitting-time-for-other-states
 return-time-to-state-0
 conditional-expectation
+conditional-distirbutions
+conditional-expectation-1
+random-conditional-expectation
 markov-chains
