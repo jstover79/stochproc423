@@ -127,6 +127,10 @@ pnorm((n+j)/2+1/2,mean=n*p,sd=sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,mean=n*p,sd=sqr
 ```
 <!-- ::: -->
 
+::: thmbox
+$$X_n\overset{approx}\sim \mathsf{N}(\mu=np-n,\sigma^2=4np(1-p))$$
+:::
+
 ::: exbox
 **Example.** Let's calculate $P(X_7=-3)$. We have $n=7$, $p=0.5$, and $j=-3$. The exact calculation using the distribution we derived from the bionomial is:
 $$P(X_7=-3)={7\choose\frac{7-3}{2}}\frac1{2^7}={7\choose2}\frac1{2^7}=\frac{7\cdot 3}{2^7}\approx0.1640625.$$
