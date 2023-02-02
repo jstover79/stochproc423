@@ -362,9 +362,6 @@ where <span class="math inline">\(Y\sim\mathsf N(\mu=np,\sigma^2=np(1-p))\)</spa
 <!-- $$P(X_n=j)=$$ --></p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="random-walks.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>((n<span class="sc">+</span>j)<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">mean=</span>n<span class="sc">*</span>p,<span class="at">sd=</span><span class="fu">sqrt</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)))<span class="sc">-</span><span class="fu">pnorm</span>((n<span class="sc">+</span>j)<span class="sc">/</span><span class="dv">2-1</span><span class="sc">/</span><span class="dv">2</span>,<span class="at">mean=</span>n<span class="sc">*</span>p,<span class="at">sd=</span><span class="fu">sqrt</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)))</span></code></pre></div>
 <!-- ::: -->
-<div class="thmbox">
-<p><span class="math display">\[X_n\overset{approx}\sim \mathsf{N}(\mu=np-n,\sigma^2=4np(1-p))\]</span></p>
-</div>
 <div class="exbox">
 <p><strong>Example.</strong> Let’s calculate <span class="math inline">\(P(X_7=-3)\)</span>. We have <span class="math inline">\(n=7\)</span>, <span class="math inline">\(p=0.5\)</span>, and <span class="math inline">\(j=-3\)</span>. The exact calculation using the distribution we derived from the bionomial is:
 <span class="math display">\[P(X_7=-3)={7\choose\frac{7-3}{2}}\frac1{2^7}={7\choose2}\frac1{2^7}=\frac{7\cdot 3}{2^7}\approx0.1640625.\]</span>
@@ -379,6 +376,9 @@ And for the SSRW this means
 <span class="math display">\[X_n=2H-n\overset{\small approx}{\sim}\mathsf{N}(\mu=0,\sigma^2=n).\]</span>
 Now to apply the continuity correction is a bit trickier though, because <span class="math inline">\(X_n\)</span> only takes on values <span class="math inline">\(-n,-n+2,\ldots,n-2,n\)</span>. Instead of adding and subtracting <span class="math inline">\(\frac12\)</span>, we must add and subtract <span class="math inline">\(1\)</span> and <span class="math inline">\(P(X_n=j)\)</span> is approximated by <code>pnorm(j+1,0,sqrt(n))-pnorm(j-1,0,sqrt(n))</code>.</p>
 <!-- ::: -->
+<div class="thmbox">
+<p><span class="math display">\[X_n\overset{approx}\sim \mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p))\]</span></p>
+</div>
 <p><strong>Partitioning.</strong> Note that when we calculate something like <span class="math inline">\(P(X_2=0)\)</span>, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
 <span class="math display">\[\begin{aligned}
 P(X_2=0)&amp;=P(X_1=1,X_2=0)+P(X_1=-1,X_2=0)\\

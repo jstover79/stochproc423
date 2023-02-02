@@ -127,9 +127,7 @@ pnorm((n+j)/2+1/2,mean=n*p,sd=sqrt(n*p*(1-p)))-pnorm((n+j)/2-1/2,mean=n*p,sd=sqr
 ```
 <!-- ::: -->
 
-::: thmbox
-$$X_n\overset{approx}\sim \mathsf{N}(\mu=np-n,\sigma^2=4np(1-p))$$
-:::
+
 
 ::: exbox
 **Example.** Let's calculate $P(X_7=-3)$. We have $n=7$, $p=0.5$, and $j=-3$. The exact calculation using the distribution we derived from the bionomial is:
@@ -149,6 +147,9 @@ Now to apply the continuity correction is a bit trickier though, because $X_n$ o
 
 <!-- ::: -->
 
+::: thmbox
+$$X_n\overset{approx}\sim \mathsf{N}(\mu=2np-n,\sigma^2=4np(1-p))$$
+:::
 
 **Partitioning.** Note that when we calculate something like $P(X_2=0)$, we are implicitly using the ideas of joint distributions, partitioning, and conditioning in teh following way
 $$\begin{aligned}
