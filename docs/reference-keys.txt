@@ -1,9 +1,11 @@
 introduction-to-r-and-rstudio
 getting-access-to-r-and-rstudio
+r-basics
+data-structures-vectors-matrices
 installing-and-using-packages-in-r
 random-variables
 basics-of-programming-r-scripts
-importing-datasets
+importing-datasets-into-r
 counting-sets-and-probability-basics
 ticket-in-a-box-model-of-probability
 sampling-from-a-box-of-tickets
@@ -60,9 +62,10 @@ definition-of-a-random-walk
 distribution-of-x_n
 shift-invariance-memorylessness
 reflection-principle
-maximum-state
+maximum-state-reached
 maximum-over-infinite-sample-paths-for-p12
-hit-time-for-state-1
+hitting-times
+hitting-time-for-state-1
 hitting-time-for-other-states
 return-time-to-state-0
 markov-chains

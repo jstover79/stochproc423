@@ -106,6 +106,62 @@ Just select R from the language tab at the lower right of the textbox.
 If you are familiar with MATLAB, choose the option "Octave".
 Octave is basically an open source version of MATLAB and you can run MATLAB code using the Octave language option on SageCell.
 
+## R basics
+
+We can assign variables in R with arrows or equal signs, e.g. `x <- 3`, `3 -> x`, and `x = 3` all achieve the same result, setting the variable $x$ to store the numerical value $3$. We can perform most arithmetic operations in the usual way, e.g. `x+2`, `5-x`, `x/4`, `x^2`, and `5*x`. There are also many special functions such as `log()` (natural log, $\texttt{log(2)}=\ln(2)$), `sin()`, `exp()` (natural exponentiation, $\texttt{exp(5)}=e^5$), etc.
+
+### Data structures, vectors, matrices
+
+The basic types of data structures in R include (but are not limited to) numbers, vectors, matrices, and characters. 
+
+Here are some additional data structures you might see:<br>
+`NULL` means "empty" but space is reserved for storing something<br>
+`NA` means "nat available" but space is reserved as well<br>
+`"3"` means the string character "3", not a number. We can coerce this to become a number by `as.numeric("3")`<br>
+
+Here are some relevant commands:
+
+`numeric()` creates an empty vector with no dimensions<br>
+`numeric(length=n)` creates a vector of $n$ zeros<br>
+`matrix()` creates an empty $1\times1$ matrix with $\texttt{NA}$ as the entry<br>
+`matrix(nrows=n,ncol=m)` creates an empty matrix of `NA`'s wtih $n$ rows and $m$ columns<br>
+`c(1,2,3)` creates an numeric vector $(1,2,3)$<br>
+`0:5` creates an numeric vector $(0,1,2,3,4,5)$<br>
+`seq(0,5,by=1)` creates an numeric vector $(0,1,2,3,4,5)$<br>
+`seq(0,1,by=0.5)` creates an numeric vector $(0,0.5,1)$<br>
+`seq(0,1,by=0.3)` creates an numeric vector $(0,0.3,0.6,0.9)$<br>
+`seq(0,1,length.out=4)` creates an numeric vector $(0,\frac12,\frac23,1)$<br>
+
+You access the components of a vector or matrix with square brackets: `x[4]` is the $4^{th}$ component of vector $x$. If $x$ was a matrix, it would treat it like a vector concatenating the columns together and access the $4^{th}$ component. We can access the components of a matrix with `M[i,j]` to get $M_{ij}$ the component in the $i^{th}$ row and $j^{th}$ column.
+
+We can create a $2\times3$ matrix and store it with the name $\texttt{M}$ with `M <- matrix(nrow=2,ncol=3)`. Alternatively we can use `M <- matrix(ncol=3,nrow=2)`. Normally for R commands, there is a default order for the arguments you pass through to it, and you don't need to specify the name of the arguments if you follow that default ordering. If you specify all arguments by name (e.g. `nrow=2` and `ncol=3`), then you can input the arguments in any order. It's best practice to stick with the default order to develop good habits though. 
+
+We can specify a specific matrix in the following way.
+```{r, eval=FALSE}
+M <- matrix(c(1,0,2,3,1,5),nrow=2,ncol=3,byrow=TRUE)
+```
+This takes the numeric vector $(1,0,2,3,1,5)$ and constructs the matrix
+$$\left(\begin{matrix}
+1 & 0 & 2\\
+3 & 1 & 5
+\end{matrix}\right).$$
+Alternatively, we can leave off the `byrow=TRUE` and it will default to constructing the matrix column-by-column. RStudio tends to play nicely with automatically indenting things, so one can put a line break in order to see the rows better in the code.
+```{r, eval=FALSE}
+M <- matrix(c(1,0,2,
+              3,1,5),nrow=2,ncol=3,byrow=TRUE)
+```
+
+You can also store characters and strings in vectors and matrices, but once you put in a string, R turns all numerical entries into character data structure as well.
+
+As long as two vectors or two matrices have the same dimensions, you can add or subtract them in the natural way: `x+y` or `A-B`. Component-wise multiplication is `x*y` which will keep the same dimensions but just with components multiplied, and similarly one can do `x/y` for component-wise division. Matrix multiplication is done with `%*%` such as `x %*% M`, but you need to make sure the dimensions are appropriate. 
+
+Here are a few other useful commands.<br>
+`t(M)` transpose of matrix or vector $M$.<br>
+`inv(M)` inverse of matrix $M$.<br>
+`dim(x)` gives dimensions of object $x$ (length of vector or number of rows and columns for a matrix).<br>
+`class(x)` gives the class for object $x$, e.g. it will tell us if it is numeric, character, or a matrix, or some other type of object such as Boolean/logical, etc.
+
+
 ## Installing and using packages in R
 
 It is common for software developers to develop libraries or packages which contain functions and methods. The purpose is the same as a mathematical function. Rather than you rewriting the equation each time, you can program the function and simply call that computer function with a single letter rather than a complicated formula. As an example, R has some base functionality for matrix computations, but in order to raise matrices to exponents, you need to `expm` package.
@@ -142,9 +198,98 @@ Here are the R names for some common distributions:
 
 *under construction*
 
-## Importing datasets
+## Importing datasets into R
 
-*under construction*
+Sometimes you might want to import a matrix of vector or otherwise a datset from a website, pdf, or other file format. There are several ways I will discuss getting data into R: text file, csv file (comma separated value), Excel (xls or xlsx), or through the computer's local clipboard functionality. This is only a small number of input file types that R is capable of handling though.
+
+**Import data from text file.** To import a single list of data into R, here is the table read method of importing data:
+1. Open an Excel spreadsheet.
+
+2. Put a name for your variable/data in the first cell (recommended text only, no spaces or special characters).
+
+3. Type all data values in the column under the name.
+
+4. Save as filetype $\texttt{Text (MS-Dos) (*.txt)}$". Alternatively, open it in MS Notepad, and copy and paste the entire data column, including the name, into Notepad and save it as a *.txt file. Let's say we saved it as $\texttt{filename.txt}$.
+
+5. Open R and execute the command: ` x <- read.table("fileneame.txt", header=T)`.
+
+
+Alternatively, if the dataset is small enough that manually typing out the entire list is not a major fuss, we can just use the R command `x <- c(x1,x2,x3,...,xn)`
+where $\texttt{x1,x2,x3,...,xn}$ is our list of actual numerical data values.
+
+
+I have saved our list of water well depth data is $\texttt{welldepth.txt}$. 
+<!-- Figure \ref{fig:notepadExcel} shows how your data should look in Excel and Notepad.  -->
+<!-- %Here is a brief look at a portion of that file: -->
+<!-- \begin{figure}[h] -->
+<!-- \begin{center} -->
+<!-- %\begin{tabular}{l} -->
+<!-- %depthdata\\ -->
+<!-- %115\\ -->
+<!-- %107\\ -->
+<!-- %114\\ -->
+<!-- %465\\ -->
+<!-- %... -->
+<!-- %\end{tabular} -->
+<!-- \includegraphics[scale=0.3]{welldepthNotepadExcel.png} -->
+<!-- \caption{Water well depth data shown in an Excel spreadsheet column with label and in a Notepad text file.} -->
+<!-- \label{fig:notepadExcel} -->
+<!-- \end{center} -->
+<!-- \end{figure} -->
+
+So we can execute: `wd <- read.table("welldepth.txt",header=TRUE)`. 
+This will give our data a ``data frame" type of tabular structure. A data frame is a specific type of data object in \R. A data frame is composed of multi-variate data, which each individual variable stored as a column. The ``names'' of each column (which indicate the data stored in that column) are stored at the top of the data frame, in the "header." To extract just the numerical well depth data, we'll need to execute `x <- wd$well_depth`.
+
+The name ``well\_depth" is the header name for our column of data. In R, the dollar symbol ``\$'' is used to reference the data stored within a specific column of a data frame. A data frame can have multiple columns with each column given a unique name in the header, e.g. a data frame named $\texttt{y}$ with columns named $\texttt{V1, V2, V3}$. We can extract the data from the 2nd column by $\texttt{y\$V2}$.
+
+*Headers:* Generally R expects the first horizontal row of your data file to contain the names of the data stored in each column. If your data file has more than two rows of text before the actual data begins, it may cause problems. When loading data you need to pay attention to whether you have copied a header or not.<br>
+`wd <- read.table("filename.txt", header=TRUE)` (reads top line as header)<br>
+`wd = read.table("filename.txt", header=FALSE)` (reads top line as data) 
+
+
+
+**Import data via the file browser.** 
+Now that you have gone through the work of manually setting your working directory and importing dataset in with a command line, you will be shown the easy way. Simply click on the three dots in the file pane in RStudio and navigate to the local directory on your computer where the file is stored. Click on the file from within RStuido's file pane. Then RStudio will automatically give you a preview of the file and dataset and will format the commands necessary to import it, including loading any packages that are necessary. This will work for Excel files, csv files, text files, and many other types of files.
+
+
+**Import data by manually typing.** We can also import our well depth data directly by typing it all out separated by commas inside of a `c()` with:\\
+```{r, eval=FALSE}
+x <- c(115,107,114,465,250,220,690,280,
+       520,100,450,200,80,500,120,375,
+       575,700,80,640,640,680,260,100,
+       300,160,440,165,660,120,560,180,
+       110,65,120,86,360,100,300,165,
+       500,600,600,260,300,620,480,440,
+       240,120,420,175,585,240,460,200,
+       200,430,482,290,290,620,660,440)
+```
+
+Note that in order to break lines without executing code, use a $\texttt{Shift-Enter}$ (hold the shift key while pressing the Enter/Return key).
+
+
+**Import data from csv file.**
+If your data is stored as a csv file, it is very much like reading from a text file. Again pay attention to whether or not the top row is a header with names for each of the data variables. `d <- read.csv("filename.csv",header=TRUE)`.
+
+
+**Import data from Excel file.**
+If you have data store in a $\texttt{xls}$ or $\texttt{xlsx}$ file, you can import it with the following commands. First we must load the R library "readxl". An R library is a specific software extension that gives us additional capabilities. You may need to install this package first using the command: `install.packages("readxl")`. Then once you have confirmed that readxl package is installed, issue the command `library(readxl)` in order to load the capability into your R session. Then you can finally load the data form the Excel file as follows:
+`d <- read_excel("filename.xlsx",header=TRUE)`.
+
+Again, pay attention to whether or not your data file include a header row and set the command to either $\texttt{TRUE}$ or $\texttt{FALSE}$ appropriately.
+
+**Import data from clipboard.** A very convenient way to import data is to highlight it on screen and copy it to your computer's clipboard memory. This works easiest if the data is already formatted nicely in a spreadsheet, but you can copy the data from a pdf, webpage, text file, and many other digital files this way too. It can become tricky as will be illustrated in the example below. Make sure to know whether you are only selecting the data or including a header or name. 
+
+*Disclaimer: The following works when viewing this pdf in Adobe Reader. If the pdf is opened in other viewing software, this may not work.*
+
+If we highlight the list of data above in this pdf  and copy it to the computer's clipboard (right-click and copy or $\texttt{Ctrl-C}$), we can import it with the command:`read.table("clipboard")`.
+
+This data will be imported as a "data frame" which is a specific data structure in R and it will be exactly in the format with rows and columns as in this pdf. If the data copied from the clipboard is simply a list of numbers for a single variable, then we will need to extract the numerical data from the data frame and turn it into a numerical list with the following command. This can be tricky to accomplish though.
+
+The following command will turn the data frame (imported via clipboard from copying the well depth data in this pdf within Adobe Reader): `x <- as.vector(t(wd))`.
+
+Now we have our list of well depths stored as $\texttt{x}$, and we are ready to analyze it with statistical techniques.
+
+
 
 
 ## Summary {-}

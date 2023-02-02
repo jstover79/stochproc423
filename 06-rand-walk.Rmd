@@ -223,7 +223,7 @@ $$\#\{X_j=m \text{ for some } j\leq n, X_n>m\}=\#\{X_j=m \text{ for some } j\leq
 :::
 
 
-## Maximum state
+## Maximum state reached
 
 Let $M_n=\max\{X_0,X_1,\ldots,X_n\}$ be the maximum level hit by the process up to time step $n$.
 
@@ -259,7 +259,11 @@ If $p<\frac12$ then the random walk will eventually hit some nonnegative maximum
 $$P(M_\infty=k)=\frac{1-2p}{1-p}\left(\frac{p}{1-p}\right)^k \ \text{ for } \ k=0,1,\ldots.$$
 Hence $M_\infty$ is a geometric random variable where we can think of a success as wander off to $-\infty$ and never exceeding its previous maximum. The probability the walk (starting at $X_0=0$) never goes above zero is $\frac{1-2p}{1-p}$. The probability it hits level 1 eventually is $\frac p{1-p}$. From that point, it is probability $\frac{1-2p}{1-p}$ that it never exceeds level 1. Working inductively, we can reason that $\left(\frac p{1-p}\right)^k$ is the probability it eventually hits level $k$ and then multiplying by $\frac{1-2p}{1-p}$ that the walk never again exceeds its current level.
 
-## Hit time for state $1$
+## Hitting times
+
+We may be interested in how long it takes the random walk to hit a certain state. We refer to this as a **hitting time**. For example, if we are modeling a stock price with a random walk, and buy the stock for \$250 and we wish to gain a profit of \$5, then we might be interested in the how long we expect to wait for the stock to hit \$255.
+
+### Hitting time for state $1$
 
 We wish to know how long it takes for the SARW to hit level $1$. Let $T_1=\min\{n>0 : X_n=1\}$ which we call the *hitting time* for state $1$.
 

@@ -110,7 +110,19 @@ E(X)&=E[E(X\mid Y)]\\
 &=\sum_y E(X\mid Y=y) P(Y=y)\\
 \end{aligned}$$
 
+::: exbox
+**Example.**
+Consider the example where $Y\sim\textsf{unif}(1,5)$ and, conditional on $Y=y$, $X\sim\textsf{Exp(rate=$y$)}$. Calculate $E(X)$.
 
+*Solution:* What we have here is called a **compound distribution** since the distribution of $X$ has a parameter that is random. The conditional pdf of $X$ given $Y=y$ is $f_{X|Y=y}(x|y)=y e^{yx}$ which is the exponential pdf with rate parameter $\lambda$ replaced by $y$. The expected value is $\frac1\lambda$, so in this case it is $\frac1y$. This is NOT the expected value of $X$ though. This is the conditional expected value of $X$ given that $Y=y$:
+$$E(X\mid Y=y)=\frac1y.$$
+And, in general, if we allow $Y$ to stay random, then we have
+$$E(X\mid Y)=\frac1Y$$
+which is still a random variable. 
+
+Using the total expectation formula, we get
+$$E(X)=E[E(X\mid Y)]=E\left[\frac1Y\right]=\int_1^5 \frac1y f_Y(y)~dy=\int_1^5 \frac1y \frac14~dy=\frac14\ln5.$$
+:::
 
 ## Summary {-}
 
