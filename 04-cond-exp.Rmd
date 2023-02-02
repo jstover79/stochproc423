@@ -1,8 +1,8 @@
-# Conditional expectation
+# Conditional expectation 
 
 Now we discuss the concept of conditional expectation. Conditioning can be thought of as reducing the number of possibilities for a random experiment.
 
-## Conditional distirbutions
+## Conditional distributions 
 
 The conditional distribution of $X$ given $Y=y$ is given as $$f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}$$
 where $f_{X,Y}$ is the joint distribution of $X$ and $Y$ and $f_Y$ is the marginal distribution of $Y$. If both are discrete random variables, then these are all probability mass functions (and we sum to get probabilities), and if they are both continuous random variables, then all are probability density functions (and we integrate to get probabilities).
@@ -11,7 +11,22 @@ For the discrete case, which is what we will mostly be working with, we get
 $$f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}=\frac{P(X=x,Y=y)}{P(Y=y)}=P(X=x\mid Y=y).$$
 So the conditional pmf is just another way to write conditional probabilities. We can calculate conditional pmfs from the tabular format of the joint distribution simply by dividing a row or column by its total sum. Consider the example below.
 
-|   |     |      | X   |       |
+
+<!-- ```{r, echo=FALSE, message=FALSE} -->
+<!-- library(knitr) -->
+<!-- library(tidyverse) -->
+<!-- library(kableExtra) -->
+
+<!-- df <- data.frame(x = 1:10, y = 11:20) -->
+
+<!-- kable(df, format = "html", table.attr = "style='width:30%;'") -->
+
+<!-- kable(df, format = "html", table.attr = "style='width:30%;'") %>%  -->
+<!--   kableExtra::kable_styling() -->
+<!-- ``` -->
+
+
+|   |     |      |  X   |       |
 |---|-----|------|------|-------|
 |   |     |  0   |  1   |  2    |
 | Y | 1   | 0.36 | 0.18 | 0.06  |
@@ -84,6 +99,17 @@ f_{h(Y)}(a)=f_{E(X\mid Y)}(a)=
 0.4 &\text{ if } a=1.6.
 \end{cases}
 $$
+
+### Total expectation
+
+We can compute the expected value of a random variable using conditioning.
+
+$$
+\begin{aligned}
+E(X)&=E[E(X\mid Y)]\\
+&=\sum_y E(X\mid Y=y) P(Y=y)\\
+\end{aligned}$$
+
 
 
 ## Summary {-}
