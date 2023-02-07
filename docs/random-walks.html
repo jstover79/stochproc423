@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -472,16 +472,41 @@ Hence <span class="math inline">\(M_\infty\)</span> is a geometric random variab
 <h3><span class="header-section-number">6.6.1</span> Hitting time for state <span class="math inline">\(1\)</span><a href="random-walks.html#hitting-time-for-state-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We wish to know how long it takes for the SARW to hit level <span class="math inline">\(1\)</span>. Let <span class="math inline">\(T_1=\min\{n&gt;0 : X_n=1\}\)</span> which we call the <em>hitting time</em> for state <span class="math inline">\(1\)</span>.</p>
 <div class="thmbox">
-<p><strong>Hitting time for state <span class="math inline">\(1\)</span>.</strong></p>
+<p><strong>Theorem (Hitting time for state <span class="math inline">\(1\)</span>).</strong></p>
 <p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span>
 <a href="javascript:unhide('t1pf');">Show/hide proof.</a></p>
 <div id="t1pf" class="hiddendiv">
-<p>comming soon!</p>
-<p>We’ll see that the number of paths that end at <span class="math inline">\(X_{2k}=0\)</span> and hit level 1 somewhere before that is the same as the number of paths that start at <span class="math inline">\(X_0=0\)</span> and end at <span class="math inline">\(X_{2k}=2\)</span>… See the graph below.</p>
-<p>Draw any path for yourself that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=2\)</span> for any <span class="math inline">\(k\)</span>-value. Then figure out the first time it hits level 1 and reflect the rest of the path after that around level 1. Then you get a path that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=0\)</span> and it hits level 1 somewhere. This is the number of paths in the event <span class="math inline">\(\{M_{2k}\geq1,X_{2k}=0\}\)</span>.</p>
+<p><em>Proof.</em>
+We’ll first see that the number of paths that end at <span class="math inline">\(X_{2k}=0\)</span> and hit level 1 somewhere before that is the same as the number of paths that start at <span class="math inline">\(X_0=0\)</span> and end at <span class="math inline">\(X_{2k}=2\)</span>… See the graph below.</p>
+<p>Draw any path for yourself that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=2\)</span> for any <span class="math inline">\(k\)</span>-value. Then figure out the first time it hits level 1 and reflect the rest of the path after that around level 1. Then you get a path that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=0\)</span> and it hits level 1 somewhere. This is the number of paths in the event <span class="math inline">\(\{M_{2k}\geq1,X_{2k}=0\}\)</span>. An example is shown below</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Now <span class="math inline">\(P(T_1=2k+1)\)</span> is exactly the probability that the walk hits state <span class="math inline">\(0\)</span> at time <span class="math inline">\(2k\)</span> (and has never hit state <span class="math inline">\(1\)</span> at all) and then goes up to state <span class="math inline">\(1\)</span>:
+<span class="math display">\[P(T_1=2k+1)=P(X_{2k}=0 \text{ and has never hit state 1 (by time $2k$)}) \cdot p .\]</span>
+The event <span class="math inline">\(\{\text{has never hit state 1}\}\)</span> is exactly the event that the maximum is zero:
+<span class="math display">\[\{\text{has never hit state 1 (by time $2k$)}\}=\{M_{2k}=0\}.\]</span>
+So we have
+<span class="math display">\[P(T_1=2k+1)=P(X_{2k}=0, M_{2k}=0) \cdot p .\]</span></p>
+<p>Now we know how many paths have <span class="math inline">\(X_{2k}=0\)</span>, and we need to subtract form that event, the number of paths that go above <span class="math inline">\(0\)</span> somewhere, i.e. the number of paths in the event <span class="math inline">\(\{X_{2k}=0,M_{2k}\geq1\}\)</span>. We have already worked out above (by the reflection principle) that this is the same as in <span class="math inline">\(\{X_{2k}=2\}\)</span>.</p>
+<p>So performing the counting of paths we have:
+<span class="math display">\[\# \{X_{2k}=0, M_{2k}\geq 1 \}=\#\{X_{2k}=2\}={2k\choose k-1}.\]</span>
+And hence, the number of paths which never hit state <span class="math inline">\(1\)</span> by time <span class="math inline">\(2k\)</span> is
+<span class="math display">\[
+\begin{aligned}
+\# \{ X_{2k}=0, M_{2k}=0 \}&amp;=\# \{X_{2k}=0\}-\# \{X_{2k}=0, M_{2k}\geq1 \}\\
+&amp;={2k\choose k}-{2k\choose k-1}\\
+&amp;=\frac{(2k)!}{k!k!}-\frac{(2k)!}{(k-1)!(k+1)!}\\
+&amp;=\frac{(2k)!}{(k-1)!k!} \left(\frac1k-\frac1{k+1}\right)\\
+&amp;=\frac{(2k)!}{(k-1)!k!} \cdot\frac1{k(k+1)}\\
+&amp;=\frac1{k+1}{2k\choose k}.
+\end{aligned}\]</span></p>
+<p>Now since every path that starts at <span class="math inline">\(X_0=0\)</span> and ends at <span class="math inline">\(X_{2k}=0\)</span> is equally likely with <span class="math inline">\(k\)</span> up steps and <span class="math inline">\(k\)</span> downsteps, they each have probability <span class="math inline">\(p^k(1-p)^k\)</span>, and there are <span class="math inline">\(\frac1{k+1}{2k\choose k}\)</span> of those paths that never hit state <span class="math inline">\(1\)</span>. Now we put this all together to see that
+<span class="math display">\[\begin{aligned}
+P(T_1=2k+1)&amp;=P(X_{2k}=0, M_{2k}=0) \cdot p \\
+&amp;=\# \{ X_{2k}=0, M_{2k}=0 \} p^k (1-p)^k \cdot p\\
+&amp;=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k.
+\end{aligned}\]</span>
+<span class="math inline">\(\square\)</span></p>
 </div>
-<p>to be continued…</p>
 </div>
 <p>By symmetry, we can understand the distribution for <span class="math inline">\(T_{-1}\)</span>, the hitting time for state <span class="math inline">\(-1\)</span> as well. For the SSRW, <span class="math inline">\(P(T_{-1}=k)=P(T_1=k)\)</span> since there is no difference in the probabilities of going up or down. In fact <span class="math inline">\(-X_n\)</span> (the reflected SSRW) has the same distribution as <span class="math inline">\(X_n\)</span>, and <span class="math inline">\(T_{-1}\)</span> for <span class="math inline">\(X_n\)</span> is exactly the same thing as <span class="math inline">\(T_1\)</span> for <span class="math inline">\(-X_n\)</span>. Since the latter is also a SSRW, then <span class="math inline">\(T_1\)</span> is exactly distributed according to the above given formula. If the walk was asymmetric with <span class="math inline">\(p\neq\frac12\)</span>, then <span class="math inline">\(T_{-1}\)</span> is distributed according to <span class="math inline">\(T_1\)</span> for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. <span class="math inline">\(P(T_{-1}=k)\)</span> for the SARW with <span class="math inline">\(p\)</span> probability of up step is identical to <span class="math inline">\(P(T_{1}=k)\)</span> for the SARW with <span class="math inline">\(1-p\)</span> probability of up step.</p>
 </div>
