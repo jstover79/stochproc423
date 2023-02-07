@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-02-03" />
+<meta name="date" content="2023-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,7 +473,15 @@ Hence <span class="math inline">\(M_\infty\)</span> is a geometric random variab
 <p>We wish to know how long it takes for the SARW to hit level <span class="math inline">\(1\)</span>. Let <span class="math inline">\(T_1=\min\{n&gt;0 : X_n=1\}\)</span> which we call the <em>hitting time</em> for state <span class="math inline">\(1\)</span>.</p>
 <div class="thmbox">
 <p><strong>Hitting time for state <span class="math inline">\(1\)</span>.</strong></p>
-<p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span></p>
+<p><span class="math display">\[P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.\]</span>
+<a href="javascript:unhide('t1pf');">Show/hide proof.</a></p>
+<div id="t1pf" class="hiddendiv">
+<p>comming soon!</p>
+<p>We’ll see that the number of paths that end at <span class="math inline">\(X_{2k}=0\)</span> and hit level 1 somewhere before that is the same as the number of paths that start at <span class="math inline">\(X_0=0\)</span> and end at <span class="math inline">\(X_{2k}=2\)</span>… See the graph below.</p>
+<p>Draw any path for yourself that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=2\)</span> for any <span class="math inline">\(k\)</span>-value. Then figure out the first time it hits level 1 and reflect the rest of the path after that around level 1. Then you get a path that goes form <span class="math inline">\(X_0=0\)</span> to <span class="math inline">\(X_{2k}=0\)</span> and it hits level 1 somewhere. This is the number of paths in the event <span class="math inline">\(\{M_{2k}\geq1,X_{2k}=0\}\)</span>.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<p>to be continued…</p>
 </div>
 <p>By symmetry, we can understand the distribution for <span class="math inline">\(T_{-1}\)</span>, the hitting time for state <span class="math inline">\(-1\)</span> as well. For the SSRW, <span class="math inline">\(P(T_{-1}=k)=P(T_1=k)\)</span> since there is no difference in the probabilities of going up or down. In fact <span class="math inline">\(-X_n\)</span> (the reflected SSRW) has the same distribution as <span class="math inline">\(X_n\)</span>, and <span class="math inline">\(T_{-1}\)</span> for <span class="math inline">\(X_n\)</span> is exactly the same thing as <span class="math inline">\(T_1\)</span> for <span class="math inline">\(-X_n\)</span>. Since the latter is also a SSRW, then <span class="math inline">\(T_1\)</span> is exactly distributed according to the above given formula. If the walk was asymmetric with <span class="math inline">\(p\neq\frac12\)</span>, then <span class="math inline">\(T_{-1}\)</span> is distributed according to <span class="math inline">\(T_1\)</span> for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. <span class="math inline">\(P(T_{-1}=k)\)</span> for the SARW with <span class="math inline">\(p\)</span> probability of up step is identical to <span class="math inline">\(P(T_{1}=k)\)</span> for the SARW with <span class="math inline">\(1-p\)</span> probability of up step.</p>
 </div>

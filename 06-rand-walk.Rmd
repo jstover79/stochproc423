@@ -271,7 +271,39 @@ We wish to know how long it takes for the SARW to hit level $1$. Let $T_1=\min\{
 **Hitting time for state $1$.** 
 
 $$P(T_1=2k+1)=\frac1{k+1}{2k\choose k}p^{k+1}(1-p)^k, \ k=0,1,2,\ldots.$$
+<a href="javascript:unhide('t1pf');">Show/hide proof.</a>
+
+::: {#t1pf .hiddendiv}
+
+comming soon!
+
+We'll see that the number of paths that end at $X_{2k}=0$ and hit level 1 somewhere before that is the same as the number of paths that start at $X_0=0$ and end at $X_{2k}=2$... See the graph below.
+
+Draw any path for yourself that goes form $X_0=0$ to $X_{2k}=2$ for any $k$-value. Then figure out the first time it hits level 1 and reflect the rest of the path after that around level 1. Then you get a path that goes form $X_0=0$ to $X_{2k}=0$ and it hits level 1 somewhere. This is the number of paths in the event $\{M_{2k}\geq1,X_{2k}=0\}$.
+
+```{r, echo=FALSE}
+rw1 <- c(0,-1,0,-1,-2,-1,0,1,2,3,2,3,2,1,0,-1,0,1,2,3,4,5,4,5,4,3,4,3,2) 
+m <- (length(rw1)-1)/2
+x <- diff(rw1)
+r <- 1 
+ri <- min(which(rw1==r))
+x2 <- x
+x2[ri:length(x2)] <- -1*x2[ri:length(x2)]
+rw2 <- c(0,cumsum(x2))
+plot(0:length(x),rw1,type="b",pch=20,xlab="time step",ylab="position",
+     ylim=c(-5,5))
+lines((ri-1):(length(x2)),rw2[ri:(length(x2)+1)],type="l",pch=20,col="red")
+abline(0,0,lty="dashed",col=rgb(0.7,0.1,0.9,0.4),lwd=2)
+abline(1,0,lty="dotdash",col=rgb(0.1,0.1,0.9,0.4),lwd=2)
+abline(2,0,lty="dotted",lwd=2,col=rgb(0.1,0.8,0.2,0.4))
+```
+
 :::
+
+to be continued...
+
+:::
+
 
 By symmetry, we can understand the distribution for $T_{-1}$, the hitting time for state $-1$ as well. For the SSRW, $P(T_{-1}=k)=P(T_1=k)$ since there is no difference in the probabilities of going up or down. In fact $-X_n$ (the reflected SSRW) has the same distribution as $X_n$, and $T_{-1}$ for $X_n$ is exactly the same thing as $T_1$ for $-X_n$. Since the latter is also a SSRW, then $T_1$ is exactly distributed according to the above given formula. If the walk was asymmetric with $p\neq\frac12$, then $T_{-1}$ is distributed according to $T_1$ for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. $P(T_{-1}=k)$ for the SARW with $p$ probability of up step is identical to $P(T_{1}=k)$ for the SARW with $1-p$ probability of up step.
 
