@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Random walks | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 6 Random walks | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Random walks | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -578,6 +578,16 @@ Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span 
 Let <span class="math inline">\(X_n\)</span> be a simple random walk with <span class="math inline">\(p\)</span> the probability of stepping up. Let <span class="math inline">\(T_k\)</span> be the hitting time for level <span class="math inline">\(k\geq0\)</span>. We have
 <span class="math display">\[P(T_3=5)=\frac 35 P(X_5=3)=\frac35 {5\choose4}p^4(1-p)=3p^4(1-p).\]</span></p>
 </div>
+<p>The hitting time <span class="math inline">\(T_k\)</span> for state <span class="math inline">\(k\)</span> can be thought of in the following way. We wait for the walk to hit state 1 (a <span class="math inline">\(T_1\)</span> random number of time steps), and then from there, we consider it to be starting a new walk and then wait for it to go up one level from its new starting point (this is another <span class="math inline">\(T_1\)</span> random number of time steps), and then repeat this always waiting for it to go up one level. Each time we wait for it to go up <span class="math inline">\(+1\)</span> level, we wait for a random number of time steps, and each of these waits is equivalent to <span class="math inline">\(T_1\)</span> the time to hit level one. Since non-overlapping time periods are independent, we have a sequence of independent random wait times… i.e. a sequence of i.i.d. <span class="math inline">\(T_1\)</span>’s.</p>
+<p>For each <span class="math inline">\(j\in\mathbb N\)</span>, let <span class="math inline">\(T_1^{(j)}\)</span> be a “copy” of the wait time to hit state 1 <span class="math inline">\(T_1\)</span>. This means that we can plug in whatever we want for <span class="math inline">\(j\)</span> and we’ll always have <span class="math inline">\(P(T_1^{(j)}=m)=P(T_1=m)\)</span>. We can think of <span class="math inline">\(T_k\)</span> as the sum of <span class="math inline">\(k\)</span> of these random times:
+<span class="math display">\[T_k=\sum_{j=1}^kT_1^{(j)}.\]</span>
+Now we can calculate the expected value using linearity of expected value operator:
+<span class="math display">\[E(T_k)=E\left(\sum_{j=1}^kT_1^{(j)}\right)=\sum_{j=1}^kE\left(T_1^{(j)}\right)=kE(T_1).\]</span>
+So now, we can calculate the expected wait time to hit any level using the expected wait time to hit level one!</p>
+<div class="thmbox">
+<p><strong>Theorem.</strong>
+<span class="math display">\[E(T_k)=k E(T_1)\]</span></p>
+</div>
 </div>
 </div>
 <div id="return-time-to-state-0" class="section level2 hasAnchor" number="6.7">
@@ -628,6 +638,58 @@ This finishes the calculation.</p>
 <!-- and that solves it! -->
 <!-- </details> -->
 <!-- ::: -->
+<p>Here is a table for returns to zero with <span class="math inline">\(T_0\)</span> the wait time to return to zero and <span class="math inline">\(N\)</span> the number of times that we return to zero. Note that the actual number of times the walk is in state zero is <span class="math inline">\(N+1\)</span> since it always starts in state zero.</p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="16%" />
+<col width="18%" />
+<col width="8%" />
+<col width="13%" />
+<col width="13%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(r=P(T_0&lt;\infty)\)</span></th>
+<th align="center"><span class="math inline">\(P(T_0=\infty)\)</span></th>
+<th><span class="math inline">\(E(T_0)\)</span></th>
+<th><span class="math inline">\(P(N&lt;\infty)\)</span></th>
+<th><span class="math inline">\(P(N=\infty)\)</span></th>
+<th><span class="math inline">\(E(N)=\frac{r}{1-r}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(p&lt;\frac12\)</span></td>
+<td align="center"><span class="math inline">\(2p\)</span></td>
+<td align="center"><span class="math inline">\(1-2p\)</span></td>
+<td><span class="math inline">\(\infty\)</span></td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{2p}{1-2p}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p=\frac12\)</span></td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td><span class="math inline">\(\infty\)</span></td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p&gt;\frac12\)</span></td>
+<td align="center"><span class="math inline">\(2(1-p)\)</span></td>
+<td align="center"><span class="math inline">\(2p-1\)</span></td>
+<td><span class="math inline">\(\infty\)</span></td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\frac{2-2p}{2p-1}\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-4" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="random-walks.html#summary-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>

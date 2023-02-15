@@ -413,6 +413,19 @@ Let $X_n$ be a simple random walk with $p$ the probability of stepping up. Let $
 $$P(T_3=5)=\frac 35 P(X_5=3)=\frac35 {5\choose4}p^4(1-p)=3p^4(1-p).$$
 :::
 
+The hitting time $T_k$ for state $k$ can be thought of in the following way. We wait for the walk to hit state 1 (a $T_1$ random number of time steps), and then from there, we consider it to be starting a new walk and then wait for it to go up one level from its new starting point (this is another $T_1$ random number of time steps), and then repeat this always waiting for it to go up one level. Each time we wait for it to go up $+1$ level, we wait for a random number of time steps, and each of these waits is equivalent to $T_1$ the time to hit level one. Since non-overlapping time periods are independent, we have a sequence of independent random wait times... i.e. a sequence of i.i.d. $T_1$'s.
+
+For each $j\in\mathbb N$, let $T_1^{(j)}$ be a "copy" of the wait time to hit state 1 $T_1$. This means that we can plug in whatever we want for $j$ and we'll always have $P(T_1^{(j)}=m)=P(T_1=m)$. We can think of $T_k$ as the sum of $k$ of these random times:
+$$T_k=\sum_{j=1}^kT_1^{(j)}.$$
+Now we can calculate the expected value using linearity of expected value operator:
+$$E(T_k)=E\left(\sum_{j=1}^kT_1^{(j)}\right)=\sum_{j=1}^kE\left(T_1^{(j)}\right)=kE(T_1).$$
+So now, we can calculate the expected wait time to hit any level using the expected wait time to hit level one!
+
+::: thmbox
+**Theorem.**
+$$E(T_k)=k E(T_1)$$
+:::
+
 ## Return time to state $0$
 
 We have that $X_0=0$ initially. We want to know how long it takes for the random walk to return to state zero. Let $T_0=\min\{n>0 : X_n=0\}$ which we call the *return time to zero*. We can calculate $P(T_0=2k)$ for $k=1,2,\ldots$ by sketching a graph and counting paths. For example, $P(T_0=2)=\frac12$ since this means the first two time steps are up then down or vice versa. Similarly, we can calculate $P(T_0=4)=\frac18$. The general formula is given below.
@@ -471,6 +484,14 @@ This finishes the calculation.
 <!-- and that solves it! -->
 <!-- </details> -->
 <!-- ::: -->
+
+Here is a table for returns to zero with $T_0$ the wait time to return to zero and $N$ the number of times that we return to zero. Note that the actual number of times the walk is in state zero is $N+1$ since it always starts in state zero.
+
+|             | $r=P(T_0<\infty)$ | $P(T_0=\infty)$ | $E(T_0)$ | $P(N<\infty)$ | $P(N=\infty)$ | $E(N)=\frac{r}{1-r}$ |
+|-------------|:-----------------:|:-------------------:|----------|---------------|---------------|----------------------|
+| $p<\frac12$ |        $2p$       | $1-2p$              | $\infty$ | 1             | 0             | $\frac{2p}{1-2p}$    |
+| $p=\frac12$ |         1         | 0                   | $\infty$ | 0             | 1             | $\infty$             |
+| $p>\frac12$ |      $2(1-p)$     | $2p-1$              | $\infty$ | 1             | 0             | $\frac{2-2p}{2p-1}$  |
 
 
 
