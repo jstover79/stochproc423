@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Conditional expectation | Math 423 Stochastic Processes Course Notes</title>
-  <meta name="description" content="Chapter 4 Conditional expectation | Math 423 Stochastic Processes Course Notes" />
+  <title>Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Conditional expectation | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:title" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Conditional expectation | Math 423 Stochastic Processes Course Notes" />
+  <meta name="twitter:title" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="random-variables-and-distributions.html"/>
-<link rel="next" href="intro-stochastic-processes.html"/>
+<link rel="prev" href="random-walks.html"/>
+<link rel="next" href="markov-chains.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -286,177 +286,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conditional-expectation" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Conditional expectation<a href="conditional-expectation.html#conditional-expectation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Now we discuss the concept of conditional expectation. Conditioning can be thought of as reducing the number of possibilities for a random experiment.</p>
-<div id="conditional-distributions" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Conditional distributions<a href="conditional-expectation.html#conditional-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> is given as <span class="math display">\[f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\]</span>
-where <span class="math inline">\(f_{X,Y}\)</span> is the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and <span class="math inline">\(f_Y\)</span> is the marginal distribution of <span class="math inline">\(Y\)</span>. If both are discrete random variables, then these are all probability mass functions (and we sum to get probabilities), and if they are both continuous random variables, then all are probability density functions (and we integrate to get probabilities).</p>
-<p>For the discrete case, which is what we will mostly be working with, we get
-<span class="math display">\[f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}=\frac{P(X=x,Y=y)}{P(Y=y)}=P(X=x\mid Y=y).\]</span>
-So the conditional pmf is just another way to write conditional probabilities. We can calculate conditional pmfs from the tabular format of the joint distribution simply by dividing a row or column by its total sum. Consider the example below.</p>
-<!-- ```{r, echo=FALSE, message=FALSE} -->
-<!-- library(knitr) -->
-<!-- library(tidyverse) -->
-<!-- library(kableExtra) -->
-<!-- df <- data.frame(x = 1:10, y = 11:20) -->
-<!-- kable(df, format = "html", table.attr = "style='width:30%;'") -->
-<!-- kable(df, format = "html", table.attr = "style='width:30%;'") %>%  -->
-<!--   kableExtra::kable_styling() -->
-<!-- ``` -->
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th></th>
-<th></th>
-<th>X</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>Y</td>
-<td>1</td>
-<td>0.36</td>
-<td>0.18</td>
-<td>0.06</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>2</td>
-<td>0.14</td>
-<td>0.20</td>
-<td>0.06</td>
-</tr>
-</tbody>
-</table>
-<p>We can write the conditional pmf for <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=1\)</span> by taking the row <span class="math inline">\((0.36,0.18,0.06)\)</span> and dividing it by its sum <span class="math inline">\(0.36+0.18+0.06=0.60=P(Y=1)\)</span> to get <span class="math inline">\((0.36/0.6,0.18/0.6,0.06/0.6)=(0.6,0.3,0.1)\)</span>, and this is exactly the conditional pmf for <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=1\)</span>.</p>
-<p><span class="math display">\[f_{X|Y=5}=\begin{cases}
-0.6 &amp; \text{ if } x=0\\
-0.3 &amp; \text{ if } x=1\\
-0.1 &amp; \text{ if } x=2\\
-\end{cases}\]</span></p>
+<div id="limit-theorems" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Limit theorems<a href="limit-theorems.html#limit-theorems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="inequalities" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Inequalities<a href="limit-theorems.html#inequalities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="conditional-expectation-1" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Conditional expectation<a href="conditional-expectation.html#conditional-expectation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Conditional expectation can be thought of in the following way. Imagine that we perform an experiment repeatedly where each outcome gives us two measurements, i.e. two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> which could depend on each other in any arbitrary way. In other words a single outcome of the experiment gives us a pair <span class="math inline">\((X,Y)\)</span>. We could simply average the <span class="math inline">\(X\)</span>-values to approximate its mean <span class="math inline">\(E(X)\)</span>, or we could average only those <span class="math inline">\(X\)</span> values which came paired with a particular <span class="math inline">\(Y\)</span> value or a predetermined range of <span class="math inline">\(Y\)</span>-values. This would be calculating a conditional expected value for <span class="math inline">\(X\)</span>.</p>
-<p>If we average all <span class="math inline">\(X\)</span>-values that are paired with precisely <span class="math inline">\(Y=y\)</span>, then this gives us an estimate of <span class="math inline">\(E(X\mid Y=y)\)</span> the <strong>conditional expectation of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span></strong>. We can compute this from our distributions just as we did before for expected value, but we use the conditional pmf:
-<span class="math display">\[E(X\mid Y=y)=\sum_x x f_{X|Y=y}(x|y).\]</span></p>
-<p>It is advised to first think of <span class="math inline">\(y\)</span> as a fixed constant in the above equation. But one can also consider it as a variable <span class="math inline">\(y\)</span> (a standard algebra/calculus variable, not a random variable) which ranges over the set of possible values for random variable <span class="math inline">\(Y\)</span>. In other words <span class="math inline">\(E(X\mid Y=y)\)</span> can be though of as a <em>function of <span class="math inline">\(y\)</span></em> in the typical algebra/calculus sense, i.e. <span class="math inline">\(E(X\mid Y=y)=h(y)\)</span> with plugging in a specific <span class="math inline">\(y\)</span>-value will output the fixed numerical conditional expectation of <span class="math inline">\(X\)</span>.</p>
-<p>In the continuous case, we integrate instead of sum:
-<span class="math display">\[E(X\mid Y=y)=\int_{-\infty}^\infty x f_{X|Y=y}(x|y) ~dx.\]</span>
-In this case, we are working with probability densities though, so the conditional pdf is not the same thing as conditional probability.</p>
+<div id="law-of-large-numbers" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Law of large numbers<a href="limit-theorems.html#law-of-large-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="random-conditional-expectation" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> (Random) conditional expectation<a href="conditional-expectation.html#random-conditional-expectation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can also write <span class="math inline">\(E(X\mid Y)\)</span> without specifying a particular value for <span class="math inline">\(Y\)</span> and leaving it as a random variable. If we were to decide that we are interested in a particular <span class="math inline">\(Y\)</span>-values, e.g. <span class="math inline">\(y\)</span>, then we can plug that in to get <span class="math inline">\(E(X\mid Y=y)\)</span> which we can calculate as already discussed and can think of as a function <span class="math inline">\(E(X\mid Y=y)=h(y)\)</span>.</p>
-<p>We can skip the step of plugging in a particular <span class="math inline">\(y\)</span> though and can just write <span class="math inline">\(E(X\mid Y)=h(Y)\)</span> which is a function of random variable <span class="math inline">\(Y\)</span>. Since a function of a random variable is also a random variable, we have that <span class="math inline">\(E(X\mid Y)\)</span> is a random variable. This means that we can calculate probabilities such as <span class="math inline">\(P[E(X\mid Y)=a]\)</span> or <span class="math inline">\(P\left[E(X\mid Y)\leq b\right]\)</span>. In fact, these probabilities are really qustions about the random variable <span class="math inline">\(Y\)</span>:
-<span class="math display">\[P[E(X\mid Y)=a]=P\left[ Y \text{ gives a value } y \text{ that results in} E(X\mid Y=y)=a\right]\]</span>
-Consider the example below.</p>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th></th>
-<th></th>
-<th>X</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>Y</td>
-<td>1</td>
-<td>0.36</td>
-<td>0.18</td>
-<td>0.06</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>2</td>
-<td>0.14</td>
-<td>0.20</td>
-<td>0.06</td>
-</tr>
-</tbody>
-</table>
-<p>We can calculate the conditional pmfs <span class="math inline">\(f_{X|Y=1}(x|1)\)</span> and <span class="math inline">\(f_{X|Y=2}(x|2)\)</span>, and from these we can calculate <span class="math inline">\(E(X\mid Y=1)\)</span> and <span class="math inline">\(E(X\mid Y=2)\)</span>.</p>
-<p><span class="math display">\[\begin{aligned}
-E(X\mid Y=1)&amp;=0\cdot f_{X|Y=1}(0|1)+1\cdot f_{X|Y=1}(1|1)+2\cdot f_{X|Y=1}(2|1)\\
-&amp;=0\cdot \frac{0.36}{0.6}+1\cdot \frac{0.18}{0.6}+2\cdot \frac{0.06}{0.6}=0.3+0.2=0.5
-\end{aligned}\]</span>
-Similarly, we get <span class="math inline">\(E(X\mid Y=2)=0.2/0.2+2\cdot 0.06/0.2=1.6\)</span>.</p>
-<p>Hence we get the function
-<span class="math display">\[
-E(X\mid Y=y)=h(y)=
-\begin{cases}
-0.5 &amp;\text{ if } y=1\\
-1.6 &amp;\text{ if } y=2.
-\end{cases}
-\]</span>
-As a random variable, we get
-<span class="math display">\[
-P[E(X\mid Y)=a]=
-\begin{cases}
-P(Y=1) &amp;\text{ if } a=0.5\\
-P(Y=2) &amp;\text{ if } a=1.6.
-\end{cases}
-\]</span>
-So we can write down the pmf for <span class="math inline">\(E(X\mid Y)=h(Y)\)</span> as
-<span class="math display">\[
-f_{h(Y)}(a)=f_{E(X\mid Y)}(a)=
-\begin{cases}
-0.6 &amp;\text{ if } a=0.5\\
-0.4 &amp;\text{ if } a=1.6.
-\end{cases}
-\]</span></p>
-<div id="total-expectation" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Total expectation<a href="conditional-expectation.html#total-expectation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can compute the expected value of a random variable using conditioning.</p>
-<p><span class="math display">\[
-\begin{aligned}
-E(X)&amp;=E[E(X\mid Y)]\\
-&amp;=\sum_y E(X\mid Y=y) P(Y=y)\\
-\end{aligned}\]</span></p>
-<div class="exbox">
-<p><strong>Example.</strong>
-Consider the example where <span class="math inline">\(Y\sim\textsf{unif}(1,5)\)</span> and, conditional on <span class="math inline">\(Y=y\)</span>, <span class="math inline">\(X\sim\textsf{Exp(rate=\)</span>y<span class="math inline">\()}\)</span>. Calculate <span class="math inline">\(E(X)\)</span>.</p>
-<p><em>Solution:</em> What we have here is called a <strong>compound distribution</strong> since the distribution of <span class="math inline">\(X\)</span> has a parameter that is random. The conditional pdf of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> is <span class="math inline">\(f_{X|Y=y}(x|y)=y e^{yx}\)</span> which is the exponential pdf with rate parameter <span class="math inline">\(\lambda\)</span> replaced by <span class="math inline">\(y\)</span>. The expected value is <span class="math inline">\(\frac1\lambda\)</span>, so in this case it is <span class="math inline">\(\frac1y\)</span>. This is NOT the expected value of <span class="math inline">\(X\)</span> though. This is the conditional expected value of <span class="math inline">\(X\)</span> given that <span class="math inline">\(Y=y\)</span>:
-<span class="math display">\[E(X\mid Y=y)=\frac1y.\]</span>
-And, in general, if we allow <span class="math inline">\(Y\)</span> to stay random, then we have
-<span class="math display">\[E(X\mid Y)=\frac1Y\]</span>
-which is still a random variable.</p>
-<p>Using the total expectation formula, we get
-<span class="math display">\[E(X)=E[E(X\mid Y)]=E\left[\frac1Y\right]=\int_1^5 \frac1y f_Y(y)~dy=\int_1^5 \frac1y \frac14~dy=\frac14\ln5.\]</span></p>
+<div id="central-limit-theorem" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Central limit theorem<a href="limit-theorems.html#central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-</div>
-</div>
-<div id="summary-2" class="section level2 unnumbered hasAnchor">
-<h2>Summary<a href="conditional-expectation.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="defbox">
-<p><strong>Summary of notation, formulas, and terminology</strong></p>
-<p><span class="math inline">\(E[X\mid Y]\)</span> is a random variable whose value is known once we know the value of <span class="math inline">\(Y\)</span>.</p>
-<p><span class="math inline">\(E[X\mid Y=y]\)</span> is a real number, it is <span class="math inline">\(X\)</span> averaged according to the restriction that <span class="math inline">\(Y=y\)</span>.</p>
-<p><span class="math inline">\(f_{X|Y=y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\)</span> is the conditional probability function for <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> (conditioned on <span class="math inline">\(Y\)</span>) where <span class="math inline">\(f_{X,Y}(x,y)\)</span> is the joint pf, and <span class="math inline">\(f_Y(y)\)</span> is the marginal pf for <span class="math inline">\(Y\)</span>. This works for both pmf and pdf.</p>
-<p><span class="math inline">\(E[X\mid Y=y]=\sum_x x P(X=x\mid Y=y)=\sum_x x f_{X|Y=y}(x|y)\)</span> (discrete case)</p>
-<p><span class="math inline">\(E[X\mid Y=y]=\int_{-\infty}^\infty x f_{X|Y=y}(x|y)\)</span> (continuous case)</p>
-</div>
+<div id="borel-cantelli" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Borel-Cantelli<a href="limit-theorems.html#borel-cantelli" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -465,8 +307,8 @@ which is still a random variable.</p>
           </div>
         </div>
       </div>
-<a href="random-variables-and-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro-stochastic-processes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="random-walks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markov-chains.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -497,7 +339,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jstover79/stochproc423/edit/master/04-cond-exp.Rmd",
+"link": "https://github.com/jstover79/stochproc423/edit/master/07-limit-thm.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -505,7 +347,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jstover79/stochproc423/blob/master/04-cond-exp.Rmd",
+"link": "https://github.com/jstover79/stochproc423/blob/master/07-limit-thm.Rmd",
 "text": null
 },
 "download": null,

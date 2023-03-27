@@ -1,0 +1,158 @@
+# Markov Chains
+
+Markov chains are one of the most important classes of stochastic process. A **discrete-time Markov chain** (DTMC) consists of specifying a state space and a transition matrix. For us, our state space will generally be $S=\{0,1,\ldots,k\}$ and our time index set will be $\mathbb N_0$. The **transition matrix** gives us the transition probabilities between each pair of states and is given as
+$$T=
+\left(\begin{matrix}
+T_{00} & T_{01} & \cdots & T_{0k}\\
+T_{10} & T_{11} & \cdots & T_{1k}\\
+\vdots & \vdots & \ddots & \vdots\\
+T_{k0} & T_{k1} & \cdots & T_{kk}\\
+\end{matrix}\right)$$
+where 
+$$T_{ij}=P(X_n=j\mid X_{n-1}=i).$$
+
+We assume this stochastic process satisfied the *Markov property* or *memorylessness*, which means that the probabilities for the next time step only depends on the current state and no other previous history:
+$$P(X_n=j \mid X_{n-1}=i,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=j \mid X_{n-1}=i)=T_{ij}.$$
+
+
+## Graph of a Markov chain
+
+For a Markov chain with state space $S$, we can represent the possible transitions graphically in Euclidean space. For now, let's assume the state space is finite, but even chains with infinite state spaces can have graphs constructed in this way. Plot a point for each state in the plane $\mathbb R^2$, and label each point by the state it corresponds to. Draw a directed edge (an arrow) from $i$ to $j$ whenever $T_{ij}>0$.
+
+We can use `install.packages("igraph")` if we wish to plot transition graphs for Markov chains.
+
+Consider the transition matrix
+$$
+T=\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0.5 & 0.5 & 0
+\end{pmatrix}.
+$$
+Here is some R code for plotting the transition diagram along with the plot.
+
+```{r echo=TRUE, results='hide', message=FALSE, warning=FALSE}
+library(igraph)
+tmvec <- c(0.5,0.3,0.2,
+           0.0,0.3,0.7,
+           0.5,0.5,0.0)
+TM <- matrix(tmvec,byrow=T,nrow=3)
+mcg <- graph_from_adjacency_matrix(1*(TM>0))
+plot.igraph(mcg,
+            vertex.size=50,
+            vertex.color="grey90",
+            edge.curved=0.25,
+            edge.color="black",
+            edge.label=tmvec[tmvec>0],
+            edge.loop.angle=c(pi,0,0,4*pi/2,0,0,0,0,0),
+            margin=0.5,
+            loop.size=2,
+            layout = matrix(c(0,1,2,1,1,0),byrow=T,nrow=3))
+```
+
+
+
+## Classification of states
+
+State $j$ is *accessible* from state $i$, denoted $i\to j$ if there is a path from state $i$ to state $j$ in the graph. This means that $(T^n)_{ij}>0$ for some $n\geq0$. Note that $i\to i$ is always trivially true for any state $i$.
+
+States $i$ and $j$ *communicate* if they are both accessible from each other, i.e. that $i\to j$ and $j\to i$. This is denoted $i\leftrightarrow j$. Again, state $i$ always trivially communicates with itself, $i\leftrightarrow i$.
+
+Communication and accessibility are *transitive*, that is, $i\to j$ and $j\to k$ implies $i\to k$, and if $i$ communicates with $j$ and $j$ communicates with $k$, then $i$ communicates with $k$.
+
+Normally, we break the state space into *(communication) classes*. A class is a subset of the state space so that all states in the class communicate with each other, but do not communicate with any other states. A Markov chain is called *irreducible* if the entire state space is a class. It is called *reducible* if it's state space is made of more than one class. As a trivial example, the identity matrix (ones on the diagonal) is a transition matrix with each state being in a class by itself. The chain just starts in some state and stays there forever!
+
+
+
+::: exbox
+**Example.**
+For the transition matrix given above, we have: $1\leftrightarrow2\leftrightarrow3$ and we have a single class $\{0,1,2\}$. This is an irreducible Markov chain since its state space is a class.
+:::
+
+::: exbox
+**Example.**
+Consider transition matrix with state space $S=\{0,1,2,3,4\}$ where positive entries are denoted by $\star$'s:
+$$T=\begin{pmatrix}
+\star&0&\star&0&0\\
+0&0&\star&0&\star\\
+\star&0&\star&0&0\\
+0&0&0&\star&\star\\
+0&0&0&\star&0\\
+\end{pmatrix}.$$
+This has classes $\{0,1,2\}$ and $\{3,4\}$. Note that the latter is accessible from the former, but not vice versa: $\{0,1,2\}\to\{3,4\}$. This is an reducible Markov chain since its state space is not a single class. Eventually, the chain will get absorbed into class $\{3,4\}$ and stay there forever.
+:::
+
+
+## Distribution at time $n$
+
+Let $\mathbf p_n$ be the *distribution of the process at time $n$*. We call $\mathbf p_0$ the *initial distribution* of the process. For a process on state space $S=\{0,1,2,\ldots,m\}$, we have
+$$\mathbf p_n=\big(P(X_n=0),P(X_n=1),P(X_n=2),\ldots,P(X_n=m)\big)$$
+Note that this is actually conditional on knowing the initial distribution usually, i.e. when we write $\mathbf p_n$ and we ask about $P(X_n=i)$, we normally mean $P(X_n=i\mid X_0\sim \mathbf p_0)$. However, we could be conditioning on the state at any earlier time as well.
+
+For example, with $S=\{0,1,2,3\}$, a point mass on state $2$ initially is $\mathbf p_0=(0,0,1,0)$ which indicates that $X_0=2$ with certainty. If we wish to select the initial state randomly between states 1 and 2 with a fair coin flip, then $\mathbf p_0=(0,0.5,0.5,0)$.
+
+The future distribution of the process is given by matrix multiplication:
+$$\mathbf p_n = \mathbf p_{n-1} T.$$
+
+
+::: exbox
+With $$
+T=\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0.5 & 0.5 & 0
+\end{pmatrix},
+$$
+if we start the process with initial distribution $\mathbf p_0=(0.7,0.1,0.2)$ then the distribution at time one is 
+$$\begin{aligned}
+X_1\sim \mathbf p_1 &=\mathbf p_0 T\\
+&=(0.7,0.1,0.2)\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0.5 & 0.5 & 0
+\end{pmatrix}\\[4px]
+&=(0.45, 0.34, 0.21)
+\end{aligned}
+$$
+we can do this in R with the following code (assuming you already have `TM` enterd)
+```{r}
+x <- c(0.7,0.1,0.2)
+x %*% TM
+```
+Hence $\mathbf p_1=(0.45, 0.34, 0.21)$ as desired.
+:::
+
+## Return times and hitting probabilities
+
+Let $f_i$ be the probability that, when starting in state $i$, the chain ever returns to state $i$ at some point in the future.
+$$
+\begin{aligned}
+f_i&=\mathsf{P}(X_n=i \text{ for some } n\in\mathbb N\mid X_0=i)\\
+&=\mathsf{P}(X_1=i \text{ or } X_2=i \text{ or } \cdots\mid X_0=i)\\
+&=\mathsf{P}\left(\cup_{n=1}^\infty \{X_n=i\} \mid X_0=i\right)
+\end{aligned}
+$$
+Then $1-f_i$ is the probability that the chain immediately leaves state $i$ and never returns. It is possible that $f_i=1$ or $f_i=0$ also. Consider the trivial chain with a single state $S=\{0\}$ that just stays there forever which implies $f_0=1$. Consider the chain where state $5$ immediately jumps to state $3$ (with probability 1) but $3\not\to5$ (state 5 is not accessible from state 3), then $f_5=0$.
+
+Let $N_i$ be the total number of visits to state $i$ (including the initial visit since the chain starts in state $i$). Then 
+$$N_i\sim\mathsf{Geom}(p=1-f_i)$$ 
+with $E(N_i)=\frac{1}{1-f_i}$.  
+
+If $f_i=1$, then $P(N_i=\infty)=1$ and $E(N_i)=\infty$. This means that with probability one, state $i$ will be visited infinitely-many times (when the chain starts in state $i$). In this case, $N_i$ isn't exactly "geometrically-distributed," but we can still think of it as a geometric random variable with zero probaiblity of success.
+
+
+## Summary {-}
+
+
+::: defbox
+**Summary of notation, formulas, and terminology**
+
+Transition matrix: $T_{ij}=P(X_n=j \mid X_{n-1}=i)$
+
+Markov property (memorylessness):
+$$P(X_n=j \mid X_{n-1}=i,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=j \mid X_{n-1}=i)=T_{ij}$$
+Matrix multiplication: $\mathbf p_n =\mathbf p_{n-1} T$
+
+$N_i\sim\mathsf{Geom}(p=1-f_i)$, $E(N_i)=\frac{1}{1-f_i}$
+
+:::

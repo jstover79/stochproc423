@@ -334,6 +334,9 @@ P(T_1=2k+1)&=P(X_{2k}=0, M_{2k}=0) \cdot p \\
 
 By symmetry, we can understand the distribution for $T_{-1}$, the hitting time for state $-1$ as well. For the SSRW, $P(T_{-1}=k)=P(T_1=k)$ since there is no difference in the probabilities of going up or down. In fact $-X_n$ (the reflected SSRW) has the same distribution as $X_n$, and $T_{-1}$ for $X_n$ is exactly the same thing as $T_1$ for $-X_n$. Since the latter is also a SSRW, then $T_1$ is exactly distributed according to the above given formula. If the walk was asymmetric with $p\neq\frac12$, then $T_{-1}$ is distributed according to $T_1$ for the reflected (about 0) random walk, but with probabilities of up and down steps swapped. E.g. $P(T_{-1}=k)$ for the SARW with $p$ probability of up step is identical to $P(T_{1}=k)$ for the SARW with $1-p$ probability of up step.
 
+We also have that $E(T_1)=\infty$ for $p\leq 1/2$ and that, for $p>1/2$, 
+$$E(T_1)=\frac1{2p-1}.$$
+
 ### Hitting time for other states
 If we are interested in how long it takes for the process to hit state $2$, then we wait for it to hit state $1$. From this point, we only need to wait for it to go up another +1 from the current state, which is equivalent for waiting a random time which is distributed exactly the same as the hitting time for state one. Let $T_2$ be the hitting time for state $2.$ What this reasoning shows is that $T_2=\tau_1+\tau_2$ where $\tau_1$ and $\tau_2$ have the same distribution as $T_1$ and are independent.
 

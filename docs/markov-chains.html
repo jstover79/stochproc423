@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Markov Chains | Math 423 Stochastic Processes Course Notes</title>
-  <meta name="description" content="Chapter 7 Markov Chains | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <title>Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Markov Chains | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:title" content="Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Markov Chains | Math 423 Stochastic Processes Course Notes" />
+  <meta name="twitter:title" content="Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes" />
   
   
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="random-walks.html"/>
+<link rel="prev" href="limit-theorems.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -251,10 +251,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="random-walks.html"><a href="random-walks.html#return-time-to-state-0"><i class="fa fa-check"></i><b>6.7</b> Return time to state <span class="math inline">\(0\)</span></a></li>
 <li class="chapter" data-level="" data-path="random-walks.html"><a href="random-walks.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>7</b> Markov Chains</a>
+<li class="chapter" data-level="7" data-path="limit-theorems.html"><a href="limit-theorems.html"><i class="fa fa-check"></i><b>7</b> Limit theorems</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>7.1</b> Graph of a Markov chain</a></li>
-<li class="chapter" data-level="7.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>7.2</b> Classification of states</a></li>
+<li class="chapter" data-level="7.1" data-path="limit-theorems.html"><a href="limit-theorems.html#inequalities"><i class="fa fa-check"></i><b>7.1</b> Inequalities</a></li>
+<li class="chapter" data-level="7.2" data-path="limit-theorems.html"><a href="limit-theorems.html#law-of-large-numbers"><i class="fa fa-check"></i><b>7.2</b> Law of large numbers</a></li>
+<li class="chapter" data-level="7.3" data-path="limit-theorems.html"><a href="limit-theorems.html#central-limit-theorem"><i class="fa fa-check"></i><b>7.3</b> Central limit theorem</a></li>
+<li class="chapter" data-level="7.4" data-path="limit-theorems.html"><a href="limit-theorems.html#borel-cantelli"><i class="fa fa-check"></i><b>7.4</b> Borel-Cantelli</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>8</b> Markov Chains</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>8.1</b> Graph of a Markov chain</a></li>
+<li class="chapter" data-level="8.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>8.2</b> Classification of states</a></li>
+<li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.4</b> Return times and hitting probabilities</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -277,8 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="markov-chains" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Markov Chains<a href="markov-chains.html#markov-chains" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="markov-chains" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Markov Chains<a href="markov-chains.html#markov-chains" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Markov chains are one of the most important classes of stochastic process. A <strong>discrete-time Markov chain</strong> (DTMC) consists of specifying a state space and a transition matrix. For us, our state space will generally be <span class="math inline">\(S=\{0,1,\ldots,k\}\)</span> and our time index set will be <span class="math inline">\(\mathbb N_0\)</span>. The <strong>transition matrix</strong> gives us the transition probabilities between each pair of states and is given as
 <span class="math display">\[T=
 \left(\begin{matrix}
@@ -289,8 +298,10 @@ T_{k0} &amp; T_{k1} &amp; \cdots &amp; T_{kk}\\
 \end{matrix}\right)\]</span>
 where
 <span class="math display">\[T_{ij}=P(X_n=j\mid X_{n-1}=i).\]</span></p>
-<div id="graph-of-a-markov-chain" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Graph of a Markov chain<a href="markov-chains.html#graph-of-a-markov-chain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We assume this stochastic process satisfied the <em>Markov property</em> or <em>memorylessness</em>, which means that the probabilities for the next time step only depends on the current state and no other previous history:
+<span class="math display">\[P(X_n=j \mid X_{n-1}=i,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=j \mid X_{n-1}=i)=T_{ij}.\]</span></p>
+<div id="graph-of-a-markov-chain" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Graph of a Markov chain<a href="markov-chains.html#graph-of-a-markov-chain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For a Markov chain with state space <span class="math inline">\(S\)</span>, we can represent the possible transitions graphically in Euclidean space. For now, let’s assume the state space is finite, but even chains with infinite state spaces can have graphs constructed in this way. Plot a point for each state in the plane <span class="math inline">\(\mathbb R^2\)</span>, and label each point by the state it corresponds to. Draw a directed edge (an arrow) from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> whenever <span class="math inline">\(T_{ij}&gt;0\)</span>.</p>
 <p>We can use <code>install.packages("igraph")</code> if we wish to plot transition graphs for Markov chains.</p>
 <p>Consider the transition matrix
@@ -304,8 +315,8 @@ T=\begin{pmatrix}
 Here is some R code for plotting the transition diagram along with the plot.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="markov-chains.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb44-2"><a href="markov-chains.html#cb44-2" aria-hidden="true" tabindex="-1"></a>tmvec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,</span>
-<span id="cb44-3"><a href="markov-chains.html#cb44-3" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.0</span>,<span class="fl">0.7</span>,<span class="fl">0.3</span>,</span>
-<span id="cb44-4"><a href="markov-chains.html#cb44-4" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.0</span>)</span>
+<span id="cb44-3"><a href="markov-chains.html#cb44-3" aria-hidden="true" tabindex="-1"></a>           <span class="fl">0.0</span>,<span class="fl">0.3</span>,<span class="fl">0.7</span>,</span>
+<span id="cb44-4"><a href="markov-chains.html#cb44-4" aria-hidden="true" tabindex="-1"></a>           <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.0</span>)</span>
 <span id="cb44-5"><a href="markov-chains.html#cb44-5" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(tmvec,<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">3</span>)</span>
 <span id="cb44-6"><a href="markov-chains.html#cb44-6" aria-hidden="true" tabindex="-1"></a>mcg <span class="ot">&lt;-</span> <span class="fu">graph_from_adjacency_matrix</span>(<span class="dv">1</span><span class="sc">*</span>(TM<span class="sc">&gt;</span><span class="dv">0</span>))</span>
 <span id="cb44-7"><a href="markov-chains.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.igraph</span>(mcg,</span>
@@ -314,22 +325,95 @@ Here is some R code for plotting the transition diagram along with the plot.</p>
 <span id="cb44-10"><a href="markov-chains.html#cb44-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.curved=</span><span class="fl">0.25</span>,</span>
 <span id="cb44-11"><a href="markov-chains.html#cb44-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.color=</span><span class="st">&quot;black&quot;</span>,</span>
 <span id="cb44-12"><a href="markov-chains.html#cb44-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.label=</span>tmvec[tmvec<span class="sc">&gt;</span><span class="dv">0</span>],</span>
-<span id="cb44-13"><a href="markov-chains.html#cb44-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.loop.angle=</span><span class="fu">c</span>(pi,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb44-14"><a href="markov-chains.html#cb44-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">margin=</span><span class="fl">0.1</span>,</span>
-<span id="cb44-15"><a href="markov-chains.html#cb44-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">loop.size=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="data:image/png;base64,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BAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQND/B/AxaO1qWimPAAAAAElFTkSuQmCC" width="672" /></p>
+<span id="cb44-13"><a href="markov-chains.html#cb44-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.loop.angle=</span><span class="fu">c</span>(pi,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb44-14"><a href="markov-chains.html#cb44-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">margin=</span><span class="fl">0.5</span>,</span>
+<span id="cb44-15"><a href="markov-chains.html#cb44-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">loop.size=</span><span class="dv">2</span>,</span>
+<span id="cb44-16"><a href="markov-chains.html#cb44-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">layout =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">3</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
-<div id="classification-of-states" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Classification of states<a href="markov-chains.html#classification-of-states" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>State <span class="math inline">\(j\)</span> is <em>accessible</em> from state <span class="math inline">\(i\)</span>, denoted <span class="math inline">\(i\to j\)</span> if there is a path from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span> in the graph. This means that <span class="math inline">\((T^n)_{ij}&gt;0\)</span> for some <span class="math inline">\(n\)</span>.</p>
-<p>States <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> <em>communicate</em> if they are both accessible from each other, i.e. that <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to i\)</span>. This is denoted <span class="math inline">\(i\leftrightarrow j\)</span>.</p>
+<div id="classification-of-states" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Classification of states<a href="markov-chains.html#classification-of-states" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>State <span class="math inline">\(j\)</span> is <em>accessible</em> from state <span class="math inline">\(i\)</span>, denoted <span class="math inline">\(i\to j\)</span> if there is a path from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span> in the graph. This means that <span class="math inline">\((T^n)_{ij}&gt;0\)</span> for some <span class="math inline">\(n\geq0\)</span>. Note that <span class="math inline">\(i\to i\)</span> is always trivially true for any state <span class="math inline">\(i\)</span>.</p>
+<p>States <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> <em>communicate</em> if they are both accessible from each other, i.e. that <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to i\)</span>. This is denoted <span class="math inline">\(i\leftrightarrow j\)</span>. Again, state <span class="math inline">\(i\)</span> always trivially communicates with itself, <span class="math inline">\(i\leftrightarrow i\)</span>.</p>
+<p>Communication and accessibility are <em>transitive</em>, that is, <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to k\)</span> implies <span class="math inline">\(i\to k\)</span>, and if <span class="math inline">\(i\)</span> communicates with <span class="math inline">\(j\)</span> and <span class="math inline">\(j\)</span> communicates with <span class="math inline">\(k\)</span>, then <span class="math inline">\(i\)</span> communicates with <span class="math inline">\(k\)</span>.</p>
+<p>Normally, we break the state space into <em>(communication) classes</em>. A class is a subset of the state space so that all states in the class communicate with each other, but do not communicate with any other states. A Markov chain is called <em>irreducible</em> if the entire state space is a class. It is called <em>reducible</em> if it’s state space is made of more than one class. As a trivial example, the identity matrix (ones on the diagonal) is a transition matrix with each state being in a class by itself. The chain just starts in some state and stays there forever!</p>
+<div class="exbox">
+<p><strong>Example.</strong>
+For the transition matrix given above, we have: <span class="math inline">\(1\leftrightarrow2\leftrightarrow3\)</span> and we have a single class <span class="math inline">\(\{0,1,2\}\)</span>. This is an irreducible Markov chain since its state space is a class.</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong>
+Consider transition matrix with state space <span class="math inline">\(S=\{0,1,2,3,4\}\)</span> where positive entries are denoted by <span class="math inline">\(\star\)</span>’s:
+<span class="math display">\[T=\begin{pmatrix}
+\star&amp;0&amp;\star&amp;0&amp;0\\
+0&amp;0&amp;\star&amp;0&amp;\star\\
+\star&amp;0&amp;\star&amp;0&amp;0\\
+0&amp;0&amp;0&amp;\star&amp;\star\\
+0&amp;0&amp;0&amp;\star&amp;0\\
+\end{pmatrix}.\]</span>
+This has classes <span class="math inline">\(\{0,1,2\}\)</span> and <span class="math inline">\(\{3,4\}\)</span>. Note that the latter is accessible from the former, but not vice versa: <span class="math inline">\(\{0,1,2\}\to\{3,4\}\)</span>. This is an reducible Markov chain since its state space is not a single class. Eventually, the chain will get absorbed into class <span class="math inline">\(\{3,4\}\)</span> and stay there forever.</p>
+</div>
+</div>
+<div id="distribution-at-time-n" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Distribution at time <span class="math inline">\(n\)</span><a href="markov-chains.html#distribution-at-time-n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(\mathbf p_n\)</span> be the <em>distribution of the process at time <span class="math inline">\(n\)</span></em>. We call <span class="math inline">\(\mathbf p_0\)</span> the <em>initial distribution</em> of the process. For a process on state space <span class="math inline">\(S=\{0,1,2,\ldots,m\}\)</span>, we have
+<span class="math display">\[\mathbf p_n=\big(P(X_n=0),P(X_n=1),P(X_n=2),\ldots,P(X_n=m)\big)\]</span>
+Note that this is actually conditional on knowing the initial distribution usually, i.e. when we write <span class="math inline">\(\mathbf p_n\)</span> and we ask about <span class="math inline">\(P(X_n=i)\)</span>, we normally mean <span class="math inline">\(P(X_n=i\mid X_0\sim \mathbf p_0)\)</span>. However, we could be conditioning on the state at any earlier time as well.</p>
+<p>For example, with <span class="math inline">\(S=\{0,1,2,3\}\)</span>, a point mass on state <span class="math inline">\(2\)</span> initially is <span class="math inline">\(\mathbf p_0=(0,0,1,0)\)</span> which indicates that <span class="math inline">\(X_0=2\)</span> with certainty. If we wish to select the initial state randomly between states 1 and 2 with a fair coin flip, then <span class="math inline">\(\mathbf p_0=(0,0.5,0.5,0)\)</span>.</p>
+<p>The future distribution of the process is given by matrix multiplication:
+<span class="math display">\[\mathbf p_n = \mathbf p_{n-1} T.\]</span></p>
+<div class="exbox">
+<p>With <span class="math display">\[
+T=\begin{pmatrix}
+0.5 &amp; 0.3 &amp; 0.2\\
+0 &amp; 0.3 &amp; 0.7\\
+0.5 &amp; 0.5 &amp; 0
+\end{pmatrix},
+\]</span>
+if we start the process with initial distribution <span class="math inline">\(\mathbf p_0=(0.7,0.1,0.2)\)</span> then the distribution at time one is
+<span class="math display">\[\begin{aligned}
+X_1\sim \mathbf p_1 &amp;=\mathbf p_0 T\\
+&amp;=(0.7,0.1,0.2)\begin{pmatrix}
+0.5 &amp; 0.3 &amp; 0.2\\
+0 &amp; 0.3 &amp; 0.7\\
+0.5 &amp; 0.5 &amp; 0
+\end{pmatrix}\\[4px]
+&amp;=(0.45, 0.34, 0.21)
+\end{aligned}
+\]</span>
+we can do this in R with the following code (assuming you already have <code>TM</code> enterd)</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="markov-chains.html#cb45-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>)</span>
+<span id="cb45-2"><a href="markov-chains.html#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%*%</span> TM</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] 0.45 0.34 0.21</code></pre>
+<p>Hence <span class="math inline">\(\mathbf p_1=(0.45, 0.34, 0.21)\)</span> as desired.</p>
+</div>
+</div>
+<div id="return-times-and-hitting-probabilities" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Return times and hitting probabilities<a href="markov-chains.html#return-times-and-hitting-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(f_i\)</span> be the probability that, when starting in state <span class="math inline">\(i\)</span>, the chain ever returns to state <span class="math inline">\(i\)</span> at some point in the future.
+<span class="math display">\[
+\begin{aligned}
+f_i&amp;=\mathsf{P}(X_n=i \text{ for some } n\in\mathbb N\mid X_0=i)\\
+&amp;=\mathsf{P}(X_1=i \text{ or } X_2=i \text{ or } \cdots\mid X_0=i)\\
+&amp;=\mathsf{P}\left(\cup_{n=1}^\infty \{X_n=i\} \mid X_0=i\right)
+\end{aligned}
+\]</span>
+Then <span class="math inline">\(1-f_i\)</span> is the probability that the chain immediately leaves state <span class="math inline">\(i\)</span> and never returns. It is possible that <span class="math inline">\(f_i=1\)</span> or <span class="math inline">\(f_i=0\)</span> also. Consider the trivial chain with a single state <span class="math inline">\(S=\{0\}\)</span> that just stays there forever which implies <span class="math inline">\(f_0=1\)</span>. Consider the chain where state <span class="math inline">\(5\)</span> immediately jumps to state <span class="math inline">\(3\)</span> (with probability 1) but <span class="math inline">\(3\not\to5\)</span> (state 5 is not accessible from state 3), then <span class="math inline">\(f_5=0\)</span>.</p>
+<p>Let <span class="math inline">\(N_i\)</span> be the total number of visits to state <span class="math inline">\(i\)</span> (including the initial visit since the chain starts in state <span class="math inline">\(i\)</span>). Then
+<span class="math display">\[N_i\sim\mathsf{Geom}(p=1-f_i)\]</span>
+with <span class="math inline">\(E(N_i)=\frac{1}{1-f_i}\)</span>.</p>
+<p>If <span class="math inline">\(f_i=1\)</span>, then <span class="math inline">\(P(N_i=\infty)=1\)</span> and <span class="math inline">\(E(N_i)=\infty\)</span>. This means that with probability one, state <span class="math inline">\(i\)</span> will be visited infinitely-many times (when the chain starts in state <span class="math inline">\(i\)</span>). In this case, <span class="math inline">\(N_i\)</span> isn’t exactly “geometrically-distributed,” but we can still think of it as a geometric random variable with zero probaiblity of success.</p>
 </div>
 <div id="summary-5" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="markov-chains.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="defbox">
 <p><strong>Summary of notation, formulas, and terminology</strong></p>
+<p>Transition matrix: <span class="math inline">\(T_{ij}=P(X_n=j \mid X_{n-1}=i)\)</span></p>
 <p>Markov property (memorylessness):
-<span class="math display">\[P(X_n=k \mid X_{n-1}=\ell,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=k \mid X_{n-1}=\ell)\]</span></p>
+<span class="math display">\[P(X_n=j \mid X_{n-1}=i,X_{n-2}=\ell_{n-2},\ldots,X_{1}=\ell_{1},X_{0}=\ell_{0})=P(X_n=j \mid X_{n-1}=i)=T_{ij}\]</span>
+Matrix multiplication: <span class="math inline">\(\mathbf p_n =\mathbf p_{n-1} T\)</span></p>
+<p><span class="math inline">\(N_i\sim\mathsf{Geom}(p=1-f_i)\)</span>, <span class="math inline">\(E(N_i)=\frac{1}{1-f_i}\)</span></p>
 </div>
 
 </div>
@@ -339,7 +423,7 @@ Here is some R code for plotting the transition diagram along with the plot.</p>
           </div>
         </div>
       </div>
-<a href="random-walks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="limit-theorems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -371,7 +455,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jstover79/stochproc423/edit/master/07-markov-proc.Rmd",
+"link": "https://github.com/jstover79/stochproc423/edit/master/08-markov-proc.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -379,7 +463,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jstover79/stochproc423/blob/master/07-markov-proc.Rmd",
+"link": "https://github.com/jstover79/stochproc423/blob/master/08-markov-proc.Rmd",
 "text": null
 },
 "download": null,
