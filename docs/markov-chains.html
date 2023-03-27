@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-02-15" />
+<meta name="date" content="2023-03-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -253,6 +253,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>7</b> Markov Chains</a>
 <ul>
+<li class="chapter" data-level="7.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>7.1</b> Graph of a Markov chain</a></li>
+<li class="chapter" data-level="7.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>7.2</b> Classification of states</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -287,6 +289,41 @@ T_{k0} &amp; T_{k1} &amp; \cdots &amp; T_{kk}\\
 \end{matrix}\right)\]</span>
 where
 <span class="math display">\[T_{ij}=P(X_n=j\mid X_{n-1}=i).\]</span></p>
+<div id="graph-of-a-markov-chain" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Graph of a Markov chain<a href="markov-chains.html#graph-of-a-markov-chain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a Markov chain with state space <span class="math inline">\(S\)</span>, we can represent the possible transitions graphically in Euclidean space. For now, let’s assume the state space is finite, but even chains with infinite state spaces can have graphs constructed in this way. Plot a point for each state in the plane <span class="math inline">\(\mathbb R^2\)</span>, and label each point by the state it corresponds to. Draw a directed edge (an arrow) from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> whenever <span class="math inline">\(T_{ij}&gt;0\)</span>.</p>
+<p>We can use <code>install.packages("igraph")</code> if we wish to plot transition graphs for Markov chains.</p>
+<p>Consider the transition matrix
+<span class="math display">\[
+T=\begin{pmatrix}
+0.5 &amp; 0.3 &amp; 0.2\\
+0 &amp; 0.3 &amp; 0.7\\
+0.5 &amp; 0.5 &amp; 0
+\end{pmatrix}.
+\]</span>
+Here is some R code for plotting the transition diagram along with the plot.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="markov-chains.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-2"><a href="markov-chains.html#cb1-2" aria-hidden="true" tabindex="-1"></a>tmvec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,</span>
+<span id="cb1-3"><a href="markov-chains.html#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.0</span>,<span class="fl">0.7</span>,<span class="fl">0.3</span>,</span>
+<span id="cb1-4"><a href="markov-chains.html#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.0</span>)</span>
+<span id="cb1-5"><a href="markov-chains.html#cb1-5" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(tmvec,<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb1-6"><a href="markov-chains.html#cb1-6" aria-hidden="true" tabindex="-1"></a>mcg <span class="ot">&lt;-</span> <span class="fu">graph_from_adjacency_matrix</span>(<span class="dv">1</span><span class="sc">*</span>(TM<span class="sc">&gt;</span><span class="dv">0</span>))</span>
+<span id="cb1-7"><a href="markov-chains.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.igraph</span>(mcg,</span>
+<span id="cb1-8"><a href="markov-chains.html#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">vertex.size=</span><span class="dv">50</span>,</span>
+<span id="cb1-9"><a href="markov-chains.html#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">vertex.color=</span><span class="st">&quot;grey90&quot;</span>,</span>
+<span id="cb1-10"><a href="markov-chains.html#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.curved=</span><span class="fl">0.25</span>,</span>
+<span id="cb1-11"><a href="markov-chains.html#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.color=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb1-12"><a href="markov-chains.html#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.label=</span>tmvec[tmvec<span class="sc">&gt;</span><span class="dv">0</span>],</span>
+<span id="cb1-13"><a href="markov-chains.html#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">edge.loop.angle=</span><span class="fu">c</span>(pi,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb1-14"><a href="markov-chains.html#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">margin=</span><span class="fl">0.1</span>,</span>
+<span id="cb1-15"><a href="markov-chains.html#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">loop.size=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="classification-of-states" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Classification of states<a href="markov-chains.html#classification-of-states" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>State <span class="math inline">\(j\)</span> is <em>accessible</em> from state <span class="math inline">\(i\)</span>, denoted <span class="math inline">\(i\to j\)</span> if there is a path from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span> in the graph. This means that <span class="math inline">\((T^n)_{ij}&gt;0\)</span> for some <span class="math inline">\(n\)</span>.</p>
+<p>States <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> <em>communicate</em> if they are both accessible from each other, i.e. that <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to i\)</span>. This is denoted <span class="math inline">\(i\leftrightarrow j\)</span>.</p>
+</div>
 <div id="summary-5" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="markov-chains.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="defbox">

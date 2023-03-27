@@ -69,3 +69,5 @@ hitting-time-for-state-1
 hitting-time-for-other-states
 return-time-to-state-0
 markov-chains
+classification-of-states
+graph-of-a-markov-chain

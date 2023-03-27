@@ -11,6 +11,47 @@ T_{k0} & T_{k1} & \cdots & T_{kk}\\
 where 
 $$T_{ij}=P(X_n=j\mid X_{n-1}=i).$$
 
+## Graph of a Markov chain
+
+For a Markov chain with state space $S$, we can represent the possible transitions graphically in Euclidean space. For now, let's assume the state space is finite, but even chains with infinite state spaces can have graphs constructed in this way. Plot a point for each state in the plane $\mathbb R^2$, and label each point by the state it corresponds to. Draw a directed edge (an arrow) from $i$ to $j$ whenever $T_{ij}>0$.
+
+We can use `install.packages("igraph")` if we wish to plot transition graphs for Markov chains.
+
+Consider the transition matrix
+$$
+T=\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0.5 & 0.5 & 0
+\end{pmatrix}.
+$$
+Here is some R code for plotting the transition diagram along with the plot.
+
+```{r echo=TRUE, results='hide', message=FALSE, warning=FALSE}
+library(igraph)
+tmvec <- c(0.5,0.3,0.2,
+      0.0,0.7,0.3,
+      0.5,0.5,0.0)
+TM <- matrix(tmvec,byrow=T,nrow=3)
+mcg <- graph_from_adjacency_matrix(1*(TM>0))
+plot.igraph(mcg,
+            vertex.size=50,
+            vertex.color="grey90",
+            edge.curved=0.25,
+            edge.color="black",
+            edge.label=tmvec[tmvec>0],
+            edge.loop.angle=c(pi,0,0),
+            margin=0.1,
+            loop.size=2)
+```
+
+
+
+## Classification of states
+
+State $j$ is *accessible* from state $i$, denoted $i\to j$ if there is a path from state $i$ to state $j$ in the graph. This means that $(T^n)_{ij}>0$ for some $n$.
+
+States $i$ and $j$ *communicate* if they are both accessible from each other, i.e. that $i\to j$ and $j\to i$. This is denoted $i\leftrightarrow j$.
 
 
 
