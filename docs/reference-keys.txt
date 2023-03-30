@@ -77,4 +77,5 @@ markov-chains
 graph-of-a-markov-chain
 classification-of-states
 distribution-at-time-n
+simulating-a-markov-chain-in-r
 return-times-and-hitting-probabilities

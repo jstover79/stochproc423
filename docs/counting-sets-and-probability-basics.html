@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-03-27" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,7 +263,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>8.1</b> Graph of a Markov chain</a></li>
 <li class="chapter" data-level="8.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>8.2</b> Classification of states</a></li>
 <li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.4</b> Return times and hitting probabilities</a></li>
+<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> simulating a Markov chain in R</a></li>
+<li class="chapter" data-level="8.5" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.5</b> Return times and hitting probabilities</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -313,7 +314,7 @@ We wish to shuffle these up randomly and draw out <span class="math inline">\(n\
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="counting-sets-and-probability-basics.html#cb5-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;blue&quot;</span>,<span class="dv">3</span>),<span class="fu">rep</span>(<span class="st">&quot;red&quot;</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="st">&quot;green&quot;</span>,<span class="dv">1</span>))</span>
 <span id="cb5-2"><a href="counting-sets-and-probability-basics.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S,<span class="at">size=</span><span class="fu">length</span>(S),<span class="at">replace=</span>F)</span></code></pre></div>
-<pre><code>## [1] &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;green&quot; &quot;blue&quot;  &quot;red&quot;</code></pre>
+<pre><code>## [1] &quot;red&quot;   &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;blue&quot;  &quot;blue&quot;</code></pre>
 </div>
 </div>
 <div id="relative-area-model-of-probability" class="section level2 hasAnchor" number="2.2">

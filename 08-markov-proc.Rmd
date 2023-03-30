@@ -93,7 +93,10 @@ For example, with $S=\{0,1,2,3\}$, a point mass on state $2$ initially is $\math
 
 The future distribution of the process is given by matrix multiplication:
 $$\mathbf p_n = \mathbf p_{n-1} T.$$
-
+And from this, we can get the distribution at any future time: 
+$$\mathbf p_{n} = \mathbf p_{0} T^n,$$
+$$\mathbf p_{n+m} = \mathbf p_{n} T^m.$$
+We can think of the transition matrix raised to a power $T^n$ as the "$n$-step transition matrix." Be careful to note that this is matrix exponentiation using standard matrix multiplication.
 
 ::: exbox
 With $$
@@ -120,7 +123,64 @@ x <- c(0.7,0.1,0.2)
 x %*% TM
 ```
 Hence $\mathbf p_1=(0.45, 0.34, 0.21)$ as desired.
+
+And the distribution of the process at time $n=5$ is 
+$$\begin{aligned}
+X_5\sim \mathbf p_5 &=\mathbf p_0 T^5\\
+&=(0.7,0.1,0.2)\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0.5 & 0.5 & 0
+\end{pmatrix}^5\\[4px]
+&\approx(0.31946, 0.364344, 0.316196)
+\end{aligned}
+$$
+And in R this is given below. Note that we need to use the `expm` matrix exponential library. Also note the parentheses around the transition matrix raised to a power `(TM %^% 5)`.
+```{r, message=F,warning=F}
+library(expm)
+x <- c(0.7,0.1,0.2)
+x %*% (TM %^% 5)
+```
+
 :::
+
+
+## simulating a Markov chain in R
+
+Sampling from a discrete distribution can be accomplished as follows. Let $\mathbb p=(p_0,p_1,p_2,\ldots,p_{m-1},p_m)$ be a probability mass function on state space $S=\{0,1,2,\ldots,m\}$. If we wish to sample formt he state space according to this distribution we can accomplish this in R using `sample(0:m,1,prob=c(p0,p1,\ldots,pm))`. 
+
+Suppose we have a Markov chain with state space $\{0,1,2,3,4,5\}$ and we wish to choose the initial state $X_0$ from initial distribution $\mathbf p_0=(0.2,0,0.1,0.4,0.2,0.1)$. We can accopmlish this with the following code.
+
+```{r,results='hide'}
+sample(0:5,1,prob=c(0.2,0,0.1,0.4,0.2,0.1))
+```
+
+Now, once we know the precise current state of the process, we select the state at the next timestep by randomly sampling from the state space according to the appropriate row of the transition matrix. If $X_{n-1}=i$, we sample $X_n$ using the $i^{th}$ row of $T$.
+
+```{r}
+x0 <- sample(0:2,1,prob=c(0.2,0.7,0.1))
+x1 <- sample(0:2,1,prob=TM[x0+1,])
+```
+Note, that since we index our sample space starting from zero, we must add one to the state to get R's index number, i.e. state $i$ corresponds to row $i+1$ by R's indexing scheme.
+
+Now we just repeat this procedure for any number of timesteps. Here is a full R code that sets the transition matrix, samples the initial state randomly and simulates the chain for some number of timesteps and plots the resulting sample path.
+
+```{r}
+TM <- matrix(c(0.5,0.3,0.2,
+               0.0,0.3,0.7,
+               0.5,0.5,0.0),byrow=T,nrow=3)
+S <- 0:(nrow(TM)-1)
+nsteps <- 25
+initdistr <- c(0.2,0.5,0.3)
+x <- numeric(length=nsteps+1)
+x[1] <- sample(S,1,prob=initdistr)
+for (n in 1:nsteps){
+  x[n+1] <- sample(S,1,prob=TM[x[n]+1,])
+}
+plot(0:nsteps,x,type="b",lwd=2,pch=20,col=rgb(0.7,0.2,0.5),xlab="time",ylab="state")
+```
+
+
 
 ## Return times and hitting probabilities
 

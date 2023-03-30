@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-03-27" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,7 +263,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>8.1</b> Graph of a Markov chain</a></li>
 <li class="chapter" data-level="8.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>8.2</b> Classification of states</a></li>
 <li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.4</b> Return times and hitting probabilities</a></li>
+<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> simulating a Markov chain in R</a></li>
+<li class="chapter" data-level="8.5" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.5</b> Return times and hitting probabilities</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -361,7 +362,11 @@ This has classes <span class="math inline">\(\{0,1,2\}\)</span> and <span class=
 Note that this is actually conditional on knowing the initial distribution usually, i.e. when we write <span class="math inline">\(\mathbf p_n\)</span> and we ask about <span class="math inline">\(P(X_n=i)\)</span>, we normally mean <span class="math inline">\(P(X_n=i\mid X_0\sim \mathbf p_0)\)</span>. However, we could be conditioning on the state at any earlier time as well.</p>
 <p>For example, with <span class="math inline">\(S=\{0,1,2,3\}\)</span>, a point mass on state <span class="math inline">\(2\)</span> initially is <span class="math inline">\(\mathbf p_0=(0,0,1,0)\)</span> which indicates that <span class="math inline">\(X_0=2\)</span> with certainty. If we wish to select the initial state randomly between states 1 and 2 with a fair coin flip, then <span class="math inline">\(\mathbf p_0=(0,0.5,0.5,0)\)</span>.</p>
 <p>The future distribution of the process is given by matrix multiplication:
-<span class="math display">\[\mathbf p_n = \mathbf p_{n-1} T.\]</span></p>
+<span class="math display">\[\mathbf p_n = \mathbf p_{n-1} T.\]</span>
+And from this, we can get the distribution at any future time:
+<span class="math display">\[\mathbf p_{n} = \mathbf p_{0} T^n,\]</span>
+<span class="math display">\[\mathbf p_{n+m} = \mathbf p_{n} T^m.\]</span>
+We can think of the transition matrix raised to a power <span class="math inline">\(T^n\)</span> as the “<span class="math inline">\(n\)</span>-step transition matrix.” Be careful to note that this is matrix exponentiation using standard matrix multiplication.</p>
 <div class="exbox">
 <p>With <span class="math display">\[
 T=\begin{pmatrix}
@@ -387,10 +392,51 @@ we can do this in R with the following code (assuming you already have <code>TM<
 <pre><code>##      [,1] [,2] [,3]
 ## [1,] 0.45 0.34 0.21</code></pre>
 <p>Hence <span class="math inline">\(\mathbf p_1=(0.45, 0.34, 0.21)\)</span> as desired.</p>
+<p>And the distribution of the process at time <span class="math inline">\(n=5\)</span> is
+<span class="math display">\[\begin{aligned}
+X_5\sim \mathbf p_5 &amp;=\mathbf p_0 T^5\\
+&amp;=(0.7,0.1,0.2)\begin{pmatrix}
+0.5 &amp; 0.3 &amp; 0.2\\
+0 &amp; 0.3 &amp; 0.7\\
+0.5 &amp; 0.5 &amp; 0
+\end{pmatrix}^5\\[4px]
+&amp;\approx(0.31946, 0.364344, 0.316196)
+\end{aligned}
+\]</span>
+And in R this is given below. Note that we need to use the <code>expm</code> matrix exponential library. Also note the parentheses around the transition matrix raised to a power <code>(TM %^% 5)</code>.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="markov-chains.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expm)</span>
+<span id="cb47-2"><a href="markov-chains.html#cb47-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>)</span>
+<span id="cb47-3"><a href="markov-chains.html#cb47-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%*%</span> (TM <span class="sc">%^%</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##         [,1]     [,2]     [,3]
+## [1,] 0.31946 0.364344 0.316196</code></pre>
 </div>
 </div>
-<div id="return-times-and-hitting-probabilities" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Return times and hitting probabilities<a href="markov-chains.html#return-times-and-hitting-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="simulating-a-markov-chain-in-r" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> simulating a Markov chain in R<a href="markov-chains.html#simulating-a-markov-chain-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sampling from a discrete distribution can be accomplished as follows. Let <span class="math inline">\(\mathbb p=(p_0,p_1,p_2,\ldots,p_{m-1},p_m)\)</span> be a probability mass function on state space <span class="math inline">\(S=\{0,1,2,\ldots,m\}\)</span>. If we wish to sample formt he state space according to this distribution we can accomplish this in R using <code>sample(0:m,1,prob=c(p0,p1,\ldots,pm))</code>.</p>
+<p>Suppose we have a Markov chain with state space <span class="math inline">\(\{0,1,2,3,4,5\}\)</span> and we wish to choose the initial state <span class="math inline">\(X_0\)</span> from initial distribution <span class="math inline">\(\mathbf p_0=(0.2,0,0.1,0.4,0.2,0.1)\)</span>. We can accopmlish this with the following code.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="markov-chains.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.2</span>,<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="fl">0.4</span>,<span class="fl">0.2</span>,<span class="fl">0.1</span>))</span></code></pre></div>
+<p>Now, once we know the precise current state of the process, we select the state at the next timestep by randomly sampling from the state space according to the appropriate row of the transition matrix. If <span class="math inline">\(X_{n-1}=i\)</span>, we sample <span class="math inline">\(X_n\)</span> using the <span class="math inline">\(i^{th}\)</span> row of <span class="math inline">\(T\)</span>.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="markov-chains.html#cb50-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.7</span>,<span class="fl">0.1</span>))</span>
+<span id="cb50-2"><a href="markov-chains.html#cb50-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="at">prob=</span>TM[x0<span class="sc">+</span><span class="dv">1</span>,])</span></code></pre></div>
+<p>Note, that since we index our sample space starting from zero, we must add one to the state to get R’s index number, i.e. state <span class="math inline">\(i\)</span> corresponds to row <span class="math inline">\(i+1\)</span> by R’s indexing scheme.</p>
+<p>Now we just repeat this procedure for any number of timesteps. Here is a full R code that sets the transition matrix, samples the initial state randomly and simulates the chain for some number of timesteps and plots the resulting sample path.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="markov-chains.html#cb51-1" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,</span>
+<span id="cb51-2"><a href="markov-chains.html#cb51-2" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.0</span>,<span class="fl">0.3</span>,<span class="fl">0.7</span>,</span>
+<span id="cb51-3"><a href="markov-chains.html#cb51-3" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.0</span>),<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb51-4"><a href="markov-chains.html#cb51-4" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>(<span class="fu">nrow</span>(TM)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb51-5"><a href="markov-chains.html#cb51-5" aria-hidden="true" tabindex="-1"></a>nsteps <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb51-6"><a href="markov-chains.html#cb51-6" aria-hidden="true" tabindex="-1"></a>initdistr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="fl">0.3</span>)</span>
+<span id="cb51-7"><a href="markov-chains.html#cb51-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length=</span>nsteps<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb51-8"><a href="markov-chains.html#cb51-8" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(S,<span class="dv">1</span>,<span class="at">prob=</span>initdistr)</span>
+<span id="cb51-9"><a href="markov-chains.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsteps){</span>
+<span id="cb51-10"><a href="markov-chains.html#cb51-10" aria-hidden="true" tabindex="-1"></a>  x[n<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(S,<span class="dv">1</span>,<span class="at">prob=</span>TM[x[n]<span class="sc">+</span><span class="dv">1</span>,])</span>
+<span id="cb51-11"><a href="markov-chains.html#cb51-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-12"><a href="markov-chains.html#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>nsteps,x,<span class="at">type=</span><span class="st">&quot;b&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">20</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="fl">0.7</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>),<span class="at">xlab=</span><span class="st">&quot;time&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;state&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="return-times-and-hitting-probabilities" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Return times and hitting probabilities<a href="markov-chains.html#return-times-and-hitting-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let <span class="math inline">\(f_i\)</span> be the probability that, when starting in state <span class="math inline">\(i\)</span>, the chain ever returns to state <span class="math inline">\(i\)</span> at some point in the future.
 <span class="math display">\[
 \begin{aligned}
