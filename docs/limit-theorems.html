@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-03-30" />
+<meta name="date" content="2023-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -300,6 +300,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="borel-cantelli" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Borel-Cantelli<a href="limit-theorems.html#borel-cantelli" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here we must consider an infinite list of events. As a baseline example consider all possible infinite sequences of coin flips. For each <span class="math inline">\(n\)</span>, let <span class="math inline">\(A_n\)</span> be the event that the <span class="math inline">\(n^{th}\)</span> coin flip is heads, <span class="math inline">\(A_n=\{\text{heads on } n^{th} \text{ flip}\}\)</span>. If the coin is a fair coin, we know that a typical sequence of infinitely-many coin flips will have infinitely-many heads (and infinitely-many tails). We state this as: “the coin flip is heads infinitely-often.” This means that the event <span class="math inline">\(A_n\)</span> occurs for infinitely-many values of <span class="math inline">\(n\)</span>. And we write this symbolically as <span class="math inline">\(\mathsf P(A_n \text{ i.o.})\)</span> with “i.o.” an abbreviation for “infinitely often.”</p>
+<!-- Using the axioms of probability for a fair coin, we can see that $\mathsf P(A_n \text{ i.o.})=1$.  -->
+<!-- Let's go through this calculation. Let $B_n$ be the event that there are no more heads past flip number $n$. It follows that $P(B_n)=0$ no matter what we choose for $n$ since the probability of all tails is zero. The event $\{A_n \text{ i.o.}\}$ is the same as $\cap_{n=1}^\infty B_n^c$ because if there are infinitely-many heads, then the coin flip sequence never ends in all tails. Furthermore, $\cap_{n=1}^N B_n^c$ is an increasing sequence of events in $N$. Since probability is a continuous set function we get that  -->
+<!-- $$\mathsf P(A_n \text{ i.o.})=\lim_{N\to\infty}\mathsf P(\cap_{n=1}^N B_n^c)=\lim_{N\to\infty}P(B_N^c)=1.$$ -->
+<!-- This holds because the intersection of $B_n^c$ from $n=1$ to $N$ is just $B_N^c$. That flips $n$ to $\infty$ are not all tails implies flips $n+1$ to $\infty$ are not all tails, etc. Hence $B_n^c\subset B_{n+1}^c$ for all $n$. -->
+<p>For a fair coin with <span class="math inline">\(P(A_n)=\frac12\)</span> for all <span class="math inline">\(n\)</span>, we can intuitively understand that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. If we didn’t have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by <span class="math inline">\(\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}\)</span>.</p>
+<p>But what happens if the probability of heads changes over time? In particular, what is the probability of heads decreases for each subsequent flip? The following two results show that if the probability fo heads decreases fast enough, then we eventually stop getting heads at some point with probability 1, and if the probability of heads decreases slow enough, then we still get infinitely-many heads with probability 1.</p>
+<div class="thmbox">
+<p><strong>Borel-Cantelli Lemma.</strong>
+Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)&lt;$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=0\)</span>.</p>
+</div>
+<div class="thmbox">
+<p><strong>COnverse to Borel-Cantelli.</strong>
+Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of independent events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)=$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>.</p>
+</div>
 
 </div>
 </div>
