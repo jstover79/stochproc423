@@ -60,7 +60,18 @@ States $i$ and $j$ *communicate* if they are both accessible from each other, i.
 
 Communication and accessibility are *transitive*, that is, $i\to j$ and $j\to k$ implies $i\to k$, and if $i$ communicates with $j$ and $j$ communicates with $k$, then $i$ communicates with $k$.
 
-Normally, we break the state space into *(communication) classes*. A class is a subset of the state space so that all states in the class communicate with each other, but do not communicate with any other states. A Markov chain is called *irreducible* if the entire state space is a class. It is called *reducible* if it's state space is made of more than one class. As a trivial example, the identity matrix (ones on the diagonal) is a transition matrix with each state being in a class by itself. The chain just starts in some state and stays there forever!
+Normally, we break the state space into *(communication) classes*. A class is a subset of the state space so that all states in the class communicate with each other, but do not communicate with any other states. A Markov chain is called *irreducible* if the entire state space is a class. It is called *reducible* if it's state space is made of more than one class. As a trivial example, the identity matrix (ones on the diagonal) is a transition matrix with each state being in a class by itself. The chain just starts in some state and stays there forever! 
+
+A state is called *transient* if, when starting in that state, there is a positive probability of leaving and never returning. A state is called *recurrent* if, when starting in that state, with probability one, the chain will always hit that state again at some finite future time. Given that the chain starts in state $i$, let $f_i$ be the probability that it is again in state $i$ at any future time $n\geq1$.
+
+::: defbox
+**Definition.** 
+State $i$ is called *recurrent* if , when starting in state $i$, the probability that it is visited again in the future is one. That is
+$$f_i=\mathsf P(\cup_{n=1}^\infty \{X_n=i\}\mid X_0=i)=1.$$
+
+State $i$ is called *transient* if , when starting in state $i$, the probability that it is visited again in the future is less than one. That is
+$$f_i=\mathsf P(\cup_{n=1}^\infty \{X_n=i\}\mid X_0=i)<1.$$
+:::
 
 
 
@@ -145,7 +156,7 @@ x %*% (TM %^% 5)
 :::
 
 
-## simulating a Markov chain in R
+## Simulating a Markov chain in R
 
 Sampling from a discrete distribution can be accomplished as follows. Let $\mathbb p=(p_0,p_1,p_2,\ldots,p_{m-1},p_m)$ be a probability mass function on state space $S=\{0,1,2,\ldots,m\}$. If we wish to sample formt he state space according to this distribution we can accomplish this in R using `sample(0:m,1,prob=c(p0,p1,\ldots,pm))`. 
 
@@ -198,7 +209,31 @@ Let $N_i$ be the total number of visits to state $i$ (including the initial visi
 $$N_i\sim\mathsf{Geom}(p=1-f_i)$$ 
 with $E(N_i)=\frac{1}{1-f_i}$.  
 
-If $f_i=1$, then $P(N_i=\infty)=1$ and $E(N_i)=\infty$. This means that with probability one, state $i$ will be visited infinitely-many times (when the chain starts in state $i$). In this case, $N_i$ isn't exactly "geometrically-distributed," but we can still think of it as a geometric random variable with zero probaiblity of success.
+If $f_i=1$, then $P(N_i=\infty)=1$ and $E(N_i)=\infty$. This means that with probability one, state $i$ will be visited infinitely-many times (when the chain starts in state $i$). In this case, $N_i$ isn't exactly "geometrically-distributed," but we can still think of it as a geometric random variable with zero probability of success.
+
+Now we can say a bit more about recurrence and transience.
+
+::: thmbox
+**Theorem.**
+State $i$ is recurent if and only if
+$$\sum_{n=1}^\infty (T^n)_{ii}=\infty.$$
+
+State $i$ is transient if and only if
+$$\sum_{n=1}^\infty (T^n)_{ii}<\infty.$$
+:::
+
+## Limiting probabilities
+
+Let $\tau_{ij}$ be the number of steps to first hit state $j$ when starting in state $i$ and $\tau_i$ the return time to state $i$ (the number of steps to next be in state $i$ when starting in state $i$): 
+$$\tau_{ij}=\min\{n\mid X_n=j\},$$
+$$\tau_{i}=\min\{n\mid X_n=i\},$$
+
+Let $m_{ij}=\mathsf E(\tau_{ij}\mid X_0=i)$ and $m_{i}=\mathsf E(\tau_{i}\mid X_0=i)$.
+
+Now we investigate the proportion of time that the chain spends in state $i$.
+
+**[..to be continued...]**
+
 
 
 ## Summary {-}

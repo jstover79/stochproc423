@@ -263,8 +263,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>8.1</b> Graph of a Markov chain</a></li>
 <li class="chapter" data-level="8.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>8.2</b> Classification of states</a></li>
 <li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> simulating a Markov chain in R</a></li>
+<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> Simulating a Markov chain in R</a></li>
 <li class="chapter" data-level="8.5" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.5</b> Return times and hitting probabilities</a></li>
+<li class="chapter" data-level="8.6" data-path="markov-chains.html"><a href="markov-chains.html#limiting-probabilities"><i class="fa fa-check"></i><b>8.6</b> Limiting probabilities</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -301,25 +302,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="borel-cantelli" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Borel-Cantelli<a href="limit-theorems.html#borel-cantelli" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we must consider an infinite list of events. As a baseline example consider all possible infinite sequences of coin flips. For each <span class="math inline">\(n\)</span>, let <span class="math inline">\(A_n\)</span> be the event that the <span class="math inline">\(n^{th}\)</span> coin flip is heads, <span class="math inline">\(A_n=\{\text{heads on } n^{th} \text{ flip}\}\)</span>. If the coin is a fair coin, we know that a typical sequence of infinitely-many coin flips will have infinitely-many heads (and infinitely-many tails). We state this as: “the coin flip is heads infinitely-often.” This means that the event <span class="math inline">\(A_n\)</span> occurs for infinitely-many values of <span class="math inline">\(n\)</span>. And we write this symbolically as <span class="math inline">\(\mathsf P(A_n \text{ i.o.})\)</span> with “i.o.” an abbreviation for “infinitely often.”</p>
-<!-- Using the axioms of probability for a fair coin, we can see that $\mathsf P(A_n \text{ i.o.})=1$.  -->
-<!-- Let's go through this calculation. Let $B_n$ be the event that there are no more heads past flip number $n$. It follows that $P(B_n)=0$ no matter what we choose for $n$ since the probability of all tails is zero. The event $\{A_n \text{ i.o.}\}$ is the same as $\cap_{n=1}^\infty B_n^c$ because if there are infinitely-many heads, then the coin flip sequence never ends in all tails. Furthermore, $\cap_{n=1}^N B_n^c$ is an increasing sequence of events in $N$. Since probability is a continuous set function we get that  -->
-<!-- $$\mathsf P(A_n \text{ i.o.})=\lim_{N\to\infty}\mathsf P(\cap_{n=1}^N B_n^c)=\lim_{N\to\infty}P(B_N^c)=1.$$ -->
-<!-- This holds because the intersection of $B_n^c$ from $n=1$ to $N$ is just $B_N^c$. That flips $n$ to $\infty$ are not all tails implies flips $n+1$ to $\infty$ are not all tails, etc. Hence $B_n^c\subset B_{n+1}^c$ for all $n$. -->
-<p>For a fair coin with <span class="math inline">\(P(A_n)=\frac12\)</span> for all <span class="math inline">\(n\)</span>, we can intuitively understand that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. If we didn’t have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by
-<span class="math display">\[\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}=\cap_{n=1}^\infty B_n^c.\]</span>
-We have a decreasing sequence of events here: <span class="math inline">\(B_1^c\supset B_2^c\supset\cdots\)</span> because not all tails from 2 to infinity implies not all tails from 1 to infinity, etc. This means that
-<span class="math display">\[\{A_n \text{ i.o.}\}=\lim_{N\to\infty}\cap_{n=1}^N B_n^c=\lim_{N\to\infty}B_N^c.\]</span>
-And by the continuity of probability, we have
-<span class="math display">\[\mathsf P(\{A_n \text{ i.o.})=\mathsf P(\lim_{N\to\infty}B_N^c)=\lim_{N\to\infty}\mathsf P(B_N^c)=1.\]</span>
-That <span class="math inline">\(\mathsf P(B_n^c)=1\)</span> for all <span class="math inline">\(n\)</span> holds true since the probability of an infinite string of consecutive tails is zero.</p>
-<p>But what happens if the probability of heads changes over time? In particular, what is the probability of heads decreases for each subsequent flip? The following two results show that if the probability fo heads decreases fast enough, then we eventually stop getting heads at some point with probability 1, and if the probability of heads decreases slow enough, then we still get infinitely-many heads with probability 1.</p>
+<p>First let’s convince ourselves that the probability of having infinitely-many tails consecutively in a row is zero. Let <span class="math inline">\(A_n^c=\{n^{th}\text{ flip is tails}\}\)</span>. Then we have that
+<span class="math display">\[\{\text{all tails}\}=\{1^{st}\text{ flip is tails}\}\text{ and } \{2^{nd}\text{ flip is tails}\} \text{ and } \cdots=\cap_{n=1}^\infty A_n^c.\]</span>
+Now define event that the first <span class="math inline">\(M\)</span> flips are all tails by
+<span class="math display">\[D_M=\{\text{first }M\text{ flips are all tails}\}=\cap_{n=1}^M A_n^c.\]</span>
+Now we have a decreasing sequence of events:
+<span class="math display">\[D_1\supset D_2\supset\cdots.\]</span>
+By the continuity of probability (for increasing or decreasing sequences of events) we have that
+<span class="math display">\[\mathsf P(\lim_{M\to\infty} D_M)=\lim_{M\to\infty} \mathsf P(D_M).\]</span>
+Since the coin is fair, we have <span class="math inline">\(\mathsf P(D_M)=\frac1{2^M}\)</span>. This shows that the limit above is indeed zero. Now we finally are guaranteed that the probability of flipping all tails is zero 9for an infinite sequence of coin flips).</p>
+<!-- For a fair coin with $P(A_n)=\frac12$ for all $n$,  -->
+<p>Now, we can intuitively understand that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. If we didn’t have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. Let <span class="math inline">\(E_n\)</span> be the event that flip <span class="math inline">\(n\)</span> onwards is all tails. We have that <span class="math inline">\(\mathsf P(E_n)=0\)</span> for any <span class="math inline">\(n\)</span> by the above work. The events are related by
+<span class="math display">\[\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails from flip }n\text{ onward}\}=\cap_{n=1}^\infty E_n^c.\]</span></p>
+<p>Now,
+<span class="math display">\[\mathsf P(A_n \text{ i.o.})=\mathsf P(\lim_{N\to\infty}\cap_{n=1}^N E_n^c)=\lim_{N\to\infty}\mathsf P(\cap_{n=1}^N E_n^c)\]</span>
+since we again have a decreasing sequence of events
+<span class="math display">\[(\cap_{n=1}^1 E_n^c) \supset (\cap_{n=1}^2 E_n^c) \supset\cdots.\]</span>
+Now we also have that, for any <span class="math inline">\(N\)</span>,
+<span class="math display">\[\mathsf P(\cap_{n=1}^N E_n^c)=1-\mathsf P(\cup_{n=1}^N E_n)\geq1-\sum_{n=1}^N\mathsf P( E_n)=1\]</span>
+since <span class="math inline">\(\mathsf P(\cup_{n=1}^N E_n)\leq\sum_{n=1}^N\mathsf P( E_n)\)</span> by Boole’s inequality and <span class="math inline">\(\mathsf P(E_n)=0\)</span> always.</p>
+<p>This finally shows that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. We did this the hard way, but now we give a result that answers this question more easily and more generally.</p>
+<!-- $$\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails from flip }n\text{ onward}\}=\cap_{n=1}^\infty (\cap_{j=n}^\infty A_n^c)^c=\cap_{n=1}^\infty \cup_{j=n}^\infty A_n.$$ -->
+<!-- We have a decreasing sequence of events here: $B_1^c\supset B_2^c\supset\cdots$ because not all tails from 2 to infinity implies not all tails from 1 to infinity, etc. This means that  -->
+<!-- $$\{A_n \text{ i.o.}\}=\lim_{N\to\infty}\cap_{n=1}^N B_n^c=\lim_{N\to\infty}B_N^c.$$ -->
+<!-- And by the continuity of probability, we have -->
+<!-- $$\mathsf P(\{A_n \text{ i.o.})=\mathsf P(\lim_{N\to\infty}B_N^c)=\lim_{N\to\infty}\mathsf P(B_N^c)=1.$$ -->
+<!-- That $\mathsf P(B_n^c)=1$ for all $n$ holds true since the probability of an infinite string of consecutive tails is zero. -->
+<p>What happens if the probability of heads changes over time? In particular, what is the probability of heads decreases for each subsequent flip? The following two results show that if the probability fo heads decreases fast enough, then we eventually stop getting heads at some point with probability 1, and if the probability of heads decreases slow enough, then we still get infinitely-many heads with probability 1.</p>
 <div class="thmbox">
 <p><strong>Borel-Cantelli Lemma.</strong>
-Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)&lt;$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=0\)</span>.</p>
+Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of events. If <span class="math inline">\(\sum_{n=1}^\infty\mathsf P(A_n)&lt;\infty\)</span>, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=0\)</span>.</p>
 </div>
 <div class="thmbox">
 <p><strong>Converse to Borel-Cantelli.</strong>
-Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of independent events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)=$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>.</p>
+Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of independent events. If <span class="math inline">\(\sum_{n=1}^\infty\mathsf P(A_n)=\infty\)</span>, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>.</p>
 </div>
 <div class="exbox">
 <p><strong>Example.</strong> Consider a coin where the probability of heads decreases at each step. Let <span class="math inline">\(\mathsf P(\text{heads on }n^{th}\text{ flip})=\frac{3^n}{4^n}\)</span> for each <span class="math inline">\(n=1,2,\ldots\)</span>. Since <span class="math inline">\(\sum_{n=1}^\infty \frac{3^n}{4^n}=\frac34\frac{1}{1-\frac34}=3\)</span> by the geometric series formula, we get that <span class="math inline">\(\mathsf P(\text{infinitely-many heads})=0\)</span>.</p>

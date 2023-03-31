@@ -79,3 +79,4 @@ classification-of-states
 distribution-at-time-n
 simulating-a-markov-chain-in-r
 return-times-and-hitting-probabilities
+limiting-probabilities

@@ -263,8 +263,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="markov-chains.html"><a href="markov-chains.html#graph-of-a-markov-chain"><i class="fa fa-check"></i><b>8.1</b> Graph of a Markov chain</a></li>
 <li class="chapter" data-level="8.2" data-path="markov-chains.html"><a href="markov-chains.html#classification-of-states"><i class="fa fa-check"></i><b>8.2</b> Classification of states</a></li>
 <li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> simulating a Markov chain in R</a></li>
+<li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> Simulating a Markov chain in R</a></li>
 <li class="chapter" data-level="8.5" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.5</b> Return times and hitting probabilities</a></li>
+<li class="chapter" data-level="8.6" data-path="markov-chains.html"><a href="markov-chains.html#limiting-probabilities"><i class="fa fa-check"></i><b>8.6</b> Limiting probabilities</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -338,6 +339,14 @@ Here is some R code for plotting the transition diagram along with the plot.</p>
 <p>States <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> <em>communicate</em> if they are both accessible from each other, i.e. that <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to i\)</span>. This is denoted <span class="math inline">\(i\leftrightarrow j\)</span>. Again, state <span class="math inline">\(i\)</span> always trivially communicates with itself, <span class="math inline">\(i\leftrightarrow i\)</span>.</p>
 <p>Communication and accessibility are <em>transitive</em>, that is, <span class="math inline">\(i\to j\)</span> and <span class="math inline">\(j\to k\)</span> implies <span class="math inline">\(i\to k\)</span>, and if <span class="math inline">\(i\)</span> communicates with <span class="math inline">\(j\)</span> and <span class="math inline">\(j\)</span> communicates with <span class="math inline">\(k\)</span>, then <span class="math inline">\(i\)</span> communicates with <span class="math inline">\(k\)</span>.</p>
 <p>Normally, we break the state space into <em>(communication) classes</em>. A class is a subset of the state space so that all states in the class communicate with each other, but do not communicate with any other states. A Markov chain is called <em>irreducible</em> if the entire state space is a class. It is called <em>reducible</em> if it’s state space is made of more than one class. As a trivial example, the identity matrix (ones on the diagonal) is a transition matrix with each state being in a class by itself. The chain just starts in some state and stays there forever!</p>
+<p>A state is called <em>transient</em> if, when starting in that state, there is a positive probability of leaving and never returning. A state is called <em>recurrent</em> if, when starting in that state, with probability one, the chain will always hit that state again at some finite future time. Given that the chain starts in state <span class="math inline">\(i\)</span>, let <span class="math inline">\(f_i\)</span> be the probability that it is again in state <span class="math inline">\(i\)</span> at any future time <span class="math inline">\(n\geq1\)</span>.</p>
+<div class="defbox">
+<p><strong>Definition.</strong>
+State <span class="math inline">\(i\)</span> is called <em>recurrent</em> if , when starting in state <span class="math inline">\(i\)</span>, the probability that it is visited again in the future is one. That is
+<span class="math display">\[f_i=\mathsf P(\cup_{n=1}^\infty \{X_n=i\}\mid X_0=i)=1.\]</span></p>
+<p>State <span class="math inline">\(i\)</span> is called <em>transient</em> if , when starting in state <span class="math inline">\(i\)</span>, the probability that it is visited again in the future is less than one. That is
+<span class="math display">\[f_i=\mathsf P(\cup_{n=1}^\infty \{X_n=i\}\mid X_0=i)&lt;1.\]</span></p>
+</div>
 <div class="exbox">
 <p><strong>Example.</strong>
 For the transition matrix given above, we have: <span class="math inline">\(1\leftrightarrow2\leftrightarrow3\)</span> and we have a single class <span class="math inline">\(\{0,1,2\}\)</span>. This is an irreducible Markov chain since its state space is a class.</p>
@@ -412,7 +421,7 @@ And in R this is given below. Note that we need to use the <code>expm</code> mat
 </div>
 </div>
 <div id="simulating-a-markov-chain-in-r" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> simulating a Markov chain in R<a href="markov-chains.html#simulating-a-markov-chain-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">8.4</span> Simulating a Markov chain in R<a href="markov-chains.html#simulating-a-markov-chain-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sampling from a discrete distribution can be accomplished as follows. Let <span class="math inline">\(\mathbb p=(p_0,p_1,p_2,\ldots,p_{m-1},p_m)\)</span> be a probability mass function on state space <span class="math inline">\(S=\{0,1,2,\ldots,m\}\)</span>. If we wish to sample formt he state space according to this distribution we can accomplish this in R using <code>sample(0:m,1,prob=c(p0,p1,\ldots,pm))</code>.</p>
 <p>Suppose we have a Markov chain with state space <span class="math inline">\(\{0,1,2,3,4,5\}\)</span> and we wish to choose the initial state <span class="math inline">\(X_0\)</span> from initial distribution <span class="math inline">\(\mathbf p_0=(0.2,0,0.1,0.4,0.2,0.1)\)</span>. We can accopmlish this with the following code.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="markov-chains.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.2</span>,<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="fl">0.4</span>,<span class="fl">0.2</span>,<span class="fl">0.1</span>))</span></code></pre></div>
@@ -449,7 +458,24 @@ Then <span class="math inline">\(1-f_i\)</span> is the probability that the chai
 <p>Let <span class="math inline">\(N_i\)</span> be the total number of visits to state <span class="math inline">\(i\)</span> (including the initial visit since the chain starts in state <span class="math inline">\(i\)</span>). Then
 <span class="math display">\[N_i\sim\mathsf{Geom}(p=1-f_i)\]</span>
 with <span class="math inline">\(E(N_i)=\frac{1}{1-f_i}\)</span>.</p>
-<p>If <span class="math inline">\(f_i=1\)</span>, then <span class="math inline">\(P(N_i=\infty)=1\)</span> and <span class="math inline">\(E(N_i)=\infty\)</span>. This means that with probability one, state <span class="math inline">\(i\)</span> will be visited infinitely-many times (when the chain starts in state <span class="math inline">\(i\)</span>). In this case, <span class="math inline">\(N_i\)</span> isn’t exactly “geometrically-distributed,” but we can still think of it as a geometric random variable with zero probaiblity of success.</p>
+<p>If <span class="math inline">\(f_i=1\)</span>, then <span class="math inline">\(P(N_i=\infty)=1\)</span> and <span class="math inline">\(E(N_i)=\infty\)</span>. This means that with probability one, state <span class="math inline">\(i\)</span> will be visited infinitely-many times (when the chain starts in state <span class="math inline">\(i\)</span>). In this case, <span class="math inline">\(N_i\)</span> isn’t exactly “geometrically-distributed,” but we can still think of it as a geometric random variable with zero probability of success.</p>
+<p>Now we can say a bit more about recurrence and transience.</p>
+<div class="thmbox">
+<p><strong>Theorem.</strong>
+State <span class="math inline">\(i\)</span> is recurent if and only if
+<span class="math display">\[\sum_{n=1}^\infty (T^n)_{ii}=\infty.\]</span></p>
+<p>State <span class="math inline">\(i\)</span> is transient if and only if
+<span class="math display">\[\sum_{n=1}^\infty (T^n)_{ii}&lt;\infty.\]</span></p>
+</div>
+</div>
+<div id="limiting-probabilities" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Limiting probabilities<a href="markov-chains.html#limiting-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(\tau_{ij}\)</span> be the number of steps to first hit state <span class="math inline">\(j\)</span> when starting in state <span class="math inline">\(i\)</span> and <span class="math inline">\(\tau_i\)</span> the return time to state <span class="math inline">\(i\)</span> (the number of steps to next be in state <span class="math inline">\(i\)</span> when starting in state <span class="math inline">\(i\)</span>):
+<span class="math display">\[\tau_{ij}=\min\{n\mid X_n=j\},\]</span>
+<span class="math display">\[\tau_{i}=\min\{n\mid X_n=i\},\]</span></p>
+<p>Let <span class="math inline">\(m_{ij}=\mathsf E(\tau_{ij}\mid X_0=i)\)</span> and <span class="math inline">\(m_{i}=\mathsf E(\tau_{i}\mid X_0=i)\)</span>.</p>
+<p>Now we investigate the proportion of time that the chain spends in state <span class="math inline">\(i\)</span>.</p>
+<p><strong>[..to be continued…]</strong></p>
 </div>
 <div id="summary-5" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="markov-chains.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
