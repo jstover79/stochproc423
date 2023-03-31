@@ -19,7 +19,13 @@ Here we must consider an infinite list of events. As a baseline example consider
 <!-- $$\mathsf P(A_n \text{ i.o.})=\lim_{N\to\infty}\mathsf P(\cap_{n=1}^N B_n^c)=\lim_{N\to\infty}P(B_N^c)=1.$$ -->
 <!-- This holds because the intersection of $B_n^c$ from $n=1$ to $N$ is just $B_N^c$. That flips $n$ to $\infty$ are not all tails implies flips $n+1$ to $\infty$ are not all tails, etc. Hence $B_n^c\subset B_{n+1}^c$ for all $n$. -->
 
-For a fair coin with $P(A_n)=\frac12$ for all $n$, we can intuitively understand that $\mathsf P(A_n \text{ i.o.})=1$. If we didn't have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by $\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}$.
+For a fair coin with $P(A_n)=\frac12$ for all $n$, we can intuitively understand that $\mathsf P(A_n \text{ i.o.})=1$. If we didn't have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by 
+$$\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}=\cap_{n=1}^\infty B_n^c.$$
+We have a decreasing sequence of events here: $B_1^c\supset B_2^c\supset\cdots$ because not all tails from 2 to infinity implies not all tails from 1 to infinity, etc. This means that 
+$$\{A_n \text{ i.o.}\}=\lim_{N\to\infty}\cap_{n=1}^N B_n^c=\lim_{N\to\infty}B_N^c.$$
+And by the continuity of probability, we have
+$$\mathsf P(\{A_n \text{ i.o.})=\mathsf P(\lim_{N\to\infty}B_N^c)=\lim_{N\to\infty}\mathsf P(B_N^c)=1.$$
+That $\mathsf P(B_n^c)=1$ for all $n$ holds true since the probability of an infinite string of consecutive tails is zero.
 
 But what happens if the probability of heads changes over time? In particular, what is the probability of heads decreases for each subsequent flip? The following two results show that if the probability fo heads decreases fast enough, then we eventually stop getting heads at some point with probability 1, and if the probability of heads decreases slow enough, then we still get infinitely-many heads with probability 1.
 
@@ -29,7 +35,15 @@ Let $\{A_n\}_{n\in\mathbb N}$ be a sequence of events. If $\sum_{n=1}^\infty$\ma
 :::
 
 ::: thmbox
-**COnverse to Borel-Cantelli.**
+**Converse to Borel-Cantelli.**
 Let $\{A_n\}_{n\in\mathbb N}$ be a sequence of independent events. If $\sum_{n=1}^\infty$\mathsf P(A_n)=\infty$, then $\mathsf P(A_n \text{ i.o.})=1$.
 :::
 
+
+::: exbox
+**Example.** Consider a coin where the probability of heads decreases at each step. Let $\mathsf P(\text{heads on }n^{th}\text{ flip})=\frac{3^n}{4^n}$ for each $n=1,2,\ldots$. Since $\sum_{n=1}^\infty \frac{3^n}{4^n}=\frac34\frac{1}{1-\frac34}=3$ by the geometric series formula, we get that $\mathsf P(\text{infinitely-many heads})=0$.
+
+If instead, we let $P(\text{heads on }n^{th}\text{ flip})=\frac1n$ (and assume that each coin flip is independent of all others), then we get that $\mathsf P(\text{infinitely-many heads})=1$ by the converse to Borel-Cantelli.
+:::
+
+This is interesting that if the probability of heads decreases (even to zero in the limit), we can still get infinitely-many heads!

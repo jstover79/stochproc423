@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Limit theorems | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -305,16 +305,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- Let's go through this calculation. Let $B_n$ be the event that there are no more heads past flip number $n$. It follows that $P(B_n)=0$ no matter what we choose for $n$ since the probability of all tails is zero. The event $\{A_n \text{ i.o.}\}$ is the same as $\cap_{n=1}^\infty B_n^c$ because if there are infinitely-many heads, then the coin flip sequence never ends in all tails. Furthermore, $\cap_{n=1}^N B_n^c$ is an increasing sequence of events in $N$. Since probability is a continuous set function we get that  -->
 <!-- $$\mathsf P(A_n \text{ i.o.})=\lim_{N\to\infty}\mathsf P(\cap_{n=1}^N B_n^c)=\lim_{N\to\infty}P(B_N^c)=1.$$ -->
 <!-- This holds because the intersection of $B_n^c$ from $n=1$ to $N$ is just $B_N^c$. That flips $n$ to $\infty$ are not all tails implies flips $n+1$ to $\infty$ are not all tails, etc. Hence $B_n^c\subset B_{n+1}^c$ for all $n$. -->
-<p>For a fair coin with <span class="math inline">\(P(A_n)=\frac12\)</span> for all <span class="math inline">\(n\)</span>, we can intuitively understand that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. If we didn’t have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by <span class="math inline">\(\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}\)</span>.</p>
+<p>For a fair coin with <span class="math inline">\(P(A_n)=\frac12\)</span> for all <span class="math inline">\(n\)</span>, we can intuitively understand that <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>. If we didn’t have infinitely-many heads, then the sequence of coin flips ends in an infinite string of tails. The axioms of probability show that an infinite string of consecutive tails has probability zero. The events are related by
+<span class="math display">\[\{A_n \text{ i.o.}\}=\cap_{n=1}^\infty\{\text{not all tails after flip }n\}=\cap_{n=1}^\infty B_n^c.\]</span>
+We have a decreasing sequence of events here: <span class="math inline">\(B_1^c\supset B_2^c\supset\cdots\)</span> because not all tails from 2 to infinity implies not all tails from 1 to infinity, etc. This means that
+<span class="math display">\[\{A_n \text{ i.o.}\}=\lim_{N\to\infty}\cap_{n=1}^N B_n^c=\lim_{N\to\infty}B_N^c.\]</span>
+And by the continuity of probability, we have
+<span class="math display">\[\mathsf P(\{A_n \text{ i.o.})=\mathsf P(\lim_{N\to\infty}B_N^c)=\lim_{N\to\infty}\mathsf P(B_N^c)=1.\]</span>
+That <span class="math inline">\(\mathsf P(B_n^c)=1\)</span> for all <span class="math inline">\(n\)</span> holds true since the probability of an infinite string of consecutive tails is zero.</p>
 <p>But what happens if the probability of heads changes over time? In particular, what is the probability of heads decreases for each subsequent flip? The following two results show that if the probability fo heads decreases fast enough, then we eventually stop getting heads at some point with probability 1, and if the probability of heads decreases slow enough, then we still get infinitely-many heads with probability 1.</p>
 <div class="thmbox">
 <p><strong>Borel-Cantelli Lemma.</strong>
 Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)&lt;$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=0\)</span>.</p>
 </div>
 <div class="thmbox">
-<p><strong>COnverse to Borel-Cantelli.</strong>
+<p><strong>Converse to Borel-Cantelli.</strong>
 Let <span class="math inline">\(\{A_n\}_{n\in\mathbb N}\)</span> be a sequence of independent events. If <span class="math inline">\(\sum_{n=1}^\infty\)</span>P(A_n)=$, then <span class="math inline">\(\mathsf P(A_n \text{ i.o.})=1\)</span>.</p>
 </div>
+<div class="exbox">
+<p><strong>Example.</strong> Consider a coin where the probability of heads decreases at each step. Let <span class="math inline">\(\mathsf P(\text{heads on }n^{th}\text{ flip})=\frac{3^n}{4^n}\)</span> for each <span class="math inline">\(n=1,2,\ldots\)</span>. Since <span class="math inline">\(\sum_{n=1}^\infty \frac{3^n}{4^n}=\frac34\frac{1}{1-\frac34}=3\)</span> by the geometric series formula, we get that <span class="math inline">\(\mathsf P(\text{infinitely-many heads})=0\)</span>.</p>
+<p>If instead, we let <span class="math inline">\(P(\text{heads on }n^{th}\text{ flip})=\frac1n\)</span> (and assume that each coin flip is independent of all others), then we get that <span class="math inline">\(\mathsf P(\text{infinitely-many heads})=1\)</span> by the converse to Borel-Cantelli.</p>
+</div>
+<p>This is interesting that if the probability of heads decreases (even to zero in the limit), we can still get infinitely-many heads!</p>
 
 </div>
 </div>
