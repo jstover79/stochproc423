@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes</title>
   <meta name="description" content="Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Markov Chains | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-03-31" />
+<meta name="date" content="2023-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,7 +265,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="markov-chains.html"><a href="markov-chains.html#distribution-at-time-n"><i class="fa fa-check"></i><b>8.3</b> Distribution at time <span class="math inline">\(n\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="markov-chains.html"><a href="markov-chains.html#simulating-a-markov-chain-in-r"><i class="fa fa-check"></i><b>8.4</b> Simulating a Markov chain in R</a></li>
 <li class="chapter" data-level="8.5" data-path="markov-chains.html"><a href="markov-chains.html#return-times-and-hitting-probabilities"><i class="fa fa-check"></i><b>8.5</b> Return times and hitting probabilities</a></li>
-<li class="chapter" data-level="8.6" data-path="markov-chains.html"><a href="markov-chains.html#limiting-probabilities"><i class="fa fa-check"></i><b>8.6</b> Limiting probabilities</a></li>
+<li class="chapter" data-level="8.6" data-path="markov-chains.html"><a href="markov-chains.html#limiting-probabilities"><i class="fa fa-check"></i><b>8.6</b> Limiting probabilities</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="markov-chains.html"><a href="markov-chains.html#limiting-distributions"><i class="fa fa-check"></i><b>8.6.1</b> Limiting distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="markov-chains.html"><a href="markov-chains.html#stationary-distributions"><i class="fa fa-check"></i><b>8.7</b> Stationary distributions</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="markov-chains.html"><a href="markov-chains.html#stationary-distributions-for-reducible-chains"><i class="fa fa-check"></i><b>8.7.1</b> Stationary distributions for reducible chains</a></li>
+<li class="chapter" data-level="8.7.2" data-path="markov-chains.html"><a href="markov-chains.html#r-code-for-finding-stationary-distributions"><i class="fa fa-check"></i><b>8.7.2</b> R code for finding stationary distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="markov-chains.html"><a href="markov-chains.html#probability-of-absorption-time-to-absorption"><i class="fa fa-check"></i><b>8.8</b> Probability of absorption &amp; time to absorption</a></li>
+<li class="chapter" data-level="8.9" data-path="markov-chains.html"><a href="markov-chains.html#gamblers-ruin"><i class="fa fa-check"></i><b>8.9</b> Gambler’s ruin</a></li>
 <li class="chapter" data-level="" data-path="markov-chains.html"><a href="markov-chains.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -476,6 +486,253 @@ State <span class="math inline">\(i\)</span> is recurent if and only if
 <p>Let <span class="math inline">\(m_{ij}=\mathsf E(\tau_{ij}\mid X_0=i)\)</span> and <span class="math inline">\(m_{i}=\mathsf E(\tau_{i}\mid X_0=i)\)</span>.</p>
 <p>Now we investigate the proportion of time that the chain spends in state <span class="math inline">\(i\)</span>.</p>
 <p><strong>[..to be continued…]</strong></p>
+<div id="limiting-distributions" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> Limiting distributions<a href="markov-chains.html#limiting-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="stationary-distributions" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Stationary distributions<a href="markov-chains.html#stationary-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A stationary distribution is any distribution that if it is the initial distribution for the process, then it is the distribution at all future times. I.e. <span class="math inline">\(\boldsymbol \pi\)</span> is a stationary distribution if, given <span class="math inline">\(\mathbf p_0=\boldsymbol \pi\)</span>, then <span class="math inline">\(\mathbf p_n=\boldsymbol \pi\)</span> for all time <span class="math inline">\(n\)</span>. This means it must satisfy the equation:
+<span class="math display">\[\boldsymbol \pi =\boldsymbol \pi T.\]</span>
+Note that <span class="math inline">\(\boldsymbol \pi\)</span> is a probability distribution on the state space:
+<span class="math display">\[\boldsymbol \pi=(\pi_0,\pi_1,\pi_2,\ldots,\pi_m)\]</span>
+with <span class="math inline">\(\sum_{j=0}^m \pi_j=1\)</span>.</p>
+<p>The equation <span class="math inline">\(\boldsymbol \pi =\boldsymbol \pi T\)</span> tells us that <span class="math inline">\(\boldsymbol \pi\)</span> is a left eigenvector of <span class="math inline">\(T\)</span> with eigenvalue one. In linear algebra, it is more common to deal with column vectors and multiplication with matrices on the left and column vectors on the right, but, in Markov chain theory, it is more common to have row vectors on the left and matrices on the right. This means, that when you have encountered eigenvalues and eigenvectors in the past it was probably with that former convention.</p>
+<div class="thmbox">
+<p><strong>Theorem.</strong> Any convex combination of stationary distributions is also a stationary distribution. A convex combination is a linear combination where the coefficients sum to one. For example, if <span class="math inline">\(\boldsymbol \pi_1\)</span> and <span class="math inline">\(\boldsymbol \pi_2\)</span> are stationary distributions for some Markov chain, then <span class="math inline">\(a\boldsymbol \pi_1+(1-a)\boldsymbol \pi_2\)</span> is also a stationary distribution for any <span class="math inline">\(a\in[0,1]\)</span>.</p>
+</div>
+<div class="thmbox">
+<p><strong>Theorem.</strong> A Markov chain with a finite state space that is irreducible and aperiodic has a single unique stationary distribution. A Markov chain that is periodic or reducible may have multiple stationary distributions or a single one only.</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> (<span class="math inline">\(2\times 2\)</span> stationary distribution)
+Consider transition matrix
+<span class="math display">\[T=\begin{pmatrix}1-b &amp; b\\a &amp; 1-a\end{pmatrix}.\]</span>
+This matrix is irreducible if and only if both <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are positive (and hence has a single unique stationary distribution. Otherwise it is reducible. It is aperiodic if and only if both <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are less than one.</p>
+</div>
+<div id="stationary-distributions-for-reducible-chains" class="section level3 hasAnchor" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Stationary distributions for reducible chains<a href="markov-chains.html#stationary-distributions-for-reducible-chains" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A finite state Markov chain will always have at least one recurrent state or class of states. This is because the chain “must get absorbed somewhere” so-to-speak. An chain with infinitely-many states doesn’t have to behave this way. Consider the chain that just goes form state <span class="math inline">\(i\)</span> to state <span class="math inline">\(i+1\)</span> deterministically (with probability one). It will never settle down in any state and does not have any limiting or stationary distributions. The SSRW also doesn’t have limiting or stationary distributions as the probability of finding it in any particular state decays to zero as time goes on.</p>
+<p>For the finite state space case, we can find stationary distributions by considering each recurrent class on its own and extracting the part of the transition matrix corresponding to the states in that recurrent class alone.</p>
+<p>Let <span class="math inline">\(C\)</span> be a recurrent class of states, and define <span class="math inline">\(T_C\)</span> as the restriction of <span class="math inline">\(T\)</span> to <span class="math inline">\(C\)</span>. Furthermore, lets keep the original states as indices for <span class="math inline">\(T_C\)</span>. This means that <span class="math inline">\((T_C)_{ij} =T_{ij}\)</span> for all <span class="math inline">\(i,j\in C\)</span> and <span class="math inline">\((T_C)_{ij}\)</span> is left undefined if <span class="math inline">\(i\not\in C\)</span> or <span class="math inline">\(j\not\in C\)</span>. If <span class="math inline">\(C=S\)</span> the entire state space, then <span class="math inline">\(T_C=T\)</span> simply. Any convex combination of stationary distributions found in this way, will also be a stationary distribution.</p>
+<div class="exbox">
+<p><strong>Example.</strong>
+transition matrix
+<span class="math display">\[T=\begin{pmatrix}
+0.5 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0.5 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0.25 &amp; 0 &amp; 0.5 &amp; 0.25 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0.25 &amp; 0.25 &amp; 0.5 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0.5\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}\]</span>
+has transient class <span class="math inline">\(\{2,3\}\)</span> and recurrent classes <span class="math inline">\(\{0,1\}\)</span> and <span class="math inline">\(\{4,5\}\)</span>.</p>
+<p>The restriction to <span class="math inline">\(\{0,1\}\)</span> is
+<span class="math display">\[T_{\{0,1\}}=\begin{pmatrix}
+0.5 &amp; 0.5 \\
+0.5 &amp; 0.5
+\end{pmatrix}.\]</span>
+This has stationary distribution <span class="math inline">\((1/2,1/2)\)</span>. This means that <span class="math inline">\((1/2,1/2,0,0,0,0)\)</span> is a stationary distribution for the original <span class="math inline">\(T\)</span>.</p>
+<p>Now, the restriction of <span class="math inline">\(T\)</span> to <span class="math inline">\(\{4,5\}\)</span> is
+<span class="math display">\[T_{\{4,5\}}=\begin{pmatrix}
+0.5 &amp; 0.5 \\
+1 &amp; 0
+\end{pmatrix}\]</span>
+and has stationary distribution <span class="math inline">\((2/3,1/3)\)</span>. This means that <span class="math inline">\((0,0,0,0,2/3,1/3)\)</span> is a stationary distribution for the original <span class="math inline">\(T\)</span>.</p>
+<p>Note that, implicitly, we are indexing <span class="math inline">\(T_{\{4,5\}}\)</span> by <span class="math inline">\(4\)</span> and <span class="math inline">\(5\)</span>, e.g. <span class="math inline">\((T_{\{4,5\}})_{44}=T_{44}\)</span> and <span class="math inline">\((T_{\{4,5\}})_{45}=T_{45}\)</span>, etc. But <span class="math inline">\((T_{\{4,5\}})_{40}\)</span>, <span class="math inline">\((T_{\{4,5\}})_{41}\)</span>, etc. are left undefined. This is just to keep the numerical labels for our states consistent.</p>
+</div>
+</div>
+<div id="r-code-for-finding-stationary-distributions" class="section level3 hasAnchor" number="8.7.2">
+<h3><span class="header-section-number">8.7.2</span> R code for finding stationary distributions<a href="markov-chains.html#r-code-for-finding-stationary-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here we continue with the <span class="math inline">\(3\times3\)</span> transition matrix used above and find its stationary distribution. First we enter the matrix and find all left (row) eigenvectors using the <code>eigen()</code> method. Note that we must first transpose the matrix with <code>t()</code>. We would get right (column) eigenvectors with <code>eigen(TM)</code>, so we instead need to use <code>eigen(t(TM))</code>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="markov-chains.html#cb52-1" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,</span>
+<span id="cb52-2"><a href="markov-chains.html#cb52-2" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.0</span>,<span class="fl">0.3</span>,<span class="fl">0.7</span>,</span>
+<span id="cb52-3"><a href="markov-chains.html#cb52-3" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.0</span>),<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb52-4"><a href="markov-chains.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">t</span>(TM))</span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  1.0000000 -0.4316625  0.2316625
+## 
+## $vectors
+##            [,1]       [,2]       [,3]
+## [1,] -0.5499719 -0.4378009 -0.8157654
+## [2,] -0.6285394 -0.3779645  0.3779645
+## [3,] -0.5499719  0.8157654  0.4378009</code></pre>
+<p>Eigenvectors int eh above R output are listed as columns. The first column goes with the first eigenvalue in the list, etc. We can see that there is one eigenvector that has eigenvalue one. Note that it has all negative entries, that’s ok, we just need to turn it into a probability distribution with</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="markov-chains.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">t</span>(TM))<span class="sc">$</span>vectors[,<span class="dv">1</span>] <span class="ot">-&gt;</span> pivec</span>
+<span id="cb54-2"><a href="markov-chains.html#cb54-2" aria-hidden="true" tabindex="-1"></a>pivec <span class="ot">&lt;-</span> pivec<span class="sc">/</span><span class="fu">sum</span>(pivec)</span>
+<span id="cb54-3"><a href="markov-chains.html#cb54-3" aria-hidden="true" tabindex="-1"></a>pivec</span></code></pre></div>
+<pre><code>## [1] 0.3181818 0.3636364 0.3181818</code></pre>
+<p>Then we can check that it does indeed work with the following calculation of <span class="math inline">\(\boldsymbol \pi T-\boldsymbol \pi\)</span> which should give us the zero vector.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="markov-chains.html#cb56-1" aria-hidden="true" tabindex="-1"></a>pivec <span class="sc">%*%</span> TM <span class="sc">-</span> pivec</span></code></pre></div>
+<pre><code>##              [,1]         [,2]          [,3]
+## [1,] 5.551115e-17 2.775558e-16 -3.330669e-16</code></pre>
+<p>Notice that we didn’t exactly get zeros. That is typical, and normally (for many computations) something on the order of <span class="math inline">\(10^{-16}\)</span> or smaller indicates the actual value is zero. There are times when that isn’t true though, so understanding the theory is very important!</p>
+<div class="exbox">
+<p><strong>Example.</strong> (a reducible matrix with a unique stationary distribution)
+Consider the transition matrix
+<span class="math display">\[T=\begin{pmatrix}
+0.5 &amp; 0.3 &amp; 0.2\\
+0 &amp; 0.3 &amp; 0.7\\
+0 &amp; 0 &amp; 1
+\end{pmatrix}.\]</span>
+There is only a single absorbing state, <span class="math inline">\(\{2\}\)</span>, and we have transient class <span class="math inline">\(\{0,1\}\)</span>. Trying to find stationary distributions will show that <span class="math inline">\((0,0,1)\)</span> is the only possibility. Raising this matrix to a large power in R will give back a matrix where each row is (approximately) <span class="math inline">\((0,0,1)\)</span> as well. In this case, <span class="math inline">\((0,0,1)\)</span> is the limiting distribution, no matter which state we start the chain in.</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> (a reducible matrix with a multiple stationary distributions)
+Consider the transition matrix
+<span class="math display">\[T=\begin{pmatrix}
+1 &amp; 0 &amp; 0\\
+0.2 &amp; 0.3 &amp; 0.5\\
+0 &amp; 0 &amp; 1
+\end{pmatrix}.\]</span>
+There are two absorbing states: <span class="math inline">\(\{0\}\)</span> and <span class="math inline">\(\{2\}\)</span>, and we have transient state <span class="math inline">\(\{1\}\)</span>. Trying to find stationary distributions will give <span class="math inline">\((1,0,0)\)</span> and <span class="math inline">\((0,0,1)\)</span>. If we start the chain in state <span class="math inline">\(1\)</span>, then the absorption probabilities are <span class="math inline">\(2/7\)</span> for absorption into state <span class="math inline">\(0\)</span> and <span class="math inline">\(5/7\)</span> for absorption into state <span class="math inline">\(2\)</span>. This gives stationary distribution <span class="math inline">\((2/7,0,5/7)\)</span> which is the convex combination <span class="math inline">\(2/7(1,0,0)+5/7(0,0,1)\)</span>. In fact <span class="math inline">\((a,0,1-a)\)</span> is a stationary distribution for any <span class="math inline">\(a\in[0,1]\)</span> so we have an “infinite family of stationary distributions.”</p>
+</div>
+<div class="exbox">
+<p><strong>Example.</strong> (a reducible matrix with a multiple stationary distributions)
+Consider the transition matrix
+<span class="math display">\[T=\begin{pmatrix}
+0.5 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0.5 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0.25 &amp; 0 &amp; 0.5 &amp; 0.25 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0.25 &amp; 0.25 &amp; 0.5 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0.5\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}.\]</span>
+We have transient class <span class="math inline">\(\{2,3\}\)</span> and recurrent classes <span class="math inline">\(\{0,1\}\)</span> and <span class="math inline">\(\{4,5\}\)</span>. The chain will always get absorbed eventually into one the recurrent classes.</p>
+<p>If we extract the transition matrix for a recurrent class, we can get the stationary probabilities for it. We do this fo class <span class="math inline">\(\{0,1\}\)</span>.
+<span class="math display">\[T_{\{0,1\}}=\begin{pmatrix}
+0.5 &amp; 0.5 \\
+0.5 &amp; 0.5
+\end{pmatrix}\]</span>
+which has stationary distribution <span class="math inline">\((1/2,1/2)\)</span>. This means that <span class="math inline">\((1/2,1/2,0,0,0,0)\)</span> is a stationary distribution for the original <span class="math inline">\(T\)</span>.</p>
+<p>Now for recurrent class ${4,5}, we get:
+<span class="math display">\[T_{\{4,5\}}=\begin{pmatrix}
+0.5 &amp; 0.5 \\
+1 &amp; 0
+\end{pmatrix}\]</span>
+which has stationary distribution <span class="math inline">\((2/3,1/3)\)</span>. This means that <span class="math inline">\((0,0,0,0,2/3,1/3)\)</span> is a stationary distribution for the original <span class="math inline">\(T\)</span>.</p>
+<p>These are the two basic stationary distributions, and any convex combination of them is also a stationary distribution.</p>
+<p>Finding eigenvectors with R on examples like this can be misleading though. It will give you stationary distributions but not necessarily separated out by recurrent class like the above.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="markov-chains.html#cb58-1" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb58-2"><a href="markov-chains.html#cb58-2" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb58-3"><a href="markov-chains.html#cb58-3" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.25</span>,<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb58-4"><a href="markov-chains.html#cb58-4" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,</span>
+<span id="cb58-5"><a href="markov-chains.html#cb58-5" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,</span>
+<span id="cb58-6"><a href="markov-chains.html#cb58-6" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">6</span>)</span>
+<span id="cb58-7"><a href="markov-chains.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">t</span>(TM))</span></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  1.000000e+00  1.000000e+00  6.545085e-01 -5.000000e-01  9.549150e-02  1.110223e-16
+## 
+## $vectors
+##           [,1]          [,2]       [,3]          [,4]        [,5]       [,6]
+## [1,] 0.7071068  1.525695e-01  0.1172126 -5.719172e-18 -0.42281793 -0.7071068
+## [2,] 0.7071068  1.525695e-01  0.3793081  2.859586e-18  0.52263170  0.7071068
+## [3,] 0.0000000 -2.710180e-16 -0.6861748  2.496558e-17 -0.36112962  0.0000000
+## [4,] 0.0000000  1.761617e-16 -0.4240793 -9.986232e-17  0.58432000  0.0000000
+## [5,] 0.0000000  8.733591e-01  0.3479348 -7.071068e-01 -0.05179612  0.0000000
+## [6,] 0.0000000  4.366795e-01  0.2657985  7.071068e-01 -0.27120803  0.0000000</code></pre>
+<p>Notice the first eigenvector is as desired, but we just need to normalize it to sum to one. The second eigenvector, after ignoring the two tiny order <span class="math inline">\(10^{-16}\)</span> terms in the middle, is actually a linear combination of the two stationary distributions we found above. Another problem that can arise when doing this in R is that it might give you a linear combination using a mix of positive and negative coefficients! So pay attention and take care!</p>
+</div>
+</div>
+</div>
+<div id="probability-of-absorption-time-to-absorption" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Probability of absorption &amp; time to absorption<a href="markov-chains.html#probability-of-absorption-time-to-absorption" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we have a chain with a transient class and more than one recurrent class, we may wish to know the probability it is absorbed into either recurrent class, given some initial transient state. We can accomplish this numerically as follows.</p>
+<p>If <span class="math inline">\(T\)</span> is a transition matrix with recurrent class <span class="math inline">\(C\)</span> and transient state <span class="math inline">\(i\)</span>, then we can raise <span class="math inline">\(T\)</span> to a large power in R and the absorbing probability into class <span class="math inline">\(C\)</span> from initial state <span class="math inline">\(i\)</span> is <span class="math inline">\(\sum_{j\in C} T^\infty_{ij}\)</span>.</p>
+<div class="exbox">
+<p><strong>Example.</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="markov-chains.html#cb60-1" aria-hidden="true" tabindex="-1"></a>TM <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb60-2"><a href="markov-chains.html#cb60-2" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb60-3"><a href="markov-chains.html#cb60-3" aria-hidden="true" tabindex="-1"></a>               <span class="fl">0.25</span>,<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb60-4"><a href="markov-chains.html#cb60-4" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.25</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,</span>
+<span id="cb60-5"><a href="markov-chains.html#cb60-5" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,</span>
+<span id="cb60-6"><a href="markov-chains.html#cb60-6" aria-hidden="true" tabindex="-1"></a>               <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">byrow=</span>T,<span class="at">nrow=</span><span class="dv">6</span>)</span>
+<span id="cb60-7"><a href="markov-chains.html#cb60-7" aria-hidden="true" tabindex="-1"></a>TM <span class="sc">%^%</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>##      [,1] [,2]         [,3]         [,4]      [,5]      [,6]
+## [1,]  0.5  0.5 0.000000e+00 0.000000e+00 0.0000000 0.0000000
+## [2,]  0.5  0.5 0.000000e+00 0.000000e+00 0.0000000 0.0000000
+## [3,]  0.3  0.3 2.825085e-19 1.745999e-19 0.2666667 0.1333333
+## [4,]  0.1  0.1 1.745999e-19 1.079087e-19 0.5333333 0.2666667
+## [5,]  0.0  0.0 0.000000e+00 0.000000e+00 0.6666667 0.3333333
+## [6,]  0.0  0.0 0.000000e+00 0.000000e+00 0.6666667 0.3333333</code></pre>
+<p>We can see that starting the chain in state <span class="math inline">\(2\)</span> (the third row) gives an approximate limiting distribution of
+<span class="math display">\[(0.3,  0.3, 2.8(10)^{-19}, 1.7(10)^{-19}, 0.2667, 0.1333).\]</span>
+Summing the first two components gives <span class="math inline">\(0.6\)</span> probability of being absorbed into <span class="math inline">\(\{0,1\}\)</span> and the last two gives <span class="math inline">\(0.4\)</span> probability of absorption into class <span class="math inline">\(\{4,5\}\)</span>.</p>
+</div>
+<p>To find the exact absorption probabilities, we use linear algebra. Let <span class="math inline">\(S_{trans}\)</span> be the set of transient states and <span class="math inline">\(S_{rec}\)</span> the set of recurrent states, so that <span class="math inline">\(S=S_{trans}\cup S_{rec}\)</span>. Note that these are not necessarily classes as we could have multiple recurrent and multiple transient classes.</p>
+<p>Now define the matrices <span class="math inline">\(T_{trans}=T_{S_{trans}}\)</span> which is just <span class="math inline">\(T\)</span> restricted to the transient states. Now define <span class="math inline">\(R\)</span> to be the matrix giving us transitions form transient states to recurrent states, that is, <span class="math inline">\(R_{ij}\)</span> is only defined for <span class="math inline">\(i\in S_{trans}\)</span> and <span class="math inline">\(j\in S_{rec}\)</span>. Note that <span class="math inline">\(R\)</span> is not necessarily a square matrix since the number of transient and recurrent states does not have to be equal!</p>
+<p>Now consider the matrix
+<span class="math display">\[B=(I-T_{trans})^{-1}R.\]</span>
+Note that <span class="math inline">\(B_{ij}\)</span> is defined only for <span class="math inline">\(i\)</span> transient and <span class="math inline">\(j\)</span> recurrent. Also note that, although we are staying consistent with the original state space for our numerical labels for indices here, that the number of rows and columns is appropriate for this matrix multiplication to make sense.</p>
+<p>If state <span class="math inline">\(j\)</span> is in a recurrent class on its own, then <span class="math inline">\(B_{ij}\)</span> is the probability of absorption into state <span class="math inline">\(j\)</span> with initial state <span class="math inline">\(i\)</span>. If we have a class <span class="math inline">\(C\)</span> of recurrent states, then <span class="math inline">\(\sum_{j\in C}B_{ij}\)</span> is the probability of being absorbed into that class from initial transient state <span class="math inline">\(i\)</span>.</p>
+<div class="exbox">
+<p><strong>Example.</strong>
+Continuing with the same <span class="math inline">\(6\times6\)</span> matrix above, we have
+<span class="math display">\[T_{trans}=\begin{pmatrix}
+0.5 &amp; 0.25 \\
+0.25 &amp; 0.25
+\end{pmatrix}.\]</span>
+Note that this is not a transition matrix!
+And we have that <span class="math inline">\(R\)</span> is the rest of the rows corresponding to teh transient states:
+<span class="math display">\[R=\begin{pmatrix}
+0.25 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.5 &amp; 0
+\end{pmatrix}.\]</span>
+Now
+<span class="math display">\[\begin{aligned}
+B&amp;=(I-T_{trans})^{-1}R\\
+&amp;=\left(\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{pmatrix}-
+\begin{pmatrix}
+0.5 &amp; 0.25 \\
+0.25 &amp; 0.25
+\end{pmatrix}\right)^{-1}
+\begin{pmatrix}
+0.25 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.5 &amp; 0
+\end{pmatrix}\\
+&amp;=
+\begin{pmatrix}
+0.5 &amp; -0.25 \\
+-0.25 &amp; 0.75
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+0.25 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.5 &amp; 0
+\end{pmatrix}\\
+&amp;=
+\frac{1}{(0.75)(0.5)-(0.25)^2}\begin{pmatrix}
+0.75 &amp; 0.25 \\
+0.25 &amp; 0.5
+\end{pmatrix}
+\begin{pmatrix}
+0.25 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.5 &amp; 0
+\end{pmatrix}\\
+&amp;=
+\begin{pmatrix}
+2.4 &amp; 0.8 \\
+0.8 &amp; 1.6
+\end{pmatrix}
+\begin{pmatrix}
+0.25 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.5 &amp; 0
+\end{pmatrix}\\
+&amp;=
+\begin{pmatrix}
+0.6 &amp; 0 &amp; 0.4 &amp; 0 \\
+0.2 &amp; 0 &amp; 0.8 &amp; 0
+\end{pmatrix}.
+\end{aligned}\]</span>
+Hence, we can now see that, for example, the probability of state <span class="math inline">\(2\)</span> being absorbed into class <span class="math inline">\(\{0,1\}\)</span> is exactly <span class="math inline">\(B_{20}+B_{21}=0.6+0=0.6\)</span>. Even though the matrix <span class="math inline">\(B\)</span> has many zeros, it is not correct to interpret <span class="math inline">\(B_{20}=0.6\)</span> as the probability of being absorbed into state <span class="math inline">\(0\)</span>, for example. An absorption probability only makes sense when calculated over an entire recurrent class.</p>
+</div>
+</div>
+<div id="gamblers-ruin" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Gambler’s ruin<a href="markov-chains.html#gamblers-ruin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="summary-5" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="markov-chains.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -234,6 +234,273 @@ Now we investigate the proportion of time that the chain spends in state $i$.
 
 **[..to be continued...]**
 
+### Limiting distributions
+
+
+
+
+
+
+## Stationary distributions
+
+A stationary distribution is any distribution that if it is the initial distribution for the process, then it is the distribution at all future times. I.e. $\boldsymbol \pi$ is a stationary distribution if, given $\mathbf p_0=\boldsymbol \pi$, then $\mathbf p_n=\boldsymbol \pi$ for all time $n$. This means it must satisfy the equation:
+$$\boldsymbol \pi =\boldsymbol \pi T.$$
+Note that $\boldsymbol \pi$ is a probability distribution on the state space:
+$$\boldsymbol \pi=(\pi_0,\pi_1,\pi_2,\ldots,\pi_m)$$
+with $\sum_{j=0}^m \pi_j=1$.
+
+The equation $\boldsymbol \pi =\boldsymbol \pi T$ tells us that $\boldsymbol \pi$ is a left eigenvector of $T$ with eigenvalue one. In linear algebra, it is more common to deal with column vectors and multiplication with matrices on the left and column vectors on the right, but, in Markov chain theory, it is more common to have row vectors on the left and matrices on the right. This means, that when you have encountered eigenvalues and eigenvectors in the past it was probably with that former convention. 
+
+
+
+
+::: thmbox
+**Theorem.** Any convex combination of stationary distributions is also a stationary distribution. A convex combination is a linear combination where the coefficients sum to one. For example, if $\boldsymbol \pi_1$ and $\boldsymbol \pi_2$ are stationary distributions for some Markov chain, then $a\boldsymbol \pi_1+(1-a)\boldsymbol \pi_2$ is also a stationary distribution for any $a\in[0,1]$.
+:::
+
+
+::: thmbox
+**Theorem.** A Markov chain with a finite state space that is irreducible and aperiodic has a single unique stationary distribution. A Markov chain that is periodic or reducible may have multiple stationary distributions or a single one only.
+:::
+
+
+
+::: exbox
+**Example.** ($2\times 2$ stationary distribution)
+Consider transition matrix 
+$$T=\begin{pmatrix}1-b & b\\a & 1-a\end{pmatrix}.$$
+This matrix is irreducible if and only if both $a$ and $b$ are positive (and hence has a single unique stationary distribution. Otherwise it is reducible. It is aperiodic if and only if both $a$ and $b$ are less than one.
+:::
+
+
+### Stationary distributions for reducible chains
+
+A finite state Markov chain will always have at least one recurrent state or class of states. This is because the chain "must get absorbed somewhere" so-to-speak. An chain with infinitely-many states doesn't have to behave this way. Consider the chain that just goes form state $i$ to state $i+1$ deterministically (with probability one). It will never settle down in any state and does not have any limiting or stationary distributions. The SSRW also doesn't have limiting or stationary distributions as the probability of finding it in any particular state decays to zero as time goes on.
+
+For the finite state space case, we can find stationary distributions by considering each recurrent class on its own and extracting the part of the transition matrix corresponding to the states in that recurrent class alone.
+
+Let $C$ be a recurrent class of states, and define $T_C$ as the restriction of $T$ to $C$. Furthermore, lets keep the original states as indices for $T_C$. This means that $(T_C)_{ij} =T_{ij}$ for all $i,j\in C$ and $(T_C)_{ij}$ is left undefined if $i\not\in C$ or $j\not\in C$. If $C=S$ the entire state space, then $T_C=T$ simply. Any convex combination of stationary distributions found in this way, will also be a stationary distribution.
+
+::: exbox
+**Example.**
+transition matrix
+$$T=\begin{pmatrix}
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0.25 & 0 & 0.5 & 0.25 & 0 & 0\\
+0 & 0 & 0.25 & 0.25 & 0.5 & 0\\
+0 & 0 & 0 & 0 & 0.5 & 0.5\\
+0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix}$$
+has transient class $\{2,3\}$ and recurrent classes $\{0,1\}$ and $\{4,5\}$. 
+
+The restriction to $\{0,1\}$ is
+$$T_{\{0,1\}}=\begin{pmatrix}
+0.5 & 0.5 \\
+0.5 & 0.5
+\end{pmatrix}.$$
+This has stationary distribution $(1/2,1/2)$. This means that $(1/2,1/2,0,0,0,0)$ is a stationary distribution for the original $T$.
+
+Now, the restriction of $T$ to $\{4,5\}$ is
+$$T_{\{4,5\}}=\begin{pmatrix}
+0.5 & 0.5 \\
+1 & 0
+\end{pmatrix}$$
+and has stationary distribution $(2/3,1/3)$. This means that $(0,0,0,0,2/3,1/3)$ is a stationary distribution for the original $T$.
+
+Note that, implicitly, we are indexing $T_{\{4,5\}}$ by $4$ and $5$, e.g. $(T_{\{4,5\}})_{44}=T_{44}$ and $(T_{\{4,5\}})_{45}=T_{45}$, etc. But $(T_{\{4,5\}})_{40}$, $(T_{\{4,5\}})_{41}$, etc. are left undefined. This is just to keep the numerical labels for our states consistent.
+:::
+
+
+
+### R code for finding stationary distributions
+
+Here we continue with the $3\times3$ transition matrix used above and find its stationary distribution. First we enter the matrix and find all left (row) eigenvectors using the `eigen()` method. Note that we must first transpose the matrix with `t()`. We would get right (column) eigenvectors with `eigen(TM)`, so we instead need to use `eigen(t(TM))`.
+
+```{r}
+TM <- matrix(c(0.5,0.3,0.2,
+               0.0,0.3,0.7,
+               0.5,0.5,0.0),byrow=T,nrow=3)
+eigen(t(TM))
+```
+Eigenvectors int eh above R output are listed as columns. The first column goes with the first eigenvalue in the list, etc. We can see that there is one eigenvector that has eigenvalue one. Note that it has all negative entries, that's ok, we just need to turn it into a probability distribution with
+```{r}
+eigen(t(TM))$vectors[,1] -> pivec
+pivec <- pivec/sum(pivec)
+pivec
+```
+Then we can check that it does indeed work with the following calculation of $\boldsymbol \pi T-\boldsymbol \pi$ which should give us the zero vector.
+```{r}
+pivec %*% TM - pivec
+```
+
+Notice that we didn't exactly get zeros. That is typical, and normally (for many computations) something on the order of $10^{-16}$ or smaller indicates the actual value is zero. There are times when that isn't true though, so understanding the theory is very important!
+
+::: exbox
+**Example.** (a reducible matrix with a unique stationary distribution)
+Consider the transition matrix
+$$T=\begin{pmatrix}
+0.5 & 0.3 & 0.2\\
+0 & 0.3 & 0.7\\
+0 & 0 & 1
+\end{pmatrix}.$$
+There is only a single absorbing state, $\{2\}$, and we have transient class $\{0,1\}$. Trying to find stationary distributions will show that $(0,0,1)$ is the only possibility. Raising this matrix to a large power in R will give back a matrix where each row is (approximately) $(0,0,1)$ as well. In this case, $(0,0,1)$ is the limiting distribution, no matter which state we start the chain in.
+:::
+
+::: exbox
+**Example.** (a reducible matrix with a multiple stationary distributions)
+Consider the transition matrix
+$$T=\begin{pmatrix}
+1 & 0 & 0\\
+0.2 & 0.3 & 0.5\\
+0 & 0 & 1
+\end{pmatrix}.$$
+There are two absorbing states: $\{0\}$ and $\{2\}$, and we have transient state $\{1\}$. Trying to find stationary distributions will give $(1,0,0)$ and $(0,0,1)$. If we start the chain in state $1$, then the absorption probabilities are $2/7$ for absorption into state $0$ and $5/7$ for absorption into state $2$. This gives stationary distribution $(2/7,0,5/7)$ which is the convex combination $2/7(1,0,0)+5/7(0,0,1)$. In fact $(a,0,1-a)$ is a stationary distribution for any $a\in[0,1]$ so we have an "infinite family of stationary distributions."
+:::
+
+::: exbox
+**Example.** (a reducible matrix with a multiple stationary distributions)
+Consider the transition matrix
+$$T=\begin{pmatrix}
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0.25 & 0 & 0.5 & 0.25 & 0 & 0\\
+0 & 0 & 0.25 & 0.25 & 0.5 & 0\\
+0 & 0 & 0 & 0 & 0.5 & 0.5\\
+0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix}.$$
+We have transient class $\{2,3\}$ and recurrent classes $\{0,1\}$ and $\{4,5\}$. The chain will always get absorbed eventually into one the recurrent classes.
+
+If we extract the transition matrix for a recurrent class, we can get the stationary probabilities for it. We do this fo class $\{0,1\}$.
+$$T_{\{0,1\}}=\begin{pmatrix}
+0.5 & 0.5 \\
+0.5 & 0.5
+\end{pmatrix}$$
+which has stationary distribution $(1/2,1/2)$. This means that $(1/2,1/2,0,0,0,0)$ is a stationary distribution for the original $T$.
+
+Now for recurrent class $\{4,5\}, we get:
+$$T_{\{4,5\}}=\begin{pmatrix}
+0.5 & 0.5 \\
+1 & 0
+\end{pmatrix}$$
+which has stationary distribution $(2/3,1/3)$. This means that $(0,0,0,0,2/3,1/3)$ is a stationary distribution for the original $T$.
+
+These are the two basic stationary distributions, and any convex combination of them is also a stationary distribution. 
+
+Finding eigenvectors with R on examples like this can be misleading though. It will give you stationary distributions but not necessarily separated out by recurrent class like the above.
+```{r}
+TM <- matrix(c(0.5,0.5,0,0,0,0,
+               0.5,0.5,0,0,0,0,
+               0.25,0,0.5,0.25,0,0,
+               0,0,0.25,0.25,0.5,0,
+               0,0,0,0,0.5,0.5,
+               0,0,0,0,1,0),byrow=T,nrow=6)
+eigen(t(TM))
+```
+Notice the first eigenvector is as desired, but we just need to normalize it to sum to one. The second eigenvector, after ignoring the two tiny order $10^{-16}$ terms in the middle, is actually a linear combination of the two stationary distributions we found above. Another problem that can arise when doing this in R is that it might give you a linear combination using a mix of positive and negative coefficients! So pay attention and take care!
+:::
+
+
+
+
+## Probability of absorption \& time to absorption
+
+If we have a chain with a transient class and more than one recurrent class, we may wish to know the probability it is absorbed into either recurrent class, given some initial transient state. We can accomplish this numerically as follows.
+
+If $T$ is a transition matrix with recurrent class $C$ and transient state $i$, then we can raise $T$ to a large power in R and the absorbing probability into class $C$ from initial state $i$ is $\sum_{j\in C} T^\infty_{ij}$.
+
+::: exbox
+**Example.**
+```{r}
+TM <- matrix(c(0.5,0.5,0,0,0,0,
+               0.5,0.5,0,0,0,0,
+               0.25,0,0.5,0.25,0,0,
+               0,0,0.25,0.25,0.5,0,
+               0,0,0,0,0.5,0.5,
+               0,0,0,0,1,0),byrow=T,nrow=6)
+TM %^% 100
+```
+We can see that starting the chain in state $2$ (the third row) gives an approximate limiting distribution of 
+$$(0.3,  0.3, 2.8(10)^{-19}, 1.7(10)^{-19}, 0.2667, 0.1333).$$
+Summing the first two components gives $0.6$ probability of being absorbed into $\{0,1\}$ and the last two gives $0.4$ probability of absorption into class $\{4,5\}$.
+:::
+
+To find the exact absorption probabilities, we use linear algebra. Let $S_{trans}$ be the set of transient states and $S_{rec}$ the set of recurrent states, so that $S=S_{trans}\cup S_{rec}$. Note that these are not necessarily classes as we could have multiple recurrent and multiple transient classes.
+
+Now define the matrices $T_{trans}=T_{S_{trans}}$ which is just $T$ restricted to the transient states. Now define $R$ to be the matrix giving us transitions form transient states to recurrent states, that is, $R_{ij}$ is only defined for $i\in S_{trans}$ and $j\in S_{rec}$. Note that $R$ is not necessarily a square matrix since the number of transient and recurrent states does not have to be equal!
+
+Now consider the matrix
+$$B=(I-T_{trans})^{-1}R.$$
+Note that $B_{ij}$ is defined only for $i$ transient and $j$ recurrent. Also note that, although we are staying consistent with the original state space for our numerical labels for indices here, that the number of rows and columns is appropriate for this matrix multiplication to make sense.
+
+If state $j$ is in a recurrent class on its own, then $B_{ij}$ is the probability of absorption into state $j$ with initial state $i$. If we have a class $C$ of recurrent states, then $\sum_{j\in C}B_{ij}$ is the probability of being absorbed into that class from initial transient state $i$.
+
+::: exbox
+**Example.**
+Continuing with the same $6\times6$ matrix above, we have
+$$T_{trans}=\begin{pmatrix}
+0.5 & 0.25 \\
+0.25 & 0.25
+\end{pmatrix}.$$
+Note that this is not a transition matrix!
+And we have that $R$ is the rest of the rows corresponding to teh transient states:
+$$R=\begin{pmatrix}
+0.25 & 0 & 0 & 0 \\
+0 & 0 & 0.5 & 0
+\end{pmatrix}.$$
+Now
+$$\begin{aligned}
+B&=(I-T_{trans})^{-1}R\\
+&=\left(\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}-
+\begin{pmatrix}
+0.5 & 0.25 \\
+0.25 & 0.25
+\end{pmatrix}\right)^{-1}
+\begin{pmatrix}
+0.25 & 0 & 0 & 0 \\
+0 & 0 & 0.5 & 0
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+0.5 & -0.25 \\
+-0.25 & 0.75
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+0.25 & 0 & 0 & 0 \\
+0 & 0 & 0.5 & 0
+\end{pmatrix}\\
+&=
+\frac{1}{(0.75)(0.5)-(0.25)^2}\begin{pmatrix}
+0.75 & 0.25 \\
+0.25 & 0.5
+\end{pmatrix}
+\begin{pmatrix}
+0.25 & 0 & 0 & 0 \\
+0 & 0 & 0.5 & 0
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+2.4 & 0.8 \\
+0.8 & 1.6
+\end{pmatrix}
+\begin{pmatrix}
+0.25 & 0 & 0 & 0 \\
+0 & 0 & 0.5 & 0
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+0.6 & 0 & 0.4 & 0 \\
+0.2 & 0 & 0.8 & 0
+\end{pmatrix}.
+\end{aligned}$$
+Hence, we can now see that, for example, the probability of state $2$ being absorbed into class $\{0,1\}$ is exactly $B_{20}+B_{21}=0.6+0=0.6$. Even though the matrix $B$ has many zeros, it is not correct to interpret $B_{20}=0.6$ as the probability of being absorbed into state $0$, for example. An absorption probability only makes sense when calculated over an entire recurrent class.
+:::
+
+
+## Gambler's ruin
 
 
 ## Summary {-}

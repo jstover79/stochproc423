@@ -80,3 +80,9 @@ distribution-at-time-n
 simulating-a-markov-chain-in-r
 return-times-and-hitting-probabilities
 limiting-probabilities
+limiting-distributions
+stationary-distributions
+stationary-distributions-for-reducible-chains
+r-code-for-finding-stationary-distributions
+probability-of-absorption-time-to-absorption
+gamblers-ruin
