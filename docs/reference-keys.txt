@@ -86,3 +86,8 @@ stationary-distributions-for-reducible-chains
 r-code-for-finding-stationary-distributions
 probability-of-absorption-time-to-absorption
 gamblers-ruin
+branching-process
+offspring-distribution
+survival-and-extinction
+section
+poisson-processes

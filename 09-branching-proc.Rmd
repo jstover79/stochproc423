@@ -1,0 +1,32 @@
+# Branching process
+
+The branching process is a model of population growth where each individual alive dies but leaves behind some random number of offspring in the next generation.
+
+The stochastic process is $(X_n)_{n\in\mathbb N_0}$ with $X_0=1$. This first individual will die, and $X_1$ is chosen randomly from the offspring distribution, a probability mass function on $\{0,1,12,\ldots\}$. Say $X_1=k$. Then for each of those $k$ individuals, they die, but leave behind a random number of offspring, each number is randomly drawn independently from the offspring distribution. Then we repeat this forever. Either the population stays alive forever and grows unboundedly, or it goes extinct and $X_n=0$ after some finite time $n$.
+
+It is possible to allow $X_0>1$, but this is just like running multiple independent copies of the process.
+
+## Offspring distribution
+
+The offspring distribution determines the (random) number of offspring each individual will leave behind for the next generation: $p_j=\mathbb P(j \text{ offspring})$ for all $j=0,1,2,\ldots$. Of course we must have $\sum_{j=0}^\infty p_j=1$ in order for the process to be well defined. If this sum was less than one, we would be forced to allocate the remaining probability mass to having infinitely many offspring. This would mean the process "explodes" and the population becomes infinite in size after some finite time, and that is very undesirable, generally.
+
+If we have $p_0=0$, then it simply isn't possible for the population to go extinct, and it survives forever. A trivial example is $p_1=1$, then the population has $X_0=X_1=X_2=\cdots=1$ forever.
+
+What about $p_0=p_2=\frac12$? On average each individual leaves behind a single offspring, but this randomly alternates between zero and two. We will see that this population does indeed go extinct with probability one, eventually.
+
+The mean number of offspring is 
+$$\mu=\sum_{j=0}^\infty j p_j.$$
+
+## Survival and extinction
+
+It turns out that the probability of extinction $\pi_0=1$ if the mean number of offspring is $\mu\leq1$.
+
+If $\mu>1$, then the probability of extinction $\pi_0<1$.
+
+The extinction probability is the solution of the equation $s=p(s)$ where $p(s)$ is the *probability generating function*:
+$$p(s)=\sum_{j=0}^\infty p_js^j.$$
+
+If the offspring distribution has some maximum possible number of offspring, then $p(s)$ is jsut a polynomial, otherwise it is a power series in $s$.
+
+
+## 
