@@ -1,3 +1,5 @@
 # Poisson processes
 
-[to be continued]
+The Poisson process is a model for counting the number of events that have occurred up to some time $t$. It is a continuous-time stochastic process $X=(X_t)_{t\in[0,\infty)}$ with $X_0=0$ (starting our counter at zero events), and $X_t$ is the number of events that have occurred since time 0 to time $t$. There is a single parameter, $\lambda$, and it is called by several different names: the rate parameter, the intensity, or the arrival rate. It is the mean number of events per unit time (or the expected number of arrivals in a unit time interval). We write $X\sim\mathsf{Poi}_\lambda$ to denote $X=(X_t)_{t\in[0,\infty)}$ is a Poisson process with arrival rate $\lambda$.
+
+The underlying assumptions are that non-overlapping time intervals are independent, and that the number of events on any time interval is a Poisson random variable with mean $\lambda$ multiplied by the length of the interval. That is, $X_t\sim\mathsf{Pois}(\text{mean}=\lambda t)$.

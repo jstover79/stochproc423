@@ -1,0 +1,11 @@
+# Continuous-time Markov processes
+
+[to be continued]
+
+examples:
+
+- radioactive decay
+
+- chemical reactions
+
+- mean field ODE derivations

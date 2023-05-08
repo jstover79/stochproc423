@@ -23,7 +23,7 @@
 <meta name="author" content="Joseph Stover" />
 
 
-<meta name="date" content="2023-05-06" />
+<meta name="date" content="2023-05-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,9 +282,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="branching-process.html"><a href="branching-process.html#offspring-distribution"><i class="fa fa-check"></i><b>9.1</b> Offspring distribution</a></li>
 <li class="chapter" data-level="9.2" data-path="branching-process.html"><a href="branching-process.html#survival-and-extinction"><i class="fa fa-check"></i><b>9.2</b> Survival and extinction</a></li>
-<li class="chapter" data-level="9.3" data-path="branching-process.html"><a href="branching-process.html#section"><i class="fa fa-check"></i><b>9.3</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="poisson-processes.html"><a href="poisson-processes.html"><i class="fa fa-check"></i><b>10</b> Poisson processes</a></li>
+<li class="chapter" data-level="11" data-path="queues.html"><a href="queues.html"><i class="fa fa-check"></i><b>11</b> Queues</a></li>
+<li class="chapter" data-level="12" data-path="continuous-time-markov-processes.html"><a href="continuous-time-markov-processes.html"><i class="fa fa-check"></i><b>12</b> Continuous-time Markov processes</a></li>
+<li class="chapter" data-level="13" data-path="brownian-motion.html"><a href="brownian-motion.html"><i class="fa fa-check"></i><b>13</b> Brownian motion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -324,10 +326,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If <span class="math inline">\(\mu&gt;1\)</span>, then the probability of extinction <span class="math inline">\(\pi_0&lt;1\)</span>.</p>
 <p>The extinction probability is the solution of the equation <span class="math inline">\(s=p(s)\)</span> where <span class="math inline">\(p(s)\)</span> is the <em>probability generating function</em>:
 <span class="math display">\[p(s)=\sum_{j=0}^\infty p_js^j.\]</span></p>
-<p>If the offspring distribution has some maximum possible number of offspring, then <span class="math inline">\(p(s)\)</span> is jsut a polynomial, otherwise it is a power series in <span class="math inline">\(s\)</span>.</p>
+<p>If the offspring distribution has some maximum possible number of offspring, then <span class="math inline">\(p(s)\)</span> is just a polynomial, otherwise it is a power series in <span class="math inline">\(s\)</span>.</p>
+<div class="exbox">
+<p><strong>Example.</strong> Consider the branching process with offspring distribution <span class="math inline">\(p_0=0.2,p_1=0.1,p_2=0.4,p_3=0.0.3\)</span>. The probability generating function is <span class="math inline">\(p(s)=0.2+0.1s+0.4s^2+0.3s^3\)</span>. To find the extinction probability, we solve <span class="math inline">\(s=p(s)\)</span> which means finding the root of the polynomial equation <span class="math inline">\(0=0.2-0.9s+0.4s^2+0.3s^3\)</span>.</p>
+<p>Solving a polynomial root <span class="math inline">\(0=a_0+a_1s+\cdots+a_ns^n\)</span> in R can be done by <code>polyroot(c(a_0,a_1,...,a_n))</code>.</p>
+<p>So we use</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="branching-process.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">0.9</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>))</span></code></pre></div>
+<pre><code>## [1]  0.257334-0i  1.000000+0i -2.590667-0i</code></pre>
+<p>From the output, we can see that there are three roots, <code>0.257334-0i  1.000000+0i -2.590667-0i</code>. Only the first two could be possible values for an extinction probability.</p>
+<p>We can calculate the mean number of offspring <span class="math inline">\(\mu=0\cdot (0.2)+1\cdot (0.1)+2\cdot(0.4)+3\cdot(0.3)=1.8&gt;1\)</span> so we know the population has a positive probability of surviving forever.</p>
+<p>This means the extinction probability is <span class="math inline">\(\pi_0=0.257334\)</span>.</p>
 </div>
-<div id="section" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> </h2>
 
 </div>
 </div>

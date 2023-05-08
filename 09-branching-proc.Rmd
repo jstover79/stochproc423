@@ -26,7 +26,22 @@ If $\mu>1$, then the probability of extinction $\pi_0<1$.
 The extinction probability is the solution of the equation $s=p(s)$ where $p(s)$ is the *probability generating function*:
 $$p(s)=\sum_{j=0}^\infty p_js^j.$$
 
-If the offspring distribution has some maximum possible number of offspring, then $p(s)$ is jsut a polynomial, otherwise it is a power series in $s$.
+If the offspring distribution has some maximum possible number of offspring, then $p(s)$ is just a polynomial, otherwise it is a power series in $s$.
 
+::: exbox
+**Example.** Consider the branching process with offspring distribution $p_0=0.2,p_1=0.1,p_2=0.4,p_3=0.0.3$. The probability generating function is $p(s)=0.2+0.1s+0.4s^2+0.3s^3$. To find the extinction probability, we solve $s=p(s)$ which means finding the root of the polynomial equation $0=0.2-0.9s+0.4s^2+0.3s^3$.
 
-## 
+Solving a polynomial root $0=a_0+a_1s+\cdots+a_ns^n$ in R can be done by `polyroot(c(a_0,a_1,...,a_n))`.
+
+So we use
+```{r}
+polyroot(c(0.2,-0.9,0.4,0.3))
+```
+
+From the output, we can see that there are three roots, `0.257334-0i  1.000000+0i -2.590667-0i`. Only the first two could be possible values for an extinction probability.
+
+We can calculate the mean number of offspring $\mu=0\cdot (0.2)+1\cdot (0.1)+2\cdot(0.4)+3\cdot(0.3)=1.8>1$ so we know the population has a positive probability of surviving forever.
+
+This means the extinction probability is $\pi_0=0.257334$.
+:::
+

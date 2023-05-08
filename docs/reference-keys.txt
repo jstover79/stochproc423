@@ -89,5 +89,7 @@ gamblers-ruin
 branching-process
 offspring-distribution
 survival-and-extinction
-section
 poisson-processes
+queues
+continuous-time-markov-processes
+brownian-motion

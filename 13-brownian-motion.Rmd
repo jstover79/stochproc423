@@ -1,0 +1,5 @@
+# Brownian motion
+
+[to be continued]
+
+- include geometric borwnian motion and stock model 

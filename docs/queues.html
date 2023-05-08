@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Poisson processes | Math 423 Stochastic Processes Course Notes</title>
-  <meta name="description" content="Chapter 10 Poisson processes | Math 423 Stochastic Processes Course Notes" />
+  <title>Chapter 11 Queues | Math 423 Stochastic Processes Course Notes</title>
+  <meta name="description" content="Chapter 11 Queues | Math 423 Stochastic Processes Course Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Poisson processes | Math 423 Stochastic Processes Course Notes" />
+  <meta property="og:title" content="Chapter 11 Queues | Math 423 Stochastic Processes Course Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Poisson processes | Math 423 Stochastic Processes Course Notes" />
+  <meta name="twitter:title" content="Chapter 11 Queues | Math 423 Stochastic Processes Course Notes" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="branching-process.html"/>
-<link rel="next" href="queues.html"/>
+<link rel="prev" href="poisson-processes.html"/>
+<link rel="next" href="continuous-time-markov-processes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -307,10 +307,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="poisson-processes" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Poisson processes<a href="poisson-processes.html#poisson-processes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The Poisson process is a model for counting the number of events that have occurred up to some time <span class="math inline">\(t\)</span>. It is a continuous-time stochastic process <span class="math inline">\(X=(X_t)_{t\in[0,\infty)}\)</span> with <span class="math inline">\(X_0=0\)</span> (starting our counter at zero events), and <span class="math inline">\(X_t\)</span> is the number of events that have occurred since time 0 to time <span class="math inline">\(t\)</span>. There is a single parameter, <span class="math inline">\(\lambda\)</span>, and it is called by several different names: the rate parameter, the intensity, or the arrival rate. It is the mean number of events per unit time (or the expected number of arrivals in a unit time interval). We write <span class="math inline">\(X\sim\mathsf{Poi}_\lambda\)</span> to denote <span class="math inline">\(X=(X_t)_{t\in[0,\infty)}\)</span> is a Poisson process with arrival rate <span class="math inline">\(\lambda\)</span>.</p>
-<p>The underlying assumptions are that non-overlapping time intervals are independent, and that the number of events on any time interval is a Poisson random variable with mean <span class="math inline">\(\lambda\)</span> multiplied by the length of the interval. That is, <span class="math inline">\(X_t\sim\mathsf{Pois}(\text{mean}=\lambda t)\)</span>.</p>
+<div id="queues" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Queues<a href="queues.html#queues" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>[to be continued]</p>
 
 </div>
             </section>
@@ -318,8 +317,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="branching-process.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="queues.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="poisson-processes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="continuous-time-markov-processes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -350,7 +349,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jstover79/stochproc423/edit/master/10-pois-proc.Rmd",
+"link": "https://github.com/jstover79/stochproc423/edit/master/11-queues.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -358,7 +357,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jstover79/stochproc423/blob/master/10-pois-proc.Rmd",
+"link": "https://github.com/jstover79/stochproc423/blob/master/11-queues.Rmd",
 "text": null
 },
 "download": null,
